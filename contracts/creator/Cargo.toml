@@ -10,7 +10,7 @@ ink = { version = "4.2.0", default-features = false }
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2.6", default-features = false, features = ["derive"], optional = true }
 
-openbrush = { git = "https://github.com/Brushfam/openbrush-contracts", branch = "feature/stable-rust", default-features = false, features = ["ownable", "upgradeable"] }
+openbrush = { git = "https://github.com/Brushfam/openbrush-contracts", branch = "develop", default-features = false, features = ["ownable", "upgradeable"] }
 archisinal_lib = { path = "../..", default-features = false }
 arch_nft = { path = "../arch_nft", default-features = false, features = ["ink-as-dependency"] }
 
