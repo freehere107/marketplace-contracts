@@ -15,6 +15,12 @@ pub type ProjectResult<T> = Result<T, ArchisinalError>;
 #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
 #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
 pub enum ArchisinalError {
+    AccountAlreadyExists,
+    InsufficientFunds,
+    AuctionPriceIsZero,
+    AuctionEndTimeIsBeforeStartTime,
+    CollectionOwnerNotFound,
+    AuctionHasNoBids,
     AuctionNotEnded,
     BidPriceTooLow,
     AuctionEnded,
@@ -31,6 +37,7 @@ pub enum ArchisinalError {
     IntegerUnderflow,
     CollectionNotFound,
     CallerIsNotNFTOwner,
+    TransferNativeError,
     Ownable(ownable::OwnableError),
     PSP34(psp34::PSP34Error),
     PSP22(psp22::PSP22Error),

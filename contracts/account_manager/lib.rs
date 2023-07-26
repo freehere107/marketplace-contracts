@@ -9,7 +9,7 @@ mod account_manager {
     use archisinal_lib::traits::ProjectResult;
     use ink::codegen::Env;
     use ink::ToAccountId;
-    use openbrush::traits::{Storage, StorageAsRef};
+    use openbrush::traits::Storage;
 
     #[ink(storage)]
     #[derive(Storage, Default)]

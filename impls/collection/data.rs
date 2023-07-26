@@ -10,5 +10,5 @@ pub struct Data {
     #[lazy]
     pub additional_info: Option<String>,
     #[lazy]
-    pub royalty: u8,
+    pub royalty: u32,
 }

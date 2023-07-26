@@ -23,7 +23,7 @@ pub trait Creator {
         &mut self,
         name: String,
         uri: String,
-        royalty: u8,
+        royalty: u32,
         additional_info: String,
         code_hash: Hash,
     ) -> ProjectResult<AccountId>;

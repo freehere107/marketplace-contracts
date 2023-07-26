@@ -1,5 +1,7 @@
-use crate::impls::marketplace::data::{Auction, Listing};
+use crate::impls::marketplace::data::Listing;
+use crate::impls::shared::currency::Currency;
 use crate::traits::ProjectResult;
+use ink::prelude::vec::Vec;
 use ink::primitives::AccountId;
 use openbrush::contracts::psp34::Id;
 
@@ -11,46 +13,23 @@ pub trait Marketplace {
     fn get_listing_by_index(&self, index: u128) -> Option<Listing>;
 
     #[ink(message)]
-    fn get_auction_count(&self) -> u128;
-    #[ink(message)]
-    fn get_auction_by_index(&self, index: u128) -> Option<Auction>;
-
-    #[ink(message)]
     fn list_nft_for_sale(
         &mut self,
         creator: AccountId,
         collection: AccountId,
         token_id: Id,
         price: u128,
-        currency: AccountId,
-    ) -> ProjectResult<u128>;
-
-    #[ink(message)]
-    fn list_nft_for_auction(
-        &mut self,
-        creator: AccountId,
-        collection: AccountId,
-        token_id: Id,
-        start_price: u128,
-        currency: AccountId,
-        start_time: u64,
-        end_time: u64,
+        currency: Currency,
     ) -> ProjectResult<u128>;
 
     #[ink(message)]
     fn cancel_listing(&mut self, listing_id: u128) -> ProjectResult<()>;
 
-    #[ink(message)]
-    fn cancel_auction(&mut self, auction_id: u128) -> ProjectResult<()>;
-
-    #[ink(message)]
+    #[ink(message, payable)]
     fn buy_nft(&mut self, listing_id: u128) -> ProjectResult<()>;
 
-    #[ink(message)]
-    fn bid_nft(&mut self, auction_id: u128, price: u128) -> ProjectResult<()>;
-
-    #[ink(message)]
-    fn claim_nft(&mut self, auction_id: u128) -> ProjectResult<()>;
+    #[ink(message, payable)]
+    fn buy_batch(&mut self, ids: Vec<u128>) -> ProjectResult<()>;
 }
 
 #[openbrush::wrapper]

@@ -1,147 +1,19 @@
-use crate::impls::marketplace::data::{Auction, AuctionStatus, Data, Listing, ListingStatus};
-use crate::traits::{auction, ArchisinalError, ProjectResult};
+use crate::impls::auction::data::{Auction, AuctionStatus, Data};
+use crate::impls::shared::currency::Currency;
+use crate::impls::shared::utils::apply_fee;
+use crate::traits::{ArchisinalError, ProjectResult};
 use ink::prelude::vec;
 use openbrush::contracts::ownable;
-use openbrush::contracts::ownable::Ownable;
+use openbrush::contracts::ownable::{Ownable, OwnableRef};
 use openbrush::contracts::psp34::{Id, PSP34Ref};
-use openbrush::contracts::traits::psp22::PSP22Ref;
 use openbrush::traits::{AccountId, DefaultEnv, Storage};
-
-pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
-    fn get_listing_count(&self) -> u128 {
-        self.data::<Data>().listing_count.get_or_default()
-    }
-
-    fn get_listing_id_by_index(&self, index: u128) -> Option<Listing> {
-        self.data::<Data>().listings.get(&index)
-    }
-
-    fn list_nft_for_sale(
-        &mut self,
-        creator: AccountId,
-        mut collection: AccountId,
-        token_id: Id,
-        price: u128,
-        currency: AccountId,
-    ) -> ProjectResult<u128> {
-        let caller = <Self as DefaultEnv>::env().caller();
-        let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
-
-        if creator.clone() != caller {
-            return Err(ArchisinalError::CallerIsNotNFTOwner);
-        }
-
-        if PSP34Ref::owner_of(&collection, token_id.clone()) != Some(creator) {
-            return Err(ArchisinalError::CallerIsNotNFTOwner);
-        }
-
-        PSP34Ref::transfer(&mut collection, contract_address, token_id.clone(), vec![])?;
-
-        let listing_id = self.data::<Data>().listing_count.get_or_default();
-
-        let listing = Listing {
-            id: listing_id,
-            creator: creator.clone(),
-            collection: collection.clone(),
-            token_id: token_id.clone(),
-            price,
-            currency,
-            status: ListingStatus::OnSale,
-        };
-
-        self.data::<Data>().listings.insert(&listing_id, &listing);
-        self.data::<Data>().listing_count.set(
-            &listing_id
-                .checked_add(1)
-                .ok_or(ArchisinalError::IntegerOverflow)?,
-        );
-
-        Ok(listing_id)
-    }
-
-    fn cancel_listing(&mut self, listing_id: u128) -> ProjectResult<()> {
-        let caller = <Self as DefaultEnv>::env().caller();
-        let mut listing = self
-            .data::<Data>()
-            .listings
-            .get(&listing_id)
-            .ok_or(ArchisinalError::ListingNotFound)?;
-
-        if listing.creator != caller {
-            return Err(ArchisinalError::CallerIsNotListingOwner);
-        }
-
-        if listing.status != ListingStatus::OnSale {
-            return Err(ArchisinalError::ListingNotOnSale);
-        }
-
-        self.data::<Data>().listings.insert(
-            &listing_id,
-            &Listing {
-                status: ListingStatus::Cancelled,
-                ..listing.clone()
-            },
-        );
-
-        PSP34Ref::transfer(
-            &mut listing.collection,
-            caller.clone(),
-            listing.token_id.clone(),
-            vec![],
-        )?;
-
-        Ok(())
-    }
-
-    fn buy_nft(&mut self, listing_id: u128) -> ProjectResult<()> {
-        let caller = <Self as DefaultEnv>::env().caller();
-        let mut listing = self
-            .data::<Data>()
-            .listings
-            .get(&listing_id)
-            .ok_or(ArchisinalError::ListingNotFound)?;
-
-        if listing.status != ListingStatus::OnSale {
-            return Err(ArchisinalError::ListingNotOnSale);
-        }
-
-        if caller == listing.creator {
-            return Err(ArchisinalError::CallerIsListingOwner);
-        }
-
-        PSP34Ref::transfer(
-            &mut listing.collection,
-            caller.clone(),
-            listing.token_id.clone(),
-            vec![],
-        )?;
-
-        PSP22Ref::transfer_from(
-            &mut listing.currency,
-            caller.clone(),
-            listing.creator.clone(),
-            listing.price.clone(),
-            vec![],
-        )?;
-
-        self.data::<Data>().listings.insert(
-            &listing_id,
-            &Listing {
-                status: ListingStatus::Sold,
-                ..listing
-            },
-        );
-
-        Ok(())
-    }
-}
 
 pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
     fn get_auction_count(&self) -> u128 {
         self.data::<Data>().auction_count.get_or_default()
     }
 
-    fn get_auction_id_by_index(&self, index: u128) -> Option<Auction> {
+    fn get_auction_by_index(&self, index: u128) -> Option<Auction> {
         self.data::<Data>().auctions.get(&index)
     }
 
@@ -151,7 +23,8 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
         mut collection: AccountId,
         token_id: Id,
         start_price: u128,
-        currency: AccountId,
+        min_bid_step: u128,
+        currency: Currency,
         start_time: u64,
         end_time: u64,
     ) -> ProjectResult<u128> {
@@ -173,6 +46,7 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             token_id: token_id.clone(),
             start_price,
             currency,
+            min_bid_step,
             start_time,
             end_time,
             current_price: 0,
@@ -203,6 +77,14 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
 
         if auction.status != AuctionStatus::WaitingAuction {
             return Err(ArchisinalError::AuctionNotWaiting);
+        }
+
+        if auction.start_price == 0 {
+            return Err(ArchisinalError::AuctionPriceIsZero);
+        }
+
+        if auction.end_time < auction.start_time {
+            return Err(ArchisinalError::AuctionEndTimeIsBeforeStartTime);
         }
 
         self.data::<Data>().auctions.insert(
@@ -260,11 +142,15 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
 
     fn bid_nft(&mut self, auction_id: u128, price: u128) -> ProjectResult<()> {
         let caller = <Self as DefaultEnv>::env().caller();
-        let mut auction = self
+
+        let auction = self
             .data::<Data>()
             .auctions
             .get(&auction_id)
             .ok_or(ArchisinalError::AuctionNotFound)?;
+
+        let current_bidder = auction.current_bidder.clone();
+        let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
 
         if auction.status != AuctionStatus::InAuction {
             return Err(ArchisinalError::AuctionNotInAuction);
@@ -282,28 +168,29 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             return Err(ArchisinalError::BidPriceTooLow);
         }
 
-        if price < auction.current_price {
+        let min_bid = auction.current_price.clone() + auction.min_bid_step.clone();
+        if price <= min_bid {
             return Err(ArchisinalError::BidPriceTooLow);
         }
 
-        let mut current_bidder = auction.current_bidder.clone();
-        let mut contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
+        let with_fee = apply_fee(&price, &auction.collection)?;
 
-        PSP22Ref::transfer_from(
-            &mut auction.currency,
-            caller.clone(),
-            contract_address.clone(),
-            price.clone(),
-            vec![],
-        )?;
+        let mut currency = auction.currency.clone();
+
+        // PSP22Ref::transfer_from(
+        //     &mut auction.currency,
+        //     caller.clone(),
+        //     contract_address.clone(),
+        //     with_fee,
+        //     vec![],
+        // )?;
+        currency.transfer_from(caller.clone(), contract_address.clone(), with_fee)?;
 
         if let Some(bidder) = current_bidder.clone() {
-            PSP22Ref::transfer(
-                &mut auction.currency,
-                bidder.clone(),
-                auction.current_price.clone(),
-                vec![],
-            )?;
+            let with_fee = apply_fee(&auction.current_price, &auction.collection)?;
+
+            // PSP22Ref::transfer(&mut auction.currency, bidder.clone(), with_fee, vec![])?;
+            currency.transfer(bidder.clone(), with_fee)?;
         }
 
         self.data::<Data>().auctions.insert(
@@ -338,8 +225,6 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             return Err(ArchisinalError::AuctionNotEnded);
         }
 
-        let mut contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
-
         if let Some(bidder) = auction.current_bidder {
             PSP34Ref::transfer(
                 &mut auction.collection,
@@ -347,15 +232,36 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
                 auction.token_id.clone(),
                 vec![],
             )?;
+        } else {
+            self.data::<Data>().auctions.insert(
+                &auction_id,
+                &Auction {
+                    status: AuctionStatus::Ended,
+                    ..auction
+                },
+            );
+
+            return Err(ArchisinalError::AuctionHasNoBids);
         }
 
-        PSP22Ref::transfer_from(
-            &mut auction.currency,
-            contract_address.clone(),
-            auction.creator.clone(),
-            auction.current_price.clone(),
-            vec![],
-        )?;
+        let mut currency = auction.currency.clone();
+
+        // PSP22Ref::transfer(
+        //     &mut auction.currency,
+        //     auction.creator.clone(),
+        //     auction.current_price.clone(),
+        //     vec![],
+        // )?;
+        currency.transfer(auction.creator.clone(), auction.current_price.clone())?;
+
+        let with_fee =
+            apply_fee(&auction.current_price, &auction.collection)? - auction.current_price.clone();
+
+        let collection_owner = OwnableRef::owner(&auction.collection)
+            .ok_or(ArchisinalError::CollectionOwnerNotFound)?;
+
+        // PSP22Ref::transfer(&mut auction.currency, collection_owner, with_fee, vec![])?;
+        currency.transfer(collection_owner, with_fee)?;
 
         self.data::<Data>().auctions.insert(
             &auction_id,

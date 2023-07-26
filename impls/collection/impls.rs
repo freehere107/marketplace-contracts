@@ -24,7 +24,7 @@ pub trait CollectionImpl:
         self.data::<Data>().uri.get_or_default()
     }
 
-    fn collection_royalty(&self) -> u8 {
+    fn collection_royalty(&self) -> u32 {
         self.data::<Data>().royalty.get_or_default()
     }
 
@@ -45,7 +45,7 @@ pub trait CollectionImpl:
     }
 
     #[openbrush::modifiers(only_owner)]
-    fn set_collection_royalty(&mut self, royalty: u8) -> ProjectResult<()> {
+    fn set_collection_royalty(&mut self, royalty: u32) -> ProjectResult<()> {
         self.data::<Data>().royalty.set(&royalty);
         Ok(())
     }

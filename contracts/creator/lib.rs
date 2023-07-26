@@ -12,7 +12,6 @@ mod creator {
     use archisinal_lib::traits::creator::*;
     use archisinal_lib::traits::user::*;
     use archisinal_lib::traits::ProjectResult;
-    use ink::env::call::{build_create, ExecutionInput, Selector};
     use ink::ToAccountId;
     use openbrush::contracts::ownable;
     use openbrush::traits::Storage;
@@ -83,7 +82,7 @@ mod creator {
             &mut self,
             name: String,
             uri: String,
-            royalty: u8,
+            royalty: u32,
             additional_info: String,
             code_hash: Hash,
         ) -> ProjectResult<openbrush::traits::AccountId> {
@@ -106,7 +105,7 @@ mod creator {
             &mut self,
             name: String,
             uri: String,
-            royalty: u8,
+            royalty: u32,
             additional_info: String,
             code_hash: Hash,
         ) -> ProjectResult<openbrush::traits::AccountId> {

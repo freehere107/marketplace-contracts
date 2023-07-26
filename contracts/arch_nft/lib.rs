@@ -40,7 +40,7 @@ mod arch_nft {
     impl Contract {
         #[ink(constructor)]
         pub fn new(
-            royalty: u8,
+            royalty: u32,
             token_name: Option<String>,
             token_uri: Option<String>,
             additional_info: Option<String>,
@@ -69,7 +69,7 @@ mod arch_nft {
         #[ink(constructor, default)]
         pub fn new_default(
             owner: AccountId,
-            royalty: u8,
+            royalty: u32,
             token_name: Option<String>,
             token_uri: Option<String>,
             additional_info: Option<String>,
@@ -128,7 +128,7 @@ mod arch_nft {
         }
 
         #[ink(message)]
-        fn collection_royalty(&self) -> u8 {
+        fn collection_royalty(&self) -> u32 {
             CollectionImpl::collection_royalty(self)
         }
 
@@ -145,11 +145,6 @@ mod arch_nft {
         #[ink(message)]
         fn set_collection_uri(&mut self, uri: String) -> ProjectResult<()> {
             CollectionImpl::set_collection_uri(self, uri)
-        }
-
-        #[ink(message)]
-        fn set_collection_royalty(&mut self, royalty: u8) -> ProjectResult<()> {
-            CollectionImpl::set_collection_royalty(self, royalty)
         }
 
         #[ink(message)]

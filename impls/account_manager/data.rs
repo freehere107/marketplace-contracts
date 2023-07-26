@@ -1,6 +1,6 @@
 use ink::primitives::Hash;
 use openbrush::storage::Mapping;
-use openbrush::traits::{AccountId, String};
+use openbrush::traits::AccountId;
 
 #[derive(Default, Debug)]
 #[openbrush::storage_item]

@@ -1,5 +1,7 @@
 /target
 
 Cargo.lock
+yarn.lock
 
 /.idea
+/node_modules

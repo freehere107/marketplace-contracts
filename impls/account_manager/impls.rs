@@ -1,7 +1,7 @@
 use crate::impls::account_manager::Data;
-use crate::traits::ProjectResult;
+use crate::traits::{ArchisinalError, ProjectResult};
 use ink::primitives::{AccountId, Hash};
-use openbrush::traits::{Storage, StorageAsRef};
+use openbrush::traits::Storage;
 
 pub trait AccountManagerImpl: Storage<Data> {
     fn create_account(&mut self) -> ProjectResult<()>;
@@ -37,12 +37,20 @@ pub trait AccountManagerImpl: Storage<Data> {
     }
 
     fn _add_account(&mut self, account_id: AccountId, contract: AccountId) -> ProjectResult<()> {
+        if self.get_account(account_id).is_some() {
+            return Err(ArchisinalError::AccountAlreadyExists);
+        }
+
         self.data().accounts.insert(&account_id, &contract);
 
         Ok(())
     }
 
     fn _add_creator(&mut self, account_id: AccountId, contract: AccountId) -> ProjectResult<()> {
+        if self.get_creator_account(account_id).is_some() {
+            return Err(ArchisinalError::AccountAlreadyExists);
+        }
+
         self.data().creators.insert(&account_id, &contract);
 
         Ok(())

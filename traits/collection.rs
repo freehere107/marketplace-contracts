@@ -18,7 +18,7 @@ pub trait Collection {
 
     /// Returns the symbol of the collection and None if not any.
     #[ink(message)]
-    fn collection_royalty(&self) -> u8;
+    fn collection_royalty(&self) -> u32;
 
     /// Returns the symbol of the collection and None if not any.
     #[ink(message)]
@@ -47,18 +47,6 @@ pub trait Collection {
     /// Returns `ProjectError::OwnableError` if the caller is not the owner.
     #[ink(message)]
     fn set_collection_uri(&mut self, uri: String) -> ProjectResult<()>;
-
-    /// Set the royalty of the collection.
-    ///
-    /// # Arguments
-    ///
-    /// * `royalty` - The royalty of the collection.
-    ///
-    /// # Errors
-    ///
-    /// Returns `ProjectError::OwnableError` if the caller is not the owner.
-    #[ink(message)]
-    fn set_collection_royalty(&mut self, royalty: u8) -> ProjectResult<()>;
 
     /// Set the additional info of the collection.
     ///

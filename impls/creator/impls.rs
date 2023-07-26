@@ -12,7 +12,7 @@ pub trait CreatorInternal {
         &mut self,
         name: String,
         uri: String,
-        royalty: u8,
+        royalty: u32,
         additional_info: String,
         code_hash: Hash,
     ) -> ProjectResult<AccountId>;
@@ -24,7 +24,7 @@ pub trait CreatorImpl: Storage<Data> + Ownable + Storage<ownable::Data> + Creato
         &mut self,
         name: String,
         uri: String,
-        royalty: u8,
+        royalty: u32,
         additional_info: String,
         code_hash: Hash,
     ) -> ProjectResult<AccountId> {
