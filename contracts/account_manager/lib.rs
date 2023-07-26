@@ -48,6 +48,7 @@ mod account_manager {
 
             Ok(())
         }
+    }
 
         fn create_creator_account(&mut self) -> ProjectResult<()> {
             let caller = self.env().caller();

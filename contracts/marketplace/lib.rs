@@ -29,7 +29,6 @@ mod marketplace {
 
             instance
         }
-    }
 
     impl MarketplaceImpl for Contract {}
     impl AuctionImpl for Contract {}

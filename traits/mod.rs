@@ -54,3 +54,15 @@ impl From<psp22::PSP22Error> for ArchisinalError {
         Self::PSP22(error)
     }
 }
+
+impl From<psp34::PSP34Error> for ArchisinalError {
+    fn from(error: psp34::PSP34Error) -> Self {
+        Self::PSP34(error)
+    }
+}
+
+impl From<psp22::PSP22Error> for ArchisinalError {
+    fn from(error: psp22::PSP22Error) -> Self {
+        Self::PSP22(error)
+    }
+}

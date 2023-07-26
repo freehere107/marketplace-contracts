@@ -247,6 +247,14 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             vec![],
         )?;
 
+        self.data::<Data>().auctions.insert(
+            &auction_id,
+            &Auction {
+                status: AuctionStatus::Ended,
+                ..auction
+            },
+        );
+
         Ok(())
     }
 
