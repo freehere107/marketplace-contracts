@@ -1,11 +1,13 @@
-use crate::impls::creator::data::Data;
-use crate::traits::{ArchisinalError, ProjectResult};
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
 use openbrush::modifiers;
 use openbrush::traits::{AccountId, Storage};
 use openbrush::traits::{Hash, String};
+
+use crate::impls::creator::data::Data;
+use crate::traits::events::creator::CreatorEvents;
+use crate::traits::{ArchisinalError, ProjectResult};
 
 pub trait CreatorInternal {
     fn _instantiate_collection(
@@ -18,7 +20,9 @@ pub trait CreatorInternal {
     ) -> ProjectResult<AccountId>;
 }
 
-pub trait CreatorImpl: Storage<Data> + Ownable + Storage<ownable::Data> + CreatorInternal {
+pub trait CreatorImpl:
+    Storage<Data> + Ownable + Storage<ownable::Data> + CreatorInternal + CreatorEvents
+{
     #[modifiers(only_owner)]
     fn create_collection(
         &mut self,
@@ -41,6 +45,8 @@ pub trait CreatorImpl: Storage<Data> + Ownable + Storage<ownable::Data> + Creato
             .checked_add(1)
             .ok_or(ArchisinalError::IntegerOverflow)?;
         self.data::<Data>().collection_count.set(&count);
+
+        self.emit_create_collection(collection_address, collection_address);
 
         Ok(collection_address)
     }

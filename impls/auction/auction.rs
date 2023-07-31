@@ -1,14 +1,19 @@
-use crate::impls::auction::data::{Auction, AuctionStatus, Data};
-use crate::impls::shared::currency::Currency;
-use crate::impls::shared::utils::apply_fee;
-use crate::traits::{ArchisinalError, ProjectResult};
+use crate::impls::admin_access::AdminAccessImpl;
 use ink::prelude::vec;
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::{Ownable, OwnableRef};
 use openbrush::contracts::psp34::{Id, PSP34Ref};
 use openbrush::traits::{AccountId, DefaultEnv, Storage};
 
-pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
+use crate::impls::auction::data::{Auction, AuctionStatus, Data};
+use crate::impls::shared::currency::Currency;
+use crate::impls::shared::utils::apply_fee;
+use crate::traits::events::auction::AuctionEvents;
+use crate::traits::{ArchisinalError, ProjectResult};
+
+pub trait AuctionImpl:
+    Storage<Data> + Storage<ownable::Data> + Ownable + AdminAccessImpl + AuctionEvents
+{
     fn get_auction_count(&self) -> u128 {
         self.data::<Data>().auction_count.get_or_default()
     }
@@ -35,6 +40,22 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             return Err(ArchisinalError::CallerIsNotNFTOwner);
         }
 
+        if start_price == 0 {
+            return Err(ArchisinalError::AuctionPriceIsZero);
+        }
+
+        if min_bid_step == 0 {
+            return Err(ArchisinalError::AuctionMinBidStepIsZero);
+        }
+
+        if end_time < start_time {
+            return Err(ArchisinalError::AuctionEndTimeIsBeforeStartTime);
+        }
+
+        if start_time < <Self as DefaultEnv>::env().block_timestamp() {
+            return Err(ArchisinalError::AuctionStartTimeIsBeforeNow);
+        }
+
         PSP34Ref::transfer(&mut collection, contract_address, token_id.clone(), vec![])?;
 
         let auction_id = self.data::<Data>().auction_count.get_or_default();
@@ -44,11 +65,11 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             creator: creator.clone(),
             collection: collection.clone(),
             token_id: token_id.clone(),
-            start_price,
-            currency,
-            min_bid_step,
-            start_time,
-            end_time,
+            start_price: start_price.clone(),
+            currency: currency.clone(),
+            min_bid_step: min_bid_step.clone(),
+            start_time: start_time.clone(),
+            end_time: end_time.clone(),
             current_price: 0,
             current_bidder: None,
             status: AuctionStatus::WaitingAuction,
@@ -58,33 +79,39 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
         self.data::<Data>().auction_count.set(
             &auction_id
                 .checked_add(1)
-                .ok_or(ArchisinalError::CallerIsNotNFTOwner)?,
+                .ok_or(ArchisinalError::IntegerOverflow)?,
+        );
+
+        self.emit_auction_created(
+            auction_id,
+            creator,
+            collection,
+            token_id,
+            start_price,
+            min_bid_step,
+            currency,
+            start_time,
+            end_time,
         );
 
         Ok(auction_id)
     }
 
     fn start_auction(&mut self, auction_id: u128) -> ProjectResult<()> {
+        let caller = <Self as DefaultEnv>::env().caller();
+
         let auction = self
             .data::<Data>()
             .auctions
             .get(&auction_id)
             .ok_or(ArchisinalError::AuctionNotFound)?;
 
-        if auction.start_time < <Self as DefaultEnv>::env().block_timestamp() {
+        if auction.creator != caller && !self.is_admin(caller.clone()) {
             return Err(ArchisinalError::CallerIsNotAuctionOwner);
         }
 
         if auction.status != AuctionStatus::WaitingAuction {
             return Err(ArchisinalError::AuctionNotWaiting);
-        }
-
-        if auction.start_price == 0 {
-            return Err(ArchisinalError::AuctionPriceIsZero);
-        }
-
-        if auction.end_time < auction.start_time {
-            return Err(ArchisinalError::AuctionEndTimeIsBeforeStartTime);
         }
 
         self.data::<Data>().auctions.insert(
@@ -94,6 +121,8 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
                 ..auction
             },
         );
+
+        self.emit_auction_started(caller, auction_id);
 
         Ok(())
     }
@@ -106,7 +135,7 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             .get(&auction_id)
             .ok_or(ArchisinalError::AuctionNotFound)?;
 
-        if auction.creator != caller {
+        if auction.creator != caller && !self.is_admin(caller.clone()) {
             return Err(ArchisinalError::CallerIsNotAuctionOwner);
         }
 
@@ -129,13 +158,7 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             vec![],
         )?;
 
-        self.data::<Data>().auctions.insert(
-            &auction_id,
-            &Auction {
-                status: AuctionStatus::Ended,
-                ..auction
-            },
-        );
+        self.emit_auction_cancelled(caller, auction_id);
 
         Ok(())
     }
@@ -148,6 +171,10 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             .auctions
             .get(&auction_id)
             .ok_or(ArchisinalError::AuctionNotFound)?;
+
+        if auction.creator.clone() == caller.clone() {
+            return Err(ArchisinalError::CallerIsAuctionOwner);
+        }
 
         let current_bidder = auction.current_bidder.clone();
         let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
@@ -168,8 +195,13 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             return Err(ArchisinalError::BidPriceTooLow);
         }
 
-        let min_bid = auction.current_price.clone() + auction.min_bid_step.clone();
-        if price <= min_bid {
+        let min_bid = auction
+            .current_price
+            .clone()
+            .checked_add(auction.min_bid_step.clone())
+            .ok_or(ArchisinalError::IntegerOverflow)?;
+
+        if price < min_bid && auction.current_bidder.is_some() {
             return Err(ArchisinalError::BidPriceTooLow);
         }
 
@@ -177,19 +209,11 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
 
         let mut currency = auction.currency.clone();
 
-        // PSP22Ref::transfer_from(
-        //     &mut auction.currency,
-        //     caller.clone(),
-        //     contract_address.clone(),
-        //     with_fee,
-        //     vec![],
-        // )?;
         currency.transfer_from(caller.clone(), contract_address.clone(), with_fee)?;
 
         if let Some(bidder) = current_bidder.clone() {
             let with_fee = apply_fee(&auction.current_price, &auction.collection)?;
 
-            // PSP22Ref::transfer(&mut auction.currency, bidder.clone(), with_fee, vec![])?;
             currency.transfer(bidder.clone(), with_fee)?;
         }
 
@@ -202,11 +226,15 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             },
         );
 
+        self.emit_bid_placed(auction_id, caller, price);
+
         Ok(())
     }
 
     /// Transfer NFT to auction winner
     fn claim_nft(&mut self, auction_id: u128) -> ProjectResult<()> {
+        let caller = <Self as DefaultEnv>::env().caller();
+
         if self.data::<Data>().auctions.get(&auction_id).is_none() {
             return Err(ArchisinalError::AuctionNotFound);
         }
@@ -241,17 +269,15 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
                 },
             );
 
-            return Err(ArchisinalError::AuctionHasNoBids);
+            self.emit_auction_ended(caller, auction_id.clone());
+            self.emit_no_bids(caller, auction_id);
+
+            // return Err(ArchisinalError::AuctionHasNoBids);
+            return Ok(());
         }
 
         let mut currency = auction.currency.clone();
 
-        // PSP22Ref::transfer(
-        //     &mut auction.currency,
-        //     auction.creator.clone(),
-        //     auction.current_price.clone(),
-        //     vec![],
-        // )?;
         currency.transfer(auction.creator.clone(), auction.current_price.clone())?;
 
         let with_fee =
@@ -260,7 +286,6 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
         let collection_owner = OwnableRef::owner(&auction.collection)
             .ok_or(ArchisinalError::CollectionOwnerNotFound)?;
 
-        // PSP22Ref::transfer(&mut auction.currency, collection_owner, with_fee, vec![])?;
         currency.transfer(collection_owner, with_fee)?;
 
         self.data::<Data>().auctions.insert(
@@ -270,6 +295,9 @@ pub trait AuctionImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
                 ..auction
             },
         );
+
+        self.emit_auction_ended(caller, auction_id.clone());
+        self.emit_nft_claimed(caller, auction_id);
 
         Ok(())
     }

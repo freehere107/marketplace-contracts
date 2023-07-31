@@ -14,12 +14,59 @@ export type UserData = {
 }
 
 export type NFT = {
-	id: number,
+	id: Id,
 	uri: string,
 	contractAddress: string
 }
 
+export interface Id {
+	u8 ? : number,
+	u16 ? : number,
+	u32 ? : number,
+	u64 ? : number,
+	u128 ? : ReturnNumber,
+	bytes ? : Array<number>
+}
+
+export class IdBuilder {
+	static U8(value: number): Id {
+		return {
+			u8: value,
+		};
+	}
+	static U16(value: number): Id {
+		return {
+			u16: value,
+		};
+	}
+	static U32(value: number): Id {
+		return {
+			u32: value,
+		};
+	}
+	static U64(value: number): Id {
+		return {
+			u64: value,
+		};
+	}
+	static U128(value: ReturnNumber): Id {
+		return {
+			u128: value,
+		};
+	}
+	static Bytes(value: Array<number>): Id {
+		return {
+			bytes: value,
+		};
+	}
+}
+
 export interface ArchisinalError {
+	adminAccessError ? : null,
+	auctionMinBidStepIsZero ? : null,
+	creatorIsNotCaller ? : null,
+	auctionStartTimeIsBeforeNow ? : null,
+	callerIsAuctionOwner ? : null,
 	accountAlreadyExists ? : null,
 	insufficientFunds ? : null,
 	auctionPriceIsZero ? : null,
@@ -44,12 +91,38 @@ export interface ArchisinalError {
 	callerIsNotNftOwner ? : null,
 	transferNativeError ? : null,
 	ownable ? : OwnableError,
+	accessControl ? : AccessControlError,
 	psp34 ? : PSP34Error,
 	psp22 ? : PSP22Error,
 	other ? : string
 }
 
 export class ArchisinalErrorBuilder {
+	static AdminAccessError(): ArchisinalError {
+		return {
+			adminAccessError: null,
+		};
+	}
+	static AuctionMinBidStepIsZero(): ArchisinalError {
+		return {
+			auctionMinBidStepIsZero: null,
+		};
+	}
+	static CreatorIsNotCaller(): ArchisinalError {
+		return {
+			creatorIsNotCaller: null,
+		};
+	}
+	static AuctionStartTimeIsBeforeNow(): ArchisinalError {
+		return {
+			auctionStartTimeIsBeforeNow: null,
+		};
+	}
+	static CallerIsAuctionOwner(): ArchisinalError {
+		return {
+			callerIsAuctionOwner: null,
+		};
+	}
 	static AccountAlreadyExists(): ArchisinalError {
 		return {
 			accountAlreadyExists: null,
@@ -170,6 +243,11 @@ export class ArchisinalErrorBuilder {
 			ownable: value,
 		};
 	}
+	static AccessControl(value: AccessControlError): ArchisinalError {
+		return {
+			accessControl: value,
+		};
+	}
 	static PSP34(value: PSP34Error): ArchisinalError {
 		return {
 			psp34: value,
@@ -190,6 +268,12 @@ export class ArchisinalErrorBuilder {
 export enum OwnableError {
 	callerIsNotOwner = 'CallerIsNotOwner',
 	newOwnerIsZero = 'NewOwnerIsZero'
+}
+
+export enum AccessControlError {
+	invalidCaller = 'InvalidCaller',
+	missingRole = 'MissingRole',
+	roleRedundant = 'RoleRedundant'
 }
 
 export interface PSP34Error {
@@ -272,6 +356,38 @@ export class PSP22ErrorBuilder {
 	static SafeTransferCheckFailed(value: string): PSP22Error {
 		return {
 			safeTransferCheckFailed: value,
+		};
+	}
+}
+
+export type Hash = string | number[]
+
+export interface UpgradeableError {
+	custom ? : string,
+	setCodeHashFailed ? : null,
+	ownableError ? : OwnableError,
+	accessControlError ? : AccessControlError
+}
+
+export class UpgradeableErrorBuilder {
+	static Custom(value: string): UpgradeableError {
+		return {
+			custom: value,
+		};
+	}
+	static SetCodeHashFailed(): UpgradeableError {
+		return {
+			setCodeHashFailed: null,
+		};
+	}
+	static OwnableError(value: OwnableError): UpgradeableError {
+		return {
+			ownableError: value,
+		};
+	}
+	static AccessControlError(value: AccessControlError): UpgradeableError {
+		return {
+			accessControlError: value,
 		};
 	}
 }

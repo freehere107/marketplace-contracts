@@ -2,20 +2,24 @@
 
 pub use crate::user::*;
 
-#[openbrush::implementation(Ownable)]
+#[openbrush::implementation(Ownable, Upgradeable)]
 #[openbrush::contract]
 mod user {
     use archisinal_lib::impls::user;
     use archisinal_lib::impls::user::data::UserData;
     use archisinal_lib::impls::user::impls::UserImpl;
+    use archisinal_lib::traits::events::user::UserEvents;
     use archisinal_lib::traits::user::*;
     use archisinal_lib::traits::ProjectResult;
+    use ink::codegen::{EmitEvent, Env};
     use openbrush::contracts::ownable;
     use openbrush::traits::Storage;
 
-    /// Defines the storage of your contract.
-    /// Add new fields to the below struct in order
-    /// to add new static storage fields to your contract.
+    #[ink(event)]
+    pub struct UserDataSet {
+        pub user_data: UserData,
+    }
+
     #[ink(storage)]
     #[derive(Default, Storage)]
     pub struct Contract {
@@ -26,7 +30,6 @@ mod user {
     }
 
     impl Contract {
-        /// Constructor that initializes the `bool` value to the given `init_value`.
         #[ink(constructor)]
         pub fn new(owner: AccountId) -> Self {
             let mut instance = Self::default();
@@ -68,6 +71,12 @@ mod user {
         #[ink(message)]
         fn set_user_data(&mut self, user_data: UserData) -> ProjectResult<()> {
             UserImpl::set_user_data(self, user_data)
+        }
+    }
+
+    impl UserEvents for Contract {
+        fn emit_user_data_set(&self, data: UserData) {
+            self.env().emit_event(UserDataSet { user_data: data });
         }
     }
 }

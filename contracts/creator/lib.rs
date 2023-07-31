@@ -10,16 +10,30 @@ mod creator {
     use archisinal_lib::impls::user::impls::UserImpl;
     use archisinal_lib::impls::{creator, user};
     use archisinal_lib::traits::creator::*;
+    use archisinal_lib::traits::events::creator::CreatorEvents;
+    use archisinal_lib::traits::events::user::UserEvents;
     use archisinal_lib::traits::user::*;
     use archisinal_lib::traits::ProjectResult;
-    use ink::ToAccountId;
+    use ink::codegen::{EmitEvent, Env};
+    use ink::env::DefaultEnvironment;
+    use ink::{EnvAccess, ToAccountId};
     use openbrush::contracts::ownable;
     use openbrush::traits::Storage;
     use openbrush::traits::String;
 
-    /// Defines the storage of your contract.
-    /// Add new fields to the below struct in order
-    /// to add new static storage fields to your contract.
+    #[ink(event)]
+    pub struct CollectionCreated {
+        #[ink(topic)]
+        creator: AccountId,
+        #[ink(topic)]
+        collection: AccountId,
+    }
+
+    #[ink(event)]
+    pub struct UserDataSet {
+        pub user_data: UserData,
+    }
+
     #[ink(storage)]
     #[derive(Default, Storage)]
     pub struct Contract {
@@ -32,7 +46,6 @@ mod creator {
     }
 
     impl Contract {
-        /// Constructor that initializes the `bool` value to the given `init_value`.
         #[ink(constructor)]
         pub fn new(owner: AccountId) -> Self {
             let mut instance = Self::default();
@@ -123,6 +136,27 @@ mod creator {
             index: u32,
         ) -> ProjectResult<openbrush::traits::AccountId> {
             CreatorImpl::get_collection_id_by_index(self, index)
+        }
+    }
+
+    impl CreatorEvents for Contract {
+        fn emit_create_collection(&self, creator: AccountId, collection: AccountId) {
+            <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event::<CollectionCreated>(
+                self.env(),
+                CollectionCreated {
+                    creator,
+                    collection,
+                },
+            );
+        }
+    }
+
+    impl UserEvents for Contract {
+        fn emit_user_data_set(&self, user_data: UserData) {
+            <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event::<UserDataSet>(
+                self.env(),
+                UserDataSet { user_data },
+            );
         }
     }
 }

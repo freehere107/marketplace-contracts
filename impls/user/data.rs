@@ -1,3 +1,4 @@
+use openbrush::contracts::psp34::Id;
 use openbrush::traits::String;
 
 #[derive(Default, Debug)]
@@ -17,7 +18,7 @@ pub struct Data {
     derive(scale_info::TypeInfo, ink::storage::traits::StorageLayout)
 )]
 pub struct NFT {
-    pub id: u64,
+    pub id: Id,
     pub uri: String,
     pub contract_address: String,
 }

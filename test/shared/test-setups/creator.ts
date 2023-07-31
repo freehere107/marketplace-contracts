@@ -1,29 +1,30 @@
-import RawAbi from "../../../artifacts/arch_nft.json";
-import ApiSingleton from "../api_singleton";
-import {Signers} from "../signers";
-import Constructors from "../../../typechain-generated/constructors/creator";
-import Contract from "../../../typechain-generated/contracts/creator";
+import RawAbi from '../../../artifacts/arch_nft.json'
+import ApiSingleton from '../api_singleton'
+import { Signers } from '../signers'
+import Constructors from '../../../typechain-generated/constructors/creator'
+import Contract from '../../../typechain-generated/contracts/creator'
+import {setupArchNFT} from "./arch_nft";
 
 export const ADDITIONAL_INFO = JSON.stringify({
-    "image": "ipfs://arch-nft.com/1.png",
-    "name": "Arch NFT Pilot Collection",
-    "description": "Arch NFT Pilot Collection",
-});
-export const COLLECTION_URI = 'ipfs://arch-nft.com/';
-export const COLLECTION_NAME = 'Arch NFT Pilot Collection';
-export const COLLECTION_ROYALTY = 100;
-export const COLLECTION_CODE_HASH = RawAbi.source.hash;
+  image: 'ipfs://arch-nft.com/1.png',
+  name: 'Arch NFT Pilot Collection',
+  description: 'Arch NFT Pilot Collection',
+})
+export const COLLECTION_URI = 'ipfs://arch-nft.com/'
+export const COLLECTION_NAME = 'Arch NFT Pilot Collection'
+export const COLLECTION_ROYALTY = 100
+export const COLLECTION_CODE_HASH = RawAbi.source.hash
 
 export async function setupCreator() {
-    let api = await ApiSingleton.getInstance();
+  let api = await ApiSingleton.getInstance()
 
-    const defaultSigner = Signers.defaultSigner;
+  const defaultSigner = Signers.defaultSigner
 
-    let constructors = new Constructors(api, defaultSigner);
+  await setupArchNFT();
 
-    let { address } = await constructors.new(
-        defaultSigner.address,
-    );
+  let constructors = new Constructors(api, defaultSigner)
 
-    return new Contract(address, defaultSigner, api);
+  let { address } = await constructors.new(defaultSigner.address)
+
+  return new Contract(address, defaultSigner, api)
 }

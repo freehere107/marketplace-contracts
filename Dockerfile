@@ -1,22 +1,42 @@
-FROM rust
+FROM ubuntu:latest
+LABEL authors="Archisinal"
 
+# Stage 1: Building stage
+FROM rust as builder
+
+# Install necessary dependencies
 RUN apt-get update && \
-    apt-get install libclang-dev -y && \
-    apt-get install nodejs -y && \
-    apt-get install npm -y && \
-    apt-get install binaryen -y && \
-    apt-get install protobuf-compiler -y
+    apt-get install -y \
+        libclang-dev \
+        nodejs \
+        npm \
+        binaryen \
+        protobuf-compiler && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g n && \
-    npm install -g yarn && \
+# Install global npm dependencies and set node to stable version
+RUN npm install -g n yarn && \
     n stable
 
-RUN curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain nightly-2023-03-19 -y
+# Install rustup
+RUN curl -sSf https://sh.rustup.rs/ | sh
 
-RUN rustup component add rust-src --toolchain nightly-2023-01-01-x86_64-unknown-linux-gnu
-RUN rustup target add wasm32-unknown-unknown
+# Set the cargo PATH
+ENV PATH="/root/.cargo/bin:${PATH}"
 
-RUN cargo install cargo-dylint dylint-link
+# Add necessary rust components and targets
+RUN rustup component add rust-src && \
+    rustup target add wasm32-unknown-unknown
 
-RUN cargo install cargo-contract --version 2.0.1 --force && \
+# Install necessary cargo tools
+RUN cargo install cargo-dylint dylint-link && \
+    cargo install cargo-contract --version 3.0.0 --force && \
     cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --force --locked
+
+# Stage 2: Runtime stage
+FROM debian:buster-slim
+
+COPY --from=builder /root/.cargo/bin /usr/local/bin
+
+# Default command when starting the container
+CMD ["bash"]

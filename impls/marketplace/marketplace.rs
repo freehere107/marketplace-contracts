@@ -1,7 +1,4 @@
-use crate::impls::marketplace::data::{Data, Listing, ListingStatus};
-use crate::impls::shared::currency::Currency;
-use crate::impls::shared::utils::apply_fee;
-use crate::traits::{ArchisinalError, ProjectResult};
+use crate::impls::admin_access::AdminAccessImpl;
 use ink::prelude::vec;
 use ink::prelude::vec::Vec;
 use openbrush::contracts::ownable;
@@ -9,7 +6,15 @@ use openbrush::contracts::ownable::{Ownable, OwnableRef};
 use openbrush::contracts::psp34::{Id, PSP34Ref};
 use openbrush::traits::{AccountId, DefaultEnv, Storage};
 
-pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
+use crate::impls::marketplace::data::{Data, Listing, ListingStatus};
+use crate::impls::shared::currency::Currency;
+use crate::impls::shared::utils::apply_fee;
+use crate::traits::events::marketplace::MarketplaceEvents;
+use crate::traits::{ArchisinalError, ProjectResult};
+
+pub trait MarketplaceImpl:
+    Storage<Data> + Storage<ownable::Data> + Ownable + AdminAccessImpl + MarketplaceEvents
+{
     fn get_listing_count(&self) -> u128 {
         self.data::<Data>().listing_count.get_or_default()
     }
@@ -30,7 +35,7 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
         let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
 
         if creator.clone() != caller {
-            return Err(ArchisinalError::CallerIsNotNFTOwner);
+            return Err(ArchisinalError::CreatorIsNotCaller);
         }
 
         if PSP34Ref::owner_of(&collection, token_id.clone()) != Some(creator) {
@@ -46,8 +51,8 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             creator: creator.clone(),
             collection: collection.clone(),
             token_id: token_id.clone(),
-            price,
-            currency,
+            price: price.clone(),
+            currency: currency.clone(),
             status: ListingStatus::OnSale,
         };
 
@@ -57,6 +62,8 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
                 .checked_add(1)
                 .ok_or(ArchisinalError::IntegerOverflow)?,
         );
+
+        self.emit_list_nft(listing_id, creator, collection, token_id, price, currency);
 
         Ok(listing_id)
     }
@@ -69,7 +76,7 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             .get(&listing_id)
             .ok_or(ArchisinalError::ListingNotFound)?;
 
-        if listing.creator != caller {
+        if listing.creator != caller && !self.is_admin(caller.clone()) {
             return Err(ArchisinalError::CallerIsNotListingOwner);
         }
 
@@ -91,6 +98,8 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             listing.token_id.clone(),
             vec![],
         )?;
+
+        self.emit_cancel_listing(caller, listing_id);
 
         Ok(())
     }
@@ -126,23 +135,8 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             vec![],
         )?;
 
-        // PSP22Ref::transfer_from(
-        //     &mut listing.currency,
-        //     caller.clone(),
-        //     listing.creator.clone(),
-        //     listing.price.clone(),
-        //     vec![],
-        // )?;
-        //
         currency.transfer_from(caller.clone(), listing.creator.clone(), price.clone())?;
 
-        // PSP22Ref::transfer_from(
-        //     &mut listing.currency,
-        //     caller.clone(),
-        //     listing.creator.clone(),
-        //     with_fee,
-        //     vec![],
-        // )?;
         let collection_owner = OwnableRef::owner(&listing.collection);
 
         if let Some(collection_owner) = collection_owner {
@@ -163,6 +157,8 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
                 ..listing
             },
         );
+
+        self.emit_buy_nft(caller, listing_id);
 
         Ok(())
     }
@@ -219,13 +215,6 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
 
             PSP34Ref::transfer(collection, caller.clone(), token_id.clone(), vec![])?;
 
-            // PSP22Ref::transfer_from(
-            //     currency,
-            //     caller.clone(),
-            //     creator.clone(),
-            //     price.clone(),
-            //     vec![],
-            // )?;
             currency.transfer_from(caller.clone(), creator.clone(), price.clone())?;
 
             let royalty = apply_fee(price, collection)?
@@ -235,7 +224,6 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
             let collection_owner = OwnableRef::owner(&listing.collection)
                 .ok_or(ArchisinalError::CollectionOwnerNotFound)?;
 
-            // PSP22Ref::transfer_from(currency, caller.clone(), collection_owner, royalty, vec![])?;
             currency.transfer_from(caller.clone(), collection_owner, royalty)?;
 
             self.data::<Data>().listings.insert(
@@ -248,6 +236,11 @@ pub trait MarketplaceImpl: Storage<Data> + Storage<ownable::Data> + Ownable {
 
             Ok::<(), ArchisinalError>(())
         })?;
+
+        self.emit_buy_batch(
+            caller,
+            listings.into_iter().map(|listing| listing.id).collect(),
+        );
 
         Ok(())
     }

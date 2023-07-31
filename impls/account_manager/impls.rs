@@ -1,9 +1,15 @@
-use crate::impls::account_manager::Data;
-use crate::traits::{ArchisinalError, ProjectResult};
 use ink::primitives::{AccountId, Hash};
+use openbrush::contracts::ownable::Ownable;
 use openbrush::traits::Storage;
 
-pub trait AccountManagerImpl: Storage<Data> {
+use crate::impls::account_manager::Data;
+use crate::impls::admin_access::AdminAccessImpl;
+use crate::traits::events::account_manager::AccountManagerEvents;
+use crate::traits::{ArchisinalError, ProjectResult};
+
+pub trait AccountManagerImpl:
+    Storage<Data> + Ownable + AdminAccessImpl + AccountManagerEvents
+{
     fn create_account(&mut self) -> ProjectResult<()>;
 
     fn create_creator_account(&mut self) -> ProjectResult<()>;
@@ -27,11 +33,15 @@ pub trait AccountManagerImpl: Storage<Data> {
     fn set_creator_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
         self.data().creator_code_hash.set(&code_hash);
 
+        self.emit_creator_code_hash_set(code_hash);
+
         Ok(())
     }
 
     fn set_user_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
         self.data().user_code_hash.set(&code_hash);
+
+        self.emit_user_code_hash_set(code_hash);
 
         Ok(())
     }
@@ -43,6 +53,8 @@ pub trait AccountManagerImpl: Storage<Data> {
 
         self.data().accounts.insert(&account_id, &contract);
 
+        self.emit_account_created(account_id, contract);
+
         Ok(())
     }
 
@@ -52,6 +64,8 @@ pub trait AccountManagerImpl: Storage<Data> {
         }
 
         self.data().creators.insert(&account_id, &contract);
+
+        self.emit_creator_created(account_id, contract);
 
         Ok(())
     }

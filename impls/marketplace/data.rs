@@ -1,7 +1,8 @@
-use crate::impls::shared::currency::Currency;
 use openbrush::contracts::psp34::Id;
 use openbrush::storage::Mapping;
 use openbrush::traits::AccountId;
+
+use crate::impls::shared::currency::Currency;
 
 #[derive(Default, Debug)]
 #[openbrush::storage_item]

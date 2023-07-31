@@ -1,7 +1,7 @@
 use crate::traits::ProjectResult;
+use ink::primitives::{AccountId, Hash};
 use openbrush::contracts::ownable::*;
 use openbrush::traits::String;
-use openbrush::traits::{AccountId, Hash};
 
 #[openbrush::trait_definition]
 pub trait Creator {
@@ -13,11 +13,20 @@ pub trait Creator {
     /// * `uri` - The uri of the collection.
     /// * `royalty` - The royalty of the collection.
     /// * `additional_info` - The additional info of the collection.
+    /// * `code_hash` - The code hash of the collection contract.
+    ///
+    /// # Returns
+    ///
+    /// * `AccountId` - The id of the collection, if it was created successfully, otherwise an error.
     ///
     /// # Errors
     ///
     /// * Returns `ProjectError::OwnableError` if the caller is not the owner.
     /// * Returns `ProjectError::CollectionAlreadyExists` if the collection already exists.
+    ///
+    /// # Emits
+    ///
+    /// * `CollectionCreated` - If the collection was created successfully.
     #[ink(message)]
     fn create_collection(
         &mut self,
@@ -30,13 +39,12 @@ pub trait Creator {
 
     /// Get collection count
     ///
-    /// # Arguments
+    /// # Note
+    /// The index of the collection is from `0` to `collection_count - 1` inclusively.
     ///
-    /// ()
+    /// # Returns
     ///
-    /// # Errors
-    ///
-    /// ()
+    /// * `u32` - The amount of collections.
     #[ink(message)]
     fn get_collection_count(&self) -> u32;
 
@@ -45,6 +53,10 @@ pub trait Creator {
     /// # Arguments
     ///
     /// * `index` - The index of the collection.
+    ///
+    /// # Returns
+    ///
+    /// * `ProjectResult<AccountId>` - The id of the collection, if it was created successfully, otherwise an error.
     ///
     /// # Errors
     ///

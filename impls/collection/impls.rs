@@ -1,11 +1,13 @@
-use crate::impls::collection::data::Data;
-use crate::traits::{ArchisinalError, ProjectResult};
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
 use openbrush::contracts::psp34::extensions::metadata;
 use openbrush::contracts::psp34::{Id, PSP34};
 use openbrush::traits::{DefaultEnv, Storage, String};
+
+use crate::impls::collection::data::Data;
+use crate::traits::events::collection::CollectionEvents;
+use crate::traits::{ArchisinalError, ProjectResult};
 
 pub trait CollectionImpl:
     Storage<Data>
@@ -15,6 +17,7 @@ pub trait CollectionImpl:
     + PSP34
     + metadata::Internal
     + DefaultEnv
+    + CollectionEvents
 {
     fn collection_name(&self) -> Option<String> {
         self.data::<Data>().name.get_or_default()
@@ -34,13 +37,19 @@ pub trait CollectionImpl:
 
     #[openbrush::modifiers(only_owner)]
     fn set_collection_name(&mut self, name: String) -> ProjectResult<()> {
-        self.data::<Data>().name.set(&Some(name));
+        self.data::<Data>().name.set(&Some(name.clone()));
+
+        self.emit_collection_name_set(name);
+
         Ok(())
     }
 
     #[openbrush::modifiers(only_owner)]
     fn set_collection_uri(&mut self, uri: String) -> ProjectResult<()> {
-        self.data::<Data>().uri.set(&Some(uri));
+        self.data::<Data>().uri.set(&Some(uri.clone()));
+
+        self.emit_collection_uri_set(uri);
+
         Ok(())
     }
 
@@ -54,7 +63,10 @@ pub trait CollectionImpl:
     fn set_collection_additional_info(&mut self, additional_info: String) -> ProjectResult<()> {
         self.data::<Data>()
             .additional_info
-            .set(&Some(additional_info));
+            .set(&Some(additional_info.clone()));
+
+        self.emit_collection_additional_info_set(additional_info);
+
         Ok(())
     }
 
@@ -63,7 +75,9 @@ pub trait CollectionImpl:
             return Err(ArchisinalError::CallerIsNotNFTOwner);
         }
 
-        self._set_attribute(id, key, value);
+        self._set_attribute(id, key.clone(), value.clone());
+
+        self.emit_set_attribute(key, value);
 
         Ok(())
     }

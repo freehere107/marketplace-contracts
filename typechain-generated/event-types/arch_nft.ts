@@ -7,3 +7,26 @@ export interface Transfer {
 	tokenId: ReturnTypes.Id;
 }
 
+export interface Approval {
+	owner: ReturnTypes.AccountId;
+	spender: ReturnTypes.AccountId;
+	tokenId: ReturnTypes.Id;
+}
+
+export interface SetCollectionName {
+	name: string;
+}
+
+export interface SetCollectionUri {
+	uri: string;
+}
+
+export interface SetCollectionAdditionalInfo {
+	additionalInfo: string;
+}
+
+export interface SetAttribute {
+	key: string;
+	value: string;
+}
+

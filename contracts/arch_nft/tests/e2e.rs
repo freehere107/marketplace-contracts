@@ -2,15 +2,16 @@ extern crate arch_nft;
 
 #[cfg(all(test, feature = "e2e-tests"))]
 mod e2e_tests {
-    use crate::arch_nft::ContractRef;
     use archisinal_lib::traits::collection::collection_external::Collection;
     use ink_e2e::build_message;
     use ink_e2e::PolkadotConfig;
     use openbrush::contracts::psp34::extensions::mintable::psp34mintable_external::PSP34Mintable;
-    use openbrush::contracts::psp34::psp34_external::PSP34;
     use openbrush::contracts::psp34::Id;
+    use openbrush::contracts::psp34::psp34_external::PSP34;
     use openbrush::traits::String;
     use test_helpers::address_of;
+
+    use crate::arch_nft::ContractRef;
 
     type E2EResult<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
@@ -45,7 +46,7 @@ mod e2e_tests {
                 .await
                 .expect("call failed")
         }
-        .return_value();
+            .return_value();
 
         let c_token_uri = {
             let _msg = build_message::<ContractRef>(address.clone())
@@ -55,7 +56,7 @@ mod e2e_tests {
                 .await
                 .expect("call failed")
         }
-        .return_value();
+            .return_value();
 
         let c_token_royalty = {
             let _msg = build_message::<ContractRef>(address.clone())
@@ -65,7 +66,7 @@ mod e2e_tests {
                 .await
                 .expect("call failed")
         }
-        .return_value();
+            .return_value();
 
         let c_token_additional_info = {
             let _msg = build_message::<ContractRef>(address.clone())
@@ -75,7 +76,7 @@ mod e2e_tests {
                 .await
                 .expect("call failed")
         }
-        .return_value();
+            .return_value();
 
         assert_eq!(c_token_additional_info, Some(additional_info));
         assert_eq!(c_token_name, Some(token_name));
@@ -117,7 +118,7 @@ mod e2e_tests {
                 .await
                 .expect("call failed")
         }
-        .return_value();
+            .return_value();
 
         assert!(mint_msg.is_ok());
 
@@ -156,7 +157,7 @@ mod e2e_tests {
                 .await
                 .expect("call failed")
         }
-        .return_value();
+            .return_value();
 
         assert!(mint_msg.is_ok());
 
@@ -203,7 +204,7 @@ mod e2e_tests {
                 .call(|contract| contract.set_collection_uri(String::from("new_uri")));
             client.call_dry_run(&ink_e2e::bob(), &_msg, 0, None).await
         }
-        .return_value();
+            .return_value();
 
         assert!(matches!(set_collection_uri_msg, Err(_)));
 

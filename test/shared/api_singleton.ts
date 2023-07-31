@@ -1,21 +1,21 @@
-import {ApiPromise} from "@polkadot/api";
+import { ApiPromise } from '@polkadot/api'
 
 export default class ApiSingleton {
-    private static instance: ApiPromise | undefined;
+  private static instance: ApiPromise | undefined
 
-    public static async getInstance(): Promise<ApiPromise> {
-        if (!ApiSingleton.instance) {
-            ApiSingleton.instance = await ApiPromise.create();
-        }
-
-        return ApiSingleton.instance;
+  public static async getInstance(): Promise<ApiPromise> {
+    if (!ApiSingleton.instance) {
+      ApiSingleton.instance = await ApiPromise.create()
     }
 
-    public static async disconnect(): Promise<void> {
-        if (ApiSingleton.instance) {
-            await ApiSingleton.instance.disconnect();
-        }
+    return ApiSingleton.instance
+  }
 
-        ApiSingleton.instance = undefined;
+  public static async disconnect(): Promise<void> {
+    if (ApiSingleton.instance) {
+      await ApiSingleton.instance.disconnect()
     }
+
+    ApiSingleton.instance = undefined
+  }
 }

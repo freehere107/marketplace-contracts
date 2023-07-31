@@ -1,7 +1,8 @@
-use crate::traits::{ArchisinalError, ProjectResult};
 use ink::prelude::vec;
 use openbrush::contracts::traits::psp22::PSP22Ref;
 use openbrush::traits::{AccountId, DefaultEnv};
+
+use crate::traits::{ArchisinalError, ProjectResult};
 
 #[derive(Clone, Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
 #[cfg_attr(

@@ -2,14 +2,22 @@
 
 pub use crate::arch_nft::*;
 
-#[openbrush::implementation(Ownable, PSP34, PSP34Mintable, PSP34Burnable, PSP34Metadata)]
+#[openbrush::implementation(
+    Ownable,
+    PSP34,
+    PSP34Mintable,
+    PSP34Burnable,
+    PSP34Metadata,
+    Upgradeable
+)]
 #[openbrush::contract]
 mod arch_nft {
     use archisinal_lib::impls::collection::data::Data;
     use archisinal_lib::impls::collection::impls::CollectionImpl;
     use archisinal_lib::traits::collection::*;
+    use archisinal_lib::traits::events::collection::CollectionEvents;
     use archisinal_lib::traits::ProjectResult;
-    // use openbrush::contracts::psp34::extensions::metadata;
+    use ink::codegen::{EmitEvent, Env};
     use openbrush::contracts::psp34::Id;
     use openbrush::modifiers;
     use openbrush::traits::{Storage, String};
@@ -22,6 +30,38 @@ mod arch_nft {
         to: Option<AccountId>,
         #[ink(topic)]
         token_id: Id,
+    }
+
+    #[ink(event)]
+    pub struct Approval {
+        #[ink(topic)]
+        owner: AccountId,
+        #[ink(topic)]
+        spender: AccountId,
+        #[ink(topic)]
+        token_id: Id,
+    }
+
+    #[ink(event)]
+    pub struct SetCollectionName {
+        #[ink(topic)]
+        name: String,
+    }
+
+    #[ink(event)]
+    pub struct SetCollectionUri {
+        uri: String,
+    }
+
+    #[ink(event)]
+    pub struct SetCollectionAdditionalInfo {
+        additional_info: String,
+    }
+
+    #[ink(event)]
+    pub struct SetAttribute {
+        key: String,
+        value: String,
     }
 
     #[ink(storage)]
@@ -114,6 +154,11 @@ mod arch_nft {
         self.env().emit_event(Transfer { from, to, id });
     }
 
+    #[overrider(PSP34Internal)]
+    fn _emit_approval_event(&self, owner: AccountId, spender: AccountId, id: Id) {
+        self.env().emit_event(Approval { owner, spender, id });
+    }
+
     impl CollectionImpl for Contract {}
 
     impl Collection for Contract {
@@ -155,6 +200,25 @@ mod arch_nft {
         #[ink(message)]
         fn set_attribute(&mut self, id: Id, key: String, value: String) -> ProjectResult<()> {
             CollectionImpl::set_attribute(self, id, key, value)
+        }
+    }
+
+    impl CollectionEvents for Contract {
+        fn emit_collection_name_set(&self, name: String) {
+            self.env().emit_event(SetCollectionName { name });
+        }
+
+        fn emit_collection_uri_set(&self, uri: String) {
+            self.env().emit_event(SetCollectionUri { uri });
+        }
+
+        fn emit_collection_additional_info_set(&self, additional_info: String) {
+            self.env()
+                .emit_event(SetCollectionAdditionalInfo { additional_info });
+        }
+
+        fn emit_set_attribute(&self, key: String, value: String) {
+            self.env().emit_event(SetAttribute { key, value });
         }
     }
 }

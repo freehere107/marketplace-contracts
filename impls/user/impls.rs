@@ -1,12 +1,14 @@
-use crate::impls::user::data::{Data, UserData};
-use crate::traits::ProjectResult;
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
 use openbrush::modifiers;
 use openbrush::traits::Storage;
 
-pub trait UserImpl: Storage<Data> + Ownable + Storage<ownable::Data> {
+use crate::impls::user::data::{Data, UserData};
+use crate::traits::events::user::UserEvents;
+use crate::traits::ProjectResult;
+
+pub trait UserImpl: Storage<Data> + Ownable + Storage<ownable::Data> + UserEvents {
     fn get_user_data(&self) -> UserData {
         UserData::from(self.data::<Data>())
     }
@@ -18,6 +20,8 @@ pub trait UserImpl: Storage<Data> + Ownable + Storage<ownable::Data> {
         self.data::<Data>()
             .addition_info
             .set(&user_data.addition_info);
+
+        self.emit_user_data_set(user_data);
 
         Ok(())
     }

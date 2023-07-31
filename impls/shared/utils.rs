@@ -1,6 +1,7 @@
+use ink::primitives::AccountId;
+
 use crate::traits::collection::CollectionRef;
 use crate::traits::{ArchisinalError, ProjectResult};
-use ink::primitives::AccountId;
 
 pub fn apply_fee(price: &u128, token: &AccountId) -> ProjectResult<u128> {
     let royalty = CollectionRef::collection_royalty(token);
