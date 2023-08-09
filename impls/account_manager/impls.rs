@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use ink::primitives::{AccountId, Hash};
 use openbrush::contracts::ownable::Ownable;
 use openbrush::traits::Storage;
@@ -7,6 +8,11 @@ use crate::impls::admin_access::AdminAccessImpl;
 use crate::traits::events::account_manager::AccountManagerEvents;
 use crate::traits::{ArchisinalError, ProjectResult};
 
+/// The account manager implementation.
+///
+/// # Note
+///
+/// See `crate::traits::AccountManager` for more information.
 pub trait AccountManagerImpl:
     Storage<Data> + Ownable + AdminAccessImpl + AccountManagerEvents
 {
@@ -31,6 +37,8 @@ pub trait AccountManagerImpl:
     }
 
     fn set_creator_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
+        self._admin_or_owner()?;
+
         self.data().creator_code_hash.set(&code_hash);
 
         self.emit_creator_code_hash_set(code_hash);
@@ -39,6 +47,8 @@ pub trait AccountManagerImpl:
     }
 
     fn set_user_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
+        self._admin_or_owner()?;
+
         self.data().user_code_hash.set(&code_hash);
 
         self.emit_user_code_hash_set(code_hash);

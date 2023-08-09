@@ -6,9 +6,7 @@
   "engines": {
     "node": ">=18.14.0"
   },
-  "type": "module",
   "scripts": {
-    "lint": "polkadot-dev-run-lint",
     "run-typechain-compiler": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
     "test:mocha": "yarn raw-mocha \"./test/**/*.spec.ts\"",
@@ -28,7 +26,9 @@
     "test:mocha:auction": "yarn raw-mocha \"./test/**/auction.spec.ts\"",
     "test:mocha:auction-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:auction; kill $pid",
     "test:mocha:admin_access": "yarn raw-mocha \"./test/**/admin_access.spec.ts\"",
-    "test:mocha:admin_access-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:admin_access; kill $pid"
+    "test:mocha:admin_access-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:admin_access; kill $pid",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@727-ventures/typechain-compiler": "^1.1.4",
@@ -42,11 +42,26 @@
     "@types/chai": "^4.3.5",
     "@types/chai-as-promised": "^7.1.5",
     "@types/mocha": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "4.15.1",
+    "@typescript-eslint/parser": "4.15.1",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
+    "chalk": "^5.3.0",
+    "eslint": "^7.29.0",
+    "eslint-config-typestrict": "^1.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-no-only-tests": "^2.6.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "eslint-plugin-unused-imports": "^1.1.1",
     "mocha": "^10.0.1",
     "prettier": "^3.0.0",
-    "typescript": "^5.1.6",
-    "chalk": "^5.3.0"
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@polkadot/keyring": "^12.3.2",
+    "@polkadot/types": "^10.9.1",
+    "bn.js": "^5.2.1",
+    "dotenv": "^16.3.1"
   }
 }

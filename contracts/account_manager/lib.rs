@@ -1,4 +1,5 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
+/// SPDX-License-Identifier: MIT
 
 #[openbrush::implementation(Ownable, AccessControl, Upgradeable)]
 #[openbrush::contract]
@@ -95,7 +96,7 @@ mod account_manager {
         fn create_account(&mut self) -> ProjectResult<()> {
             let caller = self.env().caller();
 
-            let contract = user::ContractRef::new(caller.clone())
+            let contract = user::ContractRef::new(caller)
                 .code_hash(AccountManagerImpl::get_user_code_hash(self))
                 .endowment(0)
                 .salt_bytes([0xDE, 0xAD, 0xBE, 0xEF])
@@ -109,7 +110,7 @@ mod account_manager {
         fn create_creator_account(&mut self) -> ProjectResult<()> {
             let caller = self.env().caller();
 
-            let contract = creator::ContractRef::new(caller.clone())
+            let contract = creator::ContractRef::new(caller)
                 .code_hash(AccountManagerImpl::get_creator_code_hash(self))
                 .endowment(0)
                 .salt_bytes([0xDE, 0xAD, 0xBE, 0xEF])

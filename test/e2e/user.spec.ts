@@ -1,10 +1,12 @@
+// SPDX-License-Identifier: MIT
 import { after, describe } from 'mocha'
-import { expect } from '../shared/chai'
+
 import ApiSingleton from '../shared/api_singleton'
-import { Signers } from '../shared/signers'
+import { expect } from '../shared/chai'
+import {E2E_PREFIX} from "../shared/consts";
 import { setupUser as setup } from '../shared/test-setups/user'
 
-describe('User', () => {
+describe(E2E_PREFIX + 'User', () => {
   it('Can set user data', async () => {
     const contract = await setup()
 
@@ -24,30 +26,6 @@ describe('User', () => {
       nick: '@some_nick',
       avatar: null,
       additionInfo: 'Some additional info',
-    })
-  })
-
-  it('Cannot set user data if not owner', async () => {
-    const contract = await setup()
-
-    await expect(contract.query.getUserData()).to.have.deepReturnValue({
-      nick: null,
-      avatar: null,
-      additionInfo: null,
-    })
-
-    await expect(
-      contract.withSigner(Signers.Alice).tx.setUserData({
-        nick: '@some_nick',
-        avatar: null,
-        additionInfo: 'Some additional info',
-      }),
-    ).to.be.rejected
-
-    await expect(contract.query.getUserData()).to.have.deepReturnValue({
-      nick: null,
-      avatar: null,
-      additionInfo: null,
     })
   })
 

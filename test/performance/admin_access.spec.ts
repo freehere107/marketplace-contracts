@@ -1,28 +1,33 @@
-import {PERFORMANCE_PREFIX} from "../shared/consts";
-import CreatorABI from "../../artifacts/creator.json";
-import {calculateFee} from "../shared/fees";
-import {expect} from "../shared/chai";
-import Contract from "../../typechain-generated/contracts/my_admin_access";
-import {setupAdminAccess} from "../shared/test-setups/admin_access";
-import {Signers} from "../shared/signers";
-import BN from "bn.js";
+// SPDX-License-Identifier: MIT
+import BN from 'bn.js'
 
-const ADD_ADMIN_MAX_FEE = new BN(3_000_000_000);
-const REMOVE_ADMIN_MAX_FEE = new BN(3_000_000_000);
+import Contract from '../../typechain-generated/contracts/my_admin_access'
+import ApiSingleton from '../shared/api_singleton'
+import { expect } from '../shared/chai'
+import { PERFORMANCE_PREFIX } from '../shared/consts'
+import { Signers } from '../shared/signers'
+import { setupAdminAccess } from '../shared/test-setups/admin_access'
+
+const ADD_ADMIN_MAX_FEE = new BN(3_000_000_000)
+const REMOVE_ADMIN_MAX_FEE = new BN(3_000_000_000)
 
 describe(PERFORMANCE_PREFIX + 'AdminAccess contract', function () {
-    let contract: Contract;
+  let contract: Contract
 
-    beforeEach(async function () {
-        contract = await setupAdminAccess();
-    })
+  beforeEach(async function () {
+    contract = await setupAdminAccess()
+  })
 
-    it('Add admin', async function () {
-        await expect(contract.tx.addAdmin(Signers.Alice.address)).to.have.feeLessThan(ADD_ADMIN_MAX_FEE)
-    });
+  after(async function () {
+    await ApiSingleton.disconnect()
+  })
 
-    it('Remove admin', async function () {
-        await contract.tx.addAdmin(Signers.Alice.address)
-        await expect(contract.tx.removeAdmin(Signers.Alice.address)).to.have.feeLessThan(REMOVE_ADMIN_MAX_FEE)
-    });
-});
+  it('Add admin', async function () {
+    await expect(contract.query.addAdmin(Signers.Alice.address)).to.have.feeLessThan(ADD_ADMIN_MAX_FEE)
+  })
+
+  it('Remove admin', async function () {
+    await contract.query.addAdmin(Signers.Alice.address)
+    await expect(contract.query.removeAdmin(Signers.Alice.address)).to.have.feeLessThan(REMOVE_ADMIN_MAX_FEE)
+  })
+})

@@ -1,7 +1,9 @@
+// SPDX-License-Identifier: MIT
+import BN from "bn.js";
 import chai, { Assertion } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
+
 import {calculateFee} from "./fees";
-import BN from "bn.js";
 
 chai.use(chaiAsPromised)
 
@@ -101,8 +103,8 @@ chai.Assertion.addMethod('feeLessThan', function (expected) {
                 fee.lt(expected),
                 `expected ${this} to have a fee less than ${expected} but got ${fee}`,
                 `expected ${this} to not have a fee less than ${fee}`,
-                expected,
-                fee,
+                expected.toString(),
+                fee.toString(),
             )
         })
         .catch((error: any) => {

@@ -1,9 +1,12 @@
-import { describe } from 'mocha'
-import {PERFORMANCE_PREFIX} from "../shared/consts";
-import Contract from "../../typechain-generated/contracts/user";
-import {setupUser} from "../shared/test-setups/user";
-import {expect} from "../shared/chai";
+// SPDX-License-Identifier: MIT
 import BN from "bn.js";
+import { describe } from 'mocha'
+
+import Contract from "../../typechain-generated/contracts/user";
+import ApiSingleton from "../shared/api_singleton";
+import {expect} from "../shared/chai";
+import {PERFORMANCE_PREFIX} from "../shared/consts";
+import {setupUser} from "../shared/test-setups/user";
 
 const SET_USER_DATA_MAX_FEE = new BN(3_800_000_000);
 
@@ -14,8 +17,12 @@ describe(PERFORMANCE_PREFIX + 'Creator', function() {
         contract = await setupUser();
     })
 
+    after(async function() {
+        await ApiSingleton.disconnect();
+    })
+
     it('Should set user data under max fee', async function() {
-        await expect(contract.tx.setUserData({
+        await expect(contract.query.setUserData({
             nick: "@nick",
             avatar: {
                 id: {

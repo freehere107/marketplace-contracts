@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::impls::shared::consts::ADMIN;
 use crate::traits::events::admin_access::AdminAccessEvents;
 use crate::traits::{ArchisinalError, ProjectResult};
@@ -6,6 +7,11 @@ use openbrush::contracts::access_control::AccessControl;
 use openbrush::contracts::ownable::Ownable;
 use openbrush::traits::DefaultEnv;
 
+/// The admin access implementation.
+///
+/// # Note
+///
+/// See `crate::traits::AdminAccess` for more information.
 pub trait AdminAccessImpl: AccessControl + Ownable + AdminAccessEvents + Sized {
     fn add_admin(&mut self, account_id: AccountId) -> ProjectResult<()> {
         self._admin_or_owner()?;

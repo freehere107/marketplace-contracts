@@ -1,5 +1,7 @@
+/// SPDX-License-Identifier: MIT
 use openbrush::traits::String;
 
+///
 #[derive(Default, Debug)]
 #[openbrush::storage_item]
 pub struct Data {

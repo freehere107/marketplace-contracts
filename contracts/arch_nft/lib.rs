@@ -1,5 +1,5 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
-
+/// SPDX-License-Identifier: MIT
 pub use crate::arch_nft::*;
 
 #[openbrush::implementation(
@@ -86,6 +86,10 @@ mod arch_nft {
             additional_info: Option<String>,
         ) -> Self {
             let mut instance = Self::default();
+
+            if royalty > 10000 {
+                panic!("Royalty must be less than or equal to 10000");
+            }
 
             ownable::Internal::_init_with_owner(&mut instance, Self::env().caller());
 

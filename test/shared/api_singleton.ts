@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import { ApiPromise } from '@polkadot/api'
 
 export default class ApiSingleton {
@@ -17,5 +18,9 @@ export default class ApiSingleton {
     }
 
     ApiSingleton.instance = undefined
+  }
+
+  public static async initWithApi(api: ApiPromise): Promise<void> {
+    ApiSingleton.instance = api
   }
 }

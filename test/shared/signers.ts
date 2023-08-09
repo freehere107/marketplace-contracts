@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import { Keyring } from '@polkadot/api'
 import { KeyringPair } from '@polkadot/keyring/types'
 
@@ -13,6 +14,10 @@ export class Signers {
     }
 
     return this.keyring
+  }
+
+  public static setDefaultSigner(mnemonic: string): void {
+    this.charlie = this._keyring().addFromMnemonic(mnemonic)
   }
 
   static get Alice(): KeyringPair {

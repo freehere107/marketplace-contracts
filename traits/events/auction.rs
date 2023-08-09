@@ -1,8 +1,10 @@
+/// SPDX-License-Identifier: MIT
 use crate::impls::shared::currency::Currency;
 use ink::primitives::AccountId;
 use openbrush::contracts::psp34::Id;
 
 pub trait AuctionEvents {
+    #[allow(clippy::too_many_arguments)]
     fn emit_auction_created(
         &self,
         auction_id: u128,

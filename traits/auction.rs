@@ -1,3 +1,5 @@
+#![allow(clippy::too_many_arguments)]
+/// SPDX-License-Identifier: MIT
 use crate::impls::auction::data;
 use crate::impls::shared::currency::Currency;
 use crate::traits::ProjectResult;

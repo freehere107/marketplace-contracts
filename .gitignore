@@ -6,4 +6,4 @@ yarn.lock
 /.idea
 /node_modules
 
-/artifacts
+.env

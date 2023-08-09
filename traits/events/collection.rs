@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use openbrush::traits::String;
 
 pub trait CollectionEvents {

@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
@@ -8,6 +9,11 @@ use crate::impls::user::data::{Data, UserData};
 use crate::traits::events::user::UserEvents;
 use crate::traits::ProjectResult;
 
+/// The user implementation.
+///
+/// # Note
+///
+/// See `crate::traits::User` for more information.
 pub trait UserImpl: Storage<Data> + Ownable + Storage<ownable::Data> + UserEvents {
     fn get_user_data(&self) -> UserData {
         UserData::from(self.data::<Data>())

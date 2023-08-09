@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::impls::user::data::UserData;
 
 pub trait UserEvents {

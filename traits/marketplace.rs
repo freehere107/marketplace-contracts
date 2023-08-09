@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::impls::marketplace::data::Listing;
 use crate::impls::shared::currency::Currency;
 use crate::traits::ProjectResult;

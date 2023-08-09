@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use openbrush::contracts::traits::{access_control, psp22};
 use openbrush::contracts::{ownable, psp34};
 use openbrush::traits::String;

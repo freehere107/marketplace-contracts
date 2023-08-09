@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::traits::ProjectResult;
 use openbrush::contracts::ownable::*;
 use openbrush::contracts::psp34::extensions::burnable::*;

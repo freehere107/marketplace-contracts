@@ -1,5 +1,5 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
-
+/// SPDX-License-Identifier: MIT
 pub use crate::creator::*;
 
 #[openbrush::implementation(Ownable, Upgradeable)]

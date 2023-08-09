@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
@@ -9,7 +10,25 @@ use crate::impls::creator::data::Data;
 use crate::traits::events::creator::CreatorEvents;
 use crate::traits::{ArchisinalError, ProjectResult};
 
+/// The creator internal implementation.
 pub trait CreatorInternal {
+    /// Instantiate a collection.
+    ///
+    /// # Parameters
+    ///
+    /// - `name`: The name of the collection.
+    /// - `uri`: The URI of the collection.
+    /// - `royalty`: The royalty of the collection.
+    /// - `additional_info`: The additional info of the collection.
+    /// - `code_hash`: The code hash of the collection.
+    ///
+    /// # Returns
+    ///
+    /// The collection address.
+    ///
+    /// # Note
+    ///
+    /// This function is implemented in the contract itself.
     fn _instantiate_collection(
         &mut self,
         name: String,
@@ -20,6 +39,11 @@ pub trait CreatorInternal {
     ) -> ProjectResult<AccountId>;
 }
 
+/// The creator implementation.
+///
+/// # Note
+///
+/// See `crate::traits::Creator` for more information.
 pub trait CreatorImpl:
     Storage<Data> + Ownable + Storage<ownable::Data> + CreatorInternal + CreatorEvents
 {

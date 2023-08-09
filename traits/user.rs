@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::impls::user::data::UserData;
 use crate::traits::ProjectResult;
 use openbrush::contracts::ownable::*;

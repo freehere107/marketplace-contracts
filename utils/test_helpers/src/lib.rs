@@ -1,3 +1,6 @@
+/// SPDX-License-Identifier: MIT
+
+/// This macro is used to get the address of an account.
 #[macro_export]
 macro_rules! address_of {
     ($account:ident) => {

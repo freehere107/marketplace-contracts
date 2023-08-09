@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::traits::ProjectResult;
 use ink::primitives::{AccountId, Hash};
 use openbrush::contracts::ownable::*;

@@ -1,12 +1,13 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
+/// SPDX-License-Identifier: MIT
 
 #[openbrush::implementation(Ownable, AccessControl, Upgradeable)]
 #[openbrush::contract]
 mod marketplace {
     use archisinal_lib::impls::admin_access::AdminAccessImpl;
-    use archisinal_lib::impls::auction::auction::*;
+    use archisinal_lib::impls::auction::*;
     use archisinal_lib::impls::marketplace::data::Listing;
-    use archisinal_lib::impls::marketplace::marketplace::*;
+    use archisinal_lib::impls::marketplace::*;
     use archisinal_lib::impls::shared::consts::ADMIN;
     use archisinal_lib::impls::shared::currency::Currency;
     use archisinal_lib::impls::{auction, marketplace};

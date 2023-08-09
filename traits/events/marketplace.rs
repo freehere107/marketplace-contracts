@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use crate::impls::shared::currency::Currency;
 use ink::prelude::vec::Vec;
 use ink::primitives::AccountId;

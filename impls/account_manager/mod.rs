@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 pub use data::*;
 pub use impls::*;
 

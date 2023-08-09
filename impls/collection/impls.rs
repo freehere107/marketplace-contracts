@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
@@ -9,6 +10,11 @@ use crate::impls::collection::data::Data;
 use crate::traits::events::collection::CollectionEvents;
 use crate::traits::{ArchisinalError, ProjectResult};
 
+/// The collection implementation.
+///
+/// # Note
+///
+/// See `crate::traits::Collection` for more information.
 pub trait CollectionImpl:
     Storage<Data>
     + Storage<ownable::Data>

@@ -1,7 +1,9 @@
+// SPDX-License-Identifier: MIT
 import { after, describe } from 'mocha'
-import { expect } from '../shared/chai'
+
 import ApiSingleton from '../shared/api_singleton'
-import { Signers } from '../shared/signers'
+import { expect } from '../shared/chai'
+import { E2E_PREFIX } from '../shared/consts'
 import {
   ADDITIONAL_INFO,
   COLLECTION_CODE_HASH,
@@ -11,7 +13,7 @@ import {
   setupCreator as setup,
 } from '../shared/test-setups/creator'
 
-describe('Creator', () => {
+describe(E2E_PREFIX + 'Creator', () => {
   it('Can create collection', async () => {
     const contract = await setup()
 
@@ -44,20 +46,18 @@ describe('Creator', () => {
     })
   })
 
-  it('Not owner cannot create collection', async () => {
+  it('Owner can create collection', async () => {
     const contract = await setup()
 
     await expect(
-      contract
-        .withSigner(Signers.Alice)
-        .tx.createCollection(
-          COLLECTION_NAME,
-          COLLECTION_URI,
-          COLLECTION_ROYALTY,
-          ADDITIONAL_INFO,
-          COLLECTION_CODE_HASH,
-        ),
-    ).to.be.rejected
+      contract.tx.createCollection(
+        COLLECTION_NAME,
+        COLLECTION_URI,
+        COLLECTION_ROYALTY,
+        ADDITIONAL_INFO,
+        COLLECTION_CODE_HASH,
+      ),
+    ).to.be.fulfilled
   })
 
   after(async () => {

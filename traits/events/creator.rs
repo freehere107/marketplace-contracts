@@ -1,3 +1,4 @@
+/// SPDX-License-Identifier: MIT
 use ink::primitives::AccountId;
 
 pub trait CreatorEvents {
