@@ -8,11 +8,13 @@
   },
   "scripts": {
     "run-typechain-compiler": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68",
+    "run-typechain-compiler:ci": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --release",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
     "test:mocha": "yarn raw-mocha \"./test/**/*.spec.ts\"",
     "test:mocha-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha; kill $pid",
     "test:full": "yarn run-typechain-compiler && yarn test:mocha",
     "test:full-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn run-typechain-compiler && yarn test:mocha; kill $pid",
+    "test:full-node:ci": "set +e; substrate-contracts-node --dev & pid=$!; yarn run-typechain-compiler:ci && yarn test:mocha; kill $pid",
     "test:mocha:creator": "yarn raw-mocha \"./test/**/creator.spec.ts\"",
     "test:mocha:creator-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:creator; kill $pid",
     "test:mocha:arch_nft": "yarn raw-mocha \"./test/**/arch_nft.spec.ts\"",
