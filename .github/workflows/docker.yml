@@ -26,4 +26,4 @@ jobs:
           dockerfile: Dockerfile
           tags: latest
           registry: ghcr.io
-          githubOrg: varex83
+          githubOrg: archisinal
