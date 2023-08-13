@@ -3,6 +3,11 @@ use crate::impls::user::data::UserData;
 use crate::traits::ProjectResult;
 use openbrush::contracts::ownable::*;
 
+/// User trait definition
+///
+/// # Note
+///
+/// This trait is used to manage user social data
 #[openbrush::trait_definition]
 pub trait User {
     /// Get the UserData of the user.

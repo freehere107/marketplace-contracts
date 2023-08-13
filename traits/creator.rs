@@ -4,6 +4,12 @@ use ink::primitives::{AccountId, Hash};
 use openbrush::contracts::ownable::*;
 use openbrush::traits::String;
 
+/// Creator trait definition
+///
+/// # Note
+///
+/// This trait is used by creators to create collections,
+/// also this trait should be used with `User` trait.
 #[openbrush::trait_definition]
 pub trait Creator {
     /// Creates a new collection.

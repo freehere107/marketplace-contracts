@@ -23,7 +23,7 @@ Think of the structure as a series of folders:
 
 ## 🧪 How to Test
 
-Ready to test? Follow these steps:
+Follow these steps:
 
 > **Note:** You'll need to have [Rust](https://www.rust-lang.org/tools/install) and [Node.js](https://nodejs.org/en/download/) installed.
 > 
@@ -61,7 +61,7 @@ Ready to test? Follow these steps:
       yarn lint
       cargo +nightly fmt --all -- --check
       cargo +nightly clippy --all-targets --all-features -- -D warnings
-      ```
+      ``` 
     - Correct any formatting issues:
       ```bash
       yarn lint:fix
@@ -72,5 +72,20 @@ Ready to test? Follow these steps:
    ```bash
    cargo test
    ```
+   
+## P.S 
+
+If you want to single-test some feature you can use the following structure:
+```bash
+yarn test:mocha:<feature><?-node>
+```
+For example:
+```bash
+yarn test:mocha:marketplace
+```
+or
+```bash
+yarn test:mocha:marketplace-node
+```
 
 Happy testing! 🚀

@@ -96,11 +96,13 @@ describe(PERFORMANCE_PREFIX + 'Auction', function() {
             2 * PRICE,
         )
 
-        await sleep(150);
+        for (let i = 0; i < 10; i++) {
+            await sleep(150);
 
-        await psp22.withSigner(Signers.Bob).tx.approve(contract.address, 3 * PRICE_WITH_FEE);
+            await psp22.withSigner(Signers.Bob).tx.approve(contract.address, 3 * PRICE_WITH_FEE);
 
-        await sleep(150);
+            await sleep(150);
+        }
 
         await expect(contract.withSigner(Signers.Alice).query.claimNft(
             0,

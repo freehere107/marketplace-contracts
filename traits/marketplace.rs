@@ -6,6 +6,11 @@ use ink::prelude::vec::Vec;
 use ink::primitives::AccountId;
 use openbrush::contracts::psp34::Id;
 
+/// Marketplace trait definition
+///
+/// # Note
+///
+/// This trait is used to create, read and manage listings
 #[openbrush::trait_definition]
 pub trait Marketplace {
     /// Get the number of listings

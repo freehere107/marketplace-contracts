@@ -8,7 +8,7 @@
   },
   "scripts": {
     "run-typechain-compiler": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68",
-    "run-typechain-compiler:ci": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --release",
+    "run-typechain-compiler:ci": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68 --release",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
     "test:mocha": "yarn raw-mocha \"./test/**/*.spec.ts\"",
     "test:mocha-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha; kill $pid",

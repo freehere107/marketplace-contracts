@@ -8,25 +8,22 @@
 > Please provide a short paragraph or two connecting the deliverables in this milestone and describing their purpose.
 
 **Deliverables**
-> Please provide a list of all deliverables of the milestone extracted from the initial application and a link to the deliverable itself. Ideally all links inside the below table should include a commit hash, which will be used for testing. If you don't provide a commit hash, we will work off the default branch of your repository. Thus, if you plan on continuing work after delivery, we suggest you create a separate branch for either the delivery or your continuing work.
->
-> If there is anything particular about any of the deliverables we or a future reader should know, use the respective `Notes` column.
 
-| Number | Deliverable | Link       | Notes                                                                          |                             
-| ------------- | ------------- |------------|--------------------------------------------------------------------------------|
-| 0a. | License | [click]()  | MIT                                                                            |
-| 0b. | Documentation | [click]()  | Entry-point of docs is README.md, then use `cargo doc --open` to check all docs |
-| 0c. | Testing and Testing Guide | [click]()  |                                                                                |
-| 0d. | Docker | [click]()  | Created dockerfile for testing, also CI for automatic checks                   |
-| 0e. | Article | [click]()  |                                                                                |
-| 1. | NFT Minting | [click]()  |                                                                                |
-| 2. | NFT Transfer | [click]()  |                                                                                |
-| 3. | Creator’s Administering | [click]()  |                                                                                |
-| 4. | Buyer’s Administering | [click]()  |                                                                                |
-| 5. | Marketplace Administration | [click]()  |                                                                                |
-| 6. | Auction | [click]()  |                                                                                |
-| 7. | Test Network Deployment | [click]()  |                                                                                |
-| 8. | Quality, Performance, and Security Considerations | [click]()  |                                                                                |
+| Number | Deliverable | Link                                                                                   | Notes                                                                                                                                                                                        |                             
+| ------------- | ------------- |----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0a. | License | [LICENSE](https://github.com/archisinal/marketplace-contracts/blob/main/LICENSE)                   | MIT                                                                                                                                                                                          |
+| 0b. | Documentation | [DOCS](https://github.com/archisinal/marketplace-contracts/blob/main/LICENSE)                      | Entry-point of docs is README.md, then use `cargo doc --open` to check all docs.                                                                                                             |
+| 0c. | Testing and Testing Guide | [TESTING.md](https://github.com/archisinal/marketplace-contracts/blob/main/TESTING.md)             | Created E2E, Security, Performance tests, and testing guide for them.                                                                                                                        |
+| 0d. | Docker | [Dockerfile](https://github.com/archisinal/marketplace-contracts/blob/main/Dockerfile)             | Created dockerfile for testing, also CI for automatic checks.                                                                                                                                |
+| 0e. | Article | [Article]()                                                                            |                                                                                                                                                                                              |
+| 1. | NFT Minting | [ArchNFT](https://github.com/archisinal/marketplace-contracts/tree/main/contracts/arch_nft)        | Implemented in ArchNFT contract (PSP34 logic from OpenBrush). Also ArchNFT contains different metadata such as collection royalty.                                                                                                                                                                                             |
+| 2. | NFT Transfer | [ArchNFT](https://github.com/archisinal/marketplace-contracts/tree/main/contracts/arch_nft)        | Implemented in ArchNFT contract (PSP34 logic from OpenBrush). Also ArchNFT contains different metadata such as collection royalty.                                                           |
+| 3. | Creator’s Administering | [Creator](https://github.com/archisinal/marketplace-contracts/tree/main/contracts/creator)         | Creator contract inherits logic of user contract and adding opportunity to deploy collections.                                                                                               |
+| 4. | Buyer’s Administering | [User](https://github.com/archisinal/marketplace-contracts/tree/main/contracts/user)               | User contract is used to manage user data on-chain, such as NFT-avatars or nicks. Will be extended in the future releases.                                                                   |
+| 5. | Marketplace Administration | [Marketplace](https://github.com/archisinal/marketplace-contracts/tree/main/contracts/marketplace) | Contract that contains auction and just marketplace logic.                                                                                                                                   |
+| 6. | Auction | [Marketplace](https://github.com/archisinal/marketplace-contracts/tree/main/contracts/marketplace) | Auction is a part of `marketplace` contract.                                                                                                                                                 |
+| 7. | Test Network Deployment | [DEPLOYMENTS.md](https://github.com/archisinal/marketplace-contracts/blob/main/DEPLOYMENTS.md)     | Successfully deployed our contracts to Shibuya testing network, contract addresses are provided in `DEPLOYMENTS.md` file.                                                                    |
+| 8. | Quality, Performance, and Security Considerations | [Tests](https://github.com/archisinal/marketplace-contracts/tree/main/test)                            | All contracts, and `archisinal_lib` are checked via clippy and rustfmt, tests checked via prettier, eslint and typescript, also security and perfomamnce considerations are part of testing. |
 
 
 **Additional Information**

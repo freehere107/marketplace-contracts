@@ -7,13 +7,14 @@ import PSP22Contract from '../../typechain-generated/contracts/my_psp22'
 import { CurrencyBuilder } from '../../typechain-generated/types-arguments/marketplace'
 import ApiSingleton from '../shared/api_singleton'
 import { expect } from '../shared/chai'
-import {MIN_BID_STEP, PRICE, SECURITY_PREFIX, TOKEN_ID_1} from '../shared/consts'
+import {MIN_BID_STEP, PRICE, PRICE_WITH_FEE, SECURITY_PREFIX, TOKEN_ID_1} from '../shared/consts'
 import {genTime, mintAndApprove, mintAndListAuction} from "../shared/marketplace";
 import { Signers } from '../shared/signers'
 import { setupArchNFT } from '../shared/test-setups/arch_nft'
 import { setupMarketplace as setup } from '../shared/test-setups/marketplace'
 import { setupPSP22 } from '../shared/test-setups/my_psp22'
 import {sleep} from "../shared/time";
+import {AuctionStatus} from "../../typechain-generated/types-returns/marketplace";
 
 describe(SECURITY_PREFIX + 'Auction', () => {
   let contract: MarketplaceContract
@@ -153,6 +154,36 @@ describe(SECURITY_PREFIX + 'Auction', () => {
       await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
 
       await expect(psp22.withSigner(Signers.Charlie).tx.approve(contract.address, 102)).to.eventually.be.fulfilled
+      await expect(contract.withSigner(Signers.Charlie).tx.bidNft(0, 101)).to.eventually.be.rejected
+    })
+
+    it(`can't bid if auction is ended`, async () => {
+      await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1, false, 300, 100)
+
+      await sleep(100)
+
+      await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
+
+      await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 101)
+      await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
+
+      // push block
+      for (let i = 0; i < 10; i++) {
+        await sleep(300);
+
+        await psp22.withSigner(Signers.Bob).tx.approve(contract.address, 3 * PRICE_WITH_FEE);
+
+        await sleep(300);
+      }
+
+      await expect(contract.withSigner(Signers.Alice).tx.claimNft(0)).to.eventually.be.fulfilled
+
+      await expect(nft.withSigner(Signers.Alice).query.ownerOf(TOKEN_ID_1)).to.have.returnValue(Signers.Alice.address)
+
+      const auction = (await contract.query.getAuctionByIndex(0)).value.unwrapRecursively()!
+
+      expect(auction.status).to.deep.equal(AuctionStatus.ended)
+
       await expect(contract.withSigner(Signers.Charlie).tx.bidNft(0, 101)).to.eventually.be.rejected
     })
   })

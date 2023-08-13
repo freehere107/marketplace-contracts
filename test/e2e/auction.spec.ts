@@ -8,7 +8,7 @@ import { CurrencyBuilder } from '../../typechain-generated/types-arguments/marke
 import { AuctionStatus } from '../../typechain-generated/types-returns/marketplace'
 import ApiSingleton from '../shared/api_singleton'
 import { expect } from '../shared/chai'
-import {E2E_PREFIX, TOKEN_ID, TOKEN_ID_1, TOKEN_ID_2, TOKEN_ID_3} from '../shared/consts'
+import {E2E_PREFIX, PRICE_WITH_FEE, TOKEN_ID, TOKEN_ID_1, TOKEN_ID_2, TOKEN_ID_3} from '../shared/consts'
 import {mintAndListAuction} from "../shared/marketplace";
 import { Signers } from '../shared/signers'
 import { setupArchNFT } from '../shared/test-setups/arch_nft'
@@ -141,19 +141,22 @@ describe(E2E_PREFIX + 'Auction', () => {
 
   describe('Claim NFT', () => {
     it('should claim an NFT from an auction under normal circumstances', async () => {
-      await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1, false, 100, 100)
+      await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1, false, 300, 100)
 
       await sleep(100)
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
-      await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 101)
+      await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 200)
       await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
 
-      await sleep(300)
+      for (let i = 0; i < 10; i++) {
+        await sleep(300);
 
-      // push block
-      await psp22.withSigner(Signers.Bob).tx.approve(contract.address, 100001)
+        await psp22.withSigner(Signers.Bob).tx.approve(contract.address, 3 * PRICE_WITH_FEE);
+
+        await sleep(300);
+      }
 
       await expect(contract.withSigner(Signers.Alice).tx.claimNft(0)).to.eventually.be.fulfilled
 

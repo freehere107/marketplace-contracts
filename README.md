@@ -1,6 +1,6 @@
 # Archisinal Contracts
 
-Arschisinal marketplace contracts written in ink!.
+Arschisinal marketplace contracts written in ink!
 
 ## Structure
 

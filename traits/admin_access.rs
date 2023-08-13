@@ -2,6 +2,11 @@
 use crate::traits::ProjectResult;
 use ink::primitives::AccountId;
 
+/// AdminAccess trait definition
+///
+/// # Note
+///
+/// This trait is used to manage admins of the contract
 #[openbrush::trait_definition]
 pub trait AdminAccess {
     /// Add an admin
