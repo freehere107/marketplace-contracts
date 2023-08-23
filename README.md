@@ -95,3 +95,65 @@ cargo +nightly fmt --all
 ```bash
 cargo test
 ```
+
+## General Architecture Overview
+
+### Account Management
+
+This section governs the user-related data, including both general users and creators who have added capabilities.
+
+#### Account Manager:
+- **Purpose**: Centralized contract for overall user management.
+- **Features**:
+    - Register and track user and creator accounts.
+    - Interface with both the User and Creator contracts to fetch or modify data.
+
+#### User:
+- **Purpose**: Stores individual user metadata.
+- **Features**:
+    - Store personal data like nickname, avatar etc.
+    - Potential for future expansion to include more metadata, as indicated by the hint about expansion.
+
+#### Creator:
+- **Purpose**: Handles specific functionalities for creators.
+- **Features**:
+    - Management of creators.
+    - Allows creators to deploy NFTs.
+    - Store additional metadata for creators (in the future).
+
+### Marketplace
+
+This section manages the buying and selling of NFTs.
+
+#### Auction:
+- **Purpose**: Oversee the auctioning of NFTs.
+- **Features**:
+    - Create, monitor, and conclude auctions.
+    - Handle bids and notify winners.
+    - Ensure fund transfers to sellers and, if applicable, distribute royalties to creators.
+
+#### Marketplace (Sales):
+- **Purpose**: Direct sale of NFTs.
+- **Features**:
+    - List NFTs for sale with set prices.
+    - Handle purchases and transfer ownership of NFTs.
+    - Ensure payment processing and royalty distributions if applicable.
+
+### ArchNFT
+
+This section is responsible for creating, maintaining, and organizing the actual NFT assets and their collections.
+
+#### PSP34 (from OpenBrush):
+- **Purpose**: Mint and manage individual NFTs.
+- **Features**:
+    - Allow creators to mint new NFTs.
+    - Store metadata for each NFT.
+    - Transfer ownership of NFTs.
+  
+#### Collection:
+- **Purpose**: Manage collection metadata.
+- **Features**:
+    - Allow creators to define and manage collections.
+    - Store metadata for each collection.
+    - Handle royalty information at the collection level.
+

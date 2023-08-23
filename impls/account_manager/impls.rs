@@ -3,7 +3,7 @@ use ink::primitives::{AccountId, Hash};
 use openbrush::contracts::ownable::Ownable;
 use openbrush::traits::Storage;
 
-use crate::impls::account_manager::Data;
+use crate::impls::account_manager::{AccountType, Data};
 use crate::impls::admin_access::AdminAccessImpl;
 use crate::traits::events::account_manager::AccountManagerEvents;
 use crate::traits::{ArchisinalError, ProjectResult};
@@ -21,27 +21,31 @@ pub trait AccountManagerImpl:
     fn create_creator_account(&mut self) -> ProjectResult<()>;
 
     fn get_account(&self, account_id: AccountId) -> Option<AccountId> {
-        self.data().accounts.get(&account_id)
+        self.data::<Data>()
+            .accounts
+            .get(&(account_id, AccountType::User))
     }
 
     fn get_creator_account(&self, account_id: AccountId) -> Option<AccountId> {
-        self.data().creators.get(&account_id)
+        self.data::<Data>()
+            .accounts
+            .get(&(account_id, AccountType::Creator))
     }
 
     fn get_creator_code_hash(&self) -> Hash {
-        self.data().creator_code_hash.get_or_default()
+        self.data::<Data>().creator_code_hash.get_or_default()
     }
 
     fn get_user_code_hash(&self) -> Hash {
-        self.data().user_code_hash.get_or_default()
+        self.data::<Data>().user_code_hash.get_or_default()
     }
 
     fn set_creator_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
         self._admin_or_owner()?;
 
-        self.data().creator_code_hash.set(&code_hash);
+        self.data::<Data>().creator_code_hash.set(&code_hash);
 
-        self.emit_creator_code_hash_set(code_hash);
+        self.emit_code_hash_set(code_hash, AccountType::Creator);
 
         Ok(())
     }
@@ -49,9 +53,9 @@ pub trait AccountManagerImpl:
     fn set_user_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
         self._admin_or_owner()?;
 
-        self.data().user_code_hash.set(&code_hash);
+        self.data::<Data>().user_code_hash.set(&code_hash);
 
-        self.emit_user_code_hash_set(code_hash);
+        self.emit_code_hash_set(code_hash, AccountType::User);
 
         Ok(())
     }
@@ -61,7 +65,9 @@ pub trait AccountManagerImpl:
             return Err(ArchisinalError::AccountAlreadyExists);
         }
 
-        self.data().accounts.insert(&account_id, &contract);
+        self.data::<Data>()
+            .accounts
+            .insert(&(account_id, AccountType::User), &contract);
 
         self.emit_account_created(account_id, contract);
 
@@ -73,7 +79,9 @@ pub trait AccountManagerImpl:
             return Err(ArchisinalError::AccountAlreadyExists);
         }
 
-        self.data().creators.insert(&account_id, &contract);
+        self.data::<Data>()
+            .accounts
+            .insert(&(account_id, AccountType::Creator), &contract);
 
         self.emit_creator_created(account_id, contract);
 

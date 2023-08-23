@@ -12,6 +12,14 @@ export default class ApiSingleton {
     return ApiSingleton.instance
   }
 
+  public static getInstanceSync(): ApiPromise {
+    if (!ApiSingleton.instance) {
+      throw new Error('ApiSingleton is not initialized')
+    }
+
+    return ApiSingleton.instance
+  }
+
   public static async disconnect(): Promise<void> {
     if (ApiSingleton.instance) {
       await ApiSingleton.instance.disconnect()

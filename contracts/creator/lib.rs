@@ -2,6 +2,10 @@
 /// SPDX-License-Identifier: MIT
 pub use crate::creator::*;
 
+/// This is the implementation of the creator contract.
+///
+/// The creator contract is responsible for creating collections,
+/// and managing the creator metadata. Designed to be extensible in the future.
 #[openbrush::implementation(Ownable, Upgradeable)]
 #[openbrush::contract]
 mod creator {
@@ -23,14 +27,17 @@ mod creator {
 
     #[ink(event)]
     pub struct CollectionCreated {
+        /// The account id of the creator.
         #[ink(topic)]
         creator: AccountId,
+        /// The account id of the collection created.
         #[ink(topic)]
         collection: AccountId,
     }
 
     #[ink(event)]
     pub struct UserDataSet {
+        /// New user_data.
         pub user_data: UserData,
     }
 

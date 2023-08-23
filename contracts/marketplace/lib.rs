@@ -1,6 +1,34 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
 /// SPDX-License-Identifier: MIT
 
+/// # Marketplace contract
+///
+/// Contract that contains all the logic for the marketplace and auction.
+///
+/// ## Marketplace
+///
+/// The marketplace is a contract that allows users to list their NFTs for sale,
+/// and then buy them in different ways.
+///
+/// ## Auction
+///
+/// The auction is a contract that allows users to list their NFTs for sale.
+///
+/// ### Auction implementation
+///
+/// - The auction is implemented using a modified version of the English auction.
+/// - The auction is started by the seller, who sets the starting price, and the duration of the auction.
+/// - The auction is then started, and users can bid on the NFT.
+/// - The auction ends when the duration is over.
+/// - The winner of the auction is the highest bidder.
+/// - If the auction is won, the NFT is transferred to the winner, and the seller receives the bid amount.
+/// - If the auction is not won, the NFT is transferred back to the seller.
+///
+/// ## Royalties
+///
+/// Royalties are a percentage of the sale price that is paid to the creator of the NFT.
+/// They are paid to the creator of the NFT when the NFT is sold,
+/// and stored directly in the NFT contract (see ArchNFT).
 #[openbrush::implementation(Ownable, AccessControl, Upgradeable)]
 #[openbrush::contract]
 mod marketplace {
@@ -25,21 +53,27 @@ mod marketplace {
 
     #[ink(event)]
     pub struct ListNFT {
+        /// The account id of the listing.
         #[ink(topic)]
         listing_id: u128,
+        /// The account id of the listing creator (anyone with access to the NFT).
         #[ink(topic)]
         creator: AccountId,
+        /// Account id of the collection of the NFT.
         #[ink(topic)]
         collection: AccountId,
         token_id: Id,
         price: u128,
+        /// The currency used for the listing (Native / Custom(PSP22)).
         currency: Currency,
     }
 
     #[ink(event)]
     pub struct CancelListing {
+        /// The canceller.
         #[ink(topic)]
         caller: AccountId,
+        /// Id of the listing.
         #[ink(topic)]
         listing_id: u128,
     }
@@ -64,22 +98,27 @@ mod marketplace {
     pub struct AuctionCreated {
         #[ink(topic)]
         auction_id: u128,
+        /// The account id of the auction creator (anyone with access to the NFT).
         #[ink(topic)]
         creator: AccountId,
         #[ink(topic)]
         collection: AccountId,
         token_id: Id,
         start_price: u128,
+        /// The minimum bid step.
         min_bid_step: u128,
         start_time: u64,
         end_time: u64,
+        /// The currency used for the listing (Native / Custom(PSP22)).
         currency: Currency,
     }
 
     #[ink(event)]
     pub struct CancelAuction {
+        /// The canceller.
         #[ink(topic)]
         caller: AccountId,
+        /// Id of the auction.
         #[ink(topic)]
         auction_id: u128,
     }
@@ -130,6 +169,7 @@ mod marketplace {
     pub struct AdminAdded {
         #[ink(topic)]
         pub caller: AccountId,
+        /// The account id of the new admin.
         #[ink(topic)]
         pub account_id: AccountId,
     }
@@ -138,6 +178,7 @@ mod marketplace {
     pub struct AdminRemoved {
         #[ink(topic)]
         pub caller: AccountId,
+        /// The account id of the removed admin.
         #[ink(topic)]
         pub account_id: AccountId,
     }

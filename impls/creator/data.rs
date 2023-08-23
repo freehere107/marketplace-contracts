@@ -3,15 +3,12 @@ use openbrush::storage::Mapping;
 use openbrush::traits::AccountId;
 
 /// The main data storage of the marketplace.
-///
-/// # Fields
-///
-/// - `collection_count`: The total number of collections.
-/// - `collection_addresses`: The mapping of collection id to collection address.
 #[derive(Default, Debug)]
 #[openbrush::storage_item]
 pub struct Data {
+    /// The total number of collections.
     #[lazy]
     pub collection_count: u32,
+    /// The mapping of collection id to collection.
     pub collection_addresses: Mapping<u32, AccountId>,
 }

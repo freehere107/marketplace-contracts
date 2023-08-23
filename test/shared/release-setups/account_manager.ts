@@ -1,23 +1,21 @@
 // SPDX-License-Identifier: MIT
+import CreatorAbi from '../../../artifacts/creator.json'
+import UserAbi from '../../../artifacts/user.json'
 import Constructors from '../../../typechain-generated/constructors/account_manager'
 import Contract from '../../../typechain-generated/contracts/account_manager'
 import ApiSingleton from '../api_singleton'
 import { Signers } from '../signers'
-import { setupCreator } from './creator'
-import { setupUser } from './user'
+import {gasLimit} from "./shared";
 
 export async function setupAccountManager(): Promise<Contract> {
   const api = await ApiSingleton.getInstance()
   const defaultSigner = Signers.defaultSigner
 
-  const creator = await setupCreator()
-  const user = await setupUser()
-
   const constructors = new Constructors(api, defaultSigner)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { address } = await constructors.new(user.contractAbi.json.source.hash, creator.contractAbi.json.source.hash)
+  const { address } = await constructors.new(UserAbi.source.hash, CreatorAbi.source.hash, {
+    gasLimit: gasLimit(2500000000, 36000),
+  })
 
   return new Contract(address, defaultSigner, api)
 }

@@ -16,6 +16,7 @@ import { setupPSP22 } from '../shared/test-setups/my_psp22'
 async function getBalance(signer: KeyringPair) {
   const api = await ApiSingleton.getInstance()
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { data: balance } = await api.query.system.account(signer.address)
 

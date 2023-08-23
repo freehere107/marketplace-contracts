@@ -2,6 +2,13 @@
 /// SPDX-License-Identifier: MIT
 pub use crate::arch_nft::*;
 
+/// # Archisinal NFT contract
+///
+/// ## Overview
+///
+/// This is used to create a new NFT collection, and consists of the following components:
+/// - PSP34: The PSP34 contract is used to manage the NFTs.
+/// - Collection: The Collection contract is used to manage the collection info such as uris, royalties etc.
 #[openbrush::implementation(
     Ownable,
     PSP34,
@@ -24,10 +31,13 @@ mod arch_nft {
 
     #[ink(event)]
     pub struct Transfer {
+        /// The account id of sender.
         #[ink(topic)]
         from: Option<AccountId>,
+        /// The account id of receiver.
         #[ink(topic)]
         to: Option<AccountId>,
+        /// The token id of NFT transferring.
         #[ink(topic)]
         token_id: Id,
     }
@@ -44,17 +54,20 @@ mod arch_nft {
 
     #[ink(event)]
     pub struct SetCollectionName {
+        /// The new name of the collection.
         #[ink(topic)]
         name: String,
     }
 
     #[ink(event)]
     pub struct SetCollectionUri {
+        /// The new uri of the collection.
         uri: String,
     }
 
     #[ink(event)]
     pub struct SetCollectionAdditionalInfo {
+        /// The new additional info of the collection.
         additional_info: String,
     }
 

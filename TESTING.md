@@ -27,7 +27,8 @@ Follow these steps:
 
 > **Note:** You'll need to have [Rust](https://www.rust-lang.org/tools/install) and [Node.js](https://nodejs.org/en/download/) installed.
 > 
-> **! Note:** You'll also need to have the [contracts-node](https://github.com/paritytech/substrate-contracts-node) installed, with version 'v0.30.0'
+> **! Note:** You'll also need to have the [contracts-node](https://github.com/paritytech/substrate-contracts-node) installed, with version 'v0.30.0',
+> Rust version: 1.68
 
 1. **Ink-E2E Tests** 
 > For now, only arch_nft has ink-e2e tests

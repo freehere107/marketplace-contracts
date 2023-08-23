@@ -5,6 +5,7 @@ import ArchNFTContract from '../../typechain-generated/contracts/arch_nft'
 import MarketplaceContract from '../../typechain-generated/contracts/marketplace'
 import PSP22Contract from '../../typechain-generated/contracts/my_psp22'
 import { CurrencyBuilder } from '../../typechain-generated/types-arguments/marketplace'
+import {AuctionStatus} from "../../typechain-generated/types-returns/marketplace";
 import ApiSingleton from '../shared/api_singleton'
 import { expect } from '../shared/chai'
 import {MIN_BID_STEP, PRICE, PRICE_WITH_FEE, SECURITY_PREFIX, TOKEN_ID_1} from '../shared/consts'
@@ -14,7 +15,6 @@ import { setupArchNFT } from '../shared/test-setups/arch_nft'
 import { setupMarketplace as setup } from '../shared/test-setups/marketplace'
 import { setupPSP22 } from '../shared/test-setups/my_psp22'
 import {sleep} from "../shared/time";
-import {AuctionStatus} from "../../typechain-generated/types-returns/marketplace";
 
 describe(SECURITY_PREFIX + 'Auction', () => {
   let contract: MarketplaceContract

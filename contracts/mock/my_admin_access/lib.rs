@@ -16,6 +16,7 @@ mod my_admin_access {
     pub struct AdminAdded {
         #[ink(topic)]
         caller: AccountId,
+        /// The account id of the added admin.
         #[ink(topic)]
         account_id: AccountId,
     }
@@ -24,6 +25,7 @@ mod my_admin_access {
     pub struct AdminRemoved {
         #[ink(topic)]
         caller: AccountId,
+        /// The account id of the removed admin.
         #[ink(topic)]
         account_id: AccountId,
     }

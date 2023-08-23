@@ -1,11 +1,15 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
 /// SPDX-License-Identifier: MIT
 
+/// # AccountManager contract
+///
+/// This contract is responsible for creating and managing user and creator accounts.
 #[openbrush::implementation(Ownable, AccessControl, Upgradeable)]
 #[openbrush::contract]
 mod account_manager {
     use archisinal_lib::impls::account_manager;
     use archisinal_lib::impls::account_manager::AccountManagerImpl;
+    use archisinal_lib::impls::account_manager::AccountType;
     use archisinal_lib::impls::admin_access::AdminAccessImpl;
     use archisinal_lib::impls::shared::consts::ADMIN;
     use archisinal_lib::traits::account_manager::*;
@@ -20,44 +24,49 @@ mod account_manager {
 
     #[ink(event)]
     pub struct AccountCreated {
+        /// The account id of the contract owner.
         #[ink(topic)]
         pub account_id: AccountId,
+        /// The account id of the deployed user contract.
         #[ink(topic)]
         pub contract_id: AccountId,
     }
 
     #[ink(event)]
     pub struct CreatorAccountCreated {
+        /// The account id of the contract owner.
         #[ink(topic)]
         pub account_id: AccountId,
+        /// The account id of the deployed creator contract.
         #[ink(topic)]
         pub contract_id: AccountId,
     }
 
     #[ink(event)]
-    pub struct UserCodeHashSet {
+    pub struct CodeHashSet {
+        /// The code hash of the user contract.
         #[ink(topic)]
         pub code_hash: Hash,
-    }
-
-    #[ink(event)]
-    pub struct CreatorCodeHashSet {
         #[ink(topic)]
-        pub code_hash: Hash,
+        pub account_type: AccountType,
     }
 
     #[ink(event)]
     pub struct AdminAdded {
+        /// The account id of the caller.
         #[ink(topic)]
         pub caller: AccountId,
+        /// The account id of the added admin.
         #[ink(topic)]
         pub account_id: AccountId,
     }
 
     #[ink(event)]
     pub struct AdminRemoved {
+        /// The account id of the caller.
         #[ink(topic)]
         pub caller: AccountId,
+        /// The account id of the removed admin.
         #[ink(topic)]
         pub account_id: AccountId,
     }
@@ -206,17 +215,13 @@ mod account_manager {
             );
         }
 
-        fn emit_creator_code_hash_set(&self, code_hash: Hash) {
-            <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event::<CreatorCodeHashSet>(
+        fn emit_code_hash_set(&self, code_hash: Hash, account_type: AccountType) {
+            <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event::<CodeHashSet>(
                 Self::env(),
-                CreatorCodeHashSet { code_hash },
-            );
-        }
-
-        fn emit_user_code_hash_set(&self, code_hash: Hash) {
-            <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event::<UserCodeHashSet>(
-                Self::env(),
-                UserCodeHashSet { code_hash },
+                CodeHashSet {
+                    code_hash,
+                    account_type,
+                },
             );
         }
     }

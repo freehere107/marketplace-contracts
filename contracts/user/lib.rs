@@ -2,6 +2,10 @@
 /// SPDX-License-Identifier: MIT
 pub use crate::user::*;
 
+/// # User contract
+///
+/// This contract is responsible for creating and managing user accounts.
+/// It contains to save user social data. Will be extended in the future.
 #[openbrush::implementation(Ownable, Upgradeable)]
 #[openbrush::contract]
 mod user {
@@ -17,6 +21,7 @@ mod user {
 
     #[ink(event)]
     pub struct UserDataSet {
+        /// New user_data.
         pub user_data: UserData,
     }
 
@@ -54,7 +59,7 @@ mod user {
 
             ownable::Internal::_init_with_owner(&mut instance, owner);
 
-            UserImpl::set_user_data(&mut instance, data).unwrap();
+            UserImpl::_set_user_data(&mut instance, data).unwrap();
 
             instance
         }
