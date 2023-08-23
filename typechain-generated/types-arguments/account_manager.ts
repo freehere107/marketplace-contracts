@@ -337,3 +337,8 @@ export class UpgradeableErrorBuilder {
 	}
 }
 
+export enum AccountType {
+	user = 'User',
+	creator = 'Creator'
+}
+

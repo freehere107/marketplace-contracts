@@ -11,12 +11,9 @@ export interface CreatorAccountCreated {
 	contractId: ReturnTypes.AccountId;
 }
 
-export interface UserCodeHashSet {
+export interface CodeHashSet {
 	codeHash: ReturnTypes.Hash;
-}
-
-export interface CreatorCodeHashSet {
-	codeHash: ReturnTypes.Hash;
+	accountType: ReturnTypes.AccountType;
 }
 
 export interface AdminAdded {

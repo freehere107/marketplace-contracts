@@ -21,15 +21,37 @@ export default class Methods {
 		this.__apiPromise = apiPromise;
 	}
 	/**
-	 * setCreatorCodeHash
+	 * getAccount
+	 *
+	 * @param { ArgumentTypes.AccountId } accountId,
+	*/
+	"getAccount" (
+		accountId: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::getAccount", [accountId], __options);
+	}
+
+	/**
+	 * getCreatorCodeHash
+	 *
+	*/
+	"getCreatorCodeHash" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::getCreatorCodeHash", [], __options);
+	}
+
+	/**
+	 * setUserCodeHash
 	 *
 	 * @param { ArgumentTypes.Hash } codeHash,
 	*/
-	"setCreatorCodeHash" (
+	"setUserCodeHash" (
 		codeHash: ArgumentTypes.Hash,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::setCreatorCodeHash", [codeHash], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::setUserCodeHash", [codeHash], __options);
 	}
 
 	/**
@@ -40,30 +62,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::createAccount", [], __options);
-	}
-
-	/**
-	 * getCreatorAccount
-	 *
-	 * @param { ArgumentTypes.AccountId } accountId,
-	*/
-	"getCreatorAccount" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::getCreatorAccount", [accountId], __options);
-	}
-
-	/**
-	 * getAccount
-	 *
-	 * @param { ArgumentTypes.AccountId } accountId,
-	*/
-	"getAccount" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::getAccount", [accountId], __options);
 	}
 
 	/**
@@ -87,49 +85,27 @@ export default class Methods {
 	}
 
 	/**
-	 * setUserCodeHash
+	 * getCreatorAccount
+	 *
+	 * @param { ArgumentTypes.AccountId } accountId,
+	*/
+	"getCreatorAccount" (
+		accountId: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::getCreatorAccount", [accountId], __options);
+	}
+
+	/**
+	 * setCreatorCodeHash
 	 *
 	 * @param { ArgumentTypes.Hash } codeHash,
 	*/
-	"setUserCodeHash" (
+	"setCreatorCodeHash" (
 		codeHash: ArgumentTypes.Hash,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::setUserCodeHash", [codeHash], __options);
-	}
-
-	/**
-	 * getCreatorCodeHash
-	 *
-	*/
-	"getCreatorCodeHash" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::getCreatorCodeHash", [], __options);
-	}
-
-	/**
-	 * isAdmin
-	 *
-	 * @param { ArgumentTypes.AccountId } accountId,
-	*/
-	"isAdmin" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
-	}
-
-	/**
-	 * addAdmin
-	 *
-	 * @param { ArgumentTypes.AccountId } accountId,
-	*/
-	"addAdmin" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::addAdmin", [accountId], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accountManager::setCreatorCodeHash", [codeHash], __options);
 	}
 
 	/**
@@ -145,13 +121,27 @@ export default class Methods {
 	}
 
 	/**
-	 * owner
+	 * addAdmin
 	 *
+	 * @param { ArgumentTypes.AccountId } accountId,
 	*/
-	"owner" (
+	"addAdmin" (
+		accountId: ArgumentTypes.AccountId,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::addAdmin", [accountId], __options);
+	}
+
+	/**
+	 * isAdmin
+	 *
+	 * @param { ArgumentTypes.AccountId } accountId,
+	*/
+	"isAdmin" (
+		accountId: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
 	}
 
 	/**
@@ -177,17 +167,13 @@ export default class Methods {
 	}
 
 	/**
-	 * hasRole
+	 * owner
 	 *
-	 * @param { (number | string | BN) } role,
-	 * @param { ArgumentTypes.AccountId | null } address,
 	*/
-	"hasRole" (
-		role: (number | string | BN),
-		address: ArgumentTypes.AccountId | null,
+	"owner" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
 	}
 
 	/**
@@ -202,6 +188,20 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
+	}
+
+	/**
+	 * hasRole
+	 *
+	 * @param { (number | string | BN) } role,
+	 * @param { ArgumentTypes.AccountId | null } address,
+	*/
+	"hasRole" (
+		role: (number | string | BN),
+		address: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
 	}
 
 	/**

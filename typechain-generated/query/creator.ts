@@ -30,17 +30,6 @@ export default class Methods {
 	}
 
 	/**
-	* getUserData
-	*
-	* @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
-	*/
-	"getUserData" (
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< Result<ReturnTypes.UserData, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::getUserData", [], __options , (result) => { return handleReturnType(result, getTypeDescription(17, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
 	* setUserData
 	*
 	* @param { ArgumentTypes.UserData } userInfo,
@@ -50,31 +39,18 @@ export default class Methods {
 		userInfo: ArgumentTypes.UserData,
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::setUserData", [userInfo], __options , (result) => { return handleReturnType(result, getTypeDescription(18, DATA_TYPE_DESCRIPTIONS)); });
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::setUserData", [userInfo], __options , (result) => { return handleReturnType(result, getTypeDescription(17, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
-	* getCollectionCount
+	* getUserData
 	*
-	* @returns { Result<number, ReturnTypes.LangError> }
+	* @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
 	*/
-	"getCollectionCount" (
+	"getUserData" (
 		__options ? : GasLimit,
-	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionCount", [], __options , (result) => { return handleReturnType(result, getTypeDescription(25, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* getCollectionIdByIndex
-	*
-	* @param { (number | string | BN) } index,
-	* @returns { Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-	*/
-	"getCollectionIdByIndex" (
-		index: (number | string | BN),
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionIdByIndex", [index], __options , (result) => { return handleReturnType(result, getTypeDescription(26, DATA_TYPE_DESCRIPTIONS)); });
+	): Promise< QueryReturnType< Result<ReturnTypes.UserData, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::getUserData", [], __options , (result) => { return handleReturnType(result, getTypeDescription(24, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -99,6 +75,43 @@ export default class Methods {
 	}
 
 	/**
+	* getCollectionIdByIndex
+	*
+	* @param { (number | string | BN) } index,
+	* @returns { Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+	*/
+	"getCollectionIdByIndex" (
+		index: (number | string | BN),
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionIdByIndex", [index], __options , (result) => { return handleReturnType(result, getTypeDescription(26, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* getCollectionCount
+	*
+	* @returns { Result<number, ReturnTypes.LangError> }
+	*/
+	"getCollectionCount" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionCount", [], __options , (result) => { return handleReturnType(result, getTypeDescription(28, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* transferOwnership
+	*
+	* @param { ArgumentTypes.AccountId } newOwner,
+	* @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
+	*/
+	"transferOwnership" (
+		newOwner: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::transferOwnership", [newOwner], __options , (result) => { return handleReturnType(result, getTypeDescription(29, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
 	* renounceOwnership
 	*
 	* @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
@@ -118,19 +131,6 @@ export default class Methods {
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
 		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options , (result) => { return handleReturnType(result, getTypeDescription(31, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* transferOwnership
-	*
-	* @param { ArgumentTypes.AccountId } newOwner,
-	* @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
-	*/
-	"transferOwnership" (
-		newOwner: ArgumentTypes.AccountId,
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::transferOwnership", [newOwner], __options , (result) => { return handleReturnType(result, getTypeDescription(29, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**

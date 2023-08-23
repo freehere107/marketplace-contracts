@@ -1,10 +1,10 @@
 {
   "source": {
-    "hash": "0x8a053e4ef9f436c702cb5f5bab65e5c53fe37951c368e5e424d47d66160c2d17",
+    "hash": "0xb0382e384a4574e5ccba247abfda7128b23380430019fb78eba22242cbecf854",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.68.2",
     "build_info": {
-      "build_mode": "Debug",
+      "build_mode": "Release",
       "cargo_contract_version": "3.0.1",
       "rust_toolchain": "stable-aarch64-apple-darwin",
       "wasm_opt_settings": {
@@ -58,7 +58,10 @@
       }
     ],
     "docs": [
-      " SPDX-License-Identifier: MIT"
+      " SPDX-License-Identifier: MIT",
+      " # AccountManager contract",
+      "",
+      " This contract is responsible for creating and managing user and creator accounts."
     ],
     "environment": {
       "accountId": {
@@ -71,7 +74,7 @@
         "displayName": [
           "Balance"
         ],
-        "type": 29
+        "type": 30
       },
       "blockNumber": {
         "displayName": [
@@ -83,7 +86,7 @@
         "displayName": [
           "ChainExtension"
         ],
-        "type": 31
+        "type": 32
       },
       "hash": {
         "displayName": [
@@ -96,14 +99,16 @@
         "displayName": [
           "Timestamp"
         ],
-        "type": 30
+        "type": 31
       }
     },
     "events": [
       {
         "args": [
           {
-            "docs": [],
+            "docs": [
+              " The account id of the contract owner."
+            ],
             "indexed": true,
             "label": "account_id",
             "type": {
@@ -114,7 +119,9 @@
             }
           },
           {
-            "docs": [],
+            "docs": [
+              " The account id of the deployed user contract."
+            ],
             "indexed": true,
             "label": "contract_id",
             "type": {
@@ -131,7 +138,9 @@
       {
         "args": [
           {
-            "docs": [],
+            "docs": [
+              " The account id of the contract owner."
+            ],
             "indexed": true,
             "label": "account_id",
             "type": {
@@ -142,7 +151,9 @@
             }
           },
           {
-            "docs": [],
+            "docs": [
+              " The account id of the deployed creator contract."
+            ],
             "indexed": true,
             "label": "contract_id",
             "type": {
@@ -159,7 +170,9 @@
       {
         "args": [
           {
-            "docs": [],
+            "docs": [
+              " The code hash of the user contract."
+            ],
             "indexed": true,
             "label": "code_hash",
             "type": {
@@ -168,32 +181,28 @@
               ],
               "type": 3
             }
-          }
-        ],
-        "docs": [],
-        "label": "UserCodeHashSet"
-      },
-      {
-        "args": [
+          },
           {
             "docs": [],
             "indexed": true,
-            "label": "code_hash",
+            "label": "account_type",
             "type": {
               "displayName": [
-                "Hash"
+                "AccountType"
               ],
-              "type": 3
+              "type": 29
             }
           }
         ],
         "docs": [],
-        "label": "CreatorCodeHashSet"
+        "label": "CodeHashSet"
       },
       {
         "args": [
           {
-            "docs": [],
+            "docs": [
+              " The account id of the caller."
+            ],
             "indexed": true,
             "label": "caller",
             "type": {
@@ -204,7 +213,9 @@
             }
           },
           {
-            "docs": [],
+            "docs": [
+              " The account id of the added admin."
+            ],
             "indexed": true,
             "label": "account_id",
             "type": {
@@ -221,7 +232,9 @@
       {
         "args": [
           {
-            "docs": [],
+            "docs": [
+              " The account id of the caller."
+            ],
             "indexed": true,
             "label": "caller",
             "type": {
@@ -232,7 +245,9 @@
             }
           },
           {
-            "docs": [],
+            "docs": [
+              " The account id of the removed admin."
+            ],
             "indexed": true,
             "label": "account_id",
             "type": {
@@ -258,76 +273,6 @@
       {
         "args": [
           {
-            "label": "code_hash",
-            "type": {
-              "displayName": [
-                "accountmanager_external",
-                "SetCreatorCodeHashInput1"
-              ],
-              "type": 3
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::set_creator_code_hash",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 8
-        },
-        "selector": "0xb6da7670"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::create_account",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 8
-        },
-        "selector": "0x8a99fbfe"
-      },
-      {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "accountmanager_external",
-                "GetCreatorAccountInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::get_creator_account",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 16
-        },
-        "selector": "0x2671bdd5"
-      },
-      {
-        "args": [
-          {
             "label": "account_id",
             "type": {
               "displayName": [
@@ -348,7 +293,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 16
+          "type": 8
         },
         "selector": "0x7a3ab356"
       },
@@ -356,7 +301,7 @@
         "args": [],
         "default": false,
         "docs": [],
-        "label": "AccountManager::get_user_code_hash",
+        "label": "AccountManager::get_creator_code_hash",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -364,25 +309,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 18
+          "type": 10
         },
-        "selector": "0x15b714af"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::create_creator_account",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 8
-        },
-        "selector": "0xa44cc068"
+        "selector": "0x349898e9"
       },
       {
         "args": [
@@ -407,7 +336,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 8
+          "type": 11
         },
         "selector": "0x0c0ce2bf"
       },
@@ -415,7 +344,23 @@
         "args": [],
         "default": false,
         "docs": [],
-        "label": "AccountManager::get_creator_code_hash",
+        "label": "AccountManager::create_account",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x8a99fbfe"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::get_user_code_hash",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -423,9 +368,133 @@
             "ink",
             "MessageResult"
           ],
-          "type": 18
+          "type": 10
         },
-        "selector": "0x349898e9"
+        "selector": "0x15b714af"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::create_creator_account",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xa44cc068"
+      },
+      {
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "accountmanager_external",
+                "GetCreatorAccountInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::get_creator_account",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 8
+        },
+        "selector": "0x2671bdd5"
+      },
+      {
+        "args": [
+          {
+            "label": "code_hash",
+            "type": {
+              "displayName": [
+                "accountmanager_external",
+                "SetCreatorCodeHashInput1"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::set_creator_code_hash",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xb6da7670"
+      },
+      {
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "adminaccess_external",
+                "RemoveAdminInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AdminAccess::remove_admin",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x05e47c48"
+      },
+      {
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "adminaccess_external",
+                "AddAdminInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AdminAccess::add_admin",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xb1d395e2"
       },
       {
         "args": [
@@ -453,76 +522,6 @@
           "type": 19
         },
         "selector": "0x8dde40a4"
-      },
-      {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "adminaccess_external",
-                "AddAdminInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AdminAccess::add_admin",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 8
-        },
-        "selector": "0xb1d395e2"
-      },
-      {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "adminaccess_external",
-                "RemoveAdminInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AdminAccess::remove_admin",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 8
-        },
-        "selector": "0x05e47c48"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::owner",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 16
-        },
-        "selector": "0x4fa43c8c"
       },
       {
         "args": [
@@ -568,31 +567,10 @@
         "selector": "0x5e228753"
       },
       {
-        "args": [
-          {
-            "label": "role",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "HasRoleInput1"
-              ],
-              "type": 4
-            }
-          },
-          {
-            "label": "address",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "HasRoleInput2"
-              ],
-              "type": 17
-            }
-          }
-        ],
+        "args": [],
         "default": false,
         "docs": [],
-        "label": "AccessControl::has_role",
+        "label": "Ownable::owner",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -600,9 +578,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 19
+          "type": 8
         },
-        "selector": "0xc1d9ac18"
+        "selector": "0x4fa43c8c"
       },
       {
         "args": [
@@ -623,7 +601,7 @@
                 "accesscontrol_external",
                 "RenounceRoleInput2"
               ],
-              "type": 17
+              "type": 9
             }
           }
         ],
@@ -640,6 +618,43 @@
           "type": 23
         },
         "selector": "0xeaf1248a"
+      },
+      {
+        "args": [
+          {
+            "label": "role",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "HasRoleInput1"
+              ],
+              "type": 4
+            }
+          },
+          {
+            "label": "address",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "HasRoleInput2"
+              ],
+              "type": 9
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccessControl::has_role",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 19
+        },
+        "selector": "0xc1d9ac18"
       },
       {
         "args": [
@@ -687,7 +702,7 @@
                 "accesscontrol_external",
                 "GrantRoleInput2"
               ],
-              "type": 17
+              "type": 9
             }
           }
         ],
@@ -724,7 +739,7 @@
                 "accesscontrol_external",
                 "RevokeRoleInput2"
               ],
-              "type": 17
+              "type": 9
             }
           }
         ],
@@ -837,20 +852,6 @@
                         }
                       },
                       "name": "accounts"
-                    },
-                    {
-                      "layout": {
-                        "root": {
-                          "layout": {
-                            "leaf": {
-                              "key": "0x266c4840",
-                              "ty": 0
-                            }
-                          },
-                          "root_key": "0x266c4840"
-                        }
-                      },
-                      "name": "creators"
                     },
                     {
                       "layout": {
@@ -1117,6 +1118,123 @@
           "variant": {
             "variants": [
               {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 7
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 12
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 12
+          },
+          {
+            "name": "E",
+            "type": 7
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
                 "fields": [
                   {
                     "type": 5
@@ -1128,7 +1246,7 @@
               {
                 "fields": [
                   {
-                    "type": 10
+                    "type": 13
                   }
                 ],
                 "index": 1,
@@ -1144,7 +1262,7 @@
           },
           {
             "name": "E",
-            "type": 10
+            "type": 13
           }
         ],
         "path": [
@@ -1153,7 +1271,7 @@
       }
     },
     {
-      "id": 10,
+      "id": 13,
       "type": {
         "def": {
           "variant": {
@@ -1273,7 +1391,7 @@
               {
                 "fields": [
                   {
-                    "type": 11,
+                    "type": 14,
                     "typeName": "ownable::OwnableError"
                   }
                 ],
@@ -1283,7 +1401,7 @@
               {
                 "fields": [
                   {
-                    "type": 12,
+                    "type": 15,
                     "typeName": "access_control::AccessControlError"
                   }
                 ],
@@ -1293,7 +1411,7 @@
               {
                 "fields": [
                   {
-                    "type": 13,
+                    "type": 16,
                     "typeName": "psp34::PSP34Error"
                   }
                 ],
@@ -1303,7 +1421,7 @@
               {
                 "fields": [
                   {
-                    "type": 15,
+                    "type": 18,
                     "typeName": "psp22::PSP22Error"
                   }
                 ],
@@ -1313,7 +1431,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -1331,7 +1449,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 14,
       "type": {
         "def": {
           "variant": {
@@ -1357,7 +1475,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 15,
       "type": {
         "def": {
           "variant": {
@@ -1387,7 +1505,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 16,
       "type": {
         "def": {
           "variant": {
@@ -1395,7 +1513,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -1421,7 +1539,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -1441,7 +1559,7 @@
       }
     },
     {
-      "id": 14,
+      "id": 17,
       "type": {
         "def": {
           "primitive": "str"
@@ -1449,7 +1567,7 @@
       }
     },
     {
-      "id": 15,
+      "id": 18,
       "type": {
         "def": {
           "variant": {
@@ -1457,7 +1575,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -1483,7 +1601,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -1499,123 +1617,6 @@
           "errors",
           "psp22",
           "PSP22Error"
-        ]
-      }
-    },
-    {
-      "id": 16,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 17
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 7
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 17
-          },
-          {
-            "name": "E",
-            "type": 7
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 17,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 0
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 0
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 18,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 3
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 7
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 3
-          },
-          {
-            "name": "E",
-            "type": 7
-          }
-        ],
-        "path": [
-          "Result"
         ]
       }
     },
@@ -1729,7 +1730,7 @@
               {
                 "fields": [
                   {
-                    "type": 11
+                    "type": 14
                   }
                 ],
                 "index": 1,
@@ -1745,7 +1746,7 @@
           },
           {
             "name": "E",
-            "type": 11
+            "type": 14
           }
         ],
         "path": [
@@ -1813,7 +1814,7 @@
               {
                 "fields": [
                   {
-                    "type": 12
+                    "type": 15
                   }
                 ],
                 "index": 1,
@@ -1829,7 +1830,7 @@
           },
           {
             "name": "E",
-            "type": 12
+            "type": 15
           }
         ],
         "path": [
@@ -1972,7 +1973,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -1986,7 +1987,7 @@
               {
                 "fields": [
                   {
-                    "type": 11,
+                    "type": 14,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -1996,7 +1997,7 @@
               {
                 "fields": [
                   {
-                    "type": 12,
+                    "type": 15,
                     "typeName": "AccessControlError"
                   }
                 ],
@@ -2019,12 +2020,37 @@
       "id": 29,
       "type": {
         "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "User"
+              },
+              {
+                "index": 1,
+                "name": "Creator"
+              }
+            ]
+          }
+        },
+        "path": [
+          "archisinal_lib",
+          "impls",
+          "account_manager",
+          "AccountType"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
           "primitive": "u128"
         }
       }
     },
     {
-      "id": 30,
+      "id": 31,
       "type": {
         "def": {
           "primitive": "u64"
@@ -2032,7 +2058,7 @@
       }
     },
     {
-      "id": 31,
+      "id": 32,
       "type": {
         "def": {
           "variant": {}

@@ -45,7 +45,7 @@ export default class EventsClass {
 		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'CreatorAccountCreated');
 	}
 
-	public subscribeOnUserCodeHashSetEvent(callback : (event : EventTypes.UserCodeHashSet) => void) {
+	public subscribeOnCodeHashSetEvent(callback : (event : EventTypes.CodeHashSet) => void) {
 		const callbackWrapper = (args: any[], event: any) => {
 			const _event: Record < string, any > = {};
 
@@ -53,24 +53,10 @@ export default class EventsClass {
 				_event[event.args[i]!.name] = args[i]!.toJSON();
 			}
 
-			callback(handleEventReturn(_event, getEventTypeDescription('UserCodeHashSet', EVENT_DATA_TYPE_DESCRIPTIONS)) as EventTypes.UserCodeHashSet);
+			callback(handleEventReturn(_event, getEventTypeDescription('CodeHashSet', EVENT_DATA_TYPE_DESCRIPTIONS)) as EventTypes.CodeHashSet);
 		};
 
-		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'UserCodeHashSet');
-	}
-
-	public subscribeOnCreatorCodeHashSetEvent(callback : (event : EventTypes.CreatorCodeHashSet) => void) {
-		const callbackWrapper = (args: any[], event: any) => {
-			const _event: Record < string, any > = {};
-
-			for (let i = 0; i < args.length; i++) {
-				_event[event.args[i]!.name] = args[i]!.toJSON();
-			}
-
-			callback(handleEventReturn(_event, getEventTypeDescription('CreatorCodeHashSet', EVENT_DATA_TYPE_DESCRIPTIONS)) as EventTypes.CreatorCodeHashSet);
-		};
-
-		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'CreatorCodeHashSet');
+		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'CodeHashSet');
 	}
 
 	public subscribeOnAdminAddedEvent(callback : (event : EventTypes.AdminAdded) => void) {
