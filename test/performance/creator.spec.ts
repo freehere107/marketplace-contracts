@@ -9,7 +9,7 @@ import {expect} from "../shared/chai";
 import {PERFORMANCE_PREFIX} from "../shared/consts";
 import {setupCreator} from "../shared/test-setups/creator";
 
-const CREATE_COLLECTION_MAX_FEE = new BN(16_000_000_000);
+const CREATE_COLLECTION_MAX_FEE = new BN(16_500_000_000);
 
 describe(PERFORMANCE_PREFIX + 'Creator', function() {
     let contract : Contract;

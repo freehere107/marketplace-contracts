@@ -62,6 +62,7 @@ export class IdBuilder {
 }
 
 export interface ArchisinalError {
+	noOwner ? : null,
 	adminAccessError ? : null,
 	auctionMinBidStepIsZero ? : null,
 	creatorIsNotCaller ? : null,
@@ -98,6 +99,11 @@ export interface ArchisinalError {
 }
 
 export class ArchisinalErrorBuilder {
+	static NoOwner(): ArchisinalError {
+		return {
+			noOwner: null,
+		};
+	}
 	static AdminAccessError(): ArchisinalError {
 		return {
 			adminAccessError: null,

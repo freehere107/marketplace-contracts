@@ -38,6 +38,7 @@ mod marketplace {
     use archisinal_lib::impls::marketplace::*;
     use archisinal_lib::impls::shared::consts::ADMIN;
     use archisinal_lib::impls::shared::currency::Currency;
+    use archisinal_lib::impls::timestamp_provider::TimestampProviderImpl;
     use archisinal_lib::impls::{auction, marketplace};
     use archisinal_lib::traits::admin_access::*;
     use archisinal_lib::traits::auction::*;
@@ -45,6 +46,7 @@ mod marketplace {
     use archisinal_lib::traits::events::auction::AuctionEvents;
     use archisinal_lib::traits::events::marketplace::MarketplaceEvents;
     use archisinal_lib::traits::marketplace::*;
+    use archisinal_lib::traits::timestamp_provider::*;
     use archisinal_lib::traits::ProjectResult;
     use ink::codegen::{EmitEvent, Env};
     use ink::prelude::vec::Vec;
@@ -267,28 +269,8 @@ mod marketplace {
         }
 
         #[ink(message)]
-        fn list_nft_for_auction(
-            &mut self,
-            creator: AccountId,
-            collection: AccountId,
-            token_id: Id,
-            start_price: u128,
-            min_bid_step: u128,
-            currency: Currency,
-            start_time: u64,
-            end_time: u64,
-        ) -> ProjectResult<u128> {
-            AuctionImpl::list_nft_for_auction(
-                self,
-                creator,
-                collection,
-                token_id,
-                start_price,
-                min_bid_step,
-                currency,
-                start_time,
-                end_time,
-            )
+        fn list_nft_for_auction(&mut self, auction_info: AuctionInfo) -> ProjectResult<u128> {
+            AuctionImpl::list_nft_for_auction(self, auction_info)
         }
 
         #[ink(message)]
@@ -424,6 +406,15 @@ mod marketplace {
 
         fn emit_admin_removed(&self, caller: AccountId, account_id: AccountId) {
             self.env().emit_event(AdminRemoved { caller, account_id });
+        }
+    }
+
+    impl TimestampProviderImpl for Contract {}
+
+    impl TimestampProvider for Contract {
+        #[ink(message)]
+        fn timestamp(&self) -> u64 {
+            TimestampProviderImpl::timestamp(self)
         }
     }
 }

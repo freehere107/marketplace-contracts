@@ -2,19 +2,19 @@
 import { after, describe } from 'mocha'
 
 import ArchNFTContract from '../../typechain-generated/contracts/arch_nft'
-import MarketplaceContract from '../../typechain-generated/contracts/marketplace'
+import MarketplaceContract from '../../typechain-generated/contracts/mock_auction'
 import PSP22Contract from '../../typechain-generated/contracts/my_psp22'
-import { CurrencyBuilder } from '../../typechain-generated/types-arguments/marketplace'
-import { AuctionStatus } from '../../typechain-generated/types-returns/marketplace'
+import { CurrencyBuilder } from '../../typechain-generated/types-arguments/mock_auction'
+import { AuctionStatus } from '../../typechain-generated/types-returns/mock_auction'
 import ApiSingleton from '../shared/api_singleton'
 import { expect } from '../shared/chai'
-import {E2E_PREFIX, PRICE_WITH_FEE, TOKEN_ID, TOKEN_ID_1, TOKEN_ID_2, TOKEN_ID_3} from '../shared/consts'
-import {mintAndListAuction} from "../shared/marketplace";
+import {E2E_PREFIX, TOKEN_ID, TOKEN_ID_1, TOKEN_ID_2, TOKEN_ID_3} from '../shared/consts'
+import {mintAndListAuction} from "../shared/mock_auction";
 import { Signers } from '../shared/signers'
 import { setupArchNFT } from '../shared/test-setups/arch_nft'
-import { setupMarketplace as setup } from '../shared/test-setups/marketplace'
+import {COLLECTION_ROYALTY} from "../shared/test-setups/creator";
+import { setupMockAuction as setup } from '../shared/test-setups/mock_auction'
 import { setupPSP22 } from '../shared/test-setups/my_psp22'
-import {sleep} from "../shared/time";
 
 describe(E2E_PREFIX + 'Auction', () => {
   let contract: MarketplaceContract
@@ -81,6 +81,7 @@ describe(E2E_PREFIX + 'Auction', () => {
         currentPrice: 0,
         currentBidder: null,
         status: AuctionStatus.waitingAuction,
+        royalty: COLLECTION_ROYALTY,
       })
     })
   })
@@ -94,6 +95,8 @@ describe(E2E_PREFIX + 'Auction', () => {
   describe('Start Auction', () => {
     it('should start an auction under normal circumstances', async () => {
       await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1)
+
+      await contract.tx.addTimestamp(3100)
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
@@ -115,7 +118,7 @@ describe(E2E_PREFIX + 'Auction', () => {
     it('should bid on an auction under normal circumstances', async () => {
       await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1, false, 100000000, 1000)
 
-      await sleep(1000)
+      await contract.tx.addTimestamp(1100);
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
@@ -127,7 +130,7 @@ describe(E2E_PREFIX + 'Auction', () => {
     it('should bid twice', async () => {
       await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1, false, 100000000, 1000)
 
-      await sleep(1000)
+      await contract.tx.addTimestamp(1100);
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
@@ -143,20 +146,14 @@ describe(E2E_PREFIX + 'Auction', () => {
     it('should claim an NFT from an auction under normal circumstances', async () => {
       await mintAndListAuction(contract, nft, psp22, TOKEN_ID_1, 100, 1, false, 300, 100)
 
-      await sleep(100)
+      await contract.tx.addTimestamp(110);
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
       await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 200)
       await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
 
-      for (let i = 0; i < 10; i++) {
-        await sleep(300);
-
-        await psp22.withSigner(Signers.Bob).tx.approve(contract.address, 3 * PRICE_WITH_FEE);
-
-        await sleep(300);
-      }
+      await contract.tx.addTimestamp(310);
 
       await expect(contract.withSigner(Signers.Alice).tx.claimNft(0)).to.eventually.be.fulfilled
 

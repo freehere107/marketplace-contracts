@@ -33,6 +33,9 @@ mod creator {
         /// The account id of the collection created.
         #[ink(topic)]
         collection: AccountId,
+        /// The index of the collection created.
+        #[ink(topic)]
+        index: u32,
     }
 
     #[ink(event)]
@@ -147,12 +150,13 @@ mod creator {
     }
 
     impl CreatorEvents for Contract {
-        fn emit_create_collection(&self, creator: AccountId, collection: AccountId) {
+        fn emit_create_collection(&self, creator: AccountId, collection: AccountId, index: u32) {
             <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event::<CollectionCreated>(
                 self.env(),
                 CollectionCreated {
                     creator,
                     collection,
+                    index,
                 },
             );
         }

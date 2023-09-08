@@ -10,6 +10,7 @@ pub mod collection;
 pub mod creator;
 pub mod events;
 pub mod marketplace;
+pub mod timestamp_provider;
 pub mod user;
 
 pub type ProjectResult<T> = Result<T, ArchisinalError>;
@@ -17,6 +18,7 @@ pub type ProjectResult<T> = Result<T, ArchisinalError>;
 #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
 #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
 pub enum ArchisinalError {
+    NoOwner,
     AdminAccessError,
     AuctionMinBidStepIsZero,
     CreatorIsNotCaller,

@@ -11,6 +11,7 @@ import { E2E_PREFIX, PRICE, PRICE_WITH_FEE, TOKEN_ID, TOKEN_ID_2 } from '../shar
 import { mintAndList } from '../shared/marketplace'
 import { Signers } from '../shared/signers'
 import { setupArchNFT } from '../shared/test-setups/arch_nft'
+import {COLLECTION_ROYALTY} from "../shared/test-setups/creator";
 import { setupMarketplace as setup } from '../shared/test-setups/marketplace'
 import { INITIAL_BALANCE, setupPSP22 } from '../shared/test-setups/my_psp22'
 
@@ -63,6 +64,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
       price: PRICE,
       currency: CurrencyBuilder.Custom(psp22.address),
       status: ListingStatus.cancelled,
+      royalty: COLLECTION_ROYALTY,
     })
   })
 
@@ -85,6 +87,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
     })
 
@@ -109,6 +112,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, PRICE_WITH_FEE)).to.eventually.be
@@ -126,6 +130,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(nft.query.ownerOf(TOKEN_ID)).to.have.returnValue(Signers.Alice.address)
@@ -173,6 +178,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(contract.query.getListingByIndex(1)).to.have.deepReturnValue({
@@ -183,6 +189,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(contract.query.getListingByIndex(2)).to.have.deepReturnValue({
@@ -193,6 +200,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(nft.query.ownerOf(TOKEN_ID_1)).to.have.returnValue(alice.address)
@@ -226,6 +234,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
     })
 
@@ -253,6 +262,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(contract.withSigner(Signers.Alice).tx.buyNft(0, { value: PRICE_WITH_FEE })).to.eventually.be
@@ -268,6 +278,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(nft.query.ownerOf(TOKEN_ID)).to.have.returnValue(Signers.Alice.address)
@@ -311,6 +322,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
       await expect(contract.query.getListingByIndex(1)).to.have.deepReturnValue({
         id: 1,
@@ -320,6 +332,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(contract.withSigner(Signers.Alice).tx.buyBatch([0, 1], { value: PRICE_WITH_FEE * 2 })).to.eventually
@@ -335,6 +348,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
       await expect(contract.query.getListingByIndex(1)).to.have.deepReturnValue({
         id: 1,
@@ -344,6 +358,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.sold,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(nft.query.ownerOf(TOKEN_ID)).to.have.returnValue(Signers.Alice.address)

@@ -1,10 +1,10 @@
 {
   "source": {
-    "hash": "0xb1c744ce9f0229a7ac21a5c95533b99c937cc7b8b8911425a7c30f899502ba0b",
+    "hash": "0xfa30c5f13a59586b718f562035a7a17b4deee2e01a18d011d8974fa5b2a24bca",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.68.2",
     "build_info": {
-      "build_mode": "Release",
+      "build_mode": "Debug",
       "cargo_contract_version": "3.0.1",
       "rust_toolchain": "stable-aarch64-apple-darwin",
       "wasm_opt_settings": {
@@ -181,7 +181,7 @@
         "displayName": [
           "Timestamp"
         ],
-        "type": 22
+        "type": 14
       }
     },
     "events": [
@@ -223,7 +223,7 @@
               "displayName": [
                 "Id"
               ],
-              "type": 20
+              "type": 12
             }
           }
         ],
@@ -262,7 +262,7 @@
               "displayName": [
                 "Id"
               ],
-              "type": 20
+              "type": 12
             }
           }
         ],
@@ -383,81 +383,6 @@
         "args": [],
         "default": false,
         "docs": [],
-        "label": "Collection::collection_additional_info",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0x4d870a8c"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Collection::collection_uri",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0xdc56a220"
-      },
-      {
-        "args": [
-          {
-            "label": "additional_info",
-            "type": {
-              "displayName": [
-                "collection_external",
-                "SetCollectionAdditionalInfoInput1"
-              ],
-              "type": 6
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Collection::set_collection_additional_info",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 12
-        },
-        "selector": "0x6abfd77d"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Collection::collection_royalty",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 19
-        },
-        "selector": "0x072bc5b5"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
         "label": "Collection::collection_name",
         "mutates": false,
         "payable": false,
@@ -473,40 +398,13 @@
       {
         "args": [
           {
-            "label": "name",
-            "type": {
-              "displayName": [
-                "collection_external",
-                "SetCollectionNameInput1"
-              ],
-              "type": 6
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Collection::set_collection_name",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 12
-        },
-        "selector": "0xa98e2211"
-      },
-      {
-        "args": [
-          {
             "label": "id",
             "type": {
               "displayName": [
                 "collection_external",
                 "SetAttributeInput1"
               ],
-              "type": 20
+              "type": 12
             }
           },
           {
@@ -540,7 +438,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 12
+          "type": 16
         },
         "selector": "0xb8067d56"
       },
@@ -567,9 +465,138 @@
             "ink",
             "MessageResult"
           ],
-          "type": 12
+          "type": 16
         },
         "selector": "0xdf3bcd2d"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Collection::collection_royalty",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 23
+        },
+        "selector": "0x072bc5b5"
+      },
+      {
+        "args": [
+          {
+            "label": "additional_info",
+            "type": {
+              "displayName": [
+                "collection_external",
+                "SetCollectionAdditionalInfoInput1"
+              ],
+              "type": 6
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Collection::set_collection_additional_info",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x6abfd77d"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Collection::collection_additional_info",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x4d870a8c"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Collection::collection_uri",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xdc56a220"
+      },
+      {
+        "args": [
+          {
+            "label": "name",
+            "type": {
+              "displayName": [
+                "collection_external",
+                "SetCollectionNameInput1"
+              ],
+              "type": 6
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Collection::set_collection_name",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0xa98e2211"
+      },
+      {
+        "args": [
+          {
+            "label": "new_owner",
+            "type": {
+              "displayName": [
+                "ownable_external",
+                "TransferOwnershipInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::transfer_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 24
+        },
+        "selector": "0x11f43efd"
       },
       {
         "args": [],
@@ -606,40 +633,13 @@
       {
         "args": [
           {
-            "label": "new_owner",
-            "type": {
-              "displayName": [
-                "ownable_external",
-                "TransferOwnershipInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::transfer_ownership",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 24
-        },
-        "selector": "0x11f43efd"
-      },
-      {
-        "args": [
-          {
             "label": "id",
             "type": {
               "displayName": [
                 "psp34_external",
                 "OwnerOfInput1"
               ],
-              "type": 20
+              "type": 12
             }
           }
         ],
@@ -660,80 +660,6 @@
       {
         "args": [
           {
-            "label": "owner",
-            "type": {
-              "displayName": [
-                "psp34_external",
-                "BalanceOfInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "PSP34::balance_of",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 19
-        },
-        "selector": "0xcde7e55f"
-      },
-      {
-        "args": [
-          {
-            "label": "to",
-            "type": {
-              "displayName": [
-                "psp34_external",
-                "TransferInput1"
-              ],
-              "type": 0
-            }
-          },
-          {
-            "label": "id",
-            "type": {
-              "displayName": [
-                "psp34_external",
-                "TransferInput2"
-              ],
-              "type": 20
-            }
-          },
-          {
-            "label": "data",
-            "type": {
-              "displayName": [
-                "psp34_external",
-                "TransferInput3"
-              ],
-              "type": 23
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "PSP34::transfer",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 28
-        },
-        "selector": "0x3128d61b"
-      },
-      {
-        "args": [
-          {
             "label": "operator",
             "type": {
               "displayName": [
@@ -750,7 +676,7 @@
                 "psp34_external",
                 "ApproveInput2"
               ],
-              "type": 30
+              "type": 28
             }
           },
           {
@@ -760,7 +686,7 @@
                 "psp34_external",
                 "ApproveInput3"
               ],
-              "type": 31
+              "type": 29
             }
           }
         ],
@@ -774,7 +700,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 28
+          "type": 30
         },
         "selector": "0x1932a8b0"
       },
@@ -807,7 +733,7 @@
                 "psp34_external",
                 "AllowanceInput3"
               ],
-              "type": 30
+              "type": 28
             }
           }
         ],
@@ -826,10 +752,68 @@
         "selector": "0x4790f55a"
       },
       {
-        "args": [],
+        "args": [
+          {
+            "label": "to",
+            "type": {
+              "displayName": [
+                "psp34_external",
+                "TransferInput1"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "psp34_external",
+                "TransferInput2"
+              ],
+              "type": 12
+            }
+          },
+          {
+            "label": "data",
+            "type": {
+              "displayName": [
+                "psp34_external",
+                "TransferInput3"
+              ],
+              "type": 15
+            }
+          }
+        ],
         "default": false,
         "docs": [],
-        "label": "PSP34::collection_id",
+        "label": "PSP34::transfer",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 30
+        },
+        "selector": "0x3128d61b"
+      },
+      {
+        "args": [
+          {
+            "label": "owner",
+            "type": {
+              "displayName": [
+                "psp34_external",
+                "BalanceOfInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "PSP34::balance_of",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -837,9 +821,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 33
+          "type": 23
         },
-        "selector": "0xffa27a5f"
+        "selector": "0xcde7e55f"
       },
       {
         "args": [],
@@ -853,9 +837,25 @@
             "ink",
             "MessageResult"
           ],
-          "type": 34
+          "type": 33
         },
         "selector": "0x628413fe"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "PSP34::collection_id",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 34
+        },
+        "selector": "0xffa27a5f"
       },
       {
         "args": [
@@ -876,7 +876,7 @@
                 "psp34mintable_external",
                 "MintInput2"
               ],
-              "type": 20
+              "type": 12
             }
           }
         ],
@@ -890,7 +890,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 28
+          "type": 30
         },
         "selector": "0x6c41f2ec"
       },
@@ -913,7 +913,7 @@
                 "psp34burnable_external",
                 "BurnInput2"
               ],
-              "type": 20
+              "type": 12
             }
           }
         ],
@@ -927,7 +927,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 28
+          "type": 30
         },
         "selector": "0x63c9877a"
       },
@@ -940,7 +940,7 @@
                 "psp34metadata_external",
                 "GetAttributeInput1"
               ],
-              "type": 20
+              "type": 12
             }
           },
           {
@@ -1528,7 +1528,110 @@
               {
                 "fields": [
                   {
-                    "type": 13
+                    "type": 2,
+                    "typeName": "u8"
+                  }
+                ],
+                "index": 0,
+                "name": "U8"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 13,
+                    "typeName": "u16"
+                  }
+                ],
+                "index": 1,
+                "name": "U16"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 4,
+                    "typeName": "u32"
+                  }
+                ],
+                "index": 2,
+                "name": "U32"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 14,
+                    "typeName": "u64"
+                  }
+                ],
+                "index": 3,
+                "name": "U64"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5,
+                    "typeName": "u128"
+                  }
+                ],
+                "index": 4,
+                "name": "U128"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 15,
+                    "typeName": "Vec<u8>"
+                  }
+                ],
+                "index": 5,
+                "name": "Bytes"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "types",
+          "Id"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "primitive": "u16"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 17
                   }
                 ],
                 "index": 0,
@@ -1549,7 +1652,7 @@
         "params": [
           {
             "name": "T",
-            "type": 13
+            "type": 17
           },
           {
             "name": "E",
@@ -1562,7 +1665,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 17,
       "type": {
         "def": {
           "variant": {
@@ -1579,7 +1682,7 @@
               {
                 "fields": [
                   {
-                    "type": 14
+                    "type": 18
                   }
                 ],
                 "index": 1,
@@ -1595,7 +1698,7 @@
           },
           {
             "name": "E",
-            "type": 14
+            "type": 18
           }
         ],
         "path": [
@@ -1604,161 +1707,165 @@
       }
     },
     {
-      "id": 14,
+      "id": 18,
       "type": {
         "def": {
           "variant": {
             "variants": [
               {
                 "index": 0,
-                "name": "AdminAccessError"
+                "name": "NoOwner"
               },
               {
                 "index": 1,
-                "name": "AuctionMinBidStepIsZero"
+                "name": "AdminAccessError"
               },
               {
                 "index": 2,
-                "name": "CreatorIsNotCaller"
+                "name": "AuctionMinBidStepIsZero"
               },
               {
                 "index": 3,
-                "name": "AuctionStartTimeIsBeforeNow"
+                "name": "CreatorIsNotCaller"
               },
               {
                 "index": 4,
-                "name": "CallerIsAuctionOwner"
+                "name": "AuctionStartTimeIsBeforeNow"
               },
               {
                 "index": 5,
-                "name": "AccountAlreadyExists"
+                "name": "CallerIsAuctionOwner"
               },
               {
                 "index": 6,
-                "name": "InsufficientFunds"
+                "name": "AccountAlreadyExists"
               },
               {
                 "index": 7,
-                "name": "AuctionPriceIsZero"
+                "name": "InsufficientFunds"
               },
               {
                 "index": 8,
-                "name": "AuctionEndTimeIsBeforeStartTime"
+                "name": "AuctionPriceIsZero"
               },
               {
                 "index": 9,
-                "name": "CollectionOwnerNotFound"
+                "name": "AuctionEndTimeIsBeforeStartTime"
               },
               {
                 "index": 10,
-                "name": "AuctionHasNoBids"
+                "name": "CollectionOwnerNotFound"
               },
               {
                 "index": 11,
-                "name": "AuctionNotEnded"
+                "name": "AuctionHasNoBids"
               },
               {
                 "index": 12,
-                "name": "BidPriceTooLow"
+                "name": "AuctionNotEnded"
               },
               {
                 "index": 13,
-                "name": "AuctionEnded"
+                "name": "BidPriceTooLow"
               },
               {
                 "index": 14,
-                "name": "AuctionNotStarted"
+                "name": "AuctionEnded"
               },
               {
                 "index": 15,
-                "name": "AuctionNotInAuction"
+                "name": "AuctionNotStarted"
               },
               {
                 "index": 16,
-                "name": "ListingNotOnSale"
+                "name": "AuctionNotInAuction"
               },
               {
                 "index": 17,
-                "name": "AuctionNotWaiting"
+                "name": "ListingNotOnSale"
               },
               {
                 "index": 18,
-                "name": "CallerIsNotAuctionOwner"
+                "name": "AuctionNotWaiting"
               },
               {
                 "index": 19,
-                "name": "CallerIsListingOwner"
+                "name": "CallerIsNotAuctionOwner"
               },
               {
                 "index": 20,
-                "name": "CallerIsNotListingOwner"
+                "name": "CallerIsListingOwner"
               },
               {
                 "index": 21,
-                "name": "AuctionNotFound"
+                "name": "CallerIsNotListingOwner"
               },
               {
                 "index": 22,
-                "name": "ListingNotFound"
+                "name": "AuctionNotFound"
               },
               {
                 "index": 23,
-                "name": "IntegerOverflow"
+                "name": "ListingNotFound"
               },
               {
                 "index": 24,
-                "name": "IntegerUnderflow"
+                "name": "IntegerOverflow"
               },
               {
                 "index": 25,
-                "name": "CollectionNotFound"
+                "name": "IntegerUnderflow"
               },
               {
                 "index": 26,
-                "name": "CallerIsNotNFTOwner"
+                "name": "CollectionNotFound"
               },
               {
                 "index": 27,
+                "name": "CallerIsNotNFTOwner"
+              },
+              {
+                "index": 28,
                 "name": "TransferNativeError"
               },
               {
                 "fields": [
                   {
-                    "type": 15,
+                    "type": 19,
                     "typeName": "ownable::OwnableError"
                   }
                 ],
-                "index": 28,
+                "index": 29,
                 "name": "Ownable"
               },
               {
                 "fields": [
                   {
-                    "type": 16,
+                    "type": 20,
                     "typeName": "access_control::AccessControlError"
                   }
                 ],
-                "index": 29,
+                "index": 30,
                 "name": "AccessControl"
               },
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 21,
                     "typeName": "psp34::PSP34Error"
                   }
                 ],
-                "index": 30,
+                "index": 31,
                 "name": "PSP34"
               },
               {
                 "fields": [
                   {
-                    "type": 18,
+                    "type": 22,
                     "typeName": "psp22::PSP22Error"
                   }
                 ],
-                "index": 31,
+                "index": 32,
                 "name": "PSP22"
               },
               {
@@ -1768,7 +1875,7 @@
                     "typeName": "String"
                   }
                 ],
-                "index": 32,
+                "index": 33,
                 "name": "Other"
               }
             ]
@@ -1782,7 +1889,7 @@
       }
     },
     {
-      "id": 15,
+      "id": 19,
       "type": {
         "def": {
           "variant": {
@@ -1808,7 +1915,7 @@
       }
     },
     {
-      "id": 16,
+      "id": 20,
       "type": {
         "def": {
           "variant": {
@@ -1838,7 +1945,7 @@
       }
     },
     {
-      "id": 17,
+      "id": 21,
       "type": {
         "def": {
           "variant": {
@@ -1892,7 +1999,7 @@
       }
     },
     {
-      "id": 18,
+      "id": 22,
       "type": {
         "def": {
           "variant": {
@@ -1946,7 +2053,7 @@
       }
     },
     {
-      "id": 19,
+      "id": 23,
       "type": {
         "def": {
           "variant": {
@@ -1985,109 +2092,6 @@
         "path": [
           "Result"
         ]
-      }
-    },
-    {
-      "id": 20,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 2,
-                    "typeName": "u8"
-                  }
-                ],
-                "index": 0,
-                "name": "U8"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 21,
-                    "typeName": "u16"
-                  }
-                ],
-                "index": 1,
-                "name": "U16"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 4,
-                    "typeName": "u32"
-                  }
-                ],
-                "index": 2,
-                "name": "U32"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 22,
-                    "typeName": "u64"
-                  }
-                ],
-                "index": 3,
-                "name": "U64"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 5,
-                    "typeName": "u128"
-                  }
-                ],
-                "index": 4,
-                "name": "U128"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 23,
-                    "typeName": "Vec<u8>"
-                  }
-                ],
-                "index": 5,
-                "name": "Bytes"
-              }
-            ]
-          }
-        },
-        "path": [
-          "openbrush_contracts",
-          "traits",
-          "types",
-          "Id"
-        ]
-      }
-    },
-    {
-      "id": 21,
-      "type": {
-        "def": {
-          "primitive": "u16"
-        }
-      }
-    },
-    {
-      "id": 22,
-      "type": {
-        "def": {
-          "primitive": "u64"
-        }
-      }
-    },
-    {
-      "id": 23,
-      "type": {
-        "def": {
-          "sequence": {
-            "type": 2
-          }
-        }
       }
     },
     {
@@ -2150,7 +2154,7 @@
               {
                 "fields": [
                   {
-                    "type": 15
+                    "type": 19
                   }
                 ],
                 "index": 1,
@@ -2166,7 +2170,7 @@
           },
           {
             "name": "E",
-            "type": 15
+            "type": 19
           }
         ],
         "path": [
@@ -2256,97 +2260,13 @@
           "variant": {
             "variants": [
               {
-                "fields": [
-                  {
-                    "type": 29
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 9
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 29
-          },
-          {
-            "name": "E",
-            "type": 9
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 29,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 3
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 17
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 3
-          },
-          {
-            "name": "E",
-            "type": 17
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 30,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
                 "index": 0,
                 "name": "None"
               },
               {
                 "fields": [
                   {
-                    "type": 20
+                    "type": 12
                   }
                 ],
                 "index": 1,
@@ -2358,7 +2278,7 @@
         "params": [
           {
             "name": "T",
-            "type": 20
+            "type": 12
           }
         ],
         "path": [
@@ -2367,7 +2287,7 @@
       }
     },
     {
-      "id": 31,
+      "id": 29,
       "type": {
         "def": {
           "primitive": "bool"
@@ -2375,7 +2295,7 @@
       }
     },
     {
-      "id": 32,
+      "id": 30,
       "type": {
         "def": {
           "variant": {
@@ -2417,7 +2337,7 @@
       }
     },
     {
-      "id": 33,
+      "id": 31,
       "type": {
         "def": {
           "variant": {
@@ -2425,7 +2345,49 @@
               {
                 "fields": [
                   {
-                    "type": 20
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 29
                   }
                 ],
                 "index": 0,
@@ -2446,7 +2408,7 @@
         "params": [
           {
             "name": "T",
-            "type": 20
+            "type": 29
           },
           {
             "name": "E",
@@ -2459,7 +2421,7 @@
       }
     },
     {
-      "id": 34,
+      "id": 33,
       "type": {
         "def": {
           "variant": {
@@ -2489,6 +2451,48 @@
           {
             "name": "T",
             "type": 5
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 12
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 12
           },
           {
             "name": "E",
@@ -2627,7 +2631,7 @@
               {
                 "fields": [
                   {
-                    "type": 15,
+                    "type": 19,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -2637,7 +2641,7 @@
               {
                 "fields": [
                   {
-                    "type": 16,
+                    "type": 20,
                     "typeName": "AccessControlError"
                   }
                 ],

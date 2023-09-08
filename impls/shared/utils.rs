@@ -1,7 +1,4 @@
 /// SPDX-License-Identifier: MIT
-use ink::primitives::AccountId;
-
-use crate::traits::collection::CollectionRef;
 use crate::traits::{ArchisinalError, ProjectResult};
 
 /// Apply the fee to the price
@@ -21,8 +18,7 @@ use crate::traits::{ArchisinalError, ProjectResult};
 /// # Note
 ///
 /// The fee is calculated as `price * royalty / 10000`
-pub fn apply_fee(price: &u128, token: &AccountId) -> ProjectResult<u128> {
-    let royalty = CollectionRef::collection_royalty(token);
+pub fn apply_fee(price: &u128, royalty: u32) -> ProjectResult<u128> {
     let fee = price
         .checked_mul(royalty as u128)
         .ok_or(ArchisinalError::IntegerOverflow)?

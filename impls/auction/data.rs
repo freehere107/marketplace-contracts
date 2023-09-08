@@ -47,6 +47,8 @@ pub struct Auction {
     pub current_bidder: Option<AccountId>,
     /// The status of the auction.
     pub status: AuctionStatus,
+    /// Royalty of the auction, set automatically by deriving the value from the collection contract.
+    pub royalty: u32,
 }
 
 /// The auction status.

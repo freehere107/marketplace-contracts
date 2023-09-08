@@ -37,6 +37,8 @@ pub struct Listing {
     pub currency: Currency,
     /// The status of the listing.
     pub status: ListingStatus,
+    /// Royalty of the listing, set automatically by deriving the value from the collection contract.
+    pub royalty: u32,
 }
 
 /// The listing status enum.

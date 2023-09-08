@@ -54,8 +54,8 @@ Assertion.addMethod('deepReturnValue', function (this: any, expected: any) {
           JSON.stringify(unwrappedValue) === JSON.stringify(expected),
           'expected #{this} to have a return value #{exp} but got #{act}',
           'expected #{this} to not have a return value #{act}',
-          expected,
-          unwrappedValue,
+          JSON.stringify(expected),
+          JSON.stringify(unwrappedValue),
         )
 
         resolve(unwrappedValue)

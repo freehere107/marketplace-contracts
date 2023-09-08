@@ -4,10 +4,12 @@ import { KeyringPair } from '@polkadot/keyring/types'
 import ArchNFTContract from '../../typechain-generated/contracts/arch_nft'
 import MarketplaceContract from '../../typechain-generated/contracts/marketplace'
 import PSP22Contract from '../../typechain-generated/contracts/my_psp22'
-import { CurrencyBuilder, Id } from '../../typechain-generated/types-arguments/marketplace'
+import {CurrencyBuilder, Id} from '../../typechain-generated/types-arguments/marketplace'
 import { AuctionStatus } from '../../typechain-generated/types-returns/marketplace'
 import { expect } from './chai'
 import { Signers } from './signers'
+import { AuctionInfo } from "../../typechain-generated/types-arguments/marketplace";
+import {COLLECTION_ROYALTY} from "./test-setups/creator";
 
 export async function mintAndList(
   contract: MarketplaceContract,
@@ -77,30 +79,34 @@ export async function mintAndListAuction(
       contract
         .withSigner(bob)
         .tx.listNftForAuction(
-          bob.address,
-          nft.address,
-          tokenId,
-          price,
-          minBidStep,
-          CurrencyBuilder.Custom(psp22.address),
-          START_TIME,
-          END_TIME,
-        ),
+          {
+            creator: bob.address,
+            collection: nft.address,
+            tokenId,
+            startPrice: price,
+            minBidStep,
+            currency: CurrencyBuilder.Custom(psp22.address),
+            startTime: START_TIME,
+            endTime: END_TIME
+          } as AuctionInfo
+        )
     ).to.eventually.be.fulfilled
   } else {
     await expect(
       contract
         .withSigner(bob)
         .tx.listNftForAuction(
-          bob.address,
-          nft.address,
-          tokenId,
-          price,
-          minBidStep,
-          CurrencyBuilder.Native(),
-          START_TIME,
-          END_TIME,
-        ),
+            {
+              creator: bob.address,
+              collection: nft.address,
+              tokenId,
+              startPrice: price,
+              minBidStep,
+              currency: CurrencyBuilder.Native(),
+              startTime: START_TIME,
+              endTime: END_TIME
+            }
+      ),
     ).to.eventually.be.fulfilled
   }
 
@@ -117,6 +123,7 @@ export async function mintAndListAuction(
     currentPrice: 0,
     currentBidder: null,
     status: AuctionStatus.waitingAuction,
+    royalty: COLLECTION_ROYALTY,
   })
 
   await expect(contract.query.getAuctionCount()).to.have.returnNumber(indexBefore + 1)

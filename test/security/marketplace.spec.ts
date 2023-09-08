@@ -12,6 +12,7 @@ import { Signers } from '../shared/signers'
 import { setupArchNFT } from '../shared/test-setups/arch_nft'
 import { setupMarketplace as setup } from '../shared/test-setups/marketplace'
 import { setupPSP22 } from '../shared/test-setups/my_psp22'
+import {COLLECTION_ROYALTY} from "../shared/test-setups/creator";
 
 async function getBalance(signer: KeyringPair) {
   const api = await ApiSingleton.getInstance()
@@ -68,6 +69,7 @@ describe(SECURITY_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Custom(psp22.address),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
     })
   })
@@ -97,6 +99,7 @@ describe(SECURITY_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(contract.withSigner(Signers.Alice).tx.buyNft(0, { value: PRICE - 1 })).to.eventually.be.rejected
@@ -111,6 +114,7 @@ describe(SECURITY_PREFIX + 'Marketplace', () => {
         price: PRICE,
         currency: CurrencyBuilder.Native(),
         status: ListingStatus.onSale,
+        royalty: COLLECTION_ROYALTY,
       })
 
       await expect(nft.query.ownerOf(TOKEN_ID)).to.have.returnValue(contract.address)
@@ -139,6 +143,7 @@ describe(SECURITY_PREFIX + 'Marketplace', () => {
       price: PRICE,
       currency: CurrencyBuilder.Native(),
       status: ListingStatus.onSale,
+      royalty: COLLECTION_ROYALTY,
     })
     await expect(contract.withSigner(Signers.Bob).tx.cancelListing(0)).to.eventually.be.fulfilled
     await expect(contract.query.getListingByIndex(0)).to.have.deepReturnValue({
@@ -149,6 +154,7 @@ describe(SECURITY_PREFIX + 'Marketplace', () => {
       price: PRICE,
       currency: CurrencyBuilder.Native(),
       status: ListingStatus.cancelled,
+      royalty: COLLECTION_ROYALTY,
     })
     await expect(contract.withSigner(Signers.Alice).tx.buyNft(0, { value: PRICE })).to.eventually.be.rejected
     await expect(contract.query.getListingByIndex(0)).to.have.deepReturnValue({
@@ -159,6 +165,7 @@ describe(SECURITY_PREFIX + 'Marketplace', () => {
       price: PRICE,
       currency: CurrencyBuilder.Native(),
       status: ListingStatus.cancelled,
+      royalty: COLLECTION_ROYALTY,
     })
 
     await expect(nft.query.ownerOf(TOKEN_ID)).to.have.returnValue(bob.address)

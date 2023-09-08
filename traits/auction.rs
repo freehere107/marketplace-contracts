@@ -47,7 +47,7 @@ pub trait Auction {
     /// This function will transfer the NFT from the caller to the Auction contract.
     /// Sets the auction state to `WaitingAuction`. Needs to be started by the owner of the NFT.
     ///
-    /// # Arguments
+    /// # Arguments (passed as `AuctionInfo`)
     ///
     /// * `creator` - The creator of the listing
     /// * `collection` - The collection of the listing
@@ -76,17 +76,7 @@ pub trait Auction {
     ///
     /// * `AuctionCreated` - If the auction was listed successfully
     #[ink(message)]
-    fn list_nft_for_auction(
-        &mut self,
-        creator: AccountId,
-        collection: AccountId,
-        token_id: Id,
-        start_price: u128,
-        min_bid_step: u128,
-        currency: Currency,
-        start_time: u64,
-        end_time: u64,
-    ) -> ProjectResult<u128>;
+    fn list_nft_for_auction(&mut self, auction_info: AuctionInfo) -> ProjectResult<u128>;
 
     /// Start an auction
     ///
@@ -211,3 +201,28 @@ pub trait Auction {
 
 #[openbrush::wrapper]
 pub type AuctionRef = dyn Auction;
+
+/// The auction info, used in args.
+#[derive(Clone, Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
+#[cfg_attr(
+    feature = "std",
+    derive(scale_info::TypeInfo, ink::storage::traits::StorageLayout)
+)]
+pub struct AuctionInfo {
+    /// The id of the auction.
+    pub creator: AccountId,
+    /// The collection of the auction.
+    pub collection: AccountId,
+    /// The token id of the auction.
+    pub token_id: Id,
+    /// The start price of the auction.
+    pub start_price: u128,
+    /// The minimum bid step of the auction.
+    pub min_bid_step: u128,
+    /// The currency of the auction.
+    pub currency: Currency,
+    /// The start time of the auction.
+    pub start_time: u64,
+    /// The end time of the auction.
+    pub end_time: u64,
+}

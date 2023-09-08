@@ -59,18 +59,21 @@ pub trait CreatorImpl:
         let collection_address =
             self._instantiate_collection(name, uri, royalty, additional_info, code_hash)?;
 
-        let mut count = self.get_collection_count();
+        let caller: AccountId = self.owner().ok_or(ArchisinalError::NoOwner)?;
+
+        let count = self.get_collection_count();
 
         self.data::<Data>()
             .collection_addresses
             .insert(&count, &collection_address);
 
-        count = count
-            .checked_add(1)
-            .ok_or(ArchisinalError::IntegerOverflow)?;
-        self.data::<Data>().collection_count.set(&count);
+        self.data::<Data>().collection_count.set(
+            &count
+                .checked_add(1)
+                .ok_or(ArchisinalError::IntegerOverflow)?,
+        );
 
-        self.emit_create_collection(collection_address, collection_address);
+        self.emit_create_collection(caller, collection_address, count);
 
         Ok(collection_address)
     }

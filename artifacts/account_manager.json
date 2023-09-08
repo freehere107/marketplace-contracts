@@ -1,10 +1,10 @@
 {
   "source": {
-    "hash": "0xb0382e384a4574e5ccba247abfda7128b23380430019fb78eba22242cbecf854",
+    "hash": "0x3bcc2d0609a2d31845251e2473549fdf278fe75fc7f23a9685c8ead04be9b99e",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.68.2",
     "build_info": {
-      "build_mode": "Release",
+      "build_mode": "Debug",
       "cargo_contract_version": "3.0.1",
       "rust_toolchain": "stable-aarch64-apple-darwin",
       "wasm_opt_settings": {
@@ -271,108 +271,6 @@
     },
     "messages": [
       {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "accountmanager_external",
-                "GetAccountInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::get_account",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 8
-        },
-        "selector": "0x7a3ab356"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::get_creator_code_hash",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 10
-        },
-        "selector": "0x349898e9"
-      },
-      {
-        "args": [
-          {
-            "label": "code_hash",
-            "type": {
-              "displayName": [
-                "accountmanager_external",
-                "SetUserCodeHashInput1"
-              ],
-              "type": 3
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::set_user_code_hash",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0x0c0ce2bf"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::create_account",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0x8a99fbfe"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::get_user_code_hash",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 10
-        },
-        "selector": "0x15b714af"
-      },
-      {
         "args": [],
         "default": false,
         "docs": [],
@@ -384,36 +282,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
-        },
-        "selector": "0xa44cc068"
-      },
-      {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "accountmanager_external",
-                "GetCreatorAccountInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccountManager::get_creator_account",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
           "type": 8
         },
-        "selector": "0x2671bdd5"
+        "selector": "0xa44cc068"
       },
       {
         "args": [
@@ -438,26 +309,31 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 8
         },
         "selector": "0xb6da7670"
       },
       {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "adminaccess_external",
-                "RemoveAdminInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
+        "args": [],
         "default": false,
         "docs": [],
-        "label": "AdminAccess::remove_admin",
+        "label": "AccountManager::get_user_code_hash",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x15b714af"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::create_account",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -465,9 +341,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 8
         },
-        "selector": "0x05e47c48"
+        "selector": "0x8a99fbfe"
       },
       {
         "args": [
@@ -475,8 +351,8 @@
             "label": "account_id",
             "type": {
               "displayName": [
-                "adminaccess_external",
-                "AddAdminInput1"
+                "accountmanager_external",
+                "GetAccountInput1"
               ],
               "type": 0
             }
@@ -484,7 +360,34 @@
         ],
         "default": false,
         "docs": [],
-        "label": "AdminAccess::add_admin",
+        "label": "AccountManager::get_account",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 17
+        },
+        "selector": "0x7a3ab356"
+      },
+      {
+        "args": [
+          {
+            "label": "code_hash",
+            "type": {
+              "displayName": [
+                "accountmanager_external",
+                "SetUserCodeHashInput1"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::set_user_code_hash",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -492,9 +395,52 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 8
         },
-        "selector": "0xb1d395e2"
+        "selector": "0x0c0ce2bf"
+      },
+      {
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "accountmanager_external",
+                "GetCreatorAccountInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::get_creator_account",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 17
+        },
+        "selector": "0x2671bdd5"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "AccountManager::get_creator_code_hash",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x349898e9"
       },
       {
         "args": [
@@ -522,6 +468,60 @@
           "type": 19
         },
         "selector": "0x8dde40a4"
+      },
+      {
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "adminaccess_external",
+                "AddAdminInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AdminAccess::add_admin",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 8
+        },
+        "selector": "0xb1d395e2"
+      },
+      {
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "adminaccess_external",
+                "RemoveAdminInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AdminAccess::remove_admin",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 8
+        },
+        "selector": "0x05e47c48"
       },
       {
         "args": [
@@ -578,7 +578,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 8
+          "type": 17
         },
         "selector": "0x4fa43c8c"
       },
@@ -601,7 +601,7 @@
                 "accesscontrol_external",
                 "RenounceRoleInput2"
               ],
-              "type": 9
+              "type": 18
             }
           }
         ],
@@ -626,35 +626,72 @@
             "type": {
               "displayName": [
                 "accesscontrol_external",
-                "HasRoleInput1"
+                "RevokeRoleInput1"
               ],
               "type": 4
             }
           },
           {
-            "label": "address",
+            "label": "account",
             "type": {
               "displayName": [
                 "accesscontrol_external",
-                "HasRoleInput2"
+                "RevokeRoleInput2"
               ],
-              "type": 9
+              "type": 18
             }
           }
         ],
         "default": false,
         "docs": [],
-        "label": "AccessControl::has_role",
-        "mutates": false,
+        "label": "AccessControl::revoke_role",
+        "mutates": true,
         "payable": false,
         "returnType": {
           "displayName": [
             "ink",
             "MessageResult"
           ],
-          "type": 19
+          "type": 23
         },
-        "selector": "0xc1d9ac18"
+        "selector": "0x6e4f0991"
+      },
+      {
+        "args": [
+          {
+            "label": "role",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "GrantRoleInput1"
+              ],
+              "type": 4
+            }
+          },
+          {
+            "label": "account",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "GrantRoleInput2"
+              ],
+              "type": 18
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccessControl::grant_role",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 23
+        },
+        "selector": "0x4ac062fd"
       },
       {
         "args": [
@@ -690,72 +727,35 @@
             "type": {
               "displayName": [
                 "accesscontrol_external",
-                "GrantRoleInput1"
+                "HasRoleInput1"
               ],
               "type": 4
             }
           },
           {
-            "label": "account",
+            "label": "address",
             "type": {
               "displayName": [
                 "accesscontrol_external",
-                "GrantRoleInput2"
+                "HasRoleInput2"
               ],
-              "type": 9
+              "type": 18
             }
           }
         ],
         "default": false,
         "docs": [],
-        "label": "AccessControl::grant_role",
-        "mutates": true,
+        "label": "AccessControl::has_role",
+        "mutates": false,
         "payable": false,
         "returnType": {
           "displayName": [
             "ink",
             "MessageResult"
           ],
-          "type": 23
+          "type": 19
         },
-        "selector": "0x4ac062fd"
-      },
-      {
-        "args": [
-          {
-            "label": "role",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "RevokeRoleInput1"
-              ],
-              "type": 4
-            }
-          },
-          {
-            "label": "account",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "RevokeRoleInput2"
-              ],
-              "type": 9
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccessControl::revoke_role",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 23
-        },
-        "selector": "0x6e4f0991"
+        "selector": "0xc1d9ac18"
       },
       {
         "args": [
@@ -1118,17 +1118,22 @@
           "variant": {
             "variants": [
               {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
                 "index": 0,
-                "name": "None"
+                "name": "Ok"
               },
               {
                 "fields": [
                   {
-                    "type": 0
+                    "type": 10
                   }
                 ],
                 "index": 1,
-                "name": "Some"
+                "name": "Err"
               }
             ]
           }
@@ -1136,16 +1141,374 @@
         "params": [
           {
             "name": "T",
-            "type": 0
+            "type": 5
+          },
+          {
+            "name": "E",
+            "type": 10
           }
         ],
         "path": [
-          "Option"
+          "Result"
         ]
       }
     },
     {
       "id": 10,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "NoOwner"
+              },
+              {
+                "index": 1,
+                "name": "AdminAccessError"
+              },
+              {
+                "index": 2,
+                "name": "AuctionMinBidStepIsZero"
+              },
+              {
+                "index": 3,
+                "name": "CreatorIsNotCaller"
+              },
+              {
+                "index": 4,
+                "name": "AuctionStartTimeIsBeforeNow"
+              },
+              {
+                "index": 5,
+                "name": "CallerIsAuctionOwner"
+              },
+              {
+                "index": 6,
+                "name": "AccountAlreadyExists"
+              },
+              {
+                "index": 7,
+                "name": "InsufficientFunds"
+              },
+              {
+                "index": 8,
+                "name": "AuctionPriceIsZero"
+              },
+              {
+                "index": 9,
+                "name": "AuctionEndTimeIsBeforeStartTime"
+              },
+              {
+                "index": 10,
+                "name": "CollectionOwnerNotFound"
+              },
+              {
+                "index": 11,
+                "name": "AuctionHasNoBids"
+              },
+              {
+                "index": 12,
+                "name": "AuctionNotEnded"
+              },
+              {
+                "index": 13,
+                "name": "BidPriceTooLow"
+              },
+              {
+                "index": 14,
+                "name": "AuctionEnded"
+              },
+              {
+                "index": 15,
+                "name": "AuctionNotStarted"
+              },
+              {
+                "index": 16,
+                "name": "AuctionNotInAuction"
+              },
+              {
+                "index": 17,
+                "name": "ListingNotOnSale"
+              },
+              {
+                "index": 18,
+                "name": "AuctionNotWaiting"
+              },
+              {
+                "index": 19,
+                "name": "CallerIsNotAuctionOwner"
+              },
+              {
+                "index": 20,
+                "name": "CallerIsListingOwner"
+              },
+              {
+                "index": 21,
+                "name": "CallerIsNotListingOwner"
+              },
+              {
+                "index": 22,
+                "name": "AuctionNotFound"
+              },
+              {
+                "index": 23,
+                "name": "ListingNotFound"
+              },
+              {
+                "index": 24,
+                "name": "IntegerOverflow"
+              },
+              {
+                "index": 25,
+                "name": "IntegerUnderflow"
+              },
+              {
+                "index": 26,
+                "name": "CollectionNotFound"
+              },
+              {
+                "index": 27,
+                "name": "CallerIsNotNFTOwner"
+              },
+              {
+                "index": 28,
+                "name": "TransferNativeError"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 11,
+                    "typeName": "ownable::OwnableError"
+                  }
+                ],
+                "index": 29,
+                "name": "Ownable"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 12,
+                    "typeName": "access_control::AccessControlError"
+                  }
+                ],
+                "index": 30,
+                "name": "AccessControl"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 13,
+                    "typeName": "psp34::PSP34Error"
+                  }
+                ],
+                "index": 31,
+                "name": "PSP34"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 15,
+                    "typeName": "psp22::PSP22Error"
+                  }
+                ],
+                "index": 32,
+                "name": "PSP22"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 14,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 33,
+                "name": "Other"
+              }
+            ]
+          }
+        },
+        "path": [
+          "archisinal_lib",
+          "traits",
+          "ArchisinalError"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "CallerIsNotOwner"
+              },
+              {
+                "index": 1,
+                "name": "NewOwnerIsZero"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "errors",
+          "ownable",
+          "OwnableError"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "InvalidCaller"
+              },
+              {
+                "index": 1,
+                "name": "MissingRole"
+              },
+              {
+                "index": 2,
+                "name": "RoleRedundant"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "errors",
+          "access_control",
+          "AccessControlError"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 14,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 0,
+                "name": "Custom"
+              },
+              {
+                "index": 1,
+                "name": "SelfApprove"
+              },
+              {
+                "index": 2,
+                "name": "NotApproved"
+              },
+              {
+                "index": 3,
+                "name": "TokenExists"
+              },
+              {
+                "index": 4,
+                "name": "TokenNotExists"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 14,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 5,
+                "name": "SafeTransferCheckFailed"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "errors",
+          "psp34",
+          "PSP34Error"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 14,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 0,
+                "name": "Custom"
+              },
+              {
+                "index": 1,
+                "name": "InsufficientBalance"
+              },
+              {
+                "index": 2,
+                "name": "InsufficientAllowance"
+              },
+              {
+                "index": 3,
+                "name": "ZeroRecipientAddress"
+              },
+              {
+                "index": 4,
+                "name": "ZeroSenderAddress"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 14,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 5,
+                "name": "SafeTransferCheckFailed"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "errors",
+          "psp22",
+          "PSP22Error"
+        ]
+      }
+    },
+    {
+      "id": 16,
       "type": {
         "def": {
           "variant": {
@@ -1187,7 +1550,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 17,
       "type": {
         "def": {
           "variant": {
@@ -1195,7 +1558,7 @@
               {
                 "fields": [
                   {
-                    "type": 12
+                    "type": 18
                   }
                 ],
                 "index": 0,
@@ -1216,7 +1579,7 @@
         "params": [
           {
             "name": "T",
-            "type": 12
+            "type": 18
           },
           {
             "name": "E",
@@ -1229,28 +1592,23 @@
       }
     },
     {
-      "id": 12,
+      "id": 18,
       "type": {
         "def": {
           "variant": {
             "variants": [
               {
-                "fields": [
-                  {
-                    "type": 5
-                  }
-                ],
                 "index": 0,
-                "name": "Ok"
+                "name": "None"
               },
               {
                 "fields": [
                   {
-                    "type": 13
+                    "type": 0
                   }
                 ],
                 "index": 1,
-                "name": "Err"
+                "name": "Some"
               }
             ]
           }
@@ -1258,365 +1616,11 @@
         "params": [
           {
             "name": "T",
-            "type": 5
-          },
-          {
-            "name": "E",
-            "type": 13
+            "type": 0
           }
         ],
         "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 13,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "AdminAccessError"
-              },
-              {
-                "index": 1,
-                "name": "AuctionMinBidStepIsZero"
-              },
-              {
-                "index": 2,
-                "name": "CreatorIsNotCaller"
-              },
-              {
-                "index": 3,
-                "name": "AuctionStartTimeIsBeforeNow"
-              },
-              {
-                "index": 4,
-                "name": "CallerIsAuctionOwner"
-              },
-              {
-                "index": 5,
-                "name": "AccountAlreadyExists"
-              },
-              {
-                "index": 6,
-                "name": "InsufficientFunds"
-              },
-              {
-                "index": 7,
-                "name": "AuctionPriceIsZero"
-              },
-              {
-                "index": 8,
-                "name": "AuctionEndTimeIsBeforeStartTime"
-              },
-              {
-                "index": 9,
-                "name": "CollectionOwnerNotFound"
-              },
-              {
-                "index": 10,
-                "name": "AuctionHasNoBids"
-              },
-              {
-                "index": 11,
-                "name": "AuctionNotEnded"
-              },
-              {
-                "index": 12,
-                "name": "BidPriceTooLow"
-              },
-              {
-                "index": 13,
-                "name": "AuctionEnded"
-              },
-              {
-                "index": 14,
-                "name": "AuctionNotStarted"
-              },
-              {
-                "index": 15,
-                "name": "AuctionNotInAuction"
-              },
-              {
-                "index": 16,
-                "name": "ListingNotOnSale"
-              },
-              {
-                "index": 17,
-                "name": "AuctionNotWaiting"
-              },
-              {
-                "index": 18,
-                "name": "CallerIsNotAuctionOwner"
-              },
-              {
-                "index": 19,
-                "name": "CallerIsListingOwner"
-              },
-              {
-                "index": 20,
-                "name": "CallerIsNotListingOwner"
-              },
-              {
-                "index": 21,
-                "name": "AuctionNotFound"
-              },
-              {
-                "index": 22,
-                "name": "ListingNotFound"
-              },
-              {
-                "index": 23,
-                "name": "IntegerOverflow"
-              },
-              {
-                "index": 24,
-                "name": "IntegerUnderflow"
-              },
-              {
-                "index": 25,
-                "name": "CollectionNotFound"
-              },
-              {
-                "index": 26,
-                "name": "CallerIsNotNFTOwner"
-              },
-              {
-                "index": 27,
-                "name": "TransferNativeError"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 14,
-                    "typeName": "ownable::OwnableError"
-                  }
-                ],
-                "index": 28,
-                "name": "Ownable"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 15,
-                    "typeName": "access_control::AccessControlError"
-                  }
-                ],
-                "index": 29,
-                "name": "AccessControl"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 16,
-                    "typeName": "psp34::PSP34Error"
-                  }
-                ],
-                "index": 30,
-                "name": "PSP34"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18,
-                    "typeName": "psp22::PSP22Error"
-                  }
-                ],
-                "index": 31,
-                "name": "PSP22"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 17,
-                    "typeName": "String"
-                  }
-                ],
-                "index": 32,
-                "name": "Other"
-              }
-            ]
-          }
-        },
-        "path": [
-          "archisinal_lib",
-          "traits",
-          "ArchisinalError"
-        ]
-      }
-    },
-    {
-      "id": 14,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "CallerIsNotOwner"
-              },
-              {
-                "index": 1,
-                "name": "NewOwnerIsZero"
-              }
-            ]
-          }
-        },
-        "path": [
-          "openbrush_contracts",
-          "traits",
-          "errors",
-          "ownable",
-          "OwnableError"
-        ]
-      }
-    },
-    {
-      "id": 15,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "InvalidCaller"
-              },
-              {
-                "index": 1,
-                "name": "MissingRole"
-              },
-              {
-                "index": 2,
-                "name": "RoleRedundant"
-              }
-            ]
-          }
-        },
-        "path": [
-          "openbrush_contracts",
-          "traits",
-          "errors",
-          "access_control",
-          "AccessControlError"
-        ]
-      }
-    },
-    {
-      "id": 16,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 17,
-                    "typeName": "String"
-                  }
-                ],
-                "index": 0,
-                "name": "Custom"
-              },
-              {
-                "index": 1,
-                "name": "SelfApprove"
-              },
-              {
-                "index": 2,
-                "name": "NotApproved"
-              },
-              {
-                "index": 3,
-                "name": "TokenExists"
-              },
-              {
-                "index": 4,
-                "name": "TokenNotExists"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 17,
-                    "typeName": "String"
-                  }
-                ],
-                "index": 5,
-                "name": "SafeTransferCheckFailed"
-              }
-            ]
-          }
-        },
-        "path": [
-          "openbrush_contracts",
-          "traits",
-          "errors",
-          "psp34",
-          "PSP34Error"
-        ]
-      }
-    },
-    {
-      "id": 17,
-      "type": {
-        "def": {
-          "primitive": "str"
-        }
-      }
-    },
-    {
-      "id": 18,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 17,
-                    "typeName": "String"
-                  }
-                ],
-                "index": 0,
-                "name": "Custom"
-              },
-              {
-                "index": 1,
-                "name": "InsufficientBalance"
-              },
-              {
-                "index": 2,
-                "name": "InsufficientAllowance"
-              },
-              {
-                "index": 3,
-                "name": "ZeroRecipientAddress"
-              },
-              {
-                "index": 4,
-                "name": "ZeroSenderAddress"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 17,
-                    "typeName": "String"
-                  }
-                ],
-                "index": 5,
-                "name": "SafeTransferCheckFailed"
-              }
-            ]
-          }
-        },
-        "path": [
-          "openbrush_contracts",
-          "traits",
-          "errors",
-          "psp22",
-          "PSP22Error"
+          "Option"
         ]
       }
     },
@@ -1730,7 +1734,7 @@
               {
                 "fields": [
                   {
-                    "type": 14
+                    "type": 11
                   }
                 ],
                 "index": 1,
@@ -1746,7 +1750,7 @@
           },
           {
             "name": "E",
-            "type": 14
+            "type": 11
           }
         ],
         "path": [
@@ -1814,7 +1818,7 @@
               {
                 "fields": [
                   {
-                    "type": 15
+                    "type": 12
                   }
                 ],
                 "index": 1,
@@ -1830,7 +1834,7 @@
           },
           {
             "name": "E",
-            "type": 15
+            "type": 12
           }
         ],
         "path": [
@@ -1973,7 +1977,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 14,
                     "typeName": "String"
                   }
                 ],
@@ -1987,7 +1991,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 11,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -1997,7 +2001,7 @@
               {
                 "fields": [
                   {
-                    "type": 15,
+                    "type": 12,
                     "typeName": "AccessControlError"
                   }
                 ],

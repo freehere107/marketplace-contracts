@@ -12,6 +12,7 @@ use openbrush::traits::{AccountId, DefaultEnv, Storage};
 use crate::impls::marketplace::data::{Data, Listing, ListingStatus};
 use crate::impls::shared::currency::Currency;
 use crate::impls::shared::utils::apply_fee;
+use crate::traits::collection::CollectionRef;
 use crate::traits::events::marketplace::MarketplaceEvents;
 use crate::traits::{ArchisinalError, ProjectResult};
 
@@ -39,12 +40,7 @@ pub trait MarketplaceImpl:
         price: u128,
         currency: Currency,
     ) -> ProjectResult<u128> {
-        let caller = <Self as DefaultEnv>::env().caller();
         let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
-
-        if creator != caller {
-            return Err(ArchisinalError::CreatorIsNotCaller);
-        }
 
         if PSP34Ref::owner_of(&collection, token_id.clone()) != Some(creator) {
             return Err(ArchisinalError::CallerIsNotNFTOwner);
@@ -54,6 +50,8 @@ pub trait MarketplaceImpl:
 
         let listing_id = self.data::<Data>().listing_count.get_or_default();
 
+        let royalty = CollectionRef::collection_royalty(&collection);
+
         let listing = Listing {
             id: listing_id,
             creator,
@@ -62,6 +60,7 @@ pub trait MarketplaceImpl:
             price,
             currency: currency.clone(),
             status: ListingStatus::OnSale,
+            royalty,
         };
 
         self.data::<Data>().listings.insert(&listing_id, &listing);
@@ -102,7 +101,7 @@ pub trait MarketplaceImpl:
 
         PSP34Ref::transfer(
             &listing.collection,
-            caller,
+            listing.creator,
             listing.token_id.clone(),
             vec![],
         )?;
@@ -131,7 +130,7 @@ pub trait MarketplaceImpl:
         let currency = &mut listing.currency;
 
         let price = listing.price;
-        let price_with_fee = apply_fee(&listing.price, &listing.collection)?;
+        let price_with_fee = apply_fee(&listing.price, listing.royalty)?;
 
         // Check if the caller has enough balance to buy the NFT (in case of Native)
         currency.assure_transfer(price_with_fee)?;
@@ -198,7 +197,7 @@ pub trait MarketplaceImpl:
                 .clone()
                 .into_iter()
                 .try_fold(0u128, |mut acc, listing| {
-                    let total_price_with_fee = apply_fee(&listing.price, &listing.collection)?;
+                    let total_price_with_fee = apply_fee(&listing.price, listing.royalty)?;
 
                     acc += if listing.currency.is_native() {
                         total_price_with_fee
@@ -219,12 +218,13 @@ pub trait MarketplaceImpl:
             let token_id = &listing.token_id;
             let creator = &listing.creator;
             let price = &listing.price;
+            let royalty = listing.royalty;
 
             PSP34Ref::transfer(collection, caller, token_id.clone(), vec![])?;
 
             currency.transfer_from(caller, *creator, *price)?;
 
-            let royalty = apply_fee(price, collection)?
+            let royalty = apply_fee(price, royalty)?
                 .checked_sub(*price)
                 .ok_or(ArchisinalError::IntegerUnderflow)?;
 
