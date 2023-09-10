@@ -37,46 +37,47 @@ Follow these steps:
    cargo test --features e2e-tests
    ```
 
-2. **Comprehensive Testing** (This includes E2E, Security, and Performance tests)
-   Includes:
+2. **Comprehensive Testing**
+   
+   This includes E2E, Security, and Performance tests
     - E2E tests - used to test the contracts in a real environment
     - Security tests - used to test the contracts for security vulnerabilities
     - Performance tests - used to test the contracts for performance issues (e.g. gas usage)
 
-    - First, set things up:
+    2.1 First, set things up:
       ```bash
       yarn
       ```
-    - Next, let's run all tests:
+    2.2 Next, let's run all tests:
       ```bash
       yarn test:full
       ```
-    - If you've got the contracts-node running:
+    2.3 If you've got the contracts-node running:
       ```bash
       yarn test:full-node
       ```
 
-3. **Linting & Formatting**
-    - Check for style & coding issues:
+4. **Linting & Formatting**
+    3.1 Check for style & coding issues:
       ```bash
       yarn lint
       cargo +nightly fmt --all -- --check
       cargo +nightly clippy --all-targets --all-features -- -D warnings
       ``` 
-    - Correct any formatting issues:
+    3.2 Correct any formatting issues:
       ```bash
       yarn lint:fix
       cargo +nightly fmt --all
       ```
 
-4. **Unit & Documentation Testing**
+5. **Unit & Documentation Testing**
    ```bash
    cargo test
    ```
    
 ## P.S 
 
-If you want to single-test some feature you can use the following structure:
+If you want to single-test some features you can use the following structure:
 ```bash
 yarn test:mocha:<feature><?-node>
 ```
