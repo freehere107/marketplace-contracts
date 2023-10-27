@@ -52,6 +52,27 @@ jobs:
         with:
           command: test
 
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/archisinal/a-test-image:latest
+      options: --user root
+      credentials:
+        username: ${{ secrets.GHCR_USERNAME }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
+      - name: Run build
+        run: yarn build:release
+
   docker-test:
     runs-on: ubuntu-latest
     container:
