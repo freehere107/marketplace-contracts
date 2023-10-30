@@ -55,6 +55,9 @@ Arschisinal marketplace contracts written in ink!
         └── src
 ```
 
+## Contract Diagram
+
+![Contract Diagram](./imgs/ArchisinalContractsDiagram.png)
 
 ## Testing 
 
