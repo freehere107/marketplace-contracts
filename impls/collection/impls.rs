@@ -43,8 +43,10 @@ pub trait CollectionImpl:
 
     #[openbrush::modifiers(only_owner)]
     fn set_collection_name(&mut self, name: String) -> ProjectResult<()> {
+        // Set the collection name
         self.data::<Data>().name.set(&Some(name.clone()));
 
+        // Emit the event for the collection name set
         self.emit_collection_name_set(name);
 
         Ok(())
@@ -52,8 +54,10 @@ pub trait CollectionImpl:
 
     #[openbrush::modifiers(only_owner)]
     fn set_collection_uri(&mut self, uri: String) -> ProjectResult<()> {
+        // Set the collection uri
         self.data::<Data>().uri.set(&Some(uri.clone()));
 
+        // Emit the event for the collection uri set
         self.emit_collection_uri_set(uri);
 
         Ok(())
@@ -61,28 +65,34 @@ pub trait CollectionImpl:
 
     #[openbrush::modifiers(only_owner)]
     fn set_collection_royalty(&mut self, royalty: u32) -> ProjectResult<()> {
+        // Set the collection royalty
         self.data::<Data>().royalty.set(&royalty);
         Ok(())
     }
 
     #[openbrush::modifiers(only_owner)]
     fn set_collection_additional_info(&mut self, additional_info: String) -> ProjectResult<()> {
+        // Set the collection additional info
         self.data::<Data>()
             .additional_info
             .set(&Some(additional_info.clone()));
 
+        // Emit the event for the collection additional info set
         self.emit_collection_additional_info_set(additional_info);
 
         Ok(())
     }
 
     fn set_attribute(&mut self, id: Id, key: String, value: String) -> ProjectResult<()> {
+        // Check if the caller is the owner of the token
         if self.owner_of(id.clone()) != Option::from(Self::env().caller()) {
             return Err(ArchisinalError::CallerIsNotNFTOwner);
         }
 
+        // Set the attribute
         self._set_attribute(id, key.clone(), value.clone());
 
+        // Emit the event for the attribute set
         self.emit_set_attribute(key, value);
 
         Ok(())

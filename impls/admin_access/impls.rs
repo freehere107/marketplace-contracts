@@ -18,16 +18,20 @@ pub trait AdminAccessImpl:
 {
     #[openbrush::modifiers(ownable::only_owner)]
     fn add_admin(&mut self, account_id: AccountId) -> ProjectResult<()> {
+        // Emit the event for the admin added
         self.emit_admin_added(Self::env().caller(), account_id);
 
+        // Grant the admin role in the access control trait
         AccessControl::grant_role(self, ADMIN, Some(account_id))
             .map_err(|_| ArchisinalError::AdminAccessError)
     }
 
     #[openbrush::modifiers(ownable::only_owner)]
     fn remove_admin(&mut self, account_id: AccountId) -> ProjectResult<()> {
+        // Emit the event for the admin removed
         self.emit_admin_removed(Self::env().caller(), account_id);
 
+        // Revoke the admin role in the access control trait
         AccessControl::revoke_role(self, ADMIN, Some(account_id))
             .map_err(|_| ArchisinalError::AdminAccessError)
     }
@@ -39,6 +43,7 @@ pub trait AdminAccessImpl:
     fn _admin_or_owner(&self) -> ProjectResult<()> {
         let caller = Self::env().caller();
 
+        // Check if the caller is an admin or the owner
         if !self.is_admin(caller) || self.owner() != Some(caller) {
             return Err(ArchisinalError::AdminAccessError);
         }

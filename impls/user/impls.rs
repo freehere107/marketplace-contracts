@@ -21,16 +21,19 @@ pub trait UserImpl: Storage<Data> + Ownable + Storage<ownable::Data> + UserEvent
 
     #[modifiers(only_owner)]
     fn set_user_data(&mut self, user_data: UserData) -> ProjectResult<()> {
+        // Set the user data
         self._set_user_data(user_data)
     }
 
     fn _set_user_data(&mut self, user_data: UserData) -> ProjectResult<()> {
+        // Set the user data
         self.data::<Data>().nick.set(&user_data.nick);
         self.data::<Data>().avatar.set(&user_data.avatar);
         self.data::<Data>()
             .addition_info
             .set(&user_data.addition_info);
 
+        // Emit the event for the user data set
         self.emit_user_data_set(user_data);
 
         Ok(())

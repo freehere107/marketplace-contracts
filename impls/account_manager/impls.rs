@@ -41,48 +41,64 @@ pub trait AccountManagerImpl:
     }
 
     fn set_creator_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
+        // Administrator or contract owner can set the code hash
         self._admin_or_owner()?;
 
+        // Set the code hash
         self.data::<Data>().creator_code_hash.set(&code_hash);
 
+        // Emit the event for the code hash set
         self.emit_code_hash_set(code_hash, AccountType::Creator);
 
         Ok(())
     }
 
     fn set_user_code_hash(&mut self, code_hash: Hash) -> ProjectResult<()> {
+        // Administrator or contract owner can set the code hash
         self._admin_or_owner()?;
 
+        // Set the code hash
         self.data::<Data>().user_code_hash.set(&code_hash);
 
+        // Emit the event for the code hash set
         self.emit_code_hash_set(code_hash, AccountType::User);
 
         Ok(())
     }
 
     fn _add_account(&mut self, account_id: AccountId, contract: AccountId) -> ProjectResult<()> {
+        // Check if the account already exists, if it does, return an error
+        // ArchisinalError::AccountAlreadyExists
         if self.get_account(account_id).is_some() {
             return Err(ArchisinalError::AccountAlreadyExists);
         }
 
+        // Insert the account into the mapping, with the (account_id, AccountType::User) as the key
+        // and the contract address as the value
         self.data::<Data>()
             .accounts
             .insert(&(account_id, AccountType::User), &contract);
 
+        // Emit the event for the account created
         self.emit_account_created(account_id, contract);
 
         Ok(())
     }
 
     fn _add_creator(&mut self, account_id: AccountId, contract: AccountId) -> ProjectResult<()> {
+        // Check if the account already exists, if it does, return an error
+        // ArchisinalError::AccountAlreadyExists
         if self.get_creator_account(account_id).is_some() {
             return Err(ArchisinalError::AccountAlreadyExists);
         }
 
+        // Insert the account into the mapping, with the (account_id, AccountType::Creator) as the key
+        // and the contract address as the value
         self.data::<Data>()
             .accounts
             .insert(&(account_id, AccountType::Creator), &contract);
 
+        // Emit the event for the account created
         self.emit_creator_created(account_id, contract);
 
         Ok(())

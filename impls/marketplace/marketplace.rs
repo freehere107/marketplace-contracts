@@ -31,21 +31,28 @@ pub trait MarketplaceImpl:
         price: u128,
         currency: Currency,
     ) -> ProjectResult<u128> {
+        // Get the caller
         let caller = <Self as DefaultEnv>::env().caller();
+        // Get the contract address
         let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
 
+        // Check if the caller is the creator
         if creator.clone() != caller {
             return Err(ArchisinalError::CreatorIsNotCaller);
         }
 
+        // Check if the caller is the owner of the NFT
         if PSP34Ref::owner_of(&collection, token_id.clone()) != Some(creator) {
             return Err(ArchisinalError::CallerIsNotNFTOwner);
         }
 
+        // Transfer the NFT from the caller to the Marketplace contract
         PSP34Ref::transfer(&mut collection, contract_address, token_id.clone(), vec![])?;
 
+        // Create the listing id
         let listing_id = self.data::<Data>().listing_count.get_or_default();
 
+        // Create the listing
         let listing = Listing {
             id: listing_id,
             creator: creator.clone(),
@@ -56,34 +63,44 @@ pub trait MarketplaceImpl:
             status: ListingStatus::OnSale,
         };
 
+        // Insert the listing into the storage, with the listing id as the key
+        // and the listing as the value
         self.data::<Data>().listings.insert(&listing_id, &listing);
+        // Increment the listing count
         self.data::<Data>().listing_count.set(
             &listing_id
                 .checked_add(1)
                 .ok_or(ArchisinalError::IntegerOverflow)?,
         );
 
+        // Emit the event for the listing created
         self.emit_list_nft(listing_id, creator, collection, token_id, price, currency);
 
         Ok(listing_id)
     }
 
     fn cancel_listing(&mut self, listing_id: u128) -> ProjectResult<()> {
+        // Get the caller
         let caller = <Self as DefaultEnv>::env().caller();
+        // Get listing or return an error
+        // ArchisinalError::ListingNotFound
         let mut listing = self
             .data::<Data>()
             .listings
             .get(&listing_id)
             .ok_or(ArchisinalError::ListingNotFound)?;
 
+        // Check if the caller is the listing owner or the admin
         if listing.creator != caller && !self.is_admin(caller.clone()) {
             return Err(ArchisinalError::CallerIsNotListingOwner);
         }
 
+        // Check if the listing is on sale
         if listing.status != ListingStatus::OnSale {
             return Err(ArchisinalError::ListingNotOnSale);
         }
 
+        // Update the listing status to cancelled
         self.data::<Data>().listings.insert(
             &listing_id,
             &Listing {
@@ -92,6 +109,7 @@ pub trait MarketplaceImpl:
             },
         );
 
+        // Transfer the NFT back to the listing owner
         PSP34Ref::transfer(
             &mut listing.collection,
             caller.clone(),
@@ -99,23 +117,29 @@ pub trait MarketplaceImpl:
             vec![],
         )?;
 
+        // Emit the event for the listing cancelled
         self.emit_cancel_listing(caller, listing_id);
 
         Ok(())
     }
 
     fn buy_nft(&mut self, listing_id: u128) -> ProjectResult<()> {
+        // Get the caller
         let caller = <Self as DefaultEnv>::env().caller();
+        // Get listing or return an error
+        // ArchisinalError::ListingNotFound
         let mut listing = self
             .data::<Data>()
             .listings
             .get(&listing_id)
             .ok_or(ArchisinalError::ListingNotFound)?;
 
+        // Check if the listing is on sale
         if listing.status != ListingStatus::OnSale {
             return Err(ArchisinalError::ListingNotOnSale);
         }
 
+        // Creator cannot buy their own NFT
         if caller == listing.creator {
             return Err(ArchisinalError::CallerIsListingOwner);
         }
@@ -123,11 +147,13 @@ pub trait MarketplaceImpl:
         let currency = &mut listing.currency;
 
         let price = listing.price.clone();
+        // Apply the fee to the price
         let price_with_fee = apply_fee(&listing.price, &listing.collection)?;
 
         // Check if the caller has enough balance to buy the NFT (in case of Native)
         currency.assure_transfer(price_with_fee)?;
 
+        // Transfer the NFT from the Marketplace contract to the buyer
         PSP34Ref::transfer(
             &mut listing.collection,
             caller.clone(),
@@ -135,10 +161,13 @@ pub trait MarketplaceImpl:
             vec![],
         )?;
 
+        // Transfer the price to the creator
         currency.transfer_from(caller.clone(), listing.creator.clone(), price.clone())?;
 
+        // Get owner of the collection
         let collection_owner = OwnableRef::owner(&listing.collection);
 
+        // Transfer the fee to the collection owner
         if let Some(collection_owner) = collection_owner {
             currency.transfer_from(
                 caller.clone(),
@@ -150,6 +179,7 @@ pub trait MarketplaceImpl:
             )?;
         }
 
+        // Update the listing status to sold
         self.data::<Data>().listings.insert(
             &listing_id,
             &Listing {
@@ -158,14 +188,18 @@ pub trait MarketplaceImpl:
             },
         );
 
+        // Emit the event for the NFT bought
         self.emit_buy_nft(caller, listing_id);
 
         Ok(())
     }
 
     fn buy_batch(&mut self, ids: Vec<u128>) -> ProjectResult<()> {
+        // Get the caller
         let caller = <Self as DefaultEnv>::env().caller();
 
+        // Get the listings or return an error
+        // ArchisinalError::ListingNotFound
         let mut listings = ids.into_iter().try_fold(Vec::new(), |mut acc, id| {
             let listing = self
                 .data::<Data>()
@@ -186,6 +220,7 @@ pub trait MarketplaceImpl:
             Ok(acc)
         })?;
 
+        // Get the total price of the listings
         let total_price_native =
             listings
                 .clone()
@@ -202,6 +237,7 @@ pub trait MarketplaceImpl:
                     Ok::<u128, ArchisinalError>(acc)
                 })?;
 
+        // Check if the caller has enough balance to buy the NFT (in case of Native)
         if Self::env().transferred_value() < total_price_native {
             return Err(ArchisinalError::InsufficientFunds);
         }
@@ -213,19 +249,25 @@ pub trait MarketplaceImpl:
             let creator = &listing.creator;
             let price = &listing.price;
 
+            // Transfer the NFT from the Marketplace contract to the buyer
             PSP34Ref::transfer(collection, caller.clone(), token_id.clone(), vec![])?;
 
+            // Transfer the price to the creator
             currency.transfer_from(caller.clone(), creator.clone(), price.clone())?;
 
+            // Get the royalty
             let royalty = apply_fee(price, collection)?
                 .checked_sub(price.clone())
                 .ok_or(ArchisinalError::IntegerUnderflow)?;
 
+            // Get owner of the collection
             let collection_owner = OwnableRef::owner(&listing.collection)
                 .ok_or(ArchisinalError::CollectionOwnerNotFound)?;
 
+            // Transfer the fee to the collection owner
             currency.transfer_from(caller.clone(), collection_owner, royalty)?;
 
+            // Update the listing status to sold
             self.data::<Data>().listings.insert(
                 &listing.id,
                 &Listing {
@@ -237,6 +279,7 @@ pub trait MarketplaceImpl:
             Ok::<(), ArchisinalError>(())
         })?;
 
+        // Emit the event for the NFTs bought
         self.emit_buy_batch(
             caller,
             listings.into_iter().map(|listing| listing.id).collect(),
