@@ -55,10 +55,6 @@ Arschisinal marketplace contracts written in ink!
         └── src
 ```
 
-## Contract Diagram
-
-![Contract Diagram](./imgs/ArchisinalContractsDiagram.png)
-
 ## Testing 
 
 ### Run ink-E2E tests (works with substrate-contracts-node v0.24.0):
@@ -100,6 +96,8 @@ cargo test
 ```
 
 ## General Architecture Overview
+
+![Contract Diagram](./imgs/ArchisinalContractsDiagram.png)
 
 ### Account Management
 
