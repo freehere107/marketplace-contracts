@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "declaration": true,
     "lib": ["ES2018", "ES2019.Array", "ES2019.Object"],
     "module": "CommonJS",
@@ -14,6 +15,6 @@
     "noImplicitOverride": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "typechain-generated/**/*.json", "artifacts/**/*.json"],
   "exclude": ["node_modules", "contracts", "impls", "archisinal_lib", "traits"]
 }

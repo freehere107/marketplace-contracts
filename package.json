@@ -33,7 +33,8 @@
     "test:mocha:admin_access": "yarn raw-mocha \"./test/**/admin_access.spec.ts\"",
     "test:mocha:admin_access-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:admin_access; kill $pid",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepublish": "tsc"
   },
   "devDependencies": {
     "@727-ventures/typechain-compiler": "^1.1.4",
