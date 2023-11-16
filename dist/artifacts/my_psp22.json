@@ -1,11 +1,11 @@
 {
     "source": {
-        "hash": "0xc241def9abd4deb74127116848c272d03ee4ad1706af0db297e5f8b932463088",
-        "language": "ink! 4.2.1",
-        "compiler": "rustc 1.68.2",
+        "hash": "0xea37e82b696163c85e144f40a5e7f70a60ad8f1d424fd9a4a0f95643730ad745",
+        "language": "ink! 4.3.0",
+        "compiler": "rustc 1.73.0",
         "build_info": {
-            "build_mode": "Debug",
-            "cargo_contract_version": "3.0.1",
+            "build_mode": "Release",
+            "cargo_contract_version": "3.2.0",
             "rust_toolchain": "stable-aarch64-apple-darwin",
             "wasm_opt_settings": {
                 "keep_debug_symbols": false,
@@ -46,7 +46,7 @@
                 "displayName": [
                     "AccountId"
                 ],
-                "type": 4
+                "type": 5
             },
             "balance": {
                 "displayName": [
@@ -90,6 +90,22 @@
         },
         "messages": [
             {
+                "args": [],
+                "default": false,
+                "docs": [],
+                "label": "PSP22::total_supply",
+                "mutates": false,
+                "payable": false,
+                "returnType": {
+                    "displayName": [
+                        "ink",
+                        "MessageResult"
+                    ],
+                    "type": 4
+                },
+                "selector": "0x162df8c2"
+            },
+            {
                 "args": [
                     {
                         "label": "spender",
@@ -98,7 +114,7 @@
                                 "psp22_external",
                                 "IncreaseAllowanceInput1"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -122,9 +138,46 @@
                         "ink",
                         "MessageResult"
                     ],
-                    "type": 7
+                    "type": 8
                 },
                 "selector": "0x96d6b57a"
+            },
+            {
+                "args": [
+                    {
+                        "label": "owner",
+                        "type": {
+                            "displayName": [
+                                "psp22_external",
+                                "AllowanceInput1"
+                            ],
+                            "type": 5
+                        }
+                    },
+                    {
+                        "label": "spender",
+                        "type": {
+                            "displayName": [
+                                "psp22_external",
+                                "AllowanceInput2"
+                            ],
+                            "type": 5
+                        }
+                    }
+                ],
+                "default": false,
+                "docs": [],
+                "label": "PSP22::allowance",
+                "mutates": false,
+                "payable": false,
+                "returnType": {
+                    "displayName": [
+                        "ink",
+                        "MessageResult"
+                    ],
+                    "type": 4
+                },
+                "selector": "0x4d47d921"
             },
             {
                 "args": [
@@ -135,7 +188,7 @@
                                 "psp22_external",
                                 "TransferFromInput1"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -145,7 +198,7 @@
                                 "psp22_external",
                                 "TransferFromInput2"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -165,7 +218,7 @@
                                 "psp22_external",
                                 "TransferFromInput4"
                             ],
-                            "type": 11
+                            "type": 12
                         }
                     }
                 ],
@@ -179,9 +232,36 @@
                         "ink",
                         "MessageResult"
                     ],
-                    "type": 7
+                    "type": 8
                 },
                 "selector": "0x54b3c76e"
+            },
+            {
+                "args": [
+                    {
+                        "label": "owner",
+                        "type": {
+                            "displayName": [
+                                "psp22_external",
+                                "BalanceOfInput1"
+                            ],
+                            "type": 5
+                        }
+                    }
+                ],
+                "default": false,
+                "docs": [],
+                "label": "PSP22::balance_of",
+                "mutates": false,
+                "payable": false,
+                "returnType": {
+                    "displayName": [
+                        "ink",
+                        "MessageResult"
+                    ],
+                    "type": 4
+                },
+                "selector": "0x6568382f"
             },
             {
                 "args": [
@@ -192,7 +272,7 @@
                                 "psp22_external",
                                 "TransferInput1"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -212,7 +292,7 @@
                                 "psp22_external",
                                 "TransferInput3"
                             ],
-                            "type": 11
+                            "type": 12
                         }
                     }
                 ],
@@ -226,7 +306,7 @@
                         "ink",
                         "MessageResult"
                     ],
-                    "type": 7
+                    "type": 8
                 },
                 "selector": "0xdb20f9f5"
             },
@@ -237,126 +317,9 @@
                         "type": {
                             "displayName": [
                                 "psp22_external",
-                                "DecreaseAllowanceInput1"
-                            ],
-                            "type": 4
-                        }
-                    },
-                    {
-                        "label": "delta_value",
-                        "type": {
-                            "displayName": [
-                                "psp22_external",
-                                "DecreaseAllowanceInput2"
-                            ],
-                            "type": 0
-                        }
-                    }
-                ],
-                "default": false,
-                "docs": [],
-                "label": "PSP22::decrease_allowance",
-                "mutates": true,
-                "payable": false,
-                "returnType": {
-                    "displayName": [
-                        "ink",
-                        "MessageResult"
-                    ],
-                    "type": 7
-                },
-                "selector": "0xfecb57d5"
-            },
-            {
-                "args": [
-                    {
-                        "label": "owner",
-                        "type": {
-                            "displayName": [
-                                "psp22_external",
-                                "BalanceOfInput1"
-                            ],
-                            "type": 4
-                        }
-                    }
-                ],
-                "default": false,
-                "docs": [],
-                "label": "PSP22::balance_of",
-                "mutates": false,
-                "payable": false,
-                "returnType": {
-                    "displayName": [
-                        "ink",
-                        "MessageResult"
-                    ],
-                    "type": 12
-                },
-                "selector": "0x6568382f"
-            },
-            {
-                "args": [
-                    {
-                        "label": "owner",
-                        "type": {
-                            "displayName": [
-                                "psp22_external",
-                                "AllowanceInput1"
-                            ],
-                            "type": 4
-                        }
-                    },
-                    {
-                        "label": "spender",
-                        "type": {
-                            "displayName": [
-                                "psp22_external",
-                                "AllowanceInput2"
-                            ],
-                            "type": 4
-                        }
-                    }
-                ],
-                "default": false,
-                "docs": [],
-                "label": "PSP22::allowance",
-                "mutates": false,
-                "payable": false,
-                "returnType": {
-                    "displayName": [
-                        "ink",
-                        "MessageResult"
-                    ],
-                    "type": 12
-                },
-                "selector": "0x4d47d921"
-            },
-            {
-                "args": [],
-                "default": false,
-                "docs": [],
-                "label": "PSP22::total_supply",
-                "mutates": false,
-                "payable": false,
-                "returnType": {
-                    "displayName": [
-                        "ink",
-                        "MessageResult"
-                    ],
-                    "type": 12
-                },
-                "selector": "0x162df8c2"
-            },
-            {
-                "args": [
-                    {
-                        "label": "spender",
-                        "type": {
-                            "displayName": [
-                                "psp22_external",
                                 "ApproveInput1"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -380,9 +343,46 @@
                         "ink",
                         "MessageResult"
                     ],
-                    "type": 7
+                    "type": 8
                 },
                 "selector": "0xb20f1bbd"
+            },
+            {
+                "args": [
+                    {
+                        "label": "spender",
+                        "type": {
+                            "displayName": [
+                                "psp22_external",
+                                "DecreaseAllowanceInput1"
+                            ],
+                            "type": 5
+                        }
+                    },
+                    {
+                        "label": "delta_value",
+                        "type": {
+                            "displayName": [
+                                "psp22_external",
+                                "DecreaseAllowanceInput2"
+                            ],
+                            "type": 0
+                        }
+                    }
+                ],
+                "default": false,
+                "docs": [],
+                "label": "PSP22::decrease_allowance",
+                "mutates": true,
+                "payable": false,
+                "returnType": {
+                    "displayName": [
+                        "ink",
+                        "MessageResult"
+                    ],
+                    "type": 8
+                },
+                "selector": "0xfecb57d5"
             },
             {
                 "args": [
@@ -393,7 +393,7 @@
                                 "psp22mintable_external",
                                 "MintInput1"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -417,7 +417,7 @@
                         "ink",
                         "MessageResult"
                     ],
-                    "type": 7
+                    "type": 8
                 },
                 "selector": "0xfc3c75d4"
             },
@@ -430,7 +430,7 @@
                                 "psp22burnable_external",
                                 "BurnInput1"
                             ],
-                            "type": 4
+                            "type": 5
                         }
                     },
                     {
@@ -454,7 +454,7 @@
                         "ink",
                         "MessageResult"
                     ],
-                    "type": 7
+                    "type": 8
                 },
                 "selector": "0x7a9da510"
             }
@@ -606,201 +606,6 @@
             "id": 4,
             "type": {
                 "def": {
-                    "composite": {
-                        "fields": [
-                            {
-                                "type": 5,
-                                "typeName": "[u8; 32]"
-                            }
-                        ]
-                    }
-                },
-                "path": [
-                    "ink_primitives",
-                    "types",
-                    "AccountId"
-                ]
-            }
-        },
-        {
-            "id": 5,
-            "type": {
-                "def": {
-                    "array": {
-                        "len": 32,
-                        "type": 6
-                    }
-                }
-            }
-        },
-        {
-            "id": 6,
-            "type": {
-                "def": {
-                    "primitive": "u8"
-                }
-            }
-        },
-        {
-            "id": 7,
-            "type": {
-                "def": {
-                    "variant": {
-                        "variants": [
-                            {
-                                "fields": [
-                                    {
-                                        "type": 8
-                                    }
-                                ],
-                                "index": 0,
-                                "name": "Ok"
-                            },
-                            {
-                                "fields": [
-                                    {
-                                        "type": 3
-                                    }
-                                ],
-                                "index": 1,
-                                "name": "Err"
-                            }
-                        ]
-                    }
-                },
-                "params": [
-                    {
-                        "name": "T",
-                        "type": 8
-                    },
-                    {
-                        "name": "E",
-                        "type": 3
-                    }
-                ],
-                "path": [
-                    "Result"
-                ]
-            }
-        },
-        {
-            "id": 8,
-            "type": {
-                "def": {
-                    "variant": {
-                        "variants": [
-                            {
-                                "fields": [
-                                    {
-                                        "type": 2
-                                    }
-                                ],
-                                "index": 0,
-                                "name": "Ok"
-                            },
-                            {
-                                "fields": [
-                                    {
-                                        "type": 9
-                                    }
-                                ],
-                                "index": 1,
-                                "name": "Err"
-                            }
-                        ]
-                    }
-                },
-                "params": [
-                    {
-                        "name": "T",
-                        "type": 2
-                    },
-                    {
-                        "name": "E",
-                        "type": 9
-                    }
-                ],
-                "path": [
-                    "Result"
-                ]
-            }
-        },
-        {
-            "id": 9,
-            "type": {
-                "def": {
-                    "variant": {
-                        "variants": [
-                            {
-                                "fields": [
-                                    {
-                                        "type": 10,
-                                        "typeName": "String"
-                                    }
-                                ],
-                                "index": 0,
-                                "name": "Custom"
-                            },
-                            {
-                                "index": 1,
-                                "name": "InsufficientBalance"
-                            },
-                            {
-                                "index": 2,
-                                "name": "InsufficientAllowance"
-                            },
-                            {
-                                "index": 3,
-                                "name": "ZeroRecipientAddress"
-                            },
-                            {
-                                "index": 4,
-                                "name": "ZeroSenderAddress"
-                            },
-                            {
-                                "fields": [
-                                    {
-                                        "type": 10,
-                                        "typeName": "String"
-                                    }
-                                ],
-                                "index": 5,
-                                "name": "SafeTransferCheckFailed"
-                            }
-                        ]
-                    }
-                },
-                "path": [
-                    "openbrush_contracts",
-                    "traits",
-                    "errors",
-                    "psp22",
-                    "PSP22Error"
-                ]
-            }
-        },
-        {
-            "id": 10,
-            "type": {
-                "def": {
-                    "primitive": "str"
-                }
-            }
-        },
-        {
-            "id": 11,
-            "type": {
-                "def": {
-                    "sequence": {
-                        "type": 6
-                    }
-                }
-            }
-        },
-        {
-            "id": 12,
-            "type": {
-                "def": {
                     "variant": {
                         "variants": [
                             {
@@ -840,13 +645,208 @@
             }
         },
         {
+            "id": 5,
+            "type": {
+                "def": {
+                    "composite": {
+                        "fields": [
+                            {
+                                "type": 6,
+                                "typeName": "[u8; 32]"
+                            }
+                        ]
+                    }
+                },
+                "path": [
+                    "ink_primitives",
+                    "types",
+                    "AccountId"
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "type": {
+                "def": {
+                    "array": {
+                        "len": 32,
+                        "type": 7
+                    }
+                }
+            }
+        },
+        {
+            "id": 7,
+            "type": {
+                "def": {
+                    "primitive": "u8"
+                }
+            }
+        },
+        {
+            "id": 8,
+            "type": {
+                "def": {
+                    "variant": {
+                        "variants": [
+                            {
+                                "fields": [
+                                    {
+                                        "type": 9
+                                    }
+                                ],
+                                "index": 0,
+                                "name": "Ok"
+                            },
+                            {
+                                "fields": [
+                                    {
+                                        "type": 3
+                                    }
+                                ],
+                                "index": 1,
+                                "name": "Err"
+                            }
+                        ]
+                    }
+                },
+                "params": [
+                    {
+                        "name": "T",
+                        "type": 9
+                    },
+                    {
+                        "name": "E",
+                        "type": 3
+                    }
+                ],
+                "path": [
+                    "Result"
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "type": {
+                "def": {
+                    "variant": {
+                        "variants": [
+                            {
+                                "fields": [
+                                    {
+                                        "type": 2
+                                    }
+                                ],
+                                "index": 0,
+                                "name": "Ok"
+                            },
+                            {
+                                "fields": [
+                                    {
+                                        "type": 10
+                                    }
+                                ],
+                                "index": 1,
+                                "name": "Err"
+                            }
+                        ]
+                    }
+                },
+                "params": [
+                    {
+                        "name": "T",
+                        "type": 2
+                    },
+                    {
+                        "name": "E",
+                        "type": 10
+                    }
+                ],
+                "path": [
+                    "Result"
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "type": {
+                "def": {
+                    "variant": {
+                        "variants": [
+                            {
+                                "fields": [
+                                    {
+                                        "type": 11,
+                                        "typeName": "String"
+                                    }
+                                ],
+                                "index": 0,
+                                "name": "Custom"
+                            },
+                            {
+                                "index": 1,
+                                "name": "InsufficientBalance"
+                            },
+                            {
+                                "index": 2,
+                                "name": "InsufficientAllowance"
+                            },
+                            {
+                                "index": 3,
+                                "name": "ZeroRecipientAddress"
+                            },
+                            {
+                                "index": 4,
+                                "name": "ZeroSenderAddress"
+                            },
+                            {
+                                "fields": [
+                                    {
+                                        "type": 11,
+                                        "typeName": "String"
+                                    }
+                                ],
+                                "index": 5,
+                                "name": "SafeTransferCheckFailed"
+                            }
+                        ]
+                    }
+                },
+                "path": [
+                    "openbrush_contracts",
+                    "traits",
+                    "errors",
+                    "psp22",
+                    "PSP22Error"
+                ]
+            }
+        },
+        {
+            "id": 11,
+            "type": {
+                "def": {
+                    "primitive": "str"
+                }
+            }
+        },
+        {
+            "id": 12,
+            "type": {
+                "def": {
+                    "sequence": {
+                        "type": 7
+                    }
+                }
+            }
+        },
+        {
             "id": 13,
             "type": {
                 "def": {
                     "composite": {
                         "fields": [
                             {
-                                "type": 5,
+                                "type": 6,
                                 "typeName": "[u8; 32]"
                             }
                         ]

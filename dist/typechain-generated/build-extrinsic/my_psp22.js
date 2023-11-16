@@ -8,6 +8,13 @@ class Methods {
         this.__apiPromise = apiPromise;
     }
     /**
+     * totalSupply
+     *
+    */
+    "totalSupply"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::totalSupply", [], __options);
+    }
+    /**
      * increaseAllowance
      *
      * @param { ArgumentTypes.AccountId } spender,
@@ -15,6 +22,15 @@ class Methods {
     */
     "increaseAllowance"(spender, deltaValue, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::increaseAllowance", [spender, deltaValue], __options);
+    }
+    /**
+     * allowance
+     *
+     * @param { ArgumentTypes.AccountId } owner,
+     * @param { ArgumentTypes.AccountId } spender,
+    */
+    "allowance"(owner, spender, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::allowance", [owner, spender], __options);
     }
     /**
      * transferFrom
@@ -28,6 +44,14 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::transferFrom", [from, to, value, data], __options);
     }
     /**
+     * balanceOf
+     *
+     * @param { ArgumentTypes.AccountId } owner,
+    */
+    "balanceOf"(owner, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::balanceOf", [owner], __options);
+    }
+    /**
      * transfer
      *
      * @param { ArgumentTypes.AccountId } to,
@@ -38,39 +62,6 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::transfer", [to, value, data], __options);
     }
     /**
-     * decreaseAllowance
-     *
-     * @param { ArgumentTypes.AccountId } spender,
-     * @param { (string | number | BN) } deltaValue,
-    */
-    "decreaseAllowance"(spender, deltaValue, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::decreaseAllowance", [spender, deltaValue], __options);
-    }
-    /**
-     * balanceOf
-     *
-     * @param { ArgumentTypes.AccountId } owner,
-    */
-    "balanceOf"(owner, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::balanceOf", [owner], __options);
-    }
-    /**
-     * allowance
-     *
-     * @param { ArgumentTypes.AccountId } owner,
-     * @param { ArgumentTypes.AccountId } spender,
-    */
-    "allowance"(owner, spender, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::allowance", [owner, spender], __options);
-    }
-    /**
-     * totalSupply
-     *
-    */
-    "totalSupply"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::totalSupply", [], __options);
-    }
-    /**
      * approve
      *
      * @param { ArgumentTypes.AccountId } spender,
@@ -78,6 +69,15 @@ class Methods {
     */
     "approve"(spender, value, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::approve", [spender, value], __options);
+    }
+    /**
+     * decreaseAllowance
+     *
+     * @param { ArgumentTypes.AccountId } spender,
+     * @param { (string | number | BN) } deltaValue,
+    */
+    "decreaseAllowance"(spender, deltaValue, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp22::decreaseAllowance", [spender, deltaValue], __options);
     }
     /**
      * mint

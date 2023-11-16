@@ -25,13 +25,6 @@ export default class Methods {
     */
     "setUserData"(userInfo: ArgumentTypes.UserData, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * transferOwnership
-    *
-    * @param { ArgumentTypes.AccountId } newOwner,
-    * @returns { void }
-    */
-    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
     * owner
     *
     * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
@@ -43,6 +36,13 @@ export default class Methods {
     * @returns { void }
     */
     "renounceOwnership"(__options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * transferOwnership
+    *
+    * @param { ArgumentTypes.AccountId } newOwner,
+    * @returns { void }
+    */
+    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * setCodeHash
     *

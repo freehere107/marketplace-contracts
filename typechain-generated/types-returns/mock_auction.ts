@@ -12,6 +12,7 @@ export interface ArchisinalError {
 	adminAccessError ? : null,
 	auctionMinBidStepIsZero ? : null,
 	creatorIsNotCaller ? : null,
+	codehashIsBanned ? : null,
 	auctionStartTimeIsBeforeNow ? : null,
 	callerIsAuctionOwner ? : null,
 	accountAlreadyExists ? : null,
@@ -35,6 +36,8 @@ export interface ArchisinalError {
 	integerOverflow ? : null,
 	integerUnderflow ? : null,
 	collectionNotFound ? : null,
+	collectionIsBanned ? : null,
+	collectionIsNotWhitelisted ? : null,
 	callerIsNotNftOwner ? : null,
 	transferNativeError ? : null,
 	ownable ? : OwnableError,
@@ -63,6 +66,11 @@ export class ArchisinalErrorBuilder {
 	static CreatorIsNotCaller(): ArchisinalError {
 		return {
 			creatorIsNotCaller: null,
+		};
+	}
+	static CodehashIsBanned(): ArchisinalError {
+		return {
+			codehashIsBanned: null,
 		};
 	}
 	static AuctionStartTimeIsBeforeNow(): ArchisinalError {
@@ -178,6 +186,16 @@ export class ArchisinalErrorBuilder {
 	static CollectionNotFound(): ArchisinalError {
 		return {
 			collectionNotFound: null,
+		};
+	}
+	static CollectionIsBanned(): ArchisinalError {
+		return {
+			collectionIsBanned: null,
+		};
+	}
+	static CollectionIsNotWhitelisted(): ArchisinalError {
+		return {
+			collectionIsNotWhitelisted: null,
 		};
 	}
 	static CallerIsNotNFTOwner(): ArchisinalError {
@@ -312,17 +330,6 @@ export class PSP22ErrorBuilder {
 	}
 }
 
-export type Listing = {
-	id: ReturnNumber,
-	creator: AccountId,
-	collection: AccountId,
-	tokenId: Id,
-	price: ReturnNumber,
-	currency: Currency,
-	status: ListingStatus,
-	royalty: number
-}
-
 export interface Id {
 	u8 ? : number,
 	u16 ? : number,
@@ -383,21 +390,21 @@ export class CurrencyBuilder {
 	}
 }
 
+export type Listing = {
+	id: ReturnNumber,
+	creator: AccountId,
+	collection: AccountId,
+	tokenId: Id,
+	price: ReturnNumber,
+	currency: Currency,
+	status: ListingStatus,
+	royalty: number
+}
+
 export enum ListingStatus {
 	onSale = 'OnSale',
 	sold = 'Sold',
 	cancelled = 'Cancelled'
-}
-
-export type AuctionInfo = {
-	creator: AccountId,
-	collection: AccountId,
-	tokenId: Id,
-	startPrice: ReturnNumber,
-	minBidStep: ReturnNumber,
-	currency: Currency,
-	startTime: number,
-	endTime: number
 }
 
 export type Auction = {
@@ -422,6 +429,17 @@ export enum AuctionStatus {
 	waitingForClaim = 'WaitingForClaim',
 	ended = 'Ended',
 	cancelled = 'Cancelled'
+}
+
+export type AuctionInfo = {
+	creator: AccountId,
+	collection: AccountId,
+	tokenId: Id,
+	startPrice: ReturnNumber,
+	minBidStep: ReturnNumber,
+	currency: Currency,
+	startTime: number,
+	endTime: number
 }
 
 export type Hash = string | number[]

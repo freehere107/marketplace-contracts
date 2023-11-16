@@ -14,6 +14,12 @@ export default class Methods {
     readonly __apiPromise: ApiPromise;
     constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
     /**
+    * totalSupply
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "totalSupply"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
     * increaseAllowance
     *
     * @param { ArgumentTypes.AccountId } spender,
@@ -21,6 +27,14 @@ export default class Methods {
     * @returns { void }
     */
     "increaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * allowance
+    *
+    * @param { ArgumentTypes.AccountId } owner,
+    * @param { ArgumentTypes.AccountId } spender,
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "allowance"(owner: ArgumentTypes.AccountId, spender: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
     /**
     * transferFrom
     *
@@ -32,6 +46,13 @@ export default class Methods {
     */
     "transferFrom"(from: ArgumentTypes.AccountId, to: ArgumentTypes.AccountId, value: (string | number | BN), data: Array<(number | string | BN)>, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
+    * balanceOf
+    *
+    * @param { ArgumentTypes.AccountId } owner,
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "balanceOf"(owner: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
     * transfer
     *
     * @param { ArgumentTypes.AccountId } to,
@@ -41,35 +62,6 @@ export default class Methods {
     */
     "transfer"(to: ArgumentTypes.AccountId, value: (string | number | BN), data: Array<(number | string | BN)>, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * decreaseAllowance
-    *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } deltaValue,
-    * @returns { void }
-    */
-    "decreaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * balanceOf
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "balanceOf"(owner: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * allowance
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @param { ArgumentTypes.AccountId } spender,
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "allowance"(owner: ArgumentTypes.AccountId, spender: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * totalSupply
-    *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "totalSupply"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
     * approve
     *
     * @param { ArgumentTypes.AccountId } spender,
@@ -77,6 +69,14 @@ export default class Methods {
     * @returns { void }
     */
     "approve"(spender: ArgumentTypes.AccountId, value: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * decreaseAllowance
+    *
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } deltaValue,
+    * @returns { void }
+    */
+    "decreaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * mint
     *

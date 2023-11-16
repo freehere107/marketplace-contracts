@@ -155,6 +155,16 @@ export declare class PSP22ErrorBuilder {
     static ZeroSenderAddress(): PSP22Error;
     static SafeTransferCheckFailed(value: string): PSP22Error;
 }
+export type AuctionInfo = {
+    creator: AccountId;
+    collection: AccountId;
+    tokenId: Id;
+    startPrice: (string | number | BN);
+    minBidStep: (string | number | BN);
+    currency: Currency;
+    startTime: (number | string | BN);
+    endTime: (number | string | BN);
+};
 export type Auction = {
     id: (string | number | BN);
     creator: AccountId;
@@ -177,16 +187,6 @@ export declare enum AuctionStatus {
     ended = "Ended",
     cancelled = "Cancelled"
 }
-export type AuctionInfo = {
-    creator: AccountId;
-    collection: AccountId;
-    tokenId: Id;
-    startPrice: (string | number | BN);
-    minBidStep: (string | number | BN);
-    currency: Currency;
-    startTime: (number | string | BN);
-    endTime: (number | string | BN);
-};
 export type Hash = string | number[];
 export interface UpgradeableError {
     custom?: string;

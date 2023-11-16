@@ -8,7 +8,7 @@ pub struct Data {
     /// The name of the collection.
     #[lazy]
     pub name: Option<String>,
-    /// The symbol of the collection.
+    /// The uri of the collection.
     #[lazy]
     pub uri: Option<String>,
     /// The additional info of the collection.

@@ -1,11 +1,11 @@
 {
   "source": {
-    "hash": "0xfdeb0948c697b76a6fb45fdcc3fa8a6c22dc0bd677e5ed56cd9af0b95b9f934a",
-    "language": "ink! 4.2.1",
-    "compiler": "rustc 1.68.2",
+    "hash": "0x0e93bc71e6edd4afcea3e138efb9dd2f1cdb4c89a81c9f0f9fb46947ea198e21",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.73.0",
     "build_info": {
       "build_mode": "Debug",
-      "cargo_contract_version": "3.0.1",
+      "cargo_contract_version": "3.2.0",
       "rust_toolchain": "stable-aarch64-apple-darwin",
       "wasm_opt_settings": {
         "keep_debug_symbols": false,
@@ -215,6 +215,38 @@
         "selector": "0xda164d97"
       },
       {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::renounce_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 25
+        },
+        "selector": "0x5e228753"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::owner",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 27
+        },
+        "selector": "0x4fa43c8c"
+      },
+      {
         "args": [
           {
             "label": "new_owner",
@@ -240,38 +272,6 @@
           "type": 25
         },
         "selector": "0x11f43efd"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::owner",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 27
-        },
-        "selector": "0x4fa43c8c"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::renounce_ownership",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 25
-        },
-        "selector": "0x5e228753"
       },
       {
         "args": [
@@ -1102,102 +1102,114 @@
               },
               {
                 "index": 4,
-                "name": "AuctionStartTimeIsBeforeNow"
+                "name": "CodehashIsBanned"
               },
               {
                 "index": 5,
-                "name": "CallerIsAuctionOwner"
+                "name": "AuctionStartTimeIsBeforeNow"
               },
               {
                 "index": 6,
-                "name": "AccountAlreadyExists"
+                "name": "CallerIsAuctionOwner"
               },
               {
                 "index": 7,
-                "name": "InsufficientFunds"
+                "name": "AccountAlreadyExists"
               },
               {
                 "index": 8,
-                "name": "AuctionPriceIsZero"
+                "name": "InsufficientFunds"
               },
               {
                 "index": 9,
-                "name": "AuctionEndTimeIsBeforeStartTime"
+                "name": "AuctionPriceIsZero"
               },
               {
                 "index": 10,
-                "name": "CollectionOwnerNotFound"
+                "name": "AuctionEndTimeIsBeforeStartTime"
               },
               {
                 "index": 11,
-                "name": "AuctionHasNoBids"
+                "name": "CollectionOwnerNotFound"
               },
               {
                 "index": 12,
-                "name": "AuctionNotEnded"
+                "name": "AuctionHasNoBids"
               },
               {
                 "index": 13,
-                "name": "BidPriceTooLow"
+                "name": "AuctionNotEnded"
               },
               {
                 "index": 14,
-                "name": "AuctionEnded"
+                "name": "BidPriceTooLow"
               },
               {
                 "index": 15,
-                "name": "AuctionNotStarted"
+                "name": "AuctionEnded"
               },
               {
                 "index": 16,
-                "name": "AuctionNotInAuction"
+                "name": "AuctionNotStarted"
               },
               {
                 "index": 17,
-                "name": "ListingNotOnSale"
+                "name": "AuctionNotInAuction"
               },
               {
                 "index": 18,
-                "name": "AuctionNotWaiting"
+                "name": "ListingNotOnSale"
               },
               {
                 "index": 19,
-                "name": "CallerIsNotAuctionOwner"
+                "name": "AuctionNotWaiting"
               },
               {
                 "index": 20,
-                "name": "CallerIsListingOwner"
+                "name": "CallerIsNotAuctionOwner"
               },
               {
                 "index": 21,
-                "name": "CallerIsNotListingOwner"
+                "name": "CallerIsListingOwner"
               },
               {
                 "index": 22,
-                "name": "AuctionNotFound"
+                "name": "CallerIsNotListingOwner"
               },
               {
                 "index": 23,
-                "name": "ListingNotFound"
+                "name": "AuctionNotFound"
               },
               {
                 "index": 24,
-                "name": "IntegerOverflow"
+                "name": "ListingNotFound"
               },
               {
                 "index": 25,
-                "name": "IntegerUnderflow"
+                "name": "IntegerOverflow"
               },
               {
                 "index": 26,
-                "name": "CollectionNotFound"
+                "name": "IntegerUnderflow"
               },
               {
                 "index": 27,
-                "name": "CallerIsNotNFTOwner"
+                "name": "CollectionNotFound"
               },
               {
                 "index": 28,
+                "name": "CollectionIsBanned"
+              },
+              {
+                "index": 29,
+                "name": "CollectionIsNotWhitelisted"
+              },
+              {
+                "index": 30,
+                "name": "CallerIsNotNFTOwner"
+              },
+              {
+                "index": 31,
                 "name": "TransferNativeError"
               },
               {
@@ -1207,7 +1219,7 @@
                     "typeName": "ownable::OwnableError"
                   }
                 ],
-                "index": 29,
+                "index": 32,
                 "name": "Ownable"
               },
               {
@@ -1217,7 +1229,7 @@
                     "typeName": "access_control::AccessControlError"
                   }
                 ],
-                "index": 30,
+                "index": 33,
                 "name": "AccessControl"
               },
               {
@@ -1227,7 +1239,7 @@
                     "typeName": "psp34::PSP34Error"
                   }
                 ],
-                "index": 31,
+                "index": 34,
                 "name": "PSP34"
               },
               {
@@ -1237,7 +1249,7 @@
                     "typeName": "psp22::PSP22Error"
                   }
                 ],
-                "index": 32,
+                "index": 35,
                 "name": "PSP22"
               },
               {
@@ -1247,7 +1259,7 @@
                     "typeName": "String"
                   }
                 ],
-                "index": 33,
+                "index": 36,
                 "name": "Other"
               }
             ]

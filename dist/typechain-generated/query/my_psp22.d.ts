@@ -12,6 +12,12 @@ export default class Methods {
     readonly __callerAddress: string;
     constructor(nativeContract: ContractPromise, nativeApi: ApiPromise, callerAddress: string);
     /**
+    * totalSupply
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "totalSupply"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
     * increaseAllowance
     *
     * @param { ArgumentTypes.AccountId } spender,
@@ -19,6 +25,14 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
     */
     "increaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError>>>;
+    /**
+    * allowance
+    *
+    * @param { ArgumentTypes.AccountId } owner,
+    * @param { ArgumentTypes.AccountId } spender,
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "allowance"(owner: ArgumentTypes.AccountId, spender: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
     /**
     * transferFrom
     *
@@ -30,6 +44,13 @@ export default class Methods {
     */
     "transferFrom"(from: ArgumentTypes.AccountId, to: ArgumentTypes.AccountId, value: (string | number | BN), data: Array<(number | string | BN)>, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError>>>;
     /**
+    * balanceOf
+    *
+    * @param { ArgumentTypes.AccountId } owner,
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "balanceOf"(owner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
     * transfer
     *
     * @param { ArgumentTypes.AccountId } to,
@@ -39,35 +60,6 @@ export default class Methods {
     */
     "transfer"(to: ArgumentTypes.AccountId, value: (string | number | BN), data: Array<(number | string | BN)>, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError>>>;
     /**
-    * decreaseAllowance
-    *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } deltaValue,
-    * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
-    */
-    "decreaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError>>>;
-    /**
-    * balanceOf
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "balanceOf"(owner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * allowance
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @param { ArgumentTypes.AccountId } spender,
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "allowance"(owner: ArgumentTypes.AccountId, spender: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * totalSupply
-    *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "totalSupply"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
     * approve
     *
     * @param { ArgumentTypes.AccountId } spender,
@@ -75,6 +67,14 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
     */
     "approve"(spender: ArgumentTypes.AccountId, value: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError>>>;
+    /**
+    * decreaseAllowance
+    *
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } deltaValue,
+    * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
+    */
+    "decreaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError>>>;
     /**
     * mint
     *

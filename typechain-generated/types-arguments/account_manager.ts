@@ -13,6 +13,7 @@ export interface ArchisinalError {
 	adminAccessError ? : null,
 	auctionMinBidStepIsZero ? : null,
 	creatorIsNotCaller ? : null,
+	codehashIsBanned ? : null,
 	auctionStartTimeIsBeforeNow ? : null,
 	callerIsAuctionOwner ? : null,
 	accountAlreadyExists ? : null,
@@ -36,6 +37,8 @@ export interface ArchisinalError {
 	integerOverflow ? : null,
 	integerUnderflow ? : null,
 	collectionNotFound ? : null,
+	collectionIsBanned ? : null,
+	collectionIsNotWhitelisted ? : null,
 	callerIsNotNftOwner ? : null,
 	transferNativeError ? : null,
 	ownable ? : OwnableError,
@@ -64,6 +67,11 @@ export class ArchisinalErrorBuilder {
 	static CreatorIsNotCaller(): ArchisinalError {
 		return {
 			creatorIsNotCaller: null,
+		};
+	}
+	static CodehashIsBanned(): ArchisinalError {
+		return {
+			codehashIsBanned: null,
 		};
 	}
 	static AuctionStartTimeIsBeforeNow(): ArchisinalError {
@@ -179,6 +187,16 @@ export class ArchisinalErrorBuilder {
 	static CollectionNotFound(): ArchisinalError {
 		return {
 			collectionNotFound: null,
+		};
+	}
+	static CollectionIsBanned(): ArchisinalError {
+		return {
+			collectionIsBanned: null,
+		};
+	}
+	static CollectionIsNotWhitelisted(): ArchisinalError {
+		return {
+			collectionIsNotWhitelisted: null,
 		};
 	}
 	static CallerIsNotNFTOwner(): ArchisinalError {

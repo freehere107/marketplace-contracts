@@ -8,3 +8,5 @@ pub mod marketplace;
 pub mod shared;
 pub mod timestamp_provider;
 pub mod user;
+pub mod collection_fabric;
+pub mod collection_access;

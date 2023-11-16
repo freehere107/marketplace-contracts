@@ -15,10 +15,43 @@ export default class Methods {
     */
     "accountId"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
+    * setCollectionAdditionalInfo
+    *
+    * @param { string } additionalInfo,
+    */
+    "setCollectionAdditionalInfo"(additionalInfo: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * collectionRoyalty
+    *
+    */
+    "collectionRoyalty"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
     * collectionName
     *
     */
     "collectionName"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * collectionUri
+    *
+    */
+    "collectionUri"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * collectionAdditionalInfo
+    *
+    */
+    "collectionAdditionalInfo"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * setCollectionName
+    *
+    * @param { string } name,
+    */
+    "setCollectionName"(name: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * setCollectionUri
+    *
+    * @param { string } uri,
+    */
+    "setCollectionUri"(uri: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * setAttribute
     *
@@ -27,39 +60,6 @@ export default class Methods {
     * @param { string } value,
     */
     "setAttribute"(id: ArgumentTypes.Id, key: string, value: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * setCollectionUri
-    *
-    * @param { string } uri,
-    */
-    "setCollectionUri"(uri: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * collectionRoyalty
-    *
-    */
-    "collectionRoyalty"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * setCollectionAdditionalInfo
-    *
-    * @param { string } additionalInfo,
-    */
-    "setCollectionAdditionalInfo"(additionalInfo: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * collectionAdditionalInfo
-    *
-    */
-    "collectionAdditionalInfo"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * collectionUri
-    *
-    */
-    "collectionUri"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * setCollectionName
-    *
-    * @param { string } name,
-    */
-    "setCollectionName"(name: string, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * transferOwnership
     *
@@ -77,11 +77,16 @@ export default class Methods {
     */
     "owner"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * ownerOf
+    * collectionId
     *
-    * @param { ArgumentTypes.Id } id,
     */
-    "ownerOf"(id: ArgumentTypes.Id, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "collectionId"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * balanceOf
+    *
+    * @param { ArgumentTypes.AccountId } owner,
+    */
+    "balanceOf"(owner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * approve
     *
@@ -90,6 +95,17 @@ export default class Methods {
     * @param { boolean } approved,
     */
     "approve"(operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, approved: boolean, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * ownerOf
+    *
+    * @param { ArgumentTypes.Id } id,
+    */
+    "ownerOf"(id: ArgumentTypes.Id, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * totalSupply
+    *
+    */
+    "totalSupply"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * allowance
     *
@@ -106,22 +122,6 @@ export default class Methods {
     * @param { Array<(number | string | BN)> } data,
     */
     "transfer"(to: ArgumentTypes.AccountId, id: ArgumentTypes.Id, data: Array<(number | string | BN)>, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * balanceOf
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    */
-    "balanceOf"(owner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * totalSupply
-    *
-    */
-    "totalSupply"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * collectionId
-    *
-    */
-    "collectionId"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * mint
     *

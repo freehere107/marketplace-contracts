@@ -10,6 +10,7 @@ use openbrush::contracts::psp34::PSP34Ref;
 use openbrush::traits::{AccountId, DefaultEnv, Storage};
 
 use crate::impls::auction::data::{Auction, AuctionStatus, Data};
+use crate::impls::collection_access::CollectionAccess;
 use crate::impls::shared::utils::apply_fee;
 use crate::impls::timestamp_provider::TimestampProviderImpl;
 use crate::traits::auction::AuctionInfo;
@@ -28,6 +29,7 @@ pub trait AuctionImpl:
     + AdminAccessImpl
     + AuctionEvents
     + TimestampProviderImpl
+    + CollectionAccess
 {
     fn get_auction_count(&self) -> u128 {
         self.data::<Data>().auction_count.get_or_default()
@@ -51,6 +53,8 @@ pub trait AuctionImpl:
         }: AuctionInfo,
     ) -> ProjectResult<u128> {
         let contract_address: AccountId = <Self as DefaultEnv>::env().account_id();
+
+        self.check_collection(collection)?;
 
         if PSP34Ref::owner_of(&collection, token_id.clone()) != Some(creator) {
             return Err(ArchisinalError::CallerIsNotNFTOwner);

@@ -7,6 +7,7 @@ pub mod account_manager;
 pub mod admin_access;
 pub mod auction;
 pub mod collection;
+pub mod collection_fabric;
 pub mod creator;
 pub mod events;
 pub mod marketplace;
@@ -22,6 +23,7 @@ pub enum ArchisinalError {
     AdminAccessError,
     AuctionMinBidStepIsZero,
     CreatorIsNotCaller,
+    CodehashIsBanned,
     AuctionStartTimeIsBeforeNow,
     CallerIsAuctionOwner,
     AccountAlreadyExists,
@@ -45,6 +47,8 @@ pub enum ArchisinalError {
     IntegerOverflow,
     IntegerUnderflow,
     CollectionNotFound,
+    CollectionIsBanned,
+    CollectionIsNotWhitelisted,
     CallerIsNotNFTOwner,
     TransferNativeError,
     Ownable(ownable::OwnableError),

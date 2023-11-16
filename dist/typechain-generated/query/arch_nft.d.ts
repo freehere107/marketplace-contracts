@@ -18,11 +18,50 @@ export default class Methods {
     */
     "accountId"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId, ReturnTypes.LangError>>>;
     /**
+    * setCollectionAdditionalInfo
+    *
+    * @param { string } additionalInfo,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "setCollectionAdditionalInfo"(additionalInfo: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * collectionRoyalty
+    *
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "collectionRoyalty"(__options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
+    /**
     * collectionName
     *
     * @returns { Result<string | null, ReturnTypes.LangError> }
     */
     "collectionName"(__options?: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
+    /**
+    * collectionUri
+    *
+    * @returns { Result<string | null, ReturnTypes.LangError> }
+    */
+    "collectionUri"(__options?: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
+    /**
+    * collectionAdditionalInfo
+    *
+    * @returns { Result<string | null, ReturnTypes.LangError> }
+    */
+    "collectionAdditionalInfo"(__options?: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
+    /**
+    * setCollectionName
+    *
+    * @param { string } name,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "setCollectionName"(name: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * setCollectionUri
+    *
+    * @param { string } uri,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "setCollectionUri"(uri: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * setAttribute
     *
@@ -32,45 +71,6 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "setAttribute"(id: ArgumentTypes.Id, key: string, value: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * setCollectionUri
-    *
-    * @param { string } uri,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "setCollectionUri"(uri: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * collectionRoyalty
-    *
-    * @returns { Result<number, ReturnTypes.LangError> }
-    */
-    "collectionRoyalty"(__options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
-    /**
-    * setCollectionAdditionalInfo
-    *
-    * @param { string } additionalInfo,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "setCollectionAdditionalInfo"(additionalInfo: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * collectionAdditionalInfo
-    *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionAdditionalInfo"(__options?: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
-    /**
-    * collectionUri
-    *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionUri"(__options?: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
-    /**
-    * setCollectionName
-    *
-    * @param { string } name,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "setCollectionName"(name: string, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * transferOwnership
     *
@@ -91,12 +91,18 @@ export default class Methods {
     */
     "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
-    * ownerOf
+    * collectionId
     *
-    * @param { ArgumentTypes.Id } id,
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    * @returns { Result<ReturnTypes.Id, ReturnTypes.LangError> }
     */
-    "ownerOf"(id: ArgumentTypes.Id, __options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    "collectionId"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Id, ReturnTypes.LangError>>>;
+    /**
+    * balanceOf
+    *
+    * @param { ArgumentTypes.AccountId } owner,
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "balanceOf"(owner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
     * approve
     *
@@ -106,6 +112,19 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.PSP34Error>, ReturnTypes.LangError> }
     */
     "approve"(operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, approved: boolean, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP34Error>, ReturnTypes.LangError>>>;
+    /**
+    * ownerOf
+    *
+    * @param { ArgumentTypes.Id } id,
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "ownerOf"(id: ArgumentTypes.Id, __options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    /**
+    * totalSupply
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "totalSupply"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
     /**
     * allowance
     *
@@ -124,25 +143,6 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.PSP34Error>, ReturnTypes.LangError> }
     */
     "transfer"(to: ArgumentTypes.AccountId, id: ArgumentTypes.Id, data: Array<(number | string | BN)>, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.PSP34Error>, ReturnTypes.LangError>>>;
-    /**
-    * balanceOf
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @returns { Result<number, ReturnTypes.LangError> }
-    */
-    "balanceOf"(owner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
-    /**
-    * totalSupply
-    *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "totalSupply"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * collectionId
-    *
-    * @returns { Result<ReturnTypes.Id, ReturnTypes.LangError> }
-    */
-    "collectionId"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Id, ReturnTypes.LangError>>>;
     /**
     * mint
     *

@@ -2,6 +2,7 @@
 pub mod data;
 /// SPDX-License-Identifier: MIT
 use crate::impls::admin_access::AdminAccessImpl;
+use crate::impls::collection_access::CollectionAccess;
 use ink::prelude::vec;
 use ink::prelude::vec::Vec;
 use openbrush::contracts::ownable;
@@ -22,7 +23,12 @@ use crate::traits::{ArchisinalError, ProjectResult};
 ///
 /// See `crate::traits::Marketplace` for more information.
 pub trait MarketplaceImpl:
-    Storage<Data> + Storage<ownable::Data> + Ownable + AdminAccessImpl + MarketplaceEvents
+    Storage<Data>
+    + Storage<ownable::Data>
+    + Ownable
+    + AdminAccessImpl
+    + MarketplaceEvents
+    + CollectionAccess
 {
     fn get_listing_count(&self) -> u128 {
         self.data::<Data>().listing_count.get_or_default()
@@ -45,6 +51,8 @@ pub trait MarketplaceImpl:
         if PSP34Ref::owner_of(&collection, token_id.clone()) != Some(creator) {
             return Err(ArchisinalError::CallerIsNotNFTOwner);
         }
+
+        self.check_collection(collection)?;
 
         PSP34Ref::transfer(&collection, contract_address, token_id.clone(), vec![])?;
 

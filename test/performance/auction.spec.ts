@@ -14,7 +14,7 @@ import {setupArchNFT} from "../shared/test-setups/arch_nft";
 import {setupMockAuction} from "../shared/test-setups/mock_auction";
 import {setupPSP22} from "../shared/test-setups/my_psp22";
 
-const LIST_NFT_FOR_AUCTION_MAX_FEE = new BN(26_000_000_000);
+const LIST_NFT_FOR_AUCTION_MAX_FEE = new BN(34_000_000_000);
 const START_AUCTION_MAX_FEE = new BN(4_500_000_000);
 const CANCEL_AUCTION_MAX_FEE = new BN(13_500_000_000);
 const BID_NFT_MAX_FEE = new BN(3_400_000_000);

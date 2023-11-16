@@ -8,19 +8,19 @@ class Methods {
         this.__apiPromise = apiPromise;
     }
     /**
-     * getUserData
-     *
-    */
-    "getUserData"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
-    }
-    /**
      * setUserData
      *
      * @param { ArgumentTypes.UserData } userInfo,
     */
     "setUserData"(userInfo, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::setUserData", [userInfo], __options);
+    }
+    /**
+     * getUserData
+     *
+    */
+    "getUserData"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
     }
     /**
      * getCollectionIdByIndex
@@ -50,14 +50,6 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "creator::createCollection", [name, uri, royalty, additionalInfo, codeHash], __options);
     }
     /**
-     * transferOwnership
-     *
-     * @param { ArgumentTypes.AccountId } newOwner,
-    */
-    "transferOwnership"(newOwner, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
-    }
-    /**
      * owner
      *
     */
@@ -70,6 +62,14 @@ class Methods {
     */
     "renounceOwnership"(__options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+    }
+    /**
+     * transferOwnership
+     *
+     * @param { ArgumentTypes.AccountId } newOwner,
+    */
+    "transferOwnership"(newOwner, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
     }
     /**
      * setCodeHash

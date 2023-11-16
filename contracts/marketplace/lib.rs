@@ -34,6 +34,8 @@
 mod marketplace {
     use archisinal_lib::impls::admin_access::AdminAccessImpl;
     use archisinal_lib::impls::auction::*;
+    use archisinal_lib::impls::collection_access;
+    use archisinal_lib::impls::collection_access::CollectionAccess;
     use archisinal_lib::impls::marketplace::data::Listing;
     use archisinal_lib::impls::marketplace::*;
     use archisinal_lib::impls::shared::consts::ADMIN;
@@ -196,17 +198,24 @@ mod marketplace {
         marketplace: marketplace::data::Data,
         #[storage_field]
         auction: auction::data::Data,
+        #[storage_field]
+        collection_access: collection_access::Data,
     }
 
     impl Contract {
         #[ink(constructor)]
-        pub fn new(owner: AccountId) -> Self {
+        pub fn new(owner: AccountId, collection_fabric_address: AccountId) -> Self {
             let mut instance = Self::default();
 
             ownable::Internal::_init_with_owner(&mut instance, owner);
             access_control::Internal::_init_with_admin(&mut instance, Some(owner));
             access_control::AccessControl::grant_role(&mut instance, ADMIN, Some(owner))
                 .expect("Failed to grant role");
+
+            CollectionAccess::set_collection_fabric_address(
+                &mut instance,
+                collection_fabric_address,
+            );
 
             instance
         }
@@ -217,6 +226,8 @@ mod marketplace {
     impl AuctionImpl for Contract {}
 
     impl AdminAccessImpl for Contract {}
+
+    impl CollectionAccess for Contract {}
 
     impl Marketplace for Contract {
         #[ink(message)]

@@ -14,6 +14,15 @@ class Methods {
         this.__keyringPair = keyringPair;
     }
     /**
+    * getListingCount
+    *
+    */
+    "getListingCount"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::getListingCount", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [], __options);
+    }
+    /**
     * getListingByIndex
     *
     * @param { (string | number | BN) } index,
@@ -22,20 +31,6 @@ class Methods {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::getListingByIndex", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
         }, [index], __options);
-    }
-    /**
-    * listNftForSale
-    *
-    * @param { ArgumentTypes.AccountId } creator,
-    * @param { ArgumentTypes.AccountId } collection,
-    * @param { ArgumentTypes.Id } tokenId,
-    * @param { (string | number | BN) } price,
-    * @param { ArgumentTypes.Currency } currency,
-    */
-    "listNftForSale"(creator, collection, tokenId, price, currency, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::listNftForSale", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [creator, collection, tokenId, price, currency], __options);
     }
     /**
     * cancelListing
@@ -58,15 +53,6 @@ class Methods {
         }, [listingId], __options);
     }
     /**
-    * getListingCount
-    *
-    */
-    "getListingCount"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::getListingCount", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [], __options);
-    }
-    /**
     * buyBatch
     *
     * @param { Array<(string | number | BN)> } ids,
@@ -77,14 +63,38 @@ class Methods {
         }, [ids], __options);
     }
     /**
-    * cancelAuction
+    * listNftForSale
+    *
+    * @param { ArgumentTypes.AccountId } creator,
+    * @param { ArgumentTypes.AccountId } collection,
+    * @param { ArgumentTypes.Id } tokenId,
+    * @param { (string | number | BN) } price,
+    * @param { ArgumentTypes.Currency } currency,
+    */
+    "listNftForSale"(creator, collection, tokenId, price, currency, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::listNftForSale", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [creator, collection, tokenId, price, currency], __options);
+    }
+    /**
+    * startAuction
     *
     * @param { (string | number | BN) } auctionId,
     */
-    "cancelAuction"(auctionId, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::cancelAuction", (events) => {
+    "startAuction"(auctionId, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::startAuction", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
         }, [auctionId], __options);
+    }
+    /**
+    * listNftForAuction
+    *
+    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
+    */
+    "listNftForAuction"(auctionInfo, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::listNftForAuction", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [auctionInfo], __options);
     }
     /**
     * getAuctionByIndex
@@ -95,6 +105,25 @@ class Methods {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::getAuctionByIndex", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
         }, [index], __options);
+    }
+    /**
+    * getAuctionCount
+    *
+    */
+    "getAuctionCount"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::getAuctionCount", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [], __options);
+    }
+    /**
+    * cancelAuction
+    *
+    * @param { (string | number | BN) } auctionId,
+    */
+    "cancelAuction"(auctionId, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::cancelAuction", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [auctionId], __options);
     }
     /**
     * bidNft
@@ -118,45 +147,6 @@ class Methods {
         }, [auctionId], __options);
     }
     /**
-    * listNftForAuction
-    *
-    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
-    */
-    "listNftForAuction"(auctionInfo, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::listNftForAuction", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [auctionInfo], __options);
-    }
-    /**
-    * startAuction
-    *
-    * @param { (string | number | BN) } auctionId,
-    */
-    "startAuction"(auctionId, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::startAuction", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [auctionId], __options);
-    }
-    /**
-    * getAuctionCount
-    *
-    */
-    "getAuctionCount"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::getAuctionCount", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * removeAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "removeAdmin"(accountId, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [accountId], __options);
-    }
-    /**
     * isAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
@@ -173,6 +163,16 @@ class Methods {
     */
     "addAdmin"(accountId, __options) {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [accountId], __options);
+    }
+    /**
+    * removeAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "removeAdmin"(accountId, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
         }, [accountId], __options);
     }
@@ -214,17 +214,6 @@ class Methods {
         }, [newOwner], __options);
     }
     /**
-    * renounceRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [role, account], __options);
-    }
-    /**
     * getRoleAdmin
     *
     * @param { (number | string | BN) } role,
@@ -235,15 +224,15 @@ class Methods {
         }, [role], __options);
     }
     /**
-    * revokeRole
+    * hasRole
     *
     * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
+    * @param { ArgumentTypes.AccountId | null } address,
     */
-    "revokeRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events) => {
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::hasRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [role, account], __options);
+        }, [role, address], __options);
     }
     /**
     * grantRole
@@ -257,15 +246,26 @@ class Methods {
         }, [role, account], __options);
     }
     /**
-    * hasRole
+    * renounceRole
     *
     * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
+    * @param { ArgumentTypes.AccountId | null } account,
     */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::hasRole", (events) => {
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
-        }, [role, address], __options);
+        }, [role, account], __options);
+    }
+    /**
+    * revokeRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    */
+    "revokeRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, marketplace_json_1.default);
+        }, [role, account], __options);
     }
     /**
     * setCodeHash

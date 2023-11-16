@@ -14,39 +14,21 @@ class Methods {
         this.__keyringPair = keyringPair;
     }
     /**
-    * createCreatorAccount
-    *
-    */
-    "createCreatorAccount"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createCreatorAccount", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * setCreatorCodeHash
+    * setUserCodeHash
     *
     * @param { ArgumentTypes.Hash } codeHash,
     */
-    "setCreatorCodeHash"(codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::setCreatorCodeHash", (events) => {
+    "setUserCodeHash"(codeHash, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::setUserCodeHash", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
         }, [codeHash], __options);
     }
     /**
-    * getUserCodeHash
+    * getCreatorCodeHash
     *
     */
-    "getUserCodeHash"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::getUserCodeHash", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * createAccount
-    *
-    */
-    "createAccount"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createAccount", (events) => {
+    "getCreatorCodeHash"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::getCreatorCodeHash", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
         }, [], __options);
     }
@@ -61,12 +43,12 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * setUserCodeHash
+    * setCreatorCodeHash
     *
     * @param { ArgumentTypes.Hash } codeHash,
     */
-    "setUserCodeHash"(codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::setUserCodeHash", (events) => {
+    "setCreatorCodeHash"(codeHash, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::setCreatorCodeHash", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
         }, [codeHash], __options);
     }
@@ -81,23 +63,31 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * getCreatorCodeHash
+    * getUserCodeHash
     *
     */
-    "getCreatorCodeHash"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::getCreatorCodeHash", (events) => {
+    "getUserCodeHash"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::getUserCodeHash", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
         }, [], __options);
     }
     /**
-    * isAdmin
+    * createCreatorAccount
     *
-    * @param { ArgumentTypes.AccountId } accountId,
     */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::isAdmin", (events) => {
+    "createCreatorAccount"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createCreatorAccount", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [accountId], __options);
+        }, [], __options);
+    }
+    /**
+    * createAccount
+    *
+    */
+    "createAccount"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createAccount", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
+        }, [], __options);
     }
     /**
     * addAdmin
@@ -120,23 +110,14 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * transferOwnership
+    * isAdmin
     *
-    * @param { ArgumentTypes.AccountId } newOwner,
+    * @param { ArgumentTypes.AccountId } accountId,
     */
-    "transferOwnership"(newOwner, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::isAdmin", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [newOwner], __options);
-    }
-    /**
-    * renounceOwnership
-    *
-    */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [], __options);
+        }, [accountId], __options);
     }
     /**
     * owner
@@ -148,15 +129,23 @@ class Methods {
         }, [], __options);
     }
     /**
-    * renounceRole
+    * renounceOwnership
     *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
     */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [role, account], __options);
+        }, [], __options);
+    }
+    /**
+    * transferOwnership
+    *
+    * @param { ArgumentTypes.AccountId } newOwner,
+    */
+    "transferOwnership"(newOwner, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
+        }, [newOwner], __options);
     }
     /**
     * revokeRole
@@ -170,15 +159,15 @@ class Methods {
         }, [role, account], __options);
     }
     /**
-    * grantRole
+    * hasRole
     *
     * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
+    * @param { ArgumentTypes.AccountId | null } address,
     */
-    "grantRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::hasRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [role, account], __options);
+        }, [role, address], __options);
     }
     /**
     * getRoleAdmin
@@ -191,15 +180,26 @@ class Methods {
         }, [role], __options);
     }
     /**
-    * hasRole
+    * renounceRole
     *
     * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
+    * @param { ArgumentTypes.AccountId | null } account,
     */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::hasRole", (events) => {
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
-        }, [role, address], __options);
+        }, [role, account], __options);
+    }
+    /**
+    * grantRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    */
+    "grantRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, account_manager_json_1.default);
+        }, [role, account], __options);
     }
     /**
     * setCodeHash

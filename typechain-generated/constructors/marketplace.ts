@@ -24,9 +24,11 @@ export default class Constructors {
 	* new
 	*
 	* @param { ArgumentTypes.AccountId } owner,
+	* @param { ArgumentTypes.AccountId } collectionFabricAddress,
 	*/
    	async "new" (
 		owner: ArgumentTypes.AccountId,
+		collectionFabricAddress: ArgumentTypes.AccountId,
 		__options ? : ConstructorOptions,
    	) {
    		const __contract = JSON.parse(ContractFile);
@@ -34,7 +36,7 @@ export default class Constructors {
 		const gasLimit = (await _genValidGasLimitAndValue(this.nativeAPI, __options)).gasLimit as WeightV2;
 
 		const storageDepositLimit = __options?.storageDepositLimit;
-			const tx = code.tx["new"]!({ gasLimit, storageDepositLimit, value: __options?.value }, owner);
+			const tx = code.tx["new"]!({ gasLimit, storageDepositLimit, value: __options?.value }, owner, collectionFabricAddress);
 			let response;
 
 			try {

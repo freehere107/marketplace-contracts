@@ -116,16 +116,6 @@ export declare class PSP22ErrorBuilder {
     static ZeroSenderAddress(): PSP22Error;
     static SafeTransferCheckFailed(value: string): PSP22Error;
 }
-export type Listing = {
-    id: (string | number | BN);
-    creator: AccountId;
-    collection: AccountId;
-    tokenId: Id;
-    price: (string | number | BN);
-    currency: Currency;
-    status: ListingStatus;
-    royalty: (number | string | BN);
-};
 export interface Id {
     u8?: (number | string | BN);
     u16?: (number | string | BN);
@@ -150,6 +140,16 @@ export declare class CurrencyBuilder {
     static Native(): Currency;
     static Custom(value: AccountId): Currency;
 }
+export type Listing = {
+    id: (string | number | BN);
+    creator: AccountId;
+    collection: AccountId;
+    tokenId: Id;
+    price: (string | number | BN);
+    currency: Currency;
+    status: ListingStatus;
+    royalty: (number | string | BN);
+};
 export declare enum ListingStatus {
     onSale = "OnSale",
     sold = "Sold",

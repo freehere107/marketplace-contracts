@@ -23,7 +23,7 @@ import {setupArchNFT} from "../shared/test-setups/arch_nft";
 import {setupMarketplace} from "../shared/test-setups/marketplace";
 import {setupPSP22} from "../shared/test-setups/my_psp22";
 
-const LIST_NFT_FOR_SALE_MAX_FEE = new BN(25_000_000_000);
+const LIST_NFT_FOR_SALE_MAX_FEE = new BN(34_000_000_000);
 const CANCEL_LISTING_MAX_FEE = new BN(14_000_000_000);
 const BUY_NFT_MAX_FEE = new BN(21_000_000_000);
 const BUY_BATCH_MAX_FEE = new BN(32_000_000_000);

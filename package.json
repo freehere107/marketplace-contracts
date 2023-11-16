@@ -7,10 +7,10 @@
     "node": ">=18.14.0"
   },
   "scripts": {
-    "run-typechain-compiler": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68",
-    "run-typechain-compiler:ci": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68 --release",
-    "build:release": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --toolchain 1.68 --release",
-    "deploy:local": "yarn build:release && ts-node ./deploy/local.ts",
+    "run-typechain-compiler": "npx @727-ventures/typechain-compiler --config ./typechain.config.json",
+    "run-typechain-compiler:ci": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --release",
+    "build:release": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --release",
+    "deploy:local": "ts-node ./deploy/local.ts",
     "deploy:shibuya": "yarn build:release && ts-node ./deploy/shibuya.ts",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
     "test:mocha": "yarn raw-mocha \"./test/**/*.spec.ts\"",
@@ -32,6 +32,8 @@
     "test:mocha:auction-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:auction; kill $pid",
     "test:mocha:admin_access": "yarn raw-mocha \"./test/**/admin_access.spec.ts\"",
     "test:mocha:admin_access-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:admin_access; kill $pid",
+    "test:mocha:collection_fabric": "yarn raw-mocha \"./test/**/collection_fabric.spec.ts\"",
+    "test:mocha:collection_fabric-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha:collection_fabric; kill $pid",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublish": "tsc"

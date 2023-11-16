@@ -7,53 +7,12 @@ export enum LangError {
 	couldNotReadInput = 'CouldNotReadInput'
 }
 
-export interface Id {
-	u8 ? : number,
-	u16 ? : number,
-	u32 ? : number,
-	u64 ? : number,
-	u128 ? : ReturnNumber,
-	bytes ? : Array<number>
-}
-
-export class IdBuilder {
-	static U8(value: number): Id {
-		return {
-			u8: value,
-		};
-	}
-	static U16(value: number): Id {
-		return {
-			u16: value,
-		};
-	}
-	static U32(value: number): Id {
-		return {
-			u32: value,
-		};
-	}
-	static U64(value: number): Id {
-		return {
-			u64: value,
-		};
-	}
-	static U128(value: ReturnNumber): Id {
-		return {
-			u128: value,
-		};
-	}
-	static Bytes(value: Array<number>): Id {
-		return {
-			bytes: value,
-		};
-	}
-}
-
 export interface ArchisinalError {
 	noOwner ? : null,
 	adminAccessError ? : null,
 	auctionMinBidStepIsZero ? : null,
 	creatorIsNotCaller ? : null,
+	codehashIsBanned ? : null,
 	auctionStartTimeIsBeforeNow ? : null,
 	callerIsAuctionOwner ? : null,
 	accountAlreadyExists ? : null,
@@ -77,6 +36,8 @@ export interface ArchisinalError {
 	integerOverflow ? : null,
 	integerUnderflow ? : null,
 	collectionNotFound ? : null,
+	collectionIsBanned ? : null,
+	collectionIsNotWhitelisted ? : null,
 	callerIsNotNftOwner ? : null,
 	transferNativeError ? : null,
 	ownable ? : OwnableError,
@@ -105,6 +66,11 @@ export class ArchisinalErrorBuilder {
 	static CreatorIsNotCaller(): ArchisinalError {
 		return {
 			creatorIsNotCaller: null,
+		};
+	}
+	static CodehashIsBanned(): ArchisinalError {
+		return {
+			codehashIsBanned: null,
 		};
 	}
 	static AuctionStartTimeIsBeforeNow(): ArchisinalError {
@@ -220,6 +186,16 @@ export class ArchisinalErrorBuilder {
 	static CollectionNotFound(): ArchisinalError {
 		return {
 			collectionNotFound: null,
+		};
+	}
+	static CollectionIsBanned(): ArchisinalError {
+		return {
+			collectionIsBanned: null,
+		};
+	}
+	static CollectionIsNotWhitelisted(): ArchisinalError {
+		return {
+			collectionIsNotWhitelisted: null,
 		};
 	}
 	static CallerIsNotNFTOwner(): ArchisinalError {
@@ -350,6 +326,48 @@ export class PSP22ErrorBuilder {
 	static SafeTransferCheckFailed(value: string): PSP22Error {
 		return {
 			safeTransferCheckFailed: value,
+		};
+	}
+}
+
+export interface Id {
+	u8 ? : number,
+	u16 ? : number,
+	u32 ? : number,
+	u64 ? : number,
+	u128 ? : ReturnNumber,
+	bytes ? : Array<number>
+}
+
+export class IdBuilder {
+	static U8(value: number): Id {
+		return {
+			u8: value,
+		};
+	}
+	static U16(value: number): Id {
+		return {
+			u16: value,
+		};
+	}
+	static U32(value: number): Id {
+		return {
+			u32: value,
+		};
+	}
+	static U64(value: number): Id {
+		return {
+			u64: value,
+		};
+	}
+	static U128(value: ReturnNumber): Id {
+		return {
+			u128: value,
+		};
+	}
+	static Bytes(value: Array<number>): Id {
+		return {
+			bytes: value,
 		};
 	}
 }
