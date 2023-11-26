@@ -18,6 +18,12 @@ export default class Methods {
     */
     "setUserData"(userInfo: ArgumentTypes.UserData, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
+     * transferOwnership
+     *
+     * @param { ArgumentTypes.AccountId } newOwner,
+    */
+    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
      * renounceOwnership
      *
     */
@@ -27,12 +33,6 @@ export default class Methods {
      *
     */
     "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * transferOwnership
-     *
-     * @param { ArgumentTypes.AccountId } newOwner,
-    */
-    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * setCodeHash
      *

@@ -12,6 +12,82 @@ export default class Methods {
     readonly __callerAddress: string;
     constructor(nativeContract: ContractPromise, nativeApi: ApiPromise, callerAddress: string);
     /**
+    * unbanCollection
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "unbanCollection"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * isWhitelistEnabled
+    *
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isWhitelistEnabled"(__options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * isCollectionDeployed
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isCollectionDeployed"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * unbanCodehash
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "unbanCodehash"(codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * isCodehashBanned
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isCodehashBanned"(codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * collectionCount
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "collectionCount"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
+    * banCodehash
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "banCodehash"(codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * whitelistCollection
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "whitelistCollection"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * isBanned
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isBanned"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * isWhitelisted
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isWhitelisted"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * instantiateCollection
+    *
+    * @param { ArgumentTypes.CollectionInfo } collectionInfo,
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { Result<Result<[ReturnNumber, ReturnTypes.AccountId], ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "instantiateCollection"(collectionInfo: ArgumentTypes.CollectionInfo, codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<[ReturnNumber, ReturnTypes.AccountId], ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
     * collection
     *
     * @param { (string | number | BN) } index,
@@ -26,35 +102,6 @@ export default class Methods {
     */
     "banCollection"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * unbanCodehash
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "unbanCodehash"(codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * instantiateCollection
-    *
-    * @param { ArgumentTypes.CollectionInfo } collectionInfo,
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { Result<Result<[ReturnNumber, ReturnTypes.AccountId], ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "instantiateCollection"(collectionInfo: ArgumentTypes.CollectionInfo, codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<[ReturnNumber, ReturnTypes.AccountId], ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * banCodehash
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "banCodehash"(codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * isBanned
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isBanned"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
     * setWhitelistEnabled
     *
     * @param { boolean } enabled,
@@ -62,52 +109,12 @@ export default class Methods {
     */
     "setWhitelistEnabled"(enabled: boolean, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * isWhitelistEnabled
+    * isAdmin
     *
+    * @param { ArgumentTypes.AccountId } accountId,
     * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "isWhitelistEnabled"(__options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * isWhitelisted
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isWhitelisted"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * collectionCount
-    *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "collectionCount"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * isCodehashBanned
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isCodehashBanned"(codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * unbanCollection
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "unbanCollection"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * isCollectionDeployed
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isCollectionDeployed"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * whitelistCollection
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "whitelistCollection"(collection: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    "isAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * addAdmin
     *
@@ -123,20 +130,6 @@ export default class Methods {
     */
     "removeAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * transferOwnership
-    *
-    * @param { ArgumentTypes.AccountId } newOwner,
-    * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
-    */
-    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
-    /**
     * owner
     *
     * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
@@ -149,21 +142,20 @@ export default class Methods {
     */
     "renounceOwnership"(__options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
     /**
-    * grantRole
+    * transferOwnership
     *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId } newOwner,
+    * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
     */
-    "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
+    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
     /**
-    * renounceRole
+    * revokeRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
-    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
+    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
     /**
     * hasRole
     *
@@ -173,6 +165,14 @@ export default class Methods {
     */
     "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
+    * renounceRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
+    */
+    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
+    /**
     * getRoleAdmin
     *
     * @param { (number | string | BN) } role,
@@ -180,13 +180,13 @@ export default class Methods {
     */
     "getRoleAdmin"(role: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
-    * revokeRole
+    * grantRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
-    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
+    "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
     /**
     * setCodeHash
     *

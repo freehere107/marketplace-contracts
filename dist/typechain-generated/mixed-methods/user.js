@@ -37,6 +37,17 @@ class Methods {
         }, [userInfo], __options);
     }
     /**
+    * transferOwnership
+    *
+    * @param { ArgumentTypes.AccountId } newOwner,
+    * @returns { void }
+    */
+    "transferOwnership"(newOwner, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, user_json_2.default);
+        }, [newOwner], __options);
+    }
+    /**
     * renounceOwnership
     *
     * @returns { void }
@@ -53,17 +64,6 @@ class Methods {
     */
     "owner"(__options) {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(27, user_json_1.default)); });
-    }
-    /**
-    * transferOwnership
-    *
-    * @param { ArgumentTypes.AccountId } newOwner,
-    * @returns { void }
-    */
-    "transferOwnership"(newOwner, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, user_json_2.default);
-        }, [newOwner], __options);
     }
     /**
     * setCodeHash

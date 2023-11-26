@@ -14,6 +14,115 @@ class Methods {
         this.__keyringPair = keyringPair;
     }
     /**
+    * unbanCollection
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    */
+    "unbanCollection"(collection, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCollection", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [collection], __options);
+    }
+    /**
+    * isWhitelistEnabled
+    *
+    */
+    "isWhitelistEnabled"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isWhitelistEnabled", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [], __options);
+    }
+    /**
+    * isCollectionDeployed
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    */
+    "isCollectionDeployed"(collection, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isCollectionDeployed", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [collection], __options);
+    }
+    /**
+    * unbanCodehash
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "unbanCodehash"(codeHash, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCodehash", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [codeHash], __options);
+    }
+    /**
+    * isCodehashBanned
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "isCodehashBanned"(codeHash, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isCodehashBanned", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [codeHash], __options);
+    }
+    /**
+    * collectionCount
+    *
+    */
+    "collectionCount"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::collectionCount", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [], __options);
+    }
+    /**
+    * banCodehash
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "banCodehash"(codeHash, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::banCodehash", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [codeHash], __options);
+    }
+    /**
+    * whitelistCollection
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    */
+    "whitelistCollection"(collection, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::whitelistCollection", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [collection], __options);
+    }
+    /**
+    * isBanned
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    */
+    "isBanned"(collection, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isBanned", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [collection], __options);
+    }
+    /**
+    * isWhitelisted
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    */
+    "isWhitelisted"(collection, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isWhitelisted", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [collection], __options);
+    }
+    /**
+    * instantiateCollection
+    *
+    * @param { ArgumentTypes.CollectionInfo } collectionInfo,
+    * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "instantiateCollection"(collectionInfo, codeHash, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::instantiateCollection", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [collectionInfo, codeHash], __options);
+    }
+    /**
     * collection
     *
     * @param { (string | number | BN) } index,
@@ -34,47 +143,6 @@ class Methods {
         }, [collection], __options);
     }
     /**
-    * unbanCodehash
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "unbanCodehash"(codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCodehash", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [codeHash], __options);
-    }
-    /**
-    * instantiateCollection
-    *
-    * @param { ArgumentTypes.CollectionInfo } collectionInfo,
-    * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "instantiateCollection"(collectionInfo, codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::instantiateCollection", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [collectionInfo, codeHash], __options);
-    }
-    /**
-    * banCodehash
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "banCodehash"(codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::banCodehash", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [codeHash], __options);
-    }
-    /**
-    * isBanned
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    */
-    "isBanned"(collection, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isBanned", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [collection], __options);
-    }
-    /**
     * setWhitelistEnabled
     *
     * @param { boolean } enabled,
@@ -85,72 +153,14 @@ class Methods {
         }, [enabled], __options);
     }
     /**
-    * isWhitelistEnabled
+    * isAdmin
     *
+    * @param { ArgumentTypes.AccountId } accountId,
     */
-    "isWhitelistEnabled"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isWhitelistEnabled", (events) => {
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::isAdmin", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * isWhitelisted
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    */
-    "isWhitelisted"(collection, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isWhitelisted", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [collection], __options);
-    }
-    /**
-    * collectionCount
-    *
-    */
-    "collectionCount"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::collectionCount", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * isCodehashBanned
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "isCodehashBanned"(codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isCodehashBanned", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [codeHash], __options);
-    }
-    /**
-    * unbanCollection
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    */
-    "unbanCollection"(collection, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCollection", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [collection], __options);
-    }
-    /**
-    * isCollectionDeployed
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    */
-    "isCollectionDeployed"(collection, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isCollectionDeployed", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [collection], __options);
-    }
-    /**
-    * whitelistCollection
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    */
-    "whitelistCollection"(collection, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::whitelistCollection", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [collection], __options);
+        }, [accountId], __options);
     }
     /**
     * addAdmin
@@ -173,26 +183,6 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::isAdmin", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [accountId], __options);
-    }
-    /**
-    * transferOwnership
-    *
-    * @param { ArgumentTypes.AccountId } newOwner,
-    */
-    "transferOwnership"(newOwner, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [newOwner], __options);
-    }
-    /**
     * owner
     *
     */
@@ -211,24 +201,23 @@ class Methods {
         }, [], __options);
     }
     /**
-    * grantRole
+    * transferOwnership
     *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
+    * @param { ArgumentTypes.AccountId } newOwner,
     */
-    "grantRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
+    "transferOwnership"(newOwner, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
-        }, [role, account], __options);
+        }, [newOwner], __options);
     }
     /**
-    * renounceRole
+    * revokeRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
+    "revokeRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
         }, [role, account], __options);
     }
@@ -244,6 +233,17 @@ class Methods {
         }, [role, address], __options);
     }
     /**
+    * renounceRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    */
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
+        }, [role, account], __options);
+    }
+    /**
     * getRoleAdmin
     *
     * @param { (number | string | BN) } role,
@@ -254,13 +254,13 @@ class Methods {
         }, [role], __options);
     }
     /**
-    * revokeRole
+    * grantRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "revokeRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events) => {
+    "grantRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, collection_fabric_json_1.default);
         }, [role, account], __options);
     }

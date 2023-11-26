@@ -14,6 +14,82 @@ export default class Methods {
     readonly __apiPromise: ApiPromise;
     constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
     /**
+    * unbanCollection
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { void }
+    */
+    "unbanCollection"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * isWhitelistEnabled
+    *
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isWhitelistEnabled"(__options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * isCollectionDeployed
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isCollectionDeployed"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * unbanCodehash
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { void }
+    */
+    "unbanCodehash"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * isCodehashBanned
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isCodehashBanned"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * collectionCount
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "collectionCount"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
+    * banCodehash
+    *
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { void }
+    */
+    "banCodehash"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * whitelistCollection
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { void }
+    */
+    "whitelistCollection"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * isBanned
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isBanned"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * isWhitelisted
+    *
+    * @param { ArgumentTypes.AccountId } collection,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isWhitelisted"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
+    * instantiateCollection
+    *
+    * @param { ArgumentTypes.CollectionInfo } collectionInfo,
+    * @param { ArgumentTypes.Hash } codeHash,
+    * @returns { void }
+    */
+    "instantiateCollection"(collectionInfo: ArgumentTypes.CollectionInfo, codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
     * collection
     *
     * @param { (string | number | BN) } index,
@@ -28,35 +104,6 @@ export default class Methods {
     */
     "banCollection"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * unbanCodehash
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { void }
-    */
-    "unbanCodehash"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * instantiateCollection
-    *
-    * @param { ArgumentTypes.CollectionInfo } collectionInfo,
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { void }
-    */
-    "instantiateCollection"(collectionInfo: ArgumentTypes.CollectionInfo, codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * banCodehash
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { void }
-    */
-    "banCodehash"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * isBanned
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isBanned"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
     * setWhitelistEnabled
     *
     * @param { boolean } enabled,
@@ -64,52 +111,12 @@ export default class Methods {
     */
     "setWhitelistEnabled"(enabled: boolean, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * isWhitelistEnabled
+    * isAdmin
     *
+    * @param { ArgumentTypes.AccountId } accountId,
     * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "isWhitelistEnabled"(__options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * isWhitelisted
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isWhitelisted"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * collectionCount
-    *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "collectionCount"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
-    /**
-    * isCodehashBanned
-    *
-    * @param { ArgumentTypes.Hash } codeHash,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isCodehashBanned"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * unbanCollection
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { void }
-    */
-    "unbanCollection"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * isCollectionDeployed
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isCollectionDeployed"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * whitelistCollection
-    *
-    * @param { ArgumentTypes.AccountId } collection,
-    * @returns { void }
-    */
-    "whitelistCollection"(collection: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * addAdmin
     *
@@ -125,20 +132,6 @@ export default class Methods {
     */
     "removeAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * transferOwnership
-    *
-    * @param { ArgumentTypes.AccountId } newOwner,
-    * @returns { void }
-    */
-    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
     * owner
     *
     * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
@@ -151,21 +144,20 @@ export default class Methods {
     */
     "renounceOwnership"(__options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * grantRole
+    * transferOwnership
     *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
+    * @param { ArgumentTypes.AccountId } newOwner,
     * @returns { void }
     */
-    "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * renounceRole
+    * revokeRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     * @returns { void }
     */
-    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * hasRole
     *
@@ -175,6 +167,14 @@ export default class Methods {
     */
     "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
+    * renounceRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { void }
+    */
+    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
     * getRoleAdmin
     *
     * @param { (number | string | BN) } role,
@@ -182,13 +182,13 @@ export default class Methods {
     */
     "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
-    * revokeRole
+    * grantRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     * @returns { void }
     */
-    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * setCodeHash
     *

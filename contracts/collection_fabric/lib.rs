@@ -126,7 +126,10 @@ mod collection_fabric {
             collection_info: CollectionInfo,
             code_hash: Hash,
         ) -> ProjectResult<AccountId> {
-            let contract = arch_nft::ContractRef::new(
+            let caller = self.env().caller();
+
+            let contract = arch_nft::ContractRef::new_default(
+                caller,
                 collection_info.royalty,
                 collection_info.name,
                 collection_info.uri,

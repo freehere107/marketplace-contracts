@@ -215,6 +215,33 @@
         "selector": "0xda164d97"
       },
       {
+        "args": [
+          {
+            "label": "new_owner",
+            "type": {
+              "displayName": [
+                "ownable_external",
+                "TransferOwnershipInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::transfer_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 25
+        },
+        "selector": "0x11f43efd"
+      },
+      {
         "args": [],
         "default": false,
         "docs": [],
@@ -245,33 +272,6 @@
           "type": 27
         },
         "selector": "0x4fa43c8c"
-      },
-      {
-        "args": [
-          {
-            "label": "new_owner",
-            "type": {
-              "displayName": [
-                "ownable_external",
-                "TransferOwnershipInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::transfer_ownership",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 25
-        },
-        "selector": "0x11f43efd"
       },
       {
         "args": [

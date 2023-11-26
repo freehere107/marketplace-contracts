@@ -20,12 +20,6 @@ export default class Methods {
     */
     "accountId"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId, ReturnTypes.LangError>>>;
     /**
-    * collectionName
-    *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionName"(__options: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
-    /**
     * setCollectionAdditionalInfo
     *
     * @param { string } additionalInfo,
@@ -33,18 +27,12 @@ export default class Methods {
     */
     "setCollectionAdditionalInfo"(additionalInfo: string, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * collectionUri
+    * setCollectionUri
     *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionUri"(__options: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
-    /**
-    * setCollectionName
-    *
-    * @param { string } name,
+    * @param { string } uri,
     * @returns { void }
     */
-    "setCollectionName"(name: string, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "setCollectionUri"(uri: string, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * collectionAdditionalInfo
     *
@@ -52,12 +40,17 @@ export default class Methods {
     */
     "collectionAdditionalInfo"(__options: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
     /**
-    * setCollectionUri
+    * collectionUri
     *
-    * @param { string } uri,
-    * @returns { void }
+    * @returns { Result<string | null, ReturnTypes.LangError> }
     */
-    "setCollectionUri"(uri: string, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "collectionUri"(__options: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
+    /**
+    * collectionName
+    *
+    * @returns { Result<string | null, ReturnTypes.LangError> }
+    */
+    "collectionName"(__options: GasLimit): Promise<QueryReturnType<Result<string | null, ReturnTypes.LangError>>>;
     /**
     * collectionRoyalty
     *
@@ -74,11 +67,12 @@ export default class Methods {
     */
     "setAttribute"(id: ArgumentTypes.Id, key: string, value: string, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * owner
+    * setCollectionName
     *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    * @param { string } name,
+    * @returns { void }
     */
-    "owner"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    "setCollectionName"(name: string, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * renounceOwnership
     *
@@ -86,21 +80,18 @@ export default class Methods {
     */
     "renounceOwnership"(__options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    /**
     * transferOwnership
     *
     * @param { ArgumentTypes.AccountId } newOwner,
     * @returns { void }
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * transfer
-    *
-    * @param { ArgumentTypes.AccountId } to,
-    * @param { ArgumentTypes.Id } id,
-    * @param { Array<(number | string | BN)> } data,
-    * @returns { void }
-    */
-    "transfer"(to: ArgumentTypes.AccountId, id: ArgumentTypes.Id, data: Array<(number | string | BN)>, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * totalSupply
     *
@@ -115,11 +106,14 @@ export default class Methods {
     */
     "ownerOf"(id: ArgumentTypes.Id, __options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
-    * collectionId
+    * allowance
     *
-    * @returns { Result<ReturnTypes.Id, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId } owner,
+    * @param { ArgumentTypes.AccountId } operator,
+    * @param { ArgumentTypes.Id | null } id,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "collectionId"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Id, ReturnTypes.LangError>>>;
+    "allowance"(owner: ArgumentTypes.AccountId, operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * balanceOf
     *
@@ -137,14 +131,20 @@ export default class Methods {
     */
     "approve"(operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, approved: boolean, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * allowance
+    * collectionId
     *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @param { ArgumentTypes.AccountId } operator,
-    * @param { ArgumentTypes.Id | null } id,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
+    * @returns { Result<ReturnTypes.Id, ReturnTypes.LangError> }
     */
-    "allowance"(owner: ArgumentTypes.AccountId, operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    "collectionId"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Id, ReturnTypes.LangError>>>;
+    /**
+    * transfer
+    *
+    * @param { ArgumentTypes.AccountId } to,
+    * @param { ArgumentTypes.Id } id,
+    * @param { Array<(number | string | BN)> } data,
+    * @returns { void }
+    */
+    "transfer"(to: ArgumentTypes.AccountId, id: ArgumentTypes.Id, data: Array<(number | string | BN)>, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * mint
     *

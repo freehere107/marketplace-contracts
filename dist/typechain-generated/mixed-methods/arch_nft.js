@@ -26,14 +26,6 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountId", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(10, arch_nft_json_1.default)); });
     }
     /**
-    * collectionName
-    *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionName"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "collection::collectionName", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(11, arch_nft_json_1.default)); });
-    }
-    /**
     * setCollectionAdditionalInfo
     *
     * @param { string } additionalInfo,
@@ -45,33 +37,6 @@ class Methods {
         }, [additionalInfo], __options);
     }
     /**
-    * collectionUri
-    *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionUri"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "collection::collectionUri", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(11, arch_nft_json_1.default)); });
-    }
-    /**
-    * setCollectionName
-    *
-    * @param { string } name,
-    * @returns { void }
-    */
-    "setCollectionName"(name, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::setCollectionName", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, arch_nft_json_2.default);
-        }, [name], __options);
-    }
-    /**
-    * collectionAdditionalInfo
-    *
-    * @returns { Result<string | null, ReturnTypes.LangError> }
-    */
-    "collectionAdditionalInfo"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "collection::collectionAdditionalInfo", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(11, arch_nft_json_1.default)); });
-    }
-    /**
     * setCollectionUri
     *
     * @param { string } uri,
@@ -81,6 +46,30 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::setCollectionUri", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, arch_nft_json_2.default);
         }, [uri], __options);
+    }
+    /**
+    * collectionAdditionalInfo
+    *
+    * @returns { Result<string | null, ReturnTypes.LangError> }
+    */
+    "collectionAdditionalInfo"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "collection::collectionAdditionalInfo", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(18, arch_nft_json_1.default)); });
+    }
+    /**
+    * collectionUri
+    *
+    * @returns { Result<string | null, ReturnTypes.LangError> }
+    */
+    "collectionUri"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "collection::collectionUri", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(18, arch_nft_json_1.default)); });
+    }
+    /**
+    * collectionName
+    *
+    * @returns { Result<string | null, ReturnTypes.LangError> }
+    */
+    "collectionName"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "collection::collectionName", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(18, arch_nft_json_1.default)); });
     }
     /**
     * collectionRoyalty
@@ -104,12 +93,15 @@ class Methods {
         }, [id, key, value], __options);
     }
     /**
-    * owner
+    * setCollectionName
     *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    * @param { string } name,
+    * @returns { void }
     */
-    "owner"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(24, arch_nft_json_1.default)); });
+    "setCollectionName"(name, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::setCollectionName", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, arch_nft_json_2.default);
+        }, [name], __options);
     }
     /**
     * renounceOwnership
@@ -120,6 +112,14 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, arch_nft_json_2.default);
         }, [], __options);
+    }
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(26, arch_nft_json_1.default)); });
     }
     /**
     * transferOwnership
@@ -133,25 +133,12 @@ class Methods {
         }, [newOwner], __options);
     }
     /**
-    * transfer
-    *
-    * @param { ArgumentTypes.AccountId } to,
-    * @param { ArgumentTypes.Id } id,
-    * @param { Array<(number | string | BN)> } data,
-    * @returns { void }
-    */
-    "transfer"(to, id, data, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::transfer", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, arch_nft_json_2.default);
-        }, [to, id, data], __options);
-    }
-    /**
     * totalSupply
     *
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
     */
     "totalSupply"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::totalSupply", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(30, arch_nft_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::totalSupply", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(28, arch_nft_json_1.default)); });
     }
     /**
     * ownerOf
@@ -160,15 +147,18 @@ class Methods {
     * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
     */
     "ownerOf"(id, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::ownerOf", [id], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(24, arch_nft_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::ownerOf", [id], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(26, arch_nft_json_1.default)); });
     }
     /**
-    * collectionId
+    * allowance
     *
-    * @returns { Result<ReturnTypes.Id, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId } owner,
+    * @param { ArgumentTypes.AccountId } operator,
+    * @param { ArgumentTypes.Id | null } id,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "collectionId"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::collectionId", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(31, arch_nft_json_1.default)); });
+    "allowance"(owner, operator, id, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::allowance", [owner, operator, id], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(30, arch_nft_json_1.default)); });
     }
     /**
     * balanceOf
@@ -193,15 +183,25 @@ class Methods {
         }, [operator, id, approved], __options);
     }
     /**
-    * allowance
+    * collectionId
     *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @param { ArgumentTypes.AccountId } operator,
-    * @param { ArgumentTypes.Id | null } id,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
+    * @returns { Result<ReturnTypes.Id, ReturnTypes.LangError> }
     */
-    "allowance"(owner, operator, id, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::allowance", [owner, operator, id], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(34, arch_nft_json_1.default)); });
+    "collectionId"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34::collectionId", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(34, arch_nft_json_1.default)); });
+    }
+    /**
+    * transfer
+    *
+    * @param { ArgumentTypes.AccountId } to,
+    * @param { ArgumentTypes.Id } id,
+    * @param { Array<(number | string | BN)> } data,
+    * @returns { void }
+    */
+    "transfer"(to, id, data, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::transfer", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, arch_nft_json_2.default);
+        }, [to, id, data], __options);
     }
     /**
     * mint
@@ -235,7 +235,7 @@ class Methods {
     * @returns { Result<string | null, ReturnTypes.LangError> }
     */
     "getAttribute"(id, key, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34Metadata::getAttribute", [id, key], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(11, arch_nft_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp34Metadata::getAttribute", [id, key], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(18, arch_nft_json_1.default)); });
     }
     /**
     * setCodeHash

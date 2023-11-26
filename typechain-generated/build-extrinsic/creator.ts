@@ -21,16 +21,6 @@ export default class Methods {
 		this.__apiPromise = apiPromise;
 	}
 	/**
-	 * getUserData
-	 *
-	*/
-	"getUserData" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
-	}
-
-	/**
 	 * setUserData
 	 *
 	 * @param { ArgumentTypes.UserData } userInfo,
@@ -43,13 +33,13 @@ export default class Methods {
 	}
 
 	/**
-	 * getCollectionCount
+	 * getUserData
 	 *
 	*/
-	"getCollectionCount" (
+	"getUserData" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "creator::getCollectionCount", [], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
 	}
 
 	/**
@@ -62,6 +52,16 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "creator::getCollectionIdByIndex", [index], __options);
+	}
+
+	/**
+	 * getCollectionCount
+	 *
+	*/
+	"getCollectionCount" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "creator::getCollectionCount", [], __options);
 	}
 
 	/**
@@ -95,6 +95,16 @@ export default class Methods {
 	}
 
 	/**
+	 * owner
+	 *
+	*/
+	"owner" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
+	}
+
+	/**
 	 * transferOwnership
 	 *
 	 * @param { ArgumentTypes.AccountId } newOwner,
@@ -104,16 +114,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
-	}
-
-	/**
-	 * owner
-	 *
-	*/
-	"owner" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
 	}
 
 	/**

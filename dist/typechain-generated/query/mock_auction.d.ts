@@ -26,31 +26,6 @@ export default class Methods {
     */
     "addTimestamp"(delta: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * buyNft
-    *
-    * @param { (string | number | BN) } listingId,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "buyNft"(listingId: (string | number | BN), __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * cancelListing
-    *
-    * @param { (string | number | BN) } listingId,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "cancelListing"(listingId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * listNftForSale
-    *
-    * @param { ArgumentTypes.AccountId } creator,
-    * @param { ArgumentTypes.AccountId } collection,
-    * @param { ArgumentTypes.Id } tokenId,
-    * @param { (string | number | BN) } price,
-    * @param { ArgumentTypes.Currency } currency,
-    * @returns { Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "listNftForSale"(creator: ArgumentTypes.AccountId, collection: ArgumentTypes.AccountId, tokenId: ArgumentTypes.Id, price: (string | number | BN), currency: ArgumentTypes.Currency, __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
     * getListingCount
     *
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
@@ -64,12 +39,52 @@ export default class Methods {
     */
     "getListingByIndex"(index: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Listing | null, ReturnTypes.LangError>>>;
     /**
+    * buyNft
+    *
+    * @param { (string | number | BN) } listingId,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "buyNft"(listingId: (string | number | BN), __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
     * buyBatch
     *
     * @param { Array<(string | number | BN)> } ids,
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "buyBatch"(ids: Array<(string | number | BN)>, __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * listNftForSale
+    *
+    * @param { ArgumentTypes.AccountId } creator,
+    * @param { ArgumentTypes.AccountId } collection,
+    * @param { ArgumentTypes.Id } tokenId,
+    * @param { (string | number | BN) } price,
+    * @param { ArgumentTypes.Currency } currency,
+    * @returns { Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "listNftForSale"(creator: ArgumentTypes.AccountId, collection: ArgumentTypes.AccountId, tokenId: ArgumentTypes.Id, price: (string | number | BN), currency: ArgumentTypes.Currency, __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * cancelListing
+    *
+    * @param { (string | number | BN) } listingId,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "cancelListing"(listingId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * bidNft
+    *
+    * @param { (string | number | BN) } auctionId,
+    * @param { (string | number | BN) } price,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "bidNft"(auctionId: (string | number | BN), price: (string | number | BN), __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * listNftForAuction
+    *
+    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
+    * @returns { Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "listNftForAuction"(auctionInfo: ArgumentTypes.AuctionInfo, __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * getAuctionByIndex
     *
@@ -85,21 +100,6 @@ export default class Methods {
     */
     "cancelAuction"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * bidNft
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @param { (string | number | BN) } price,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "bidNft"(auctionId: (string | number | BN), price: (string | number | BN), __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * claimNft
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "claimNft"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
     * getAuctionCount
     *
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
@@ -113,19 +113,12 @@ export default class Methods {
     */
     "startAuction"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * listNftForAuction
+    * claimNft
     *
-    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
-    * @returns { Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "listNftForAuction"(auctionInfo: ArgumentTypes.AuctionInfo, __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * removeAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
+    * @param { (string | number | BN) } auctionId,
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
-    "removeAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    "claimNft"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * isAdmin
     *
@@ -141,23 +134,30 @@ export default class Methods {
     */
     "addAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
+    * removeAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "removeAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
     * timestamp
     *
     * @returns { Result<number, ReturnTypes.LangError> }
     */
     "timestamp"(__options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
-    /**
     * renounceOwnership
     *
     * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
     */
     "renounceOwnership"(__options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
     * transferOwnership
     *
@@ -174,14 +174,6 @@ export default class Methods {
     */
     "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
     /**
-    * hasRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
     * revokeRole
     *
     * @param { (number | string | BN) } role,
@@ -189,6 +181,14 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
     "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
+    /**
+    * hasRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } address,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * getRoleAdmin
     *

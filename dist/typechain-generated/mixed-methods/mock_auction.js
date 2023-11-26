@@ -40,6 +40,23 @@ class Methods {
         }, [delta], __options);
     }
     /**
+    * getListingCount
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "getListingCount"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(20, mock_auction_json_1.default)); });
+    }
+    /**
+    * getListingByIndex
+    *
+    * @param { (string | number | BN) } index,
+    * @returns { Result<ReturnTypes.Listing | null, ReturnTypes.LangError> }
+    */
+    "getListingByIndex"(index, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(21, mock_auction_json_1.default)); });
+    }
+    /**
     * buyNft
     *
     * @param { (string | number | BN) } listingId,
@@ -51,15 +68,15 @@ class Methods {
         }, [listingId], __options);
     }
     /**
-    * cancelListing
+    * buyBatch
     *
-    * @param { (string | number | BN) } listingId,
+    * @param { Array<(string | number | BN)> } ids,
     * @returns { void }
     */
-    "cancelListing"(listingId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::cancelListing", (events) => {
+    "buyBatch"(ids, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyBatch", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
-        }, [listingId], __options);
+        }, [ids], __options);
     }
     /**
     * listNftForSale
@@ -77,52 +94,15 @@ class Methods {
         }, [creator, collection, tokenId, price, currency], __options);
     }
     /**
-    * getListingCount
+    * cancelListing
     *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "getListingCount"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(24, mock_auction_json_1.default)); });
-    }
-    /**
-    * getListingByIndex
-    *
-    * @param { (string | number | BN) } index,
-    * @returns { Result<ReturnTypes.Listing | null, ReturnTypes.LangError> }
-    */
-    "getListingByIndex"(index, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(25, mock_auction_json_1.default)); });
-    }
-    /**
-    * buyBatch
-    *
-    * @param { Array<(string | number | BN)> } ids,
+    * @param { (string | number | BN) } listingId,
     * @returns { void }
     */
-    "buyBatch"(ids, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyBatch", (events) => {
+    "cancelListing"(listingId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::cancelListing", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
-        }, [ids], __options);
-    }
-    /**
-    * getAuctionByIndex
-    *
-    * @param { (string | number | BN) } index,
-    * @returns { Result<ReturnTypes.Auction | null, ReturnTypes.LangError> }
-    */
-    "getAuctionByIndex"(index, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(30, mock_auction_json_1.default)); });
-    }
-    /**
-    * cancelAuction
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @returns { void }
-    */
-    "cancelAuction"(auctionId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::cancelAuction", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
-        }, [auctionId], __options);
+        }, [listingId], __options);
     }
     /**
     * bidNft
@@ -137,13 +117,33 @@ class Methods {
         }, [auctionId, price], __options);
     }
     /**
-    * claimNft
+    * listNftForAuction
+    *
+    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
+    * @returns { void }
+    */
+    "listNftForAuction"(auctionInfo, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::listNftForAuction", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
+        }, [auctionInfo], __options);
+    }
+    /**
+    * getAuctionByIndex
+    *
+    * @param { (string | number | BN) } index,
+    * @returns { Result<ReturnTypes.Auction | null, ReturnTypes.LangError> }
+    */
+    "getAuctionByIndex"(index, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(31, mock_auction_json_1.default)); });
+    }
+    /**
+    * cancelAuction
     *
     * @param { (string | number | BN) } auctionId,
     * @returns { void }
     */
-    "claimNft"(auctionId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::claimNft", (events) => {
+    "cancelAuction"(auctionId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::cancelAuction", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
         }, [auctionId], __options);
     }
@@ -153,7 +153,7 @@ class Methods {
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
     */
     "getAuctionCount"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(24, mock_auction_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(20, mock_auction_json_1.default)); });
     }
     /**
     * startAuction
@@ -167,26 +167,15 @@ class Methods {
         }, [auctionId], __options);
     }
     /**
-    * listNftForAuction
+    * claimNft
     *
-    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
+    * @param { (string | number | BN) } auctionId,
     * @returns { void }
     */
-    "listNftForAuction"(auctionInfo, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::listNftForAuction", (events) => {
+    "claimNft"(auctionId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::claimNft", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
-        }, [auctionInfo], __options);
-    }
-    /**
-    * removeAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { void }
-    */
-    "removeAdmin"(accountId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
-        }, [accountId], __options);
+        }, [auctionId], __options);
     }
     /**
     * isAdmin
@@ -209,20 +198,23 @@ class Methods {
         }, [accountId], __options);
     }
     /**
+    * removeAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { void }
+    */
+    "removeAdmin"(accountId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
+        }, [accountId], __options);
+    }
+    /**
     * timestamp
     *
     * @returns { Result<number, ReturnTypes.LangError> }
     */
     "timestamp"(__options) {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "timestampProvider::timestamp", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(38, mock_auction_json_1.default)); });
-    }
-    /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(39, mock_auction_json_1.default)); });
     }
     /**
     * renounceOwnership
@@ -233,6 +225,14 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
         }, [], __options);
+    }
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(41, mock_auction_json_1.default)); });
     }
     /**
     * transferOwnership
@@ -258,16 +258,6 @@ class Methods {
         }, [role, account], __options);
     }
     /**
-    * hasRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(36, mock_auction_json_1.default)); });
-    }
-    /**
     * revokeRole
     *
     * @param { (number | string | BN) } role,
@@ -278,6 +268,16 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, mock_auction_json_2.default);
         }, [role, account], __options);
+    }
+    /**
+    * hasRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } address,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(36, mock_auction_json_1.default)); });
     }
     /**
     * getRoleAdmin

@@ -13,38 +13,32 @@ export default class Methods {
     */
     "accountId"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * collectionName
-     *
-    */
-    "collectionName"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
      * setCollectionAdditionalInfo
      *
      * @param { string } additionalInfo,
     */
     "setCollectionAdditionalInfo"(additionalInfo: string, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * collectionUri
+     * setCollectionUri
      *
+     * @param { string } uri,
     */
-    "collectionUri"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * setCollectionName
-     *
-     * @param { string } name,
-    */
-    "setCollectionName"(name: string, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "setCollectionUri"(uri: string, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * collectionAdditionalInfo
      *
     */
     "collectionAdditionalInfo"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * setCollectionUri
+     * collectionUri
      *
-     * @param { string } uri,
     */
-    "setCollectionUri"(uri: string, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "collectionUri"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * collectionName
+     *
+    */
+    "collectionName"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * collectionRoyalty
      *
@@ -59,29 +53,27 @@ export default class Methods {
     */
     "setAttribute"(id: ArgumentTypes.Id, key: string, value: string, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * owner
+     * setCollectionName
      *
+     * @param { string } name,
     */
-    "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "setCollectionName"(name: string, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * renounceOwnership
      *
     */
     "renounceOwnership"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
+     * owner
+     *
+    */
+    "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
      * transferOwnership
      *
      * @param { ArgumentTypes.AccountId } newOwner,
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * transfer
-     *
-     * @param { ArgumentTypes.AccountId } to,
-     * @param { ArgumentTypes.Id } id,
-     * @param { Array<(number | string | BN)> } data,
-    */
-    "transfer"(to: ArgumentTypes.AccountId, id: ArgumentTypes.Id, data: Array<(number | string | BN)>, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * totalSupply
      *
@@ -94,10 +86,13 @@ export default class Methods {
     */
     "ownerOf"(id: ArgumentTypes.Id, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * collectionId
+     * allowance
      *
+     * @param { ArgumentTypes.AccountId } owner,
+     * @param { ArgumentTypes.AccountId } operator,
+     * @param { ArgumentTypes.Id | null } id,
     */
-    "collectionId"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "allowance"(owner: ArgumentTypes.AccountId, operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * balanceOf
      *
@@ -113,13 +108,18 @@ export default class Methods {
     */
     "approve"(operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, approved: boolean, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * allowance
+     * collectionId
      *
-     * @param { ArgumentTypes.AccountId } owner,
-     * @param { ArgumentTypes.AccountId } operator,
-     * @param { ArgumentTypes.Id | null } id,
     */
-    "allowance"(owner: ArgumentTypes.AccountId, operator: ArgumentTypes.AccountId, id: ArgumentTypes.Id | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "collectionId"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * transfer
+     *
+     * @param { ArgumentTypes.AccountId } to,
+     * @param { ArgumentTypes.Id } id,
+     * @param { Array<(number | string | BN)> } data,
+    */
+    "transfer"(to: ArgumentTypes.AccountId, id: ArgumentTypes.Id, data: Array<(number | string | BN)>, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * mint
      *

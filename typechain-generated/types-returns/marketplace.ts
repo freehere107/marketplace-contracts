@@ -7,6 +7,17 @@ export enum LangError {
 	couldNotReadInput = 'CouldNotReadInput'
 }
 
+export type Listing = {
+	id: ReturnNumber,
+	creator: AccountId,
+	collection: AccountId,
+	tokenId: Id,
+	price: ReturnNumber,
+	currency: Currency,
+	status: ListingStatus,
+	royalty: number
+}
+
 export interface Id {
 	u8 ? : number,
 	u16 ? : number,
@@ -65,6 +76,12 @@ export class CurrencyBuilder {
 			custom: value,
 		};
 	}
+}
+
+export enum ListingStatus {
+	onSale = 'OnSale',
+	sold = 'Sold',
+	cancelled = 'Cancelled'
 }
 
 export interface ArchisinalError {
@@ -388,23 +405,6 @@ export class PSP22ErrorBuilder {
 			safeTransferCheckFailed: value,
 		};
 	}
-}
-
-export type Listing = {
-	id: ReturnNumber,
-	creator: AccountId,
-	collection: AccountId,
-	tokenId: Id,
-	price: ReturnNumber,
-	currency: Currency,
-	status: ListingStatus,
-	royalty: number
-}
-
-export enum ListingStatus {
-	onSale = 'OnSale',
-	sold = 'Sold',
-	cancelled = 'Cancelled'
 }
 
 export type AuctionInfo = {

@@ -23,6 +23,14 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::setUserData", [userInfo], __options);
     }
     /**
+     * transferOwnership
+     *
+     * @param { ArgumentTypes.AccountId } newOwner,
+    */
+    "transferOwnership"(newOwner, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
+    }
+    /**
      * renounceOwnership
      *
     */
@@ -35,14 +43,6 @@ class Methods {
     */
     "owner"(__options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
-    }
-    /**
-     * transferOwnership
-     *
-     * @param { ArgumentTypes.AccountId } newOwner,
-    */
-    "transferOwnership"(newOwner, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
     }
     /**
      * setCodeHash
