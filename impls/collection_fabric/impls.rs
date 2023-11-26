@@ -14,7 +14,7 @@ pub trait CollectionFabricImpl:
     }
 
     fn collection(&self, index: u128) -> Option<AccountId> {
-        self.data::<Data>().collections.get(&index)
+        self.data::<Data>().collections.get(index)
     }
 
     fn instantiate_collection(
@@ -58,7 +58,7 @@ pub trait CollectionFabricImpl:
         if self.is_whitelist_enabled() {
             self.data::<Data>()
                 .is_whitelisted
-                .get(&collection)
+                .get(collection)
                 .unwrap_or(false)
         } else {
             true
@@ -68,14 +68,14 @@ pub trait CollectionFabricImpl:
     fn is_banned(&self, collection: AccountId) -> bool {
         self.data::<Data>()
             .banned_collections
-            .get(&collection)
+            .get(collection)
             .unwrap_or(false)
     }
 
     fn is_codehash_banned(&self, code_hash: Hash) -> bool {
         self.data::<Data>()
             .banned_codehashes
-            .get(&code_hash)
+            .get(code_hash)
             .unwrap_or(false)
     }
 
@@ -130,7 +130,7 @@ pub trait CollectionFabricImpl:
     fn _is_collection_deployed(&self, collection: AccountId) -> bool {
         self.data::<Data>()
             .is_whitelisted
-            .get(&collection)
+            .get(collection)
             .unwrap_or(false)
     }
 }
