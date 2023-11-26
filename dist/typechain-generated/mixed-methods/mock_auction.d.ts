@@ -28,19 +28,19 @@ export default class Methods {
     */
     "addTimestamp"(delta: (number | string | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
+    * buyNft
+    *
+    * @param { (string | number | BN) } listingId,
+    * @returns { void }
+    */
+    "buyNft"(listingId: (string | number | BN), __options: GasLimitAndRequiredValue): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
     * cancelListing
     *
     * @param { (string | number | BN) } listingId,
     * @returns { void }
     */
     "cancelListing"(listingId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * buyBatch
-    *
-    * @param { Array<(string | number | BN)> } ids,
-    * @returns { void }
-    */
-    "buyBatch"(ids: Array<(string | number | BN)>, __options: GasLimitAndRequiredValue): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * listNftForSale
     *
@@ -66,33 +66,12 @@ export default class Methods {
     */
     "getListingByIndex"(index: (string | number | BN), __options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Listing | null, ReturnTypes.LangError>>>;
     /**
-    * buyNft
+    * buyBatch
     *
-    * @param { (string | number | BN) } listingId,
+    * @param { Array<(string | number | BN)> } ids,
     * @returns { void }
     */
-    "buyNft"(listingId: (string | number | BN), __options: GasLimitAndRequiredValue): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * startAuction
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @returns { void }
-    */
-    "startAuction"(auctionId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * claimNft
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @returns { void }
-    */
-    "claimNft"(auctionId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * listNftForAuction
-    *
-    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
-    * @returns { void }
-    */
-    "listNftForAuction"(auctionInfo: ArgumentTypes.AuctionInfo, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "buyBatch"(ids: Array<(string | number | BN)>, __options: GasLimitAndRequiredValue): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * getAuctionByIndex
     *
@@ -100,6 +79,13 @@ export default class Methods {
     * @returns { Result<ReturnTypes.Auction | null, ReturnTypes.LangError> }
     */
     "getAuctionByIndex"(index: (string | number | BN), __options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Auction | null, ReturnTypes.LangError>>>;
+    /**
+    * cancelAuction
+    *
+    * @param { (string | number | BN) } auctionId,
+    * @returns { void }
+    */
+    "cancelAuction"(auctionId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * bidNft
     *
@@ -109,18 +95,32 @@ export default class Methods {
     */
     "bidNft"(auctionId: (string | number | BN), price: (string | number | BN), __options: GasLimitAndRequiredValue): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * cancelAuction
+    * claimNft
     *
     * @param { (string | number | BN) } auctionId,
     * @returns { void }
     */
-    "cancelAuction"(auctionId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "claimNft"(auctionId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * getAuctionCount
     *
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
     */
     "getAuctionCount"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
+    /**
+    * startAuction
+    *
+    * @param { (string | number | BN) } auctionId,
+    * @returns { void }
+    */
+    "startAuction"(auctionId: (string | number | BN), __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * listNftForAuction
+    *
+    * @param { ArgumentTypes.AuctionInfo } auctionInfo,
+    * @returns { void }
+    */
+    "listNftForAuction"(auctionInfo: ArgumentTypes.AuctionInfo, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * removeAdmin
     *
@@ -149,6 +149,12 @@ export default class Methods {
     */
     "timestamp"(__options: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    /**
     * renounceOwnership
     *
     * @returns { void }
@@ -161,20 +167,6 @@ export default class Methods {
     * @returns { void }
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
-    /**
-    * grantRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { void }
-    */
-    "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * renounceRole
     *
@@ -206,6 +198,14 @@ export default class Methods {
     * @returns { Result<number, ReturnTypes.LangError> }
     */
     "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
+    /**
+    * grantRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { void }
+    */
+    "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * setCodeHash
     *

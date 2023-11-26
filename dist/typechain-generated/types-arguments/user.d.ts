@@ -34,6 +34,7 @@ export interface ArchisinalError {
     adminAccessError?: null;
     auctionMinBidStepIsZero?: null;
     creatorIsNotCaller?: null;
+    codehashIsBanned?: null;
     auctionStartTimeIsBeforeNow?: null;
     callerIsAuctionOwner?: null;
     accountAlreadyExists?: null;
@@ -57,6 +58,8 @@ export interface ArchisinalError {
     integerOverflow?: null;
     integerUnderflow?: null;
     collectionNotFound?: null;
+    collectionIsBanned?: null;
+    collectionIsNotWhitelisted?: null;
     callerIsNotNftOwner?: null;
     transferNativeError?: null;
     ownable?: OwnableError;
@@ -70,6 +73,7 @@ export declare class ArchisinalErrorBuilder {
     static AdminAccessError(): ArchisinalError;
     static AuctionMinBidStepIsZero(): ArchisinalError;
     static CreatorIsNotCaller(): ArchisinalError;
+    static CodehashIsBanned(): ArchisinalError;
     static AuctionStartTimeIsBeforeNow(): ArchisinalError;
     static CallerIsAuctionOwner(): ArchisinalError;
     static AccountAlreadyExists(): ArchisinalError;
@@ -93,6 +97,8 @@ export declare class ArchisinalErrorBuilder {
     static IntegerOverflow(): ArchisinalError;
     static IntegerUnderflow(): ArchisinalError;
     static CollectionNotFound(): ArchisinalError;
+    static CollectionIsBanned(): ArchisinalError;
+    static CollectionIsNotWhitelisted(): ArchisinalError;
     static CallerIsNotNFTOwner(): ArchisinalError;
     static TransferNativeError(): ArchisinalError;
     static Ownable(value: OwnableError): ArchisinalError;

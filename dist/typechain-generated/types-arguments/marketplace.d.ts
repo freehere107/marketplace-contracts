@@ -3,16 +3,6 @@ export type AccountId = string | number[];
 export declare enum LangError {
     couldNotReadInput = "CouldNotReadInput"
 }
-export type Listing = {
-    id: (string | number | BN);
-    creator: AccountId;
-    collection: AccountId;
-    tokenId: Id;
-    price: (string | number | BN);
-    currency: Currency;
-    status: ListingStatus;
-    royalty: (number | string | BN);
-};
 export interface Id {
     u8?: (number | string | BN);
     u16?: (number | string | BN);
@@ -37,16 +27,12 @@ export declare class CurrencyBuilder {
     static Native(): Currency;
     static Custom(value: AccountId): Currency;
 }
-export declare enum ListingStatus {
-    onSale = "OnSale",
-    sold = "Sold",
-    cancelled = "Cancelled"
-}
 export interface ArchisinalError {
     noOwner?: null;
     adminAccessError?: null;
     auctionMinBidStepIsZero?: null;
     creatorIsNotCaller?: null;
+    codehashIsBanned?: null;
     auctionStartTimeIsBeforeNow?: null;
     callerIsAuctionOwner?: null;
     accountAlreadyExists?: null;
@@ -70,6 +56,8 @@ export interface ArchisinalError {
     integerOverflow?: null;
     integerUnderflow?: null;
     collectionNotFound?: null;
+    collectionIsBanned?: null;
+    collectionIsNotWhitelisted?: null;
     callerIsNotNftOwner?: null;
     transferNativeError?: null;
     ownable?: OwnableError;
@@ -83,6 +71,7 @@ export declare class ArchisinalErrorBuilder {
     static AdminAccessError(): ArchisinalError;
     static AuctionMinBidStepIsZero(): ArchisinalError;
     static CreatorIsNotCaller(): ArchisinalError;
+    static CodehashIsBanned(): ArchisinalError;
     static AuctionStartTimeIsBeforeNow(): ArchisinalError;
     static CallerIsAuctionOwner(): ArchisinalError;
     static AccountAlreadyExists(): ArchisinalError;
@@ -106,6 +95,8 @@ export declare class ArchisinalErrorBuilder {
     static IntegerOverflow(): ArchisinalError;
     static IntegerUnderflow(): ArchisinalError;
     static CollectionNotFound(): ArchisinalError;
+    static CollectionIsBanned(): ArchisinalError;
+    static CollectionIsNotWhitelisted(): ArchisinalError;
     static CallerIsNotNFTOwner(): ArchisinalError;
     static TransferNativeError(): ArchisinalError;
     static Ownable(value: OwnableError): ArchisinalError;
@@ -154,6 +145,21 @@ export declare class PSP22ErrorBuilder {
     static ZeroRecipientAddress(): PSP22Error;
     static ZeroSenderAddress(): PSP22Error;
     static SafeTransferCheckFailed(value: string): PSP22Error;
+}
+export type Listing = {
+    id: (string | number | BN);
+    creator: AccountId;
+    collection: AccountId;
+    tokenId: Id;
+    price: (string | number | BN);
+    currency: Currency;
+    status: ListingStatus;
+    royalty: (number | string | BN);
+};
+export declare enum ListingStatus {
+    onSale = "OnSale",
+    sold = "Sold",
+    cancelled = "Cancelled"
 }
 export type AuctionInfo = {
     creator: AccountId;

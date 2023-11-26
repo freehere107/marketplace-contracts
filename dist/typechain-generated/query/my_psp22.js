@@ -14,34 +14,6 @@ class Methods {
         this.__apiPromise = nativeApi;
     }
     /**
-    * totalSupply
-    *
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "totalSupply"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::totalSupply", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(4, my_psp22_json_1.default)); });
-    }
-    /**
-    * increaseAllowance
-    *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } deltaValue,
-    * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
-    */
-    "increaseAllowance"(spender, deltaValue, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::increaseAllowance", [spender, deltaValue], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
-    }
-    /**
-    * allowance
-    *
-    * @param { ArgumentTypes.AccountId } owner,
-    * @param { ArgumentTypes.AccountId } spender,
-    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-    */
-    "allowance"(owner, spender, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::allowance", [owner, spender], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(4, my_psp22_json_1.default)); });
-    }
-    /**
     * transferFrom
     *
     * @param { ArgumentTypes.AccountId } from,
@@ -54,24 +26,42 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::transferFrom", [from, to, value, data], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
     }
     /**
-    * balanceOf
+    * allowance
     *
     * @param { ArgumentTypes.AccountId } owner,
+    * @param { ArgumentTypes.AccountId } spender,
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
     */
-    "balanceOf"(owner, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::balanceOf", [owner], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(4, my_psp22_json_1.default)); });
+    "allowance"(owner, spender, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::allowance", [owner, spender], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(12, my_psp22_json_1.default)); });
     }
     /**
-    * transfer
+    * increaseAllowance
     *
-    * @param { ArgumentTypes.AccountId } to,
-    * @param { (string | number | BN) } value,
-    * @param { Array<(number | string | BN)> } data,
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } deltaValue,
     * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
     */
-    "transfer"(to, value, data, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::transfer", [to, value, data], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
+    "increaseAllowance"(spender, deltaValue, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::increaseAllowance", [spender, deltaValue], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
+    }
+    /**
+    * decreaseAllowance
+    *
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } deltaValue,
+    * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
+    */
+    "decreaseAllowance"(spender, deltaValue, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::decreaseAllowance", [spender, deltaValue], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
+    }
+    /**
+    * totalSupply
+    *
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "totalSupply"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::totalSupply", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(12, my_psp22_json_1.default)); });
     }
     /**
     * approve
@@ -84,14 +74,24 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::approve", [spender, value], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
     }
     /**
-    * decreaseAllowance
+    * balanceOf
     *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } deltaValue,
+    * @param { ArgumentTypes.AccountId } owner,
+    * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+    */
+    "balanceOf"(owner, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::balanceOf", [owner], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(12, my_psp22_json_1.default)); });
+    }
+    /**
+    * transfer
+    *
+    * @param { ArgumentTypes.AccountId } to,
+    * @param { (string | number | BN) } value,
+    * @param { Array<(number | string | BN)> } data,
     * @returns { Result<Result<null, ReturnTypes.PSP22Error>, ReturnTypes.LangError> }
     */
-    "decreaseAllowance"(spender, deltaValue, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::decreaseAllowance", [spender, deltaValue], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
+    "transfer"(to, value, data, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "psp22::transfer", [to, value, data], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, my_psp22_json_1.default)); });
     }
     /**
     * mint

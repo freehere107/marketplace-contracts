@@ -26,6 +26,11 @@ class ArchisinalErrorBuilder {
             creatorIsNotCaller: null,
         };
     }
+    static CodehashIsBanned() {
+        return {
+            codehashIsBanned: null,
+        };
+    }
     static AuctionStartTimeIsBeforeNow() {
         return {
             auctionStartTimeIsBeforeNow: null,
@@ -139,6 +144,16 @@ class ArchisinalErrorBuilder {
     static CollectionNotFound() {
         return {
             collectionNotFound: null,
+        };
+    }
+    static CollectionIsBanned() {
+        return {
+            collectionIsBanned: null,
+        };
+    }
+    static CollectionIsNotWhitelisted() {
+        return {
+            collectionIsNotWhitelisted: null,
         };
     }
     static CallerIsNotNFTOwner() {

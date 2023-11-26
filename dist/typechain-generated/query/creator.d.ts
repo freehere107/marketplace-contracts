@@ -11,6 +11,12 @@ export default class Methods {
     readonly __callerAddress: string;
     constructor(nativeContract: ContractPromise, nativeApi: ApiPromise, callerAddress: string);
     /**
+    * getUserData
+    *
+    * @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
+    */
+    "getUserData"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.UserData, ReturnTypes.LangError>>>;
+    /**
     * setUserData
     *
     * @param { ArgumentTypes.UserData } userInfo,
@@ -18,11 +24,11 @@ export default class Methods {
     */
     "setUserData"(userInfo: ArgumentTypes.UserData, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * getUserData
+    * getCollectionCount
     *
-    * @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
+    * @returns { Result<number, ReturnTypes.LangError> }
     */
-    "getUserData"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.UserData, ReturnTypes.LangError>>>;
+    "getCollectionCount"(__options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
     * getCollectionIdByIndex
     *
@@ -30,12 +36,6 @@ export default class Methods {
     * @returns { Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "getCollectionIdByIndex"(index: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * getCollectionCount
-    *
-    * @returns { Result<number, ReturnTypes.LangError> }
-    */
-    "getCollectionCount"(__options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
     * createCollection
     *
@@ -47,12 +47,6 @@ export default class Methods {
     * @returns { Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "createCollection"(name: string, uri: string, royalty: (number | string | BN), additionalInfo: string, codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
     * renounceOwnership
     *
@@ -66,6 +60,12 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
     * setCodeHash
     *

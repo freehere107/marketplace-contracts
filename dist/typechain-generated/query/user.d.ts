@@ -23,17 +23,17 @@ export default class Methods {
     */
     "setUserData"(userInfo: ArgumentTypes.UserData, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
-    /**
     * renounceOwnership
     *
     * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
     */
     "renounceOwnership"(__options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
     * transferOwnership
     *

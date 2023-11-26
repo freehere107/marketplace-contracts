@@ -13,6 +13,13 @@ export default class Methods {
     readonly __apiPromise: ApiPromise;
     constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
     /**
+    * getCreatorAccount
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "getCreatorAccount"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    /**
     * setUserCodeHash
     *
     * @param { ArgumentTypes.Hash } codeHash,
@@ -20,11 +27,11 @@ export default class Methods {
     */
     "setUserCodeHash"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * getCreatorCodeHash
+    * createAccount
     *
-    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
+    * @returns { void }
     */
-    "getCreatorCodeHash"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Hash, ReturnTypes.LangError>>>;
+    "createAccount"(__options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * getAccount
     *
@@ -33,6 +40,12 @@ export default class Methods {
     */
     "getAccount"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
+    * getCreatorCodeHash
+    *
+    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
+    */
+    "getCreatorCodeHash"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Hash, ReturnTypes.LangError>>>;
+    /**
     * setCreatorCodeHash
     *
     * @param { ArgumentTypes.Hash } codeHash,
@@ -40,37 +53,17 @@ export default class Methods {
     */
     "setCreatorCodeHash"(codeHash: ArgumentTypes.Hash, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * getCreatorAccount
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "getCreatorAccount"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
-    /**
-    * getUserCodeHash
-    *
-    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
-    */
-    "getUserCodeHash"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Hash, ReturnTypes.LangError>>>;
-    /**
     * createCreatorAccount
     *
     * @returns { void }
     */
     "createCreatorAccount"(__options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * createAccount
+    * getUserCodeHash
     *
-    * @returns { void }
+    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
     */
-    "createAccount"(__options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * addAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { void }
-    */
-    "addAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "getUserCodeHash"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Hash, ReturnTypes.LangError>>>;
     /**
     * removeAdmin
     *
@@ -79,18 +72,19 @@ export default class Methods {
     */
     "removeAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
+    * addAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { void }
+    */
+    "addAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
     * isAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
     * @returns { Result<boolean, ReturnTypes.LangError> }
     */
     "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
     * renounceOwnership
     *
@@ -105,6 +99,12 @@ export default class Methods {
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
+    /**
     * revokeRole
     *
     * @param { (number | string | BN) } role,
@@ -112,6 +112,14 @@ export default class Methods {
     * @returns { void }
     */
     "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * renounceRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { void }
+    */
+    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * hasRole
     *
@@ -127,14 +135,6 @@ export default class Methods {
     * @returns { Result<number, ReturnTypes.LangError> }
     */
     "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
-    /**
-    * renounceRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { void }
-    */
-    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * grantRole
     *

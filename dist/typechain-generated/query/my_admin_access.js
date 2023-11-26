@@ -23,15 +23,6 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::removeAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(7, my_admin_access_json_1.default)); });
     }
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(15, my_admin_access_json_1.default)); });
-    }
-    /**
     * addAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
@@ -39,6 +30,15 @@ class Methods {
     */
     "addAdmin"(accountId, __options) {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::addAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(7, my_admin_access_json_1.default)); });
+    }
+    /**
+    * isAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(15, my_admin_access_json_1.default)); });
     }
     /**
     * transferOwnership
@@ -66,6 +66,15 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::renounceOwnership", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(17, my_admin_access_json_1.default)); });
     }
     /**
+    * getRoleAdmin
+    *
+    * @param { (number | string | BN) } role,
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "getRoleAdmin"(role, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(21, my_admin_access_json_1.default)); });
+    }
+    /**
     * grantRole
     *
     * @param { (number | string | BN) } role,
@@ -73,27 +82,7 @@ class Methods {
     * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
     "grantRole"(role, account, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::grantRole", [role, account], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(21, my_admin_access_json_1.default)); });
-    }
-    /**
-    * renounceRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
-    */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::renounceRole", [role, account], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(21, my_admin_access_json_1.default)); });
-    }
-    /**
-    * revokeRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
-    */
-    "revokeRole"(role, account, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::revokeRole", [role, account], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(21, my_admin_access_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::grantRole", [role, account], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(22, my_admin_access_json_1.default)); });
     }
     /**
     * hasRole
@@ -106,13 +95,24 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(15, my_admin_access_json_1.default)); });
     }
     /**
-    * getRoleAdmin
+    * revokeRole
     *
     * @param { (number | string | BN) } role,
-    * @returns { Result<number, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
-    "getRoleAdmin"(role, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(23, my_admin_access_json_1.default)); });
+    "revokeRole"(role, account, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::revokeRole", [role, account], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(22, my_admin_access_json_1.default)); });
+    }
+    /**
+    * renounceRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
+    */
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::renounceRole", [role, account], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(22, my_admin_access_json_1.default)); });
     }
 }
 exports.default = Methods;

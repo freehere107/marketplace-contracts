@@ -3,6 +3,7 @@ import Constructors from '../../../typechain-generated/constructors/marketplace'
 import Contract from '../../../typechain-generated/contracts/marketplace'
 import ApiSingleton from '../api_singleton'
 import { Signers } from '../signers'
+import { setupCollectionFabric } from './collection_fabric'
 import {gasLimit} from "./shared";
 
 export async function setupMarketplace(): Promise<Contract> {
@@ -12,7 +13,9 @@ export async function setupMarketplace(): Promise<Contract> {
 
   const constructors = new Constructors(api, defaultSigner)
 
-  const { address } = await constructors.new(defaultSigner.address, {gasLimit: gasLimit(780000000, 19000)})
+  const collectionFabric = await setupCollectionFabric()
+
+  const { address } = await constructors.new(defaultSigner.address,  collectionFabric.address, {gasLimit: gasLimit(780000000, 19000)})
 
   return new Contract(address, defaultSigner, api)
 }

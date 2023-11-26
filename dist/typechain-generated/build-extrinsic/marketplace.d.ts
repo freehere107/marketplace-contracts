@@ -8,10 +8,21 @@ export default class Methods {
     readonly __apiPromise: ApiPromise;
     constructor(nativeContract: ContractPromise, apiPromise: ApiPromise);
     /**
-     * getListingCount
+     * listNftForSale
      *
+     * @param { ArgumentTypes.AccountId } creator,
+     * @param { ArgumentTypes.AccountId } collection,
+     * @param { ArgumentTypes.Id } tokenId,
+     * @param { (string | number | BN) } price,
+     * @param { ArgumentTypes.Currency } currency,
     */
-    "getListingCount"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "listNftForSale"(creator: ArgumentTypes.AccountId, collection: ArgumentTypes.AccountId, tokenId: ArgumentTypes.Id, price: (string | number | BN), currency: ArgumentTypes.Currency, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * buyNft
+     *
+     * @param { (string | number | BN) } listingId,
+    */
+    "buyNft"(listingId: (string | number | BN), __options: GasLimitAndRequiredValue): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * getListingByIndex
      *
@@ -25,11 +36,10 @@ export default class Methods {
     */
     "cancelListing"(listingId: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * buyNft
+     * getListingCount
      *
-     * @param { (string | number | BN) } listingId,
     */
-    "buyNft"(listingId: (string | number | BN), __options: GasLimitAndRequiredValue): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "getListingCount"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * buyBatch
      *
@@ -37,38 +47,11 @@ export default class Methods {
     */
     "buyBatch"(ids: Array<(string | number | BN)>, __options: GasLimitAndRequiredValue): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * listNftForSale
-     *
-     * @param { ArgumentTypes.AccountId } creator,
-     * @param { ArgumentTypes.AccountId } collection,
-     * @param { ArgumentTypes.Id } tokenId,
-     * @param { (string | number | BN) } price,
-     * @param { ArgumentTypes.Currency } currency,
-    */
-    "listNftForSale"(creator: ArgumentTypes.AccountId, collection: ArgumentTypes.AccountId, tokenId: ArgumentTypes.Id, price: (string | number | BN), currency: ArgumentTypes.Currency, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * startAuction
+     * claimNft
      *
      * @param { (string | number | BN) } auctionId,
     */
-    "startAuction"(auctionId: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * listNftForAuction
-     *
-     * @param { ArgumentTypes.AuctionInfo } auctionInfo,
-    */
-    "listNftForAuction"(auctionInfo: ArgumentTypes.AuctionInfo, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * getAuctionByIndex
-     *
-     * @param { (string | number | BN) } index,
-    */
-    "getAuctionByIndex"(index: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * getAuctionCount
-     *
-    */
-    "getAuctionCount"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "claimNft"(auctionId: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * cancelAuction
      *
@@ -83,23 +66,40 @@ export default class Methods {
     */
     "bidNft"(auctionId: (string | number | BN), price: (string | number | BN), __options: GasLimitAndRequiredValue): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * claimNft
+     * getAuctionCount
+     *
+    */
+    "getAuctionCount"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * listNftForAuction
+     *
+     * @param { ArgumentTypes.AuctionInfo } auctionInfo,
+    */
+    "listNftForAuction"(auctionInfo: ArgumentTypes.AuctionInfo, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * startAuction
      *
      * @param { (string | number | BN) } auctionId,
     */
-    "claimNft"(auctionId: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "startAuction"(auctionId: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * isAdmin
+     * getAuctionByIndex
      *
-     * @param { ArgumentTypes.AccountId } accountId,
+     * @param { (string | number | BN) } index,
     */
-    "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "getAuctionByIndex"(index: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * addAdmin
      *
      * @param { ArgumentTypes.AccountId } accountId,
     */
     "addAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * isAdmin
+     *
+     * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * removeAdmin
      *
@@ -112,11 +112,6 @@ export default class Methods {
     */
     "timestamp"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * owner
-     *
-    */
-    "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
      * renounceOwnership
      *
     */
@@ -128,11 +123,10 @@ export default class Methods {
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * getRoleAdmin
+     * owner
      *
-     * @param { (number | string | BN) } role,
     */
-    "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * hasRole
      *
@@ -148,6 +142,13 @@ export default class Methods {
     */
     "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
+     * revokeRole
+     *
+     * @param { (number | string | BN) } role,
+     * @param { ArgumentTypes.AccountId | null } account,
+    */
+    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
      * renounceRole
      *
      * @param { (number | string | BN) } role,
@@ -155,12 +156,11 @@ export default class Methods {
     */
     "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * revokeRole
+     * getRoleAdmin
      *
      * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * setCodeHash
      *

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpgradeableErrorBuilder = exports.AuctionStatus = exports.PSP22ErrorBuilder = exports.PSP34ErrorBuilder = exports.AccessControlError = exports.OwnableError = exports.ArchisinalErrorBuilder = exports.ListingStatus = exports.CurrencyBuilder = exports.IdBuilder = exports.LangError = void 0;
+exports.UpgradeableErrorBuilder = exports.AuctionStatus = exports.ListingStatus = exports.PSP22ErrorBuilder = exports.PSP34ErrorBuilder = exports.AccessControlError = exports.OwnableError = exports.ArchisinalErrorBuilder = exports.CurrencyBuilder = exports.IdBuilder = exports.LangError = void 0;
 var LangError;
 (function (LangError) {
     LangError["couldNotReadInput"] = "CouldNotReadInput";
@@ -51,12 +51,6 @@ class CurrencyBuilder {
     }
 }
 exports.CurrencyBuilder = CurrencyBuilder;
-var ListingStatus;
-(function (ListingStatus) {
-    ListingStatus["onSale"] = "OnSale";
-    ListingStatus["sold"] = "Sold";
-    ListingStatus["cancelled"] = "Cancelled";
-})(ListingStatus = exports.ListingStatus || (exports.ListingStatus = {}));
 class ArchisinalErrorBuilder {
     static NoOwner() {
         return {
@@ -76,6 +70,11 @@ class ArchisinalErrorBuilder {
     static CreatorIsNotCaller() {
         return {
             creatorIsNotCaller: null,
+        };
+    }
+    static CodehashIsBanned() {
+        return {
+            codehashIsBanned: null,
         };
     }
     static AuctionStartTimeIsBeforeNow() {
@@ -193,6 +192,16 @@ class ArchisinalErrorBuilder {
             collectionNotFound: null,
         };
     }
+    static CollectionIsBanned() {
+        return {
+            collectionIsBanned: null,
+        };
+    }
+    static CollectionIsNotWhitelisted() {
+        return {
+            collectionIsNotWhitelisted: null,
+        };
+    }
     static CallerIsNotNFTOwner() {
         return {
             callerIsNotNftOwner: null,
@@ -307,6 +316,12 @@ class PSP22ErrorBuilder {
     }
 }
 exports.PSP22ErrorBuilder = PSP22ErrorBuilder;
+var ListingStatus;
+(function (ListingStatus) {
+    ListingStatus["onSale"] = "OnSale";
+    ListingStatus["sold"] = "Sold";
+    ListingStatus["cancelled"] = "Cancelled";
+})(ListingStatus = exports.ListingStatus || (exports.ListingStatus = {}));
 var AuctionStatus;
 (function (AuctionStatus) {
     AuctionStatus["waitingAuction"] = "WaitingAuction";

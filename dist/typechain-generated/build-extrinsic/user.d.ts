@@ -18,15 +18,15 @@ export default class Methods {
     */
     "setUserData"(userInfo: ArgumentTypes.UserData, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * owner
-     *
-    */
-    "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
      * renounceOwnership
      *
     */
     "renounceOwnership"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * owner
+     *
+    */
+    "owner"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * transferOwnership
      *

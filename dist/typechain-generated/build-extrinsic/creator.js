@@ -8,6 +8,13 @@ class Methods {
         this.__apiPromise = apiPromise;
     }
     /**
+     * getUserData
+     *
+    */
+    "getUserData"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
+    }
+    /**
      * setUserData
      *
      * @param { ArgumentTypes.UserData } userInfo,
@@ -16,11 +23,11 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::setUserData", [userInfo], __options);
     }
     /**
-     * getUserData
+     * getCollectionCount
      *
     */
-    "getUserData"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
+    "getCollectionCount"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "creator::getCollectionCount", [], __options);
     }
     /**
      * getCollectionIdByIndex
@@ -29,13 +36,6 @@ class Methods {
     */
     "getCollectionIdByIndex"(index, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "creator::getCollectionIdByIndex", [index], __options);
-    }
-    /**
-     * getCollectionCount
-     *
-    */
-    "getCollectionCount"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "creator::getCollectionCount", [], __options);
     }
     /**
      * createCollection
@@ -48,13 +48,6 @@ class Methods {
     */
     "createCollection"(name, uri, royalty, additionalInfo, codeHash, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "creator::createCollection", [name, uri, royalty, additionalInfo, codeHash], __options);
-    }
-    /**
-     * owner
-     *
-    */
-    "owner"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
     }
     /**
      * renounceOwnership
@@ -70,6 +63,13 @@ class Methods {
     */
     "transferOwnership"(newOwner, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
+    }
+    /**
+     * owner
+     *
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
     }
     /**
      * setCodeHash

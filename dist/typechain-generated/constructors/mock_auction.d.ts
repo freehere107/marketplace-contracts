@@ -11,8 +11,9 @@ export default class Constructors {
     * new
     *
     * @param { ArgumentTypes.AccountId } owner,
+    * @param { ArgumentTypes.AccountId } collectionFabricAddress,
     */
-    "new"(owner: ArgumentTypes.AccountId, __options?: ConstructorOptions): Promise<{
+    "new"(owner: ArgumentTypes.AccountId, collectionFabricAddress: ArgumentTypes.AccountId, __options?: ConstructorOptions): Promise<{
         result: SignAndSendSuccessResponse;
         address: any;
     }>;

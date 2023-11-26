@@ -23,18 +23,18 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "user::setUserData", [userInfo], __options);
     }
     /**
-     * owner
-     *
-    */
-    "owner"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
-    }
-    /**
      * renounceOwnership
      *
     */
     "renounceOwnership"(__options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+    }
+    /**
+     * owner
+     *
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
     }
     /**
      * transferOwnership

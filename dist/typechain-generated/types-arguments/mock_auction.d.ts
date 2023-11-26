@@ -8,6 +8,7 @@ export interface ArchisinalError {
     adminAccessError?: null;
     auctionMinBidStepIsZero?: null;
     creatorIsNotCaller?: null;
+    codehashIsBanned?: null;
     auctionStartTimeIsBeforeNow?: null;
     callerIsAuctionOwner?: null;
     accountAlreadyExists?: null;
@@ -31,6 +32,8 @@ export interface ArchisinalError {
     integerOverflow?: null;
     integerUnderflow?: null;
     collectionNotFound?: null;
+    collectionIsBanned?: null;
+    collectionIsNotWhitelisted?: null;
     callerIsNotNftOwner?: null;
     transferNativeError?: null;
     ownable?: OwnableError;
@@ -44,6 +47,7 @@ export declare class ArchisinalErrorBuilder {
     static AdminAccessError(): ArchisinalError;
     static AuctionMinBidStepIsZero(): ArchisinalError;
     static CreatorIsNotCaller(): ArchisinalError;
+    static CodehashIsBanned(): ArchisinalError;
     static AuctionStartTimeIsBeforeNow(): ArchisinalError;
     static CallerIsAuctionOwner(): ArchisinalError;
     static AccountAlreadyExists(): ArchisinalError;
@@ -67,6 +71,8 @@ export declare class ArchisinalErrorBuilder {
     static IntegerOverflow(): ArchisinalError;
     static IntegerUnderflow(): ArchisinalError;
     static CollectionNotFound(): ArchisinalError;
+    static CollectionIsBanned(): ArchisinalError;
+    static CollectionIsNotWhitelisted(): ArchisinalError;
     static CallerIsNotNFTOwner(): ArchisinalError;
     static TransferNativeError(): ArchisinalError;
     static Ownable(value: OwnableError): ArchisinalError;
@@ -155,16 +161,6 @@ export declare enum ListingStatus {
     sold = "Sold",
     cancelled = "Cancelled"
 }
-export type AuctionInfo = {
-    creator: AccountId;
-    collection: AccountId;
-    tokenId: Id;
-    startPrice: (string | number | BN);
-    minBidStep: (string | number | BN);
-    currency: Currency;
-    startTime: (number | string | BN);
-    endTime: (number | string | BN);
-};
 export type Auction = {
     id: (string | number | BN);
     creator: AccountId;
@@ -187,6 +183,16 @@ export declare enum AuctionStatus {
     ended = "Ended",
     cancelled = "Cancelled"
 }
+export type AuctionInfo = {
+    creator: AccountId;
+    collection: AccountId;
+    tokenId: Id;
+    startPrice: (string | number | BN);
+    minBidStep: (string | number | BN);
+    currency: Currency;
+    startTime: (number | string | BN);
+    endTime: (number | string | BN);
+};
 export type Hash = string | number[];
 export interface UpgradeableError {
     custom?: string;

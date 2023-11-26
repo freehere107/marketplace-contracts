@@ -37,14 +37,6 @@ class Methods {
         }, [userInfo], __options);
     }
     /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(25, user_json_1.default)); });
-    }
-    /**
     * renounceOwnership
     *
     * @returns { void }
@@ -53,6 +45,14 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, user_json_2.default);
         }, [], __options);
+    }
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(27, user_json_1.default)); });
     }
     /**
     * transferOwnership

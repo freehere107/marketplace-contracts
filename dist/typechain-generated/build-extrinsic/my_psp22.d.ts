@@ -8,25 +8,6 @@ export default class Methods {
     readonly __apiPromise: ApiPromise;
     constructor(nativeContract: ContractPromise, apiPromise: ApiPromise);
     /**
-     * totalSupply
-     *
-    */
-    "totalSupply"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * increaseAllowance
-     *
-     * @param { ArgumentTypes.AccountId } spender,
-     * @param { (string | number | BN) } deltaValue,
-    */
-    "increaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * allowance
-     *
-     * @param { ArgumentTypes.AccountId } owner,
-     * @param { ArgumentTypes.AccountId } spender,
-    */
-    "allowance"(owner: ArgumentTypes.AccountId, spender: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
      * transferFrom
      *
      * @param { ArgumentTypes.AccountId } from,
@@ -35,6 +16,39 @@ export default class Methods {
      * @param { Array<(number | string | BN)> } data,
     */
     "transferFrom"(from: ArgumentTypes.AccountId, to: ArgumentTypes.AccountId, value: (string | number | BN), data: Array<(number | string | BN)>, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * allowance
+     *
+     * @param { ArgumentTypes.AccountId } owner,
+     * @param { ArgumentTypes.AccountId } spender,
+    */
+    "allowance"(owner: ArgumentTypes.AccountId, spender: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * increaseAllowance
+     *
+     * @param { ArgumentTypes.AccountId } spender,
+     * @param { (string | number | BN) } deltaValue,
+    */
+    "increaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * decreaseAllowance
+     *
+     * @param { ArgumentTypes.AccountId } spender,
+     * @param { (string | number | BN) } deltaValue,
+    */
+    "decreaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * totalSupply
+     *
+    */
+    "totalSupply"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * approve
+     *
+     * @param { ArgumentTypes.AccountId } spender,
+     * @param { (string | number | BN) } value,
+    */
+    "approve"(spender: ArgumentTypes.AccountId, value: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * balanceOf
      *
@@ -49,20 +63,6 @@ export default class Methods {
      * @param { Array<(number | string | BN)> } data,
     */
     "transfer"(to: ArgumentTypes.AccountId, value: (string | number | BN), data: Array<(number | string | BN)>, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * approve
-     *
-     * @param { ArgumentTypes.AccountId } spender,
-     * @param { (string | number | BN) } value,
-    */
-    "approve"(spender: ArgumentTypes.AccountId, value: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * decreaseAllowance
-     *
-     * @param { ArgumentTypes.AccountId } spender,
-     * @param { (string | number | BN) } deltaValue,
-    */
-    "decreaseAllowance"(spender: ArgumentTypes.AccountId, deltaValue: (string | number | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * mint
      *

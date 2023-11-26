@@ -14,17 +14,17 @@ export default class Methods {
     */
     "removeAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * isAdmin
-     *
-     * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
      * addAdmin
      *
      * @param { ArgumentTypes.AccountId } accountId,
     */
     "addAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * isAdmin
+     *
+     * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "isAdmin"(accountId: ArgumentTypes.AccountId, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * transferOwnership
      *
@@ -42,26 +42,18 @@ export default class Methods {
     */
     "renounceOwnership"(__options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
+     * getRoleAdmin
+     *
+     * @param { (number | string | BN) } role,
+    */
+    "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
      * grantRole
      *
      * @param { (number | string | BN) } role,
      * @param { ArgumentTypes.AccountId | null } account,
     */
     "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * renounceRole
-     *
-     * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } account,
-    */
-    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
-    /**
-     * revokeRole
-     *
-     * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } account,
-    */
-    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
      * hasRole
      *
@@ -70,9 +62,17 @@ export default class Methods {
     */
     "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
     /**
-     * getRoleAdmin
+     * revokeRole
      *
      * @param { (number | string | BN) } role,
+     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "getRoleAdmin"(role: (number | string | BN), __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
+    /**
+     * renounceRole
+     *
+     * @param { (number | string | BN) } role,
+     * @param { ArgumentTypes.AccountId | null } account,
+    */
+    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options: GasLimit): import("@polkadot/api-base/types").SubmittableExtrinsic<"promise", import("@polkadot/types/types").ISubmittableResult>;
 }

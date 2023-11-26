@@ -18,19 +18,19 @@ export default class Methods {
     */
     "removeAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
     * addAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "addAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * isAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * transferOwnership
     *
@@ -51,6 +51,13 @@ export default class Methods {
     */
     "renounceOwnership"(__options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
     /**
+    * getRoleAdmin
+    *
+    * @param { (number | string | BN) } role,
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "getRoleAdmin"(role: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
+    /**
     * grantRole
     *
     * @param { (number | string | BN) } role,
@@ -58,22 +65,6 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
     "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
-    /**
-    * renounceRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
-    */
-    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
-    /**
-    * revokeRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } account,
-    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
-    */
-    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
     /**
     * hasRole
     *
@@ -83,10 +74,19 @@ export default class Methods {
     */
     "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
-    * getRoleAdmin
+    * revokeRole
     *
     * @param { (number | string | BN) } role,
-    * @returns { Result<number, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
-    "getRoleAdmin"(role: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
+    "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
+    /**
+    * renounceRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } account,
+    * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
+    */
+    "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
 }

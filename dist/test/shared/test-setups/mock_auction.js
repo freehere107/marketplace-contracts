@@ -9,11 +9,13 @@ const mock_auction_1 = __importDefault(require("../../../typechain-generated/con
 const mock_auction_2 = __importDefault(require("../../../typechain-generated/contracts/mock_auction"));
 const api_singleton_1 = __importDefault(require("../api_singleton"));
 const signers_1 = require("../signers");
+const collection_fabric_1 = require("./collection_fabric");
 async function setupMockAuction() {
     const api = await api_singleton_1.default.getInstance();
     const defaultSigner = signers_1.Signers.defaultSigner;
     const constructors = new mock_auction_1.default(api, defaultSigner);
-    const { address } = await constructors.new(defaultSigner.address);
+    const collectionFabric = await (0, collection_fabric_1.setupCollectionFabric)();
+    const { address } = await constructors.new(defaultSigner.address, collectionFabric.address);
     return new mock_auction_2.default(address, defaultSigner, api);
 }
 exports.setupMockAuction = setupMockAuction;

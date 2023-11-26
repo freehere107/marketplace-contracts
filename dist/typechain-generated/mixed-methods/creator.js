@@ -18,6 +18,14 @@ class Methods {
         this.__callerAddress = keyringPair.address;
     }
     /**
+    * getUserData
+    *
+    * @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
+    */
+    "getUserData"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::getUserData", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(17, creator_json_1.default)); });
+    }
+    /**
     * setUserData
     *
     * @param { ArgumentTypes.UserData } userInfo,
@@ -29,12 +37,12 @@ class Methods {
         }, [userInfo], __options);
     }
     /**
-    * getUserData
+    * getCollectionCount
     *
-    * @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
+    * @returns { Result<number, ReturnTypes.LangError> }
     */
-    "getUserData"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::getUserData", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(24, creator_json_1.default)); });
+    "getCollectionCount"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(25, creator_json_1.default)); });
     }
     /**
     * getCollectionIdByIndex
@@ -43,15 +51,7 @@ class Methods {
     * @returns { Result<Result<ReturnTypes.AccountId, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "getCollectionIdByIndex"(index, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionIdByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(25, creator_json_1.default)); });
-    }
-    /**
-    * getCollectionCount
-    *
-    * @returns { Result<number, ReturnTypes.LangError> }
-    */
-    "getCollectionCount"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(27, creator_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "creator::getCollectionIdByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(26, creator_json_1.default)); });
     }
     /**
     * createCollection
@@ -67,14 +67,6 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "creator::createCollection", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, creator_json_2.default);
         }, [name, uri, royalty, additionalInfo, codeHash], __options);
-    }
-    /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(29, creator_json_1.default)); });
     }
     /**
     * renounceOwnership
@@ -96,6 +88,14 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, creator_json_2.default);
         }, [newOwner], __options);
+    }
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(31, creator_json_1.default)); });
     }
     /**
     * setCodeHash

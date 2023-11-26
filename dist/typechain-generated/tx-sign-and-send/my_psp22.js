@@ -14,24 +14,17 @@ class Methods {
         this.__keyringPair = keyringPair;
     }
     /**
-    * totalSupply
+    * transferFrom
     *
+    * @param { ArgumentTypes.AccountId } from,
+    * @param { ArgumentTypes.AccountId } to,
+    * @param { (string | number | BN) } value,
+    * @param { Array<(number | string | BN)> } data,
     */
-    "totalSupply"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::totalSupply", (events) => {
+    "transferFrom"(from, to, value, data, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::transferFrom", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * increaseAllowance
-    *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } deltaValue,
-    */
-    "increaseAllowance"(spender, deltaValue, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::increaseAllowance", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
-        }, [spender, deltaValue], __options);
+        }, [from, to, value, data], __options);
     }
     /**
     * allowance
@@ -45,17 +38,46 @@ class Methods {
         }, [owner, spender], __options);
     }
     /**
-    * transferFrom
+    * increaseAllowance
     *
-    * @param { ArgumentTypes.AccountId } from,
-    * @param { ArgumentTypes.AccountId } to,
-    * @param { (string | number | BN) } value,
-    * @param { Array<(number | string | BN)> } data,
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } deltaValue,
     */
-    "transferFrom"(from, to, value, data, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::transferFrom", (events) => {
+    "increaseAllowance"(spender, deltaValue, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::increaseAllowance", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
-        }, [from, to, value, data], __options);
+        }, [spender, deltaValue], __options);
+    }
+    /**
+    * decreaseAllowance
+    *
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } deltaValue,
+    */
+    "decreaseAllowance"(spender, deltaValue, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::decreaseAllowance", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
+        }, [spender, deltaValue], __options);
+    }
+    /**
+    * totalSupply
+    *
+    */
+    "totalSupply"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::totalSupply", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
+        }, [], __options);
+    }
+    /**
+    * approve
+    *
+    * @param { ArgumentTypes.AccountId } spender,
+    * @param { (string | number | BN) } value,
+    */
+    "approve"(spender, value, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::approve", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
+        }, [spender, value], __options);
     }
     /**
     * balanceOf
@@ -78,28 +100,6 @@ class Methods {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::transfer", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
         }, [to, value, data], __options);
-    }
-    /**
-    * approve
-    *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } value,
-    */
-    "approve"(spender, value, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::approve", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
-        }, [spender, value], __options);
-    }
-    /**
-    * decreaseAllowance
-    *
-    * @param { ArgumentTypes.AccountId } spender,
-    * @param { (string | number | BN) } deltaValue,
-    */
-    "decreaseAllowance"(spender, deltaValue, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::decreaseAllowance", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_psp22_json_1.default);
-        }, [spender, deltaValue], __options);
     }
     /**
     * mint

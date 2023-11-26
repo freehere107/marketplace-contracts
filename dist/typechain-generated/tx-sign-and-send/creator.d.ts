@@ -10,27 +10,27 @@ export default class Methods {
     readonly __apiPromise: ApiPromise;
     constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
     /**
+    * getUserData
+    *
+    */
+    "getUserData"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
     * setUserData
     *
     * @param { ArgumentTypes.UserData } userInfo,
     */
     "setUserData"(userInfo: ArgumentTypes.UserData, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * getUserData
+    * getCollectionCount
     *
     */
-    "getUserData"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    "getCollectionCount"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * getCollectionIdByIndex
     *
     * @param { (number | string | BN) } index,
     */
     "getCollectionIdByIndex"(index: (number | string | BN), __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
-    * getCollectionCount
-    *
-    */
-    "getCollectionCount"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * createCollection
     *
@@ -42,11 +42,6 @@ export default class Methods {
     */
     "createCollection"(name: string, uri: string, royalty: (number | string | BN), additionalInfo: string, codeHash: ArgumentTypes.Hash, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
-    * owner
-    *
-    */
-    "owner"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
-    /**
     * renounceOwnership
     *
     */
@@ -57,6 +52,11 @@ export default class Methods {
     * @param { ArgumentTypes.AccountId } newOwner,
     */
     "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
+    /**
+    * owner
+    *
+    */
+    "owner"(__options?: GasLimit): Promise<import("@727-ventures/typechain-types/dist/src/tx").SignAndSendSuccessResponse>;
     /**
     * setCodeHash
     *
