@@ -8,12 +8,59 @@ class Methods {
         this.__apiPromise = apiPromise;
     }
     /**
+     * whitelistCollection
+     *
+     * @param { ArgumentTypes.AccountId } collection,
+    */
+    "whitelistCollection"(collection, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::whitelistCollection", [collection], __options);
+    }
+    /**
+     * collectionCount
+     *
+    */
+    "collectionCount"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::collectionCount", [], __options);
+    }
+    /**
+     * collection
+     *
+     * @param { (string | number | BN) } index,
+    */
+    "collection"(index, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::collection", [index], __options);
+    }
+    /**
+     * banCodehash
+     *
+     * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "banCodehash"(codeHash, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::banCodehash", [codeHash], __options);
+    }
+    /**
      * unbanCollection
      *
      * @param { ArgumentTypes.AccountId } collection,
     */
     "unbanCollection"(collection, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::unbanCollection", [collection], __options);
+    }
+    /**
+     * isCodehashBanned
+     *
+     * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "isCodehashBanned"(codeHash, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::isCodehashBanned", [codeHash], __options);
+    }
+    /**
+     * unbanCodehash
+     *
+     * @param { ArgumentTypes.Hash } codeHash,
+    */
+    "unbanCodehash"(codeHash, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::unbanCodehash", [codeHash], __options);
     }
     /**
      * isWhitelistEnabled
@@ -31,51 +78,12 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::isCollectionDeployed", [collection], __options);
     }
     /**
-     * unbanCodehash
+     * setWhitelistEnabled
      *
-     * @param { ArgumentTypes.Hash } codeHash,
+     * @param { boolean } enabled,
     */
-    "unbanCodehash"(codeHash, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::unbanCodehash", [codeHash], __options);
-    }
-    /**
-     * isCodehashBanned
-     *
-     * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "isCodehashBanned"(codeHash, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::isCodehashBanned", [codeHash], __options);
-    }
-    /**
-     * collectionCount
-     *
-    */
-    "collectionCount"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::collectionCount", [], __options);
-    }
-    /**
-     * banCodehash
-     *
-     * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "banCodehash"(codeHash, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::banCodehash", [codeHash], __options);
-    }
-    /**
-     * whitelistCollection
-     *
-     * @param { ArgumentTypes.AccountId } collection,
-    */
-    "whitelistCollection"(collection, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::whitelistCollection", [collection], __options);
-    }
-    /**
-     * isBanned
-     *
-     * @param { ArgumentTypes.AccountId } collection,
-    */
-    "isBanned"(collection, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::isBanned", [collection], __options);
+    "setWhitelistEnabled"(enabled, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::setWhitelistEnabled", [enabled], __options);
     }
     /**
      * isWhitelisted
@@ -95,14 +103,6 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::instantiateCollection", [collectionInfo, codeHash], __options);
     }
     /**
-     * collection
-     *
-     * @param { (string | number | BN) } index,
-    */
-    "collection"(index, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::collection", [index], __options);
-    }
-    /**
      * banCollection
      *
      * @param { ArgumentTypes.AccountId } collection,
@@ -111,12 +111,12 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::banCollection", [collection], __options);
     }
     /**
-     * setWhitelistEnabled
+     * isBanned
      *
-     * @param { boolean } enabled,
+     * @param { ArgumentTypes.AccountId } collection,
     */
-    "setWhitelistEnabled"(enabled, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::setWhitelistEnabled", [enabled], __options);
+    "isBanned"(collection, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collectionFabric::isBanned", [collection], __options);
     }
     /**
      * isAdmin
@@ -165,13 +165,13 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
     }
     /**
-     * revokeRole
+     * grantRole
      *
      * @param { (number | string | BN) } role,
      * @param { ArgumentTypes.AccountId | null } account,
     */
-    "revokeRole"(role, account, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
+    "grantRole"(role, account, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::grantRole", [role, account], __options);
     }
     /**
      * hasRole
@@ -183,6 +183,14 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
     }
     /**
+     * getRoleAdmin
+     *
+     * @param { (number | string | BN) } role,
+    */
+    "getRoleAdmin"(role, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
+    }
+    /**
      * renounceRole
      *
      * @param { (number | string | BN) } role,
@@ -192,21 +200,13 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
     }
     /**
-     * getRoleAdmin
-     *
-     * @param { (number | string | BN) } role,
-    */
-    "getRoleAdmin"(role, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
-    }
-    /**
-     * grantRole
+     * revokeRole
      *
      * @param { (number | string | BN) } role,
      * @param { ArgumentTypes.AccountId | null } account,
     */
-    "grantRole"(role, account, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::grantRole", [role, account], __options);
+    "revokeRole"(role, account, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
     }
     /**
      * setCodeHash

@@ -3,6 +3,22 @@ export type AccountId = string | number[];
 export declare enum LangError {
     couldNotReadInput = "CouldNotReadInput"
 }
+export interface Id {
+    u8?: number;
+    u16?: number;
+    u32?: number;
+    u64?: number;
+    u128?: ReturnNumber;
+    bytes?: Array<number>;
+}
+export declare class IdBuilder {
+    static U8(value: number): Id;
+    static U16(value: number): Id;
+    static U32(value: number): Id;
+    static U64(value: number): Id;
+    static U128(value: ReturnNumber): Id;
+    static Bytes(value: Array<number>): Id;
+}
 export interface ArchisinalError {
     noOwner?: null;
     adminAccessError?: null;
@@ -121,22 +137,6 @@ export declare class PSP22ErrorBuilder {
     static ZeroRecipientAddress(): PSP22Error;
     static ZeroSenderAddress(): PSP22Error;
     static SafeTransferCheckFailed(value: string): PSP22Error;
-}
-export interface Id {
-    u8?: number;
-    u16?: number;
-    u32?: number;
-    u64?: number;
-    u128?: ReturnNumber;
-    bytes?: Array<number>;
-}
-export declare class IdBuilder {
-    static U8(value: number): Id;
-    static U16(value: number): Id;
-    static U32(value: number): Id;
-    static U64(value: number): Id;
-    static U128(value: ReturnNumber): Id;
-    static Bytes(value: Array<number>): Id;
 }
 export type Hash = string | number[];
 export interface UpgradeableError {

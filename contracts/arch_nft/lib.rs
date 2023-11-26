@@ -132,8 +132,9 @@ mod arch_nft {
             additional_info: Option<String>,
         ) -> Self {
             let mut instance = Self::default();
+            let caller = Self::env().caller();
 
-            ownable::Internal::_init_with_owner(&mut instance, owner);
+            ownable::Internal::_init_with_owner(&mut instance, caller);
 
             CollectionImpl::set_collection_royalty(&mut instance, royalty).unwrap();
 
@@ -148,6 +149,8 @@ mod arch_nft {
             if let Some(info) = additional_info {
                 CollectionImpl::set_collection_additional_info(&mut instance, info).unwrap();
             }
+
+            ownable::Internal::_init_with_owner(&mut instance, owner);
 
             instance
         }
