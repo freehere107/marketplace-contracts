@@ -9,14 +9,7 @@ pub use crate::arch_nft::*;
 /// This is used to create a new NFT collection, and consists of the following components:
 /// - PSP34: The PSP34 contract is used to manage the NFTs.
 /// - Collection: The Collection contract is used to manage the collection info such as uris, royalties etc.
-#[openbrush::implementation(
-    Ownable,
-    PSP34,
-    PSP34Mintable,
-    PSP34Burnable,
-    PSP34Metadata,
-    Upgradeable
-)]
+#[openbrush::implementation(Ownable, PSP34, PSP34Mintable, PSP34Burnable, Upgradeable)]
 #[openbrush::contract]
 mod arch_nft {
     use archisinal_lib::impls::collection::data::Data;
@@ -85,8 +78,6 @@ mod arch_nft {
         psp34: psp34::Data,
         #[storage_field]
         ownable: ownable::Data,
-        #[storage_field]
-        psp34_metadata: metadata::Data,
         #[storage_field]
         arch_nft: Data,
     }
