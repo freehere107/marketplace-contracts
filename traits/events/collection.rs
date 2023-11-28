@@ -1,4 +1,6 @@
-/// SPDX-License-Identifier: MIT
+//! SPDX-License-Identifier: MIT
+use crate::impls::collection::data::NftMetadata;
+use openbrush::contracts::psp34::Id;
 use openbrush::traits::String;
 
 pub trait CollectionEvents {
@@ -8,5 +10,5 @@ pub trait CollectionEvents {
 
     fn emit_collection_additional_info_set(&self, additional_info: String);
 
-    fn emit_set_attribute(&self, key: String, value: String);
+    fn emit_nft_metadata_set(&self, id: Id, value: NftMetadata);
 }

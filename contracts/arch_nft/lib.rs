@@ -20,6 +20,7 @@ pub use crate::arch_nft::*;
 #[openbrush::contract]
 mod arch_nft {
     use archisinal_lib::impls::collection::data::Data;
+    use archisinal_lib::impls::collection::data::NftMetadata;
     use archisinal_lib::impls::collection::impls::CollectionImpl;
     use archisinal_lib::traits::collection::*;
     use archisinal_lib::traits::events::collection::CollectionEvents;
@@ -72,9 +73,9 @@ mod arch_nft {
     }
 
     #[ink(event)]
-    pub struct SetAttribute {
-        key: String,
-        value: String,
+    pub struct NFTMetadataSet {
+        id: Id,
+        value: NftMetadata,
     }
 
     #[ink(storage)]
@@ -218,8 +219,13 @@ mod arch_nft {
         }
 
         #[ink(message)]
-        fn set_attribute(&mut self, id: Id, key: String, value: String) -> ProjectResult<()> {
-            CollectionImpl::set_attribute(self, id, key, value)
+        fn update_nft_metadata(&mut self, id: Id, metadata: NftMetadata) -> ProjectResult<()> {
+            CollectionImpl::update_nft_metadata(self, id, metadata)
+        }
+
+        #[ink(message)]
+        fn get_nft_metadata(&self, id: Id) -> Option<NftMetadata> {
+            CollectionImpl::get_nft_metadata(self, id)
         }
     }
 
@@ -237,8 +243,8 @@ mod arch_nft {
                 .emit_event(SetCollectionAdditionalInfo { additional_info });
         }
 
-        fn emit_set_attribute(&self, key: String, value: String) {
-            self.env().emit_event(SetAttribute { key, value });
+        fn emit_nft_metadata_set(&self, id: Id, value: NftMetadata) {
+            self.env().emit_event(NFTMetadataSet { id, value });
         }
     }
 }

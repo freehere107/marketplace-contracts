@@ -1,4 +1,5 @@
-/// SPDX-License-Identifier: MIT
+//! SPDX-License-Identifier: MIT
+use crate::impls::collection::data::NftMetadata;
 use crate::traits::ProjectResult;
 use openbrush::contracts::ownable::*;
 use openbrush::contracts::psp34::extensions::burnable::*;
@@ -117,13 +118,12 @@ pub trait Collection {
     #[ink(message)]
     fn set_collection_additional_info(&mut self, additional_info: String) -> ProjectResult<()>;
 
-    /// Set attribute to the token
+    /// Set the metadata of NFT
     ///
     /// # Arguments
     ///
-    /// * `id` - The id of the token.
-    /// * `key` - The key of the attribute.
-    /// * `value` - The value of the attribute.
+    /// * `id` - The id of the NFT.
+    /// * `metadata` - The metadata of the NFT.
     ///
     /// # Returns
     ///
@@ -131,13 +131,29 @@ pub trait Collection {
     ///
     /// # Errors
     ///
-    /// * `ProjectError::CallerIsNotNFTOwner` - if the caller is not the owner of the token.
+    /// Returns `ProjectError::OwnableError(...)` if the caller is not the owner.
     ///
     /// # Emits
     ///
-    /// * `SetAttribute` - Emits when the attribute is set.
+    /// * `NFTMetadataSet` - Emits when the NFT metadata is set.
+    ///
+    /// # Note
+    ///
+    /// This function is used to set the metadata of the NFT.
     #[ink(message)]
-    fn set_attribute(&mut self, id: Id, key: String, value: String) -> ProjectResult<()>;
+    fn update_nft_metadata(&mut self, id: Id, metadata: NftMetadata) -> ProjectResult<()>;
+
+    /// Get the metadata of NFT
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - The id of the NFT.
+    ///
+    /// # Returns
+    ///
+    /// * `Option<NftMetadata>` - The metadata of the NFT, if it exists, otherwise None.
+    #[ink(message)]
+    fn get_nft_metadata(&self, id: Id) -> Option<NftMetadata>;
 }
 
 /// ArchNFTRef type

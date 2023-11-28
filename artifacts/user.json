@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x0e93bc71e6edd4afcea3e138efb9dd2f1cdb4c89a81c9f0f9fb46947ea198e21",
+    "hash": "0x642ff93cfa7b59743cd114194cfefda09796b23b8697b82084f149ec17d9d065",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.73.0",
     "build_info": {
@@ -215,6 +215,22 @@
         "selector": "0xda164d97"
       },
       {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::owner",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 25
+        },
+        "selector": "0x4fa43c8c"
+      },
+      {
         "args": [
           {
             "label": "new_owner",
@@ -237,7 +253,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 25
+          "type": 27
         },
         "selector": "0x11f43efd"
       },
@@ -253,25 +269,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 25
-        },
-        "selector": "0x5e228753"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::owner",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
           "type": 27
         },
-        "selector": "0x4fa43c8c"
+        "selector": "0x5e228753"
       },
       {
         "args": [
@@ -1485,22 +1485,17 @@
           "variant": {
             "variants": [
               {
-                "fields": [
-                  {
-                    "type": 10
-                  }
-                ],
                 "index": 0,
-                "name": "Ok"
+                "name": "None"
               },
               {
                 "fields": [
                   {
-                    "type": 21
+                    "type": 0
                   }
                 ],
                 "index": 1,
-                "name": "Err"
+                "name": "Some"
               }
             ]
           }
@@ -1508,15 +1503,11 @@
         "params": [
           {
             "name": "T",
-            "type": 10
-          },
-          {
-            "name": "E",
-            "type": 21
+            "type": 0
           }
         ],
         "path": [
-          "Result"
+          "Option"
         ]
       }
     },
@@ -1569,17 +1560,22 @@
           "variant": {
             "variants": [
               {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
                 "index": 0,
-                "name": "None"
+                "name": "Ok"
               },
               {
                 "fields": [
                   {
-                    "type": 0
+                    "type": 21
                   }
                 ],
                 "index": 1,
-                "name": "Some"
+                "name": "Err"
               }
             ]
           }
@@ -1587,11 +1583,15 @@
         "params": [
           {
             "name": "T",
-            "type": 0
+            "type": 10
+          },
+          {
+            "name": "E",
+            "type": 21
           }
         ],
         "path": [
-          "Option"
+          "Result"
         ]
       }
     },

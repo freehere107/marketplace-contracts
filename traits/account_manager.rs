@@ -1,4 +1,4 @@
-/// SPDX-License-Identifier: MIT
+//! SPDX-License-Identifier: MIT
 use crate::traits::ProjectResult;
 use ink::primitives::{AccountId, Hash};
 

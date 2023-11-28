@@ -1,5 +1,5 @@
+//! SPDX-License-Identifier: MIT
 #![allow(clippy::too_many_arguments)]
-/// SPDX-License-Identifier: MIT
 use crate::impls::auction::data;
 use crate::impls::shared::currency::Currency;
 use crate::traits::ProjectResult;
@@ -20,7 +20,7 @@ pub trait Auction {
     /// # Note
     /// The auctions are indexed from 0 to `get_auction_count() - 1`
     ///
-    /// # Returns   
+    /// # Returns
     ///
     /// * `u128` - The number of auctions
     #[ink(message)]

@@ -1,5 +1,5 @@
+//! SPDX-License-Identifier: MIT
 use crate::impls::collection_fabric::data::CollectionInfo;
-/// SPDX-License-Identifier: MIT
 use crate::traits::ProjectResult;
 use ink::primitives::{AccountId, Hash};
 

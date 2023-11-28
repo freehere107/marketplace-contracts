@@ -87,7 +87,7 @@ export default class EventsClass {
 		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'SetCollectionAdditionalInfo');
 	}
 
-	public subscribeOnSetAttributeEvent(callback : (event : EventTypes.SetAttribute) => void) {
+	public subscribeOnNFTMetadataSetEvent(callback : (event : EventTypes.NFTMetadataSet) => void) {
 		const callbackWrapper = (args: any[], event: any) => {
 			const _event: Record < string, any > = {};
 
@@ -95,10 +95,10 @@ export default class EventsClass {
 				_event[event.args[i]!.name] = args[i]!.toJSON();
 			}
 
-			callback(handleEventReturn(_event, getEventTypeDescription('SetAttribute', EVENT_DATA_TYPE_DESCRIPTIONS)) as EventTypes.SetAttribute);
+			callback(handleEventReturn(_event, getEventTypeDescription('NFTMetadataSet', EVENT_DATA_TYPE_DESCRIPTIONS)) as EventTypes.NFTMetadataSet);
 		};
 
-		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'SetAttribute');
+		return this.__subscribeOnEvent(callbackWrapper, (eventName : string) => eventName == 'NFTMetadataSet');
 	}
 
 

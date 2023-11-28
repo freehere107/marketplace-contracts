@@ -1,3 +1,4 @@
+//! SPDX-License-Identifier: MIT
 #[openbrush::trait_definition]
 pub trait TimestampProvider {
     #[ink(message)]
