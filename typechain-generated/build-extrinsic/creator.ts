@@ -21,16 +21,6 @@ export default class Methods {
 		this.__apiPromise = apiPromise;
 	}
 	/**
-	 * getUserData
-	 *
-	*/
-	"getUserData" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
-	}
-
-	/**
 	 * setUserData
 	 *
 	 * @param { ArgumentTypes.UserData } userInfo,
@@ -43,55 +33,23 @@ export default class Methods {
 	}
 
 	/**
-	 * getCollectionIdByIndex
+	 * getUserData
 	 *
-	 * @param { (number | string | BN) } index,
 	*/
-	"getCollectionIdByIndex" (
-		index: (number | string | BN),
+	"getUserData" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "creator::getCollectionIdByIndex", [index], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
 	}
 
 	/**
-	 * getCollectionCount
+	 * owner
 	 *
 	*/
-	"getCollectionCount" (
+	"owner" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "creator::getCollectionCount", [], __options);
-	}
-
-	/**
-	 * createCollection
-	 *
-	 * @param { string } name,
-	 * @param { string } uri,
-	 * @param { (number | string | BN) } royalty,
-	 * @param { string } additionalInfo,
-	 * @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"createCollection" (
-		name: string,
-		uri: string,
-		royalty: (number | string | BN),
-		additionalInfo: string,
-		codeHash: ArgumentTypes.Hash,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "creator::createCollection", [name, uri, royalty, additionalInfo, codeHash], __options);
-	}
-
-	/**
-	 * renounceOwnership
-	 *
-	*/
-	"renounceOwnership" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
 	}
 
 	/**
@@ -107,13 +65,13 @@ export default class Methods {
 	}
 
 	/**
-	 * owner
+	 * renounceOwnership
 	 *
 	*/
-	"owner" (
+	"renounceOwnership" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
 	}
 
 	/**
