@@ -11,16 +11,6 @@ class EventsClass {
         this.__nativeContract = nativeContract;
         this.__api = api;
     }
-    subscribeOnCollectionCreatedEvent(callback) {
-        const callbackWrapper = (args, event) => {
-            const _event = {};
-            for (let i = 0; i < args.length; i++) {
-                _event[event.args[i].name] = args[i].toJSON();
-            }
-            callback((0, typechain_types_1.handleEventReturn)(_event, (0, utils_1.getEventTypeDescription)('CollectionCreated', creator_json_1.default)));
-        };
-        return this.__subscribeOnEvent(callbackWrapper, (eventName) => eventName == 'CollectionCreated');
-    }
     subscribeOnUserDataSetEvent(callback) {
         const callbackWrapper = (args, event) => {
             const _event = {};

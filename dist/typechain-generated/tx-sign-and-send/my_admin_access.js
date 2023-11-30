@@ -24,22 +24,22 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * addAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "addAdmin"(accountId, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
-        }, [accountId], __options);
-    }
-    /**
     * removeAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
     */
     "removeAdmin"(accountId, __options) {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
+        }, [accountId], __options);
+    }
+    /**
+    * addAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "addAdmin"(accountId, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
         }, [accountId], __options);
     }
@@ -82,13 +82,24 @@ class Methods {
         }, [role], __options);
     }
     /**
-    * renounceRole
+    * hasRole
+    *
+    * @param { (number | string | BN) } role,
+    * @param { ArgumentTypes.AccountId | null } address,
+    */
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::hasRole", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
+        }, [role, address], __options);
+    }
+    /**
+    * grantRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
+    "grantRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
         }, [role, account], __options);
     }
@@ -104,26 +115,15 @@ class Methods {
         }, [role, account], __options);
     }
     /**
-    * grantRole
+    * renounceRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "grantRole"(role, account, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
         }, [role, account], __options);
-    }
-    /**
-    * hasRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
-    */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::hasRole", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, my_admin_access_json_1.default);
-        }, [role, address], __options);
     }
 }
 exports.default = Methods;

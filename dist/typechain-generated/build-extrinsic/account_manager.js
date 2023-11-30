@@ -8,6 +8,28 @@ class Methods {
         this.__apiPromise = apiPromise;
     }
     /**
+     * getCreatorCodeHash
+     *
+    */
+    "getCreatorCodeHash"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getCreatorCodeHash", [], __options);
+    }
+    /**
+     * createCreatorAccount
+     *
+    */
+    "createCreatorAccount"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::createCreatorAccount", [], __options);
+    }
+    /**
+     * getAccount
+     *
+     * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "getAccount"(accountId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getAccount", [accountId], __options);
+    }
+    /**
      * getCreatorAccount
      *
      * @param { ArgumentTypes.AccountId } accountId,
@@ -16,11 +38,18 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getCreatorAccount", [accountId], __options);
     }
     /**
-     * createCreatorAccount
+     * createAccount
      *
     */
-    "createCreatorAccount"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::createCreatorAccount", [], __options);
+    "createAccount"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::createAccount", [], __options);
+    }
+    /**
+     * getUserCodeHash
+     *
+    */
+    "getUserCodeHash"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getUserCodeHash", [], __options);
     }
     /**
      * setCreatorCodeHash
@@ -39,33 +68,12 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::setUserCodeHash", [codeHash], __options);
     }
     /**
-     * getUserCodeHash
-     *
-    */
-    "getUserCodeHash"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getUserCodeHash", [], __options);
-    }
-    /**
-     * getAccount
+     * isAdmin
      *
      * @param { ArgumentTypes.AccountId } accountId,
     */
-    "getAccount"(accountId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getAccount", [accountId], __options);
-    }
-    /**
-     * getCreatorCodeHash
-     *
-    */
-    "getCreatorCodeHash"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::getCreatorCodeHash", [], __options);
-    }
-    /**
-     * createAccount
-     *
-    */
-    "createAccount"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountManager::createAccount", [], __options);
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
     }
     /**
      * addAdmin
@@ -76,27 +84,12 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::addAdmin", [accountId], __options);
     }
     /**
-     * isAdmin
-     *
-     * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
-    }
-    /**
      * removeAdmin
      *
      * @param { ArgumentTypes.AccountId } accountId,
     */
     "removeAdmin"(accountId, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::removeAdmin", [accountId], __options);
-    }
-    /**
-     * renounceOwnership
-     *
-    */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
     }
     /**
      * transferOwnership
@@ -114,12 +107,11 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
     }
     /**
-     * getRoleAdmin
+     * renounceOwnership
      *
-     * @param { (number | string | BN) } role,
     */
-    "getRoleAdmin"(role, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
     }
     /**
      * hasRole
@@ -131,13 +123,13 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
     }
     /**
-     * grantRole
+     * renounceRole
      *
      * @param { (number | string | BN) } role,
      * @param { ArgumentTypes.AccountId | null } account,
     */
-    "grantRole"(role, account, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::grantRole", [role, account], __options);
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
     }
     /**
      * revokeRole
@@ -149,13 +141,21 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
     }
     /**
-     * renounceRole
+     * grantRole
      *
      * @param { (number | string | BN) } role,
      * @param { ArgumentTypes.AccountId | null } account,
     */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
+    "grantRole"(role, account, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::grantRole", [role, account], __options);
+    }
+    /**
+     * getRoleAdmin
+     *
+     * @param { (number | string | BN) } role,
+    */
+    "getRoleAdmin"(role, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
     }
     /**
      * setCodeHash

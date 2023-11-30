@@ -14,15 +14,6 @@ class Methods {
         this.__keyringPair = keyringPair;
     }
     /**
-    * getUserData
-    *
-    */
-    "getUserData"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "user::getUserData", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
-        }, [], __options);
-    }
-    /**
     * setUserData
     *
     * @param { ArgumentTypes.UserData } userInfo,
@@ -33,37 +24,13 @@ class Methods {
         }, [userInfo], __options);
     }
     /**
-    * getCollectionCount
+    * getUserData
     *
     */
-    "getCollectionCount"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "creator::getCollectionCount", (events) => {
+    "getUserData"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "user::getUserData", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
         }, [], __options);
-    }
-    /**
-    * getCollectionIdByIndex
-    *
-    * @param { (number | string | BN) } index,
-    */
-    "getCollectionIdByIndex"(index, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "creator::getCollectionIdByIndex", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
-        }, [index], __options);
-    }
-    /**
-    * createCollection
-    *
-    * @param { string } name,
-    * @param { string } uri,
-    * @param { (number | string | BN) } royalty,
-    * @param { string } additionalInfo,
-    * @param { ArgumentTypes.Hash } codeHash,
-    */
-    "createCollection"(name, uri, royalty, additionalInfo, codeHash, __options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "creator::createCollection", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
-        }, [name, uri, royalty, additionalInfo, codeHash], __options);
     }
     /**
     * owner
@@ -71,15 +38,6 @@ class Methods {
     */
     "owner"(__options) {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::owner", (events) => {
-            return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
-        }, [], __options);
-    }
-    /**
-    * renounceOwnership
-    *
-    */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
         }, [], __options);
     }
@@ -92,6 +50,15 @@ class Methods {
         return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
             return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
         }, [newOwner], __options);
+    }
+    /**
+    * renounceOwnership
+    *
+    */
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_1.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
+            return (0, utils_1.decodeEvents)(events, this.__nativeContract, creator_json_1.default);
+        }, [], __options);
     }
     /**
     * setCodeHash

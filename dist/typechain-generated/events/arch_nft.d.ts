@@ -10,6 +10,6 @@ export default class EventsClass {
     subscribeOnSetCollectionNameEvent(callback: (event: EventTypes.SetCollectionName) => void): Promise<import("@polkadot/types-codec/types").Codec>;
     subscribeOnSetCollectionUriEvent(callback: (event: EventTypes.SetCollectionUri) => void): Promise<import("@polkadot/types-codec/types").Codec>;
     subscribeOnSetCollectionAdditionalInfoEvent(callback: (event: EventTypes.SetCollectionAdditionalInfo) => void): Promise<import("@polkadot/types-codec/types").Codec>;
-    subscribeOnSetAttributeEvent(callback: (event: EventTypes.SetAttribute) => void): Promise<import("@polkadot/types-codec/types").Codec>;
+    subscribeOnNFTMetadataSetEvent(callback: (event: EventTypes.NFTMetadataSet) => void): Promise<import("@polkadot/types-codec/types").Codec>;
     private __subscribeOnEvent;
 }

@@ -61,15 +61,15 @@ class EventsClass {
         };
         return this.__subscribeOnEvent(callbackWrapper, (eventName) => eventName == 'SetCollectionAdditionalInfo');
     }
-    subscribeOnSetAttributeEvent(callback) {
+    subscribeOnNFTMetadataSetEvent(callback) {
         const callbackWrapper = (args, event) => {
             const _event = {};
             for (let i = 0; i < args.length; i++) {
                 _event[event.args[i].name] = args[i].toJSON();
             }
-            callback((0, typechain_types_1.handleEventReturn)(_event, (0, utils_1.getEventTypeDescription)('SetAttribute', arch_nft_json_1.default)));
+            callback((0, typechain_types_1.handleEventReturn)(_event, (0, utils_1.getEventTypeDescription)('NFTMetadataSet', arch_nft_json_1.default)));
         };
-        return this.__subscribeOnEvent(callbackWrapper, (eventName) => eventName == 'SetAttribute');
+        return this.__subscribeOnEvent(callbackWrapper, (eventName) => eventName == 'NFTMetadataSet');
     }
     __subscribeOnEvent(callback, filter = () => true) {
         // @ts-ignore

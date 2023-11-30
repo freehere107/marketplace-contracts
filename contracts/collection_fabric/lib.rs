@@ -137,7 +137,7 @@ mod collection_fabric {
             )
             .code_hash(code_hash)
             .endowment(0)
-            .salt_bytes([0xDE, 0xAD, 0xBE, 0xEF])
+            .salt_bytes(CollectionFabricImpl::collection_count(self).to_le_bytes())
             .instantiate();
 
             Ok(contract.to_account_id())

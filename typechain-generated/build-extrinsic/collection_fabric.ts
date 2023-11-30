@@ -21,17 +21,15 @@ export default class Methods {
 		this.__apiPromise = apiPromise;
 	}
 	/**
-	 * instantiateCollection
+	 * isCollectionDeployed
 	 *
-	 * @param { ArgumentTypes.CollectionInfo } collectionInfo,
-	 * @param { ArgumentTypes.Hash } codeHash,
+	 * @param { ArgumentTypes.AccountId } collection,
 	*/
-	"instantiateCollection" (
-		collectionInfo: ArgumentTypes.CollectionInfo,
-		codeHash: ArgumentTypes.Hash,
+	"isCollectionDeployed" (
+		collection: ArgumentTypes.AccountId,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::instantiateCollection", [collectionInfo, codeHash], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::isCollectionDeployed", [collection], __options);
 	}
 
 	/**
@@ -47,63 +45,15 @@ export default class Methods {
 	}
 
 	/**
-	 * setWhitelistEnabled
+	 * collection
 	 *
-	 * @param { boolean } enabled,
+	 * @param { (string | number | BN) } index,
 	*/
-	"setWhitelistEnabled" (
-		enabled: boolean,
+	"collection" (
+		index: (string | number | BN),
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::setWhitelistEnabled", [enabled], __options);
-	}
-
-	/**
-	 * whitelistCollection
-	 *
-	 * @param { ArgumentTypes.AccountId } collection,
-	*/
-	"whitelistCollection" (
-		collection: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::whitelistCollection", [collection], __options);
-	}
-
-	/**
-	 * isWhitelisted
-	 *
-	 * @param { ArgumentTypes.AccountId } collection,
-	*/
-	"isWhitelisted" (
-		collection: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::isWhitelisted", [collection], __options);
-	}
-
-	/**
-	 * banCodehash
-	 *
-	 * @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"banCodehash" (
-		codeHash: ArgumentTypes.Hash,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::banCodehash", [codeHash], __options);
-	}
-
-	/**
-	 * unbanCodehash
-	 *
-	 * @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"unbanCodehash" (
-		codeHash: ArgumentTypes.Hash,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::unbanCodehash", [codeHash], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::collection", [index], __options);
 	}
 
 	/**
@@ -119,27 +69,15 @@ export default class Methods {
 	}
 
 	/**
-	 * isCollectionDeployed
+	 * unbanCodehash
 	 *
-	 * @param { ArgumentTypes.AccountId } collection,
+	 * @param { ArgumentTypes.Hash } codeHash,
 	*/
-	"isCollectionDeployed" (
-		collection: ArgumentTypes.AccountId,
+	"unbanCodehash" (
+		codeHash: ArgumentTypes.Hash,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::isCollectionDeployed", [collection], __options);
-	}
-
-	/**
-	 * collection
-	 *
-	 * @param { (string | number | BN) } index,
-	*/
-	"collection" (
-		index: (string | number | BN),
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::collection", [index], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::unbanCodehash", [codeHash], __options);
 	}
 
 	/**
@@ -165,6 +103,42 @@ export default class Methods {
 	}
 
 	/**
+	 * whitelistCollection
+	 *
+	 * @param { ArgumentTypes.AccountId } collection,
+	*/
+	"whitelistCollection" (
+		collection: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::whitelistCollection", [collection], __options);
+	}
+
+	/**
+	 * banCodehash
+	 *
+	 * @param { ArgumentTypes.Hash } codeHash,
+	*/
+	"banCodehash" (
+		codeHash: ArgumentTypes.Hash,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::banCodehash", [codeHash], __options);
+	}
+
+	/**
+	 * isWhitelisted
+	 *
+	 * @param { ArgumentTypes.AccountId } collection,
+	*/
+	"isWhitelisted" (
+		collection: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::isWhitelisted", [collection], __options);
+	}
+
+	/**
 	 * collectionCount
 	 *
 	*/
@@ -172,6 +146,32 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::collectionCount", [], __options);
+	}
+
+	/**
+	 * instantiateCollection
+	 *
+	 * @param { ArgumentTypes.CollectionInfo } collectionInfo,
+	 * @param { ArgumentTypes.Hash } codeHash,
+	*/
+	"instantiateCollection" (
+		collectionInfo: ArgumentTypes.CollectionInfo,
+		codeHash: ArgumentTypes.Hash,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::instantiateCollection", [collectionInfo, codeHash], __options);
+	}
+
+	/**
+	 * setWhitelistEnabled
+	 *
+	 * @param { boolean } enabled,
+	*/
+	"setWhitelistEnabled" (
+		enabled: boolean,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collectionFabric::setWhitelistEnabled", [enabled], __options);
 	}
 
 	/**
@@ -223,6 +223,16 @@ export default class Methods {
 	}
 
 	/**
+	 * renounceOwnership
+	 *
+	*/
+	"renounceOwnership" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+	}
+
+	/**
 	 * transferOwnership
 	 *
 	 * @param { ArgumentTypes.AccountId } newOwner,
@@ -242,16 +252,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
-	}
-
-	/**
-	 * renounceOwnership
-	 *
-	*/
-	"renounceOwnership" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
 	}
 
 	/**

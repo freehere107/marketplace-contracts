@@ -7,15 +7,6 @@ export enum LangError {
 	couldNotReadInput = 'CouldNotReadInput'
 }
 
-export type CollectionInfo = {
-	name: string | null,
-	uri: string | null,
-	additionalInfo: string | null,
-	royalty: number
-}
-
-export type Hash = string | number[]
-
 export interface ArchisinalError {
 	noOwner ? : null,
 	adminAccessError ? : null,
@@ -337,6 +328,15 @@ export class PSP22ErrorBuilder {
 			safeTransferCheckFailed: value,
 		};
 	}
+}
+
+export type Hash = string | number[]
+
+export type CollectionInfo = {
+	name: string | null,
+	uri: string | null,
+	additionalInfo: string | null,
+	royalty: number
 }
 
 export interface UpgradeableError {

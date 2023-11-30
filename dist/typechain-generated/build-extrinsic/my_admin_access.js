@@ -16,20 +16,20 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
     }
     /**
-     * addAdmin
-     *
-     * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "addAdmin"(accountId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::addAdmin", [accountId], __options);
-    }
-    /**
      * removeAdmin
      *
      * @param { ArgumentTypes.AccountId } accountId,
     */
     "removeAdmin"(accountId, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::removeAdmin", [accountId], __options);
+    }
+    /**
+     * addAdmin
+     *
+     * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "addAdmin"(accountId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::addAdmin", [accountId], __options);
     }
     /**
      * transferOwnership
@@ -62,22 +62,13 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
     }
     /**
-     * renounceRole
+     * hasRole
      *
      * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } account,
+     * @param { ArgumentTypes.AccountId | null } address,
     */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
-    }
-    /**
-     * revokeRole
-     *
-     * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } account,
-    */
-    "revokeRole"(role, account, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
     }
     /**
      * grantRole
@@ -89,13 +80,22 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::grantRole", [role, account], __options);
     }
     /**
-     * hasRole
+     * revokeRole
      *
      * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } address,
+     * @param { ArgumentTypes.AccountId | null } account,
     */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
+    "revokeRole"(role, account, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
+    }
+    /**
+     * renounceRole
+     *
+     * @param { (number | string | BN) } role,
+     * @param { ArgumentTypes.AccountId | null } account,
+    */
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
     }
 }
 exports.default = Methods;

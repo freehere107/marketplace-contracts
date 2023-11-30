@@ -18,13 +18,12 @@ class Methods {
         this.__callerAddress = keyringPair.address;
     }
     /**
-    * getCreatorAccount
+    * getCreatorCodeHash
     *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
     */
-    "getCreatorAccount"(accountId, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getCreatorAccount", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, account_manager_json_1.default)); });
+    "getCreatorCodeHash"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getCreatorCodeHash", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, account_manager_json_1.default)); });
     }
     /**
     * createCreatorAccount
@@ -35,6 +34,42 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createCreatorAccount", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
         }, [], __options);
+    }
+    /**
+    * getAccount
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "getAccount"(accountId, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getAccount", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(17, account_manager_json_1.default)); });
+    }
+    /**
+    * getCreatorAccount
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "getCreatorAccount"(accountId, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getCreatorAccount", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(17, account_manager_json_1.default)); });
+    }
+    /**
+    * createAccount
+    *
+    * @returns { void }
+    */
+    "createAccount"(__options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createAccount", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
+        }, [], __options);
+    }
+    /**
+    * getUserCodeHash
+    *
+    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
+    */
+    "getUserCodeHash"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getUserCodeHash", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, account_manager_json_1.default)); });
     }
     /**
     * setCreatorCodeHash
@@ -59,39 +94,13 @@ class Methods {
         }, [codeHash], __options);
     }
     /**
-    * getUserCodeHash
-    *
-    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
-    */
-    "getUserCodeHash"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getUserCodeHash", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(18, account_manager_json_1.default)); });
-    }
-    /**
-    * getAccount
+    * isAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "getAccount"(accountId, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getAccount", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, account_manager_json_1.default)); });
-    }
-    /**
-    * getCreatorCodeHash
-    *
-    * @returns { Result<ReturnTypes.Hash, ReturnTypes.LangError> }
-    */
-    "getCreatorCodeHash"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accountManager::getCreatorCodeHash", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(18, account_manager_json_1.default)); });
-    }
-    /**
-    * createAccount
-    *
-    * @returns { void }
-    */
-    "createAccount"(__options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accountManager::createAccount", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
-        }, [], __options);
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(19, account_manager_json_1.default)); });
     }
     /**
     * addAdmin
@@ -105,15 +114,6 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(19, account_manager_json_1.default)); });
-    }
-    /**
     * removeAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
@@ -123,16 +123,6 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
         }, [accountId], __options);
-    }
-    /**
-    * renounceOwnership
-    *
-    * @returns { void }
-    */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
-        }, [], __options);
     }
     /**
     * transferOwnership
@@ -151,16 +141,17 @@ class Methods {
     * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
     */
     "owner"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(8, account_manager_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(17, account_manager_json_1.default)); });
     }
     /**
-    * getRoleAdmin
+    * renounceOwnership
     *
-    * @param { (number | string | BN) } role,
-    * @returns { Result<number, ReturnTypes.LangError> }
+    * @returns { void }
     */
-    "getRoleAdmin"(role, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(23, account_manager_json_1.default)); });
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
+        }, [], __options);
     }
     /**
     * hasRole
@@ -173,14 +164,14 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(19, account_manager_json_1.default)); });
     }
     /**
-    * grantRole
+    * renounceRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     * @returns { void }
     */
-    "grantRole"(role, account, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
+    "renounceRole"(role, account, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
         }, [role, account], __options);
     }
@@ -197,16 +188,25 @@ class Methods {
         }, [role, account], __options);
     }
     /**
-    * renounceRole
+    * grantRole
     *
     * @param { (number | string | BN) } role,
     * @param { ArgumentTypes.AccountId | null } account,
     * @returns { void }
     */
-    "renounceRole"(role, account, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
+    "grantRole"(role, account, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, account_manager_json_2.default);
         }, [role, account], __options);
+    }
+    /**
+    * getRoleAdmin
+    *
+    * @param { (number | string | BN) } role,
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "getRoleAdmin"(role, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(25, account_manager_json_1.default)); });
     }
     /**
     * setCodeHash

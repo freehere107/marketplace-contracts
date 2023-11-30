@@ -18,7 +18,7 @@ export interface SetCollectionUri {
 export interface SetCollectionAdditionalInfo {
     additionalInfo: string;
 }
-export interface SetAttribute {
-    key: string;
-    value: string;
+export interface NFTMetadataSet {
+    id: ReturnTypes.Id;
+    value: ReturnTypes.NftMetadata;
 }

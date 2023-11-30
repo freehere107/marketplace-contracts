@@ -12,19 +12,12 @@ export default class Methods {
     readonly __callerAddress: string;
     constructor(nativeContract: ContractPromise, nativeApi: ApiPromise, callerAddress: string);
     /**
-    * getListingByIndex
-    *
-    * @param { (string | number | BN) } index,
-    * @returns { Result<ReturnTypes.Listing | null, ReturnTypes.LangError> }
-    */
-    "getListingByIndex"(index: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Listing | null, ReturnTypes.LangError>>>;
-    /**
-    * cancelListing
+    * buyNft
     *
     * @param { (string | number | BN) } listingId,
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
-    "cancelListing"(listingId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    "buyNft"(listingId: (string | number | BN), __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * buyBatch
     *
@@ -39,6 +32,13 @@ export default class Methods {
     */
     "getListingCount"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnNumber, ReturnTypes.LangError>>>;
     /**
+    * getListingByIndex
+    *
+    * @param { (string | number | BN) } index,
+    * @returns { Result<ReturnTypes.Listing | null, ReturnTypes.LangError> }
+    */
+    "getListingByIndex"(index: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Listing | null, ReturnTypes.LangError>>>;
+    /**
     * listNftForSale
     *
     * @param { ArgumentTypes.AccountId } creator,
@@ -50,12 +50,12 @@ export default class Methods {
     */
     "listNftForSale"(creator: ArgumentTypes.AccountId, collection: ArgumentTypes.AccountId, tokenId: ArgumentTypes.Id, price: (string | number | BN), currency: ArgumentTypes.Currency, __options?: GasLimit): Promise<QueryReturnType<Result<Result<ReturnNumber, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * buyNft
+    * cancelListing
     *
     * @param { (string | number | BN) } listingId,
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
-    "buyNft"(listingId: (string | number | BN), __options?: GasLimitAndRequiredValue): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    "cancelListing"(listingId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * listNftForAuction
     *
@@ -71,13 +71,6 @@ export default class Methods {
     */
     "getAuctionByIndex"(index: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.Auction | null, ReturnTypes.LangError>>>;
     /**
-    * cancelAuction
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
-    */
-    "cancelAuction"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
-    /**
     * getAuctionCount
     *
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
@@ -90,6 +83,13 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
     */
     "startAuction"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
+    /**
+    * cancelAuction
+    *
+    * @param { (string | number | BN) } auctionId,
+    * @returns { Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError> }
+    */
+    "cancelAuction"(auctionId: (string | number | BN), __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
     * claimNft
     *
@@ -113,13 +113,6 @@ export default class Methods {
     */
     "removeAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
-    /**
     * addAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
@@ -127,18 +120,24 @@ export default class Methods {
     */
     "addAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.ArchisinalError>, ReturnTypes.LangError>>>;
     /**
+    * isAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isAdmin"(accountId: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
+    /**
     * timestamp
     *
     * @returns { Result<number, ReturnTypes.LangError> }
     */
     "timestamp"(__options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
     /**
-    * transferOwnership
+    * renounceOwnership
     *
-    * @param { ArgumentTypes.AccountId } newOwner,
     * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
     */
-    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
+    "renounceOwnership"(__options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
     /**
     * owner
     *
@@ -146,11 +145,12 @@ export default class Methods {
     */
     "owner"(__options?: GasLimit): Promise<QueryReturnType<Result<ReturnTypes.AccountId | null, ReturnTypes.LangError>>>;
     /**
-    * renounceOwnership
+    * transferOwnership
     *
+    * @param { ArgumentTypes.AccountId } newOwner,
     * @returns { Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError> }
     */
-    "renounceOwnership"(__options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
+    "transferOwnership"(newOwner: ArgumentTypes.AccountId, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.OwnableError>, ReturnTypes.LangError>>>;
     /**
     * revokeRole
     *
@@ -160,12 +160,13 @@ export default class Methods {
     */
     "revokeRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
     /**
-    * getRoleAdmin
+    * hasRole
     *
     * @param { (number | string | BN) } role,
-    * @returns { Result<number, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId | null } address,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "getRoleAdmin"(role: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
+    "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * grantRole
     *
@@ -175,6 +176,13 @@ export default class Methods {
     */
     "grantRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
     /**
+    * getRoleAdmin
+    *
+    * @param { (number | string | BN) } role,
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "getRoleAdmin"(role: (number | string | BN), __options?: GasLimit): Promise<QueryReturnType<Result<number, ReturnTypes.LangError>>>;
+    /**
     * renounceRole
     *
     * @param { (number | string | BN) } role,
@@ -182,14 +190,6 @@ export default class Methods {
     * @returns { Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError> }
     */
     "renounceRole"(role: (number | string | BN), account: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<Result<null, ReturnTypes.AccessControlError>, ReturnTypes.LangError>>>;
-    /**
-    * hasRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "hasRole"(role: (number | string | BN), address: ArgumentTypes.AccountId | null, __options?: GasLimit): Promise<QueryReturnType<Result<boolean, ReturnTypes.LangError>>>;
     /**
     * setCodeHash
     *

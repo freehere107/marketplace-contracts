@@ -1,62 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpgradeableErrorBuilder = exports.AuctionStatus = exports.PSP22ErrorBuilder = exports.PSP34ErrorBuilder = exports.AccessControlError = exports.OwnableError = exports.ArchisinalErrorBuilder = exports.ListingStatus = exports.CurrencyBuilder = exports.IdBuilder = exports.LangError = void 0;
+exports.UpgradeableErrorBuilder = exports.AuctionStatus = exports.ListingStatus = exports.CurrencyBuilder = exports.IdBuilder = exports.PSP22ErrorBuilder = exports.PSP34ErrorBuilder = exports.AccessControlError = exports.OwnableError = exports.ArchisinalErrorBuilder = exports.LangError = void 0;
 var LangError;
 (function (LangError) {
     LangError["couldNotReadInput"] = "CouldNotReadInput";
 })(LangError = exports.LangError || (exports.LangError = {}));
-class IdBuilder {
-    static U8(value) {
-        return {
-            u8: value,
-        };
-    }
-    static U16(value) {
-        return {
-            u16: value,
-        };
-    }
-    static U32(value) {
-        return {
-            u32: value,
-        };
-    }
-    static U64(value) {
-        return {
-            u64: value,
-        };
-    }
-    static U128(value) {
-        return {
-            u128: value,
-        };
-    }
-    static Bytes(value) {
-        return {
-            bytes: value,
-        };
-    }
-}
-exports.IdBuilder = IdBuilder;
-class CurrencyBuilder {
-    static Native() {
-        return {
-            native: null,
-        };
-    }
-    static Custom(value) {
-        return {
-            custom: value,
-        };
-    }
-}
-exports.CurrencyBuilder = CurrencyBuilder;
-var ListingStatus;
-(function (ListingStatus) {
-    ListingStatus["onSale"] = "OnSale";
-    ListingStatus["sold"] = "Sold";
-    ListingStatus["cancelled"] = "Cancelled";
-})(ListingStatus = exports.ListingStatus || (exports.ListingStatus = {}));
 class ArchisinalErrorBuilder {
     static NoOwner() {
         return {
@@ -322,6 +270,58 @@ class PSP22ErrorBuilder {
     }
 }
 exports.PSP22ErrorBuilder = PSP22ErrorBuilder;
+class IdBuilder {
+    static U8(value) {
+        return {
+            u8: value,
+        };
+    }
+    static U16(value) {
+        return {
+            u16: value,
+        };
+    }
+    static U32(value) {
+        return {
+            u32: value,
+        };
+    }
+    static U64(value) {
+        return {
+            u64: value,
+        };
+    }
+    static U128(value) {
+        return {
+            u128: value,
+        };
+    }
+    static Bytes(value) {
+        return {
+            bytes: value,
+        };
+    }
+}
+exports.IdBuilder = IdBuilder;
+class CurrencyBuilder {
+    static Native() {
+        return {
+            native: null,
+        };
+    }
+    static Custom(value) {
+        return {
+            custom: value,
+        };
+    }
+}
+exports.CurrencyBuilder = CurrencyBuilder;
+var ListingStatus;
+(function (ListingStatus) {
+    ListingStatus["onSale"] = "OnSale";
+    ListingStatus["sold"] = "Sold";
+    ListingStatus["cancelled"] = "Cancelled";
+})(ListingStatus = exports.ListingStatus || (exports.ListingStatus = {}));
 var AuctionStatus;
 (function (AuctionStatus) {
     AuctionStatus["waitingAuction"] = "WaitingAuction";

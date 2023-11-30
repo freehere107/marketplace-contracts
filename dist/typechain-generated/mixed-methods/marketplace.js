@@ -18,22 +18,13 @@ class Methods {
         this.__callerAddress = keyringPair.address;
     }
     /**
-    * getListingByIndex
-    *
-    * @param { (string | number | BN) } index,
-    * @returns { Result<ReturnTypes.Listing | null, ReturnTypes.LangError> }
-    */
-    "getListingByIndex"(index, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(11, marketplace_json_1.default)); });
-    }
-    /**
-    * cancelListing
+    * buyNft
     *
     * @param { (string | number | BN) } listingId,
     * @returns { void }
     */
-    "cancelListing"(listingId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::cancelListing", (events) => {
+    "buyNft"(listingId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyNft", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
         }, [listingId], __options);
     }
@@ -54,7 +45,16 @@ class Methods {
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
     */
     "getListingCount"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(26, marketplace_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(20, marketplace_json_1.default)); });
+    }
+    /**
+    * getListingByIndex
+    *
+    * @param { (string | number | BN) } index,
+    * @returns { Result<ReturnTypes.Listing | null, ReturnTypes.LangError> }
+    */
+    "getListingByIndex"(index, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "marketplace::getListingByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(21, marketplace_json_1.default)); });
     }
     /**
     * listNftForSale
@@ -72,13 +72,13 @@ class Methods {
         }, [creator, collection, tokenId, price, currency], __options);
     }
     /**
-    * buyNft
+    * cancelListing
     *
     * @param { (string | number | BN) } listingId,
     * @returns { void }
     */
-    "buyNft"(listingId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyNft", (events) => {
+    "cancelListing"(listingId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::cancelListing", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
         }, [listingId], __options);
     }
@@ -103,23 +103,12 @@ class Methods {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionByIndex", [index], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(30, marketplace_json_1.default)); });
     }
     /**
-    * cancelAuction
-    *
-    * @param { (string | number | BN) } auctionId,
-    * @returns { void }
-    */
-    "cancelAuction"(auctionId, __options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::cancelAuction", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
-        }, [auctionId], __options);
-    }
-    /**
     * getAuctionCount
     *
     * @returns { Result<ReturnNumber, ReturnTypes.LangError> }
     */
     "getAuctionCount"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(26, marketplace_json_1.default)); });
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionCount", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(20, marketplace_json_1.default)); });
     }
     /**
     * startAuction
@@ -129,6 +118,17 @@ class Methods {
     */
     "startAuction"(auctionId, __options) {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::startAuction", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
+        }, [auctionId], __options);
+    }
+    /**
+    * cancelAuction
+    *
+    * @param { (string | number | BN) } auctionId,
+    * @returns { void }
+    */
+    "cancelAuction"(auctionId, __options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::cancelAuction", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
         }, [auctionId], __options);
     }
@@ -167,15 +167,6 @@ class Methods {
         }, [accountId], __options);
     }
     /**
-    * isAdmin
-    *
-    * @param { ArgumentTypes.AccountId } accountId,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(35, marketplace_json_1.default)); });
-    }
-    /**
     * addAdmin
     *
     * @param { ArgumentTypes.AccountId } accountId,
@@ -187,12 +178,39 @@ class Methods {
         }, [accountId], __options);
     }
     /**
+    * isAdmin
+    *
+    * @param { ArgumentTypes.AccountId } accountId,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
+    */
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(35, marketplace_json_1.default)); });
+    }
+    /**
     * timestamp
     *
     * @returns { Result<number, ReturnTypes.LangError> }
     */
     "timestamp"(__options) {
         return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "timestampProvider::timestamp", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(37, marketplace_json_1.default)); });
+    }
+    /**
+    * renounceOwnership
+    *
+    * @returns { void }
+    */
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
+            return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
+        }, [], __options);
+    }
+    /**
+    * owner
+    *
+    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+    */
+    "owner"(__options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(40, marketplace_json_1.default)); });
     }
     /**
     * transferOwnership
@@ -204,24 +222,6 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
         }, [newOwner], __options);
-    }
-    /**
-    * owner
-    *
-    * @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-    */
-    "owner"(__options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(40, marketplace_json_1.default)); });
-    }
-    /**
-    * renounceOwnership
-    *
-    * @returns { void }
-    */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events) => {
-            return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
-        }, [], __options);
     }
     /**
     * revokeRole
@@ -236,13 +236,14 @@ class Methods {
         }, [role, account], __options);
     }
     /**
-    * getRoleAdmin
+    * hasRole
     *
     * @param { (number | string | BN) } role,
-    * @returns { Result<number, ReturnTypes.LangError> }
+    * @param { ArgumentTypes.AccountId | null } address,
+    * @returns { Result<boolean, ReturnTypes.LangError> }
     */
-    "getRoleAdmin"(role, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(43, marketplace_json_1.default)); });
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(35, marketplace_json_1.default)); });
     }
     /**
     * grantRole
@@ -257,6 +258,15 @@ class Methods {
         }, [role, account], __options);
     }
     /**
+    * getRoleAdmin
+    *
+    * @param { (number | string | BN) } role,
+    * @returns { Result<number, ReturnTypes.LangError> }
+    */
+    "getRoleAdmin"(role, __options) {
+        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(43, marketplace_json_1.default)); });
+    }
+    /**
     * renounceRole
     *
     * @param { (number | string | BN) } role,
@@ -267,16 +277,6 @@ class Methods {
         return (0, typechain_types_2.txSignAndSend)(this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events) => {
             return (0, utils_2.decodeEvents)(events, this.__nativeContract, marketplace_json_2.default);
         }, [role, account], __options);
-    }
-    /**
-    * hasRole
-    *
-    * @param { (number | string | BN) } role,
-    * @param { ArgumentTypes.AccountId | null } address,
-    * @returns { Result<boolean, ReturnTypes.LangError> }
-    */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.queryOkJSON)(this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return (0, typechain_types_1.handleReturnType)(result, (0, utils_1.getTypeDescription)(35, marketplace_json_1.default)); });
     }
     /**
     * setCodeHash

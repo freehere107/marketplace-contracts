@@ -15,38 +15,6 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accountId", [], __options);
     }
     /**
-     * collectionUri
-     *
-    */
-    "collectionUri"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionUri", [], __options);
-    }
-    /**
-     * setAttribute
-     *
-     * @param { ArgumentTypes.Id } id,
-     * @param { string } key,
-     * @param { string } value,
-    */
-    "setAttribute"(id, key, value, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::setAttribute", [id, key, value], __options);
-    }
-    /**
-     * setCollectionUri
-     *
-     * @param { string } uri,
-    */
-    "setCollectionUri"(uri, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::setCollectionUri", [uri], __options);
-    }
-    /**
-     * collectionName
-     *
-    */
-    "collectionName"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionName", [], __options);
-    }
-    /**
      * collectionAdditionalInfo
      *
     */
@@ -54,11 +22,21 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionAdditionalInfo", [], __options);
     }
     /**
-     * collectionRoyalty
+     * updateNftMetadata
      *
+     * @param { ArgumentTypes.Id } id,
+     * @param { ArgumentTypes.NftMetadata } metadata,
     */
-    "collectionRoyalty"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionRoyalty", [], __options);
+    "updateNftMetadata"(id, metadata, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::updateNftMetadata", [id, metadata], __options);
+    }
+    /**
+     * getNftMetadata
+     *
+     * @param { ArgumentTypes.Id } id,
+    */
+    "getNftMetadata"(id, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::getNftMetadata", [id], __options);
     }
     /**
      * setCollectionName
@@ -69,6 +47,20 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::setCollectionName", [name], __options);
     }
     /**
+     * collectionName
+     *
+    */
+    "collectionName"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionName", [], __options);
+    }
+    /**
+     * collectionRoyalty
+     *
+    */
+    "collectionRoyalty"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionRoyalty", [], __options);
+    }
+    /**
      * setCollectionAdditionalInfo
      *
      * @param { string } additionalInfo,
@@ -77,11 +69,19 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::setCollectionAdditionalInfo", [additionalInfo], __options);
     }
     /**
-     * renounceOwnership
+     * collectionUri
      *
     */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+    "collectionUri"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::collectionUri", [], __options);
+    }
+    /**
+     * setCollectionUri
+     *
+     * @param { string } uri,
+    */
+    "setCollectionUri"(uri, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "collection::setCollectionUri", [uri], __options);
     }
     /**
      * owner
@@ -99,19 +99,11 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
     }
     /**
-     * balanceOf
-     *
-     * @param { ArgumentTypes.AccountId } owner,
-    */
-    "balanceOf"(owner, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::balanceOf", [owner], __options);
-    }
-    /**
-     * collectionId
+     * renounceOwnership
      *
     */
-    "collectionId"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::collectionId", [], __options);
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
     }
     /**
      * approve
@@ -124,12 +116,37 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::approve", [operator, id, approved], __options);
     }
     /**
+     * collectionId
+     *
+    */
+    "collectionId"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::collectionId", [], __options);
+    }
+    /**
      * ownerOf
      *
      * @param { ArgumentTypes.Id } id,
     */
     "ownerOf"(id, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::ownerOf", [id], __options);
+    }
+    /**
+     * allowance
+     *
+     * @param { ArgumentTypes.AccountId } owner,
+     * @param { ArgumentTypes.AccountId } operator,
+     * @param { ArgumentTypes.Id | null } id,
+    */
+    "allowance"(owner, operator, id, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::allowance", [owner, operator, id], __options);
+    }
+    /**
+     * balanceOf
+     *
+     * @param { ArgumentTypes.AccountId } owner,
+    */
+    "balanceOf"(owner, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::balanceOf", [owner], __options);
     }
     /**
      * transfer
@@ -149,16 +166,6 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::totalSupply", [], __options);
     }
     /**
-     * allowance
-     *
-     * @param { ArgumentTypes.AccountId } owner,
-     * @param { ArgumentTypes.AccountId } operator,
-     * @param { ArgumentTypes.Id | null } id,
-    */
-    "allowance"(owner, operator, id, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34::allowance", [owner, operator, id], __options);
-    }
-    /**
      * mint
      *
      * @param { ArgumentTypes.AccountId } account,
@@ -175,15 +182,6 @@ class Methods {
     */
     "burn"(account, id, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34Burnable::burn", [account, id], __options);
-    }
-    /**
-     * getAttribute
-     *
-     * @param { ArgumentTypes.Id } id,
-     * @param { string } key,
-    */
-    "getAttribute"(id, key, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "psp34Metadata::getAttribute", [id, key], __options);
     }
     /**
      * setCodeHash

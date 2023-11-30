@@ -3,45 +3,6 @@ export type AccountId = string | number[];
 export declare enum LangError {
     couldNotReadInput = "CouldNotReadInput"
 }
-export type Listing = {
-    id: (string | number | BN);
-    creator: AccountId;
-    collection: AccountId;
-    tokenId: Id;
-    price: (string | number | BN);
-    currency: Currency;
-    status: ListingStatus;
-    royalty: (number | string | BN);
-};
-export interface Id {
-    u8?: (number | string | BN);
-    u16?: (number | string | BN);
-    u32?: (number | string | BN);
-    u64?: (number | string | BN);
-    u128?: (string | number | BN);
-    bytes?: Array<(number | string | BN)>;
-}
-export declare class IdBuilder {
-    static U8(value: (number | string | BN)): Id;
-    static U16(value: (number | string | BN)): Id;
-    static U32(value: (number | string | BN)): Id;
-    static U64(value: (number | string | BN)): Id;
-    static U128(value: (string | number | BN)): Id;
-    static Bytes(value: Array<(number | string | BN)>): Id;
-}
-export interface Currency {
-    native?: null;
-    custom?: AccountId;
-}
-export declare class CurrencyBuilder {
-    static Native(): Currency;
-    static Custom(value: AccountId): Currency;
-}
-export declare enum ListingStatus {
-    onSale = "OnSale",
-    sold = "Sold",
-    cancelled = "Cancelled"
-}
 export interface ArchisinalError {
     noOwner?: null;
     adminAccessError?: null;
@@ -160,6 +121,45 @@ export declare class PSP22ErrorBuilder {
     static ZeroRecipientAddress(): PSP22Error;
     static ZeroSenderAddress(): PSP22Error;
     static SafeTransferCheckFailed(value: string): PSP22Error;
+}
+export type Listing = {
+    id: (string | number | BN);
+    creator: AccountId;
+    collection: AccountId;
+    tokenId: Id;
+    price: (string | number | BN);
+    currency: Currency;
+    status: ListingStatus;
+    royalty: (number | string | BN);
+};
+export interface Id {
+    u8?: (number | string | BN);
+    u16?: (number | string | BN);
+    u32?: (number | string | BN);
+    u64?: (number | string | BN);
+    u128?: (string | number | BN);
+    bytes?: Array<(number | string | BN)>;
+}
+export declare class IdBuilder {
+    static U8(value: (number | string | BN)): Id;
+    static U16(value: (number | string | BN)): Id;
+    static U32(value: (number | string | BN)): Id;
+    static U64(value: (number | string | BN)): Id;
+    static U128(value: (string | number | BN)): Id;
+    static Bytes(value: Array<(number | string | BN)>): Id;
+}
+export interface Currency {
+    native?: null;
+    custom?: AccountId;
+}
+export declare class CurrencyBuilder {
+    static Native(): Currency;
+    static Custom(value: AccountId): Currency;
+}
+export declare enum ListingStatus {
+    onSale = "OnSale",
+    sold = "Sold",
+    cancelled = "Cancelled"
 }
 export type AuctionInfo = {
     creator: AccountId;

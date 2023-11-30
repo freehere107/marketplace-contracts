@@ -19,6 +19,13 @@ export declare class IdBuilder {
     static U128(value: ReturnNumber): Id;
     static Bytes(value: Array<number>): Id;
 }
+export type NftMetadata = {
+    name: string;
+    description: string;
+    image: string;
+    externalUrl: string;
+    categories: Array<string>;
+};
 export interface ArchisinalError {
     noOwner?: null;
     adminAccessError?: null;

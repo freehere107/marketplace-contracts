@@ -8,20 +8,12 @@ class Methods {
         this.__apiPromise = apiPromise;
     }
     /**
-     * getListingByIndex
-     *
-     * @param { (string | number | BN) } index,
-    */
-    "getListingByIndex"(index, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::getListingByIndex", [index], __options);
-    }
-    /**
-     * cancelListing
+     * buyNft
      *
      * @param { (string | number | BN) } listingId,
     */
-    "cancelListing"(listingId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::cancelListing", [listingId], __options);
+    "buyNft"(listingId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::buyNft", [listingId], __options);
     }
     /**
      * buyBatch
@@ -39,6 +31,14 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::getListingCount", [], __options);
     }
     /**
+     * getListingByIndex
+     *
+     * @param { (string | number | BN) } index,
+    */
+    "getListingByIndex"(index, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::getListingByIndex", [index], __options);
+    }
+    /**
      * listNftForSale
      *
      * @param { ArgumentTypes.AccountId } creator,
@@ -51,12 +51,12 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::listNftForSale", [creator, collection, tokenId, price, currency], __options);
     }
     /**
-     * buyNft
+     * cancelListing
      *
      * @param { (string | number | BN) } listingId,
     */
-    "buyNft"(listingId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::buyNft", [listingId], __options);
+    "cancelListing"(listingId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "marketplace::cancelListing", [listingId], __options);
     }
     /**
      * listNftForAuction
@@ -75,14 +75,6 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "auction::getAuctionByIndex", [index], __options);
     }
     /**
-     * cancelAuction
-     *
-     * @param { (string | number | BN) } auctionId,
-    */
-    "cancelAuction"(auctionId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "auction::cancelAuction", [auctionId], __options);
-    }
-    /**
      * getAuctionCount
      *
     */
@@ -96,6 +88,14 @@ class Methods {
     */
     "startAuction"(auctionId, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "auction::startAuction", [auctionId], __options);
+    }
+    /**
+     * cancelAuction
+     *
+     * @param { (string | number | BN) } auctionId,
+    */
+    "cancelAuction"(auctionId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "auction::cancelAuction", [auctionId], __options);
     }
     /**
      * claimNft
@@ -123,20 +123,20 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::removeAdmin", [accountId], __options);
     }
     /**
-     * isAdmin
-     *
-     * @param { ArgumentTypes.AccountId } accountId,
-    */
-    "isAdmin"(accountId, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
-    }
-    /**
      * addAdmin
      *
      * @param { ArgumentTypes.AccountId } accountId,
     */
     "addAdmin"(accountId, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::addAdmin", [accountId], __options);
+    }
+    /**
+     * isAdmin
+     *
+     * @param { ArgumentTypes.AccountId } accountId,
+    */
+    "isAdmin"(accountId, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
     }
     /**
      * timestamp
@@ -146,12 +146,11 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "timestampProvider::timestamp", [], __options);
     }
     /**
-     * transferOwnership
+     * renounceOwnership
      *
-     * @param { ArgumentTypes.AccountId } newOwner,
     */
-    "transferOwnership"(newOwner, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
+    "renounceOwnership"(__options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
     }
     /**
      * owner
@@ -161,11 +160,12 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
     }
     /**
-     * renounceOwnership
+     * transferOwnership
      *
+     * @param { ArgumentTypes.AccountId } newOwner,
     */
-    "renounceOwnership"(__options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+    "transferOwnership"(newOwner, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
     }
     /**
      * revokeRole
@@ -177,12 +177,13 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
     }
     /**
-     * getRoleAdmin
+     * hasRole
      *
      * @param { (number | string | BN) } role,
+     * @param { ArgumentTypes.AccountId | null } address,
     */
-    "getRoleAdmin"(role, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
+    "hasRole"(role, address, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
     }
     /**
      * grantRole
@@ -194,6 +195,14 @@ class Methods {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::grantRole", [role, account], __options);
     }
     /**
+     * getRoleAdmin
+     *
+     * @param { (number | string | BN) } role,
+    */
+    "getRoleAdmin"(role, __options) {
+        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
+    }
+    /**
      * renounceRole
      *
      * @param { (number | string | BN) } role,
@@ -201,15 +210,6 @@ class Methods {
     */
     "renounceRole"(role, account, __options) {
         return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
-    }
-    /**
-     * hasRole
-     *
-     * @param { (number | string | BN) } role,
-     * @param { ArgumentTypes.AccountId | null } address,
-    */
-    "hasRole"(role, address, __options) {
-        return (0, typechain_types_1.buildSubmittableExtrinsic)(this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
     }
     /**
      * setCodeHash

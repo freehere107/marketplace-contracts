@@ -3,45 +3,6 @@ export type AccountId = string | number[];
 export declare enum LangError {
     couldNotReadInput = "CouldNotReadInput"
 }
-export type Listing = {
-    id: ReturnNumber;
-    creator: AccountId;
-    collection: AccountId;
-    tokenId: Id;
-    price: ReturnNumber;
-    currency: Currency;
-    status: ListingStatus;
-    royalty: number;
-};
-export interface Id {
-    u8?: number;
-    u16?: number;
-    u32?: number;
-    u64?: number;
-    u128?: ReturnNumber;
-    bytes?: Array<number>;
-}
-export declare class IdBuilder {
-    static U8(value: number): Id;
-    static U16(value: number): Id;
-    static U32(value: number): Id;
-    static U64(value: number): Id;
-    static U128(value: ReturnNumber): Id;
-    static Bytes(value: Array<number>): Id;
-}
-export interface Currency {
-    native?: null;
-    custom?: AccountId;
-}
-export declare class CurrencyBuilder {
-    static Native(): Currency;
-    static Custom(value: AccountId): Currency;
-}
-export declare enum ListingStatus {
-    onSale = "OnSale",
-    sold = "Sold",
-    cancelled = "Cancelled"
-}
 export interface ArchisinalError {
     noOwner?: null;
     adminAccessError?: null;
@@ -160,6 +121,45 @@ export declare class PSP22ErrorBuilder {
     static ZeroRecipientAddress(): PSP22Error;
     static ZeroSenderAddress(): PSP22Error;
     static SafeTransferCheckFailed(value: string): PSP22Error;
+}
+export type Listing = {
+    id: ReturnNumber;
+    creator: AccountId;
+    collection: AccountId;
+    tokenId: Id;
+    price: ReturnNumber;
+    currency: Currency;
+    status: ListingStatus;
+    royalty: number;
+};
+export interface Id {
+    u8?: number;
+    u16?: number;
+    u32?: number;
+    u64?: number;
+    u128?: ReturnNumber;
+    bytes?: Array<number>;
+}
+export declare class IdBuilder {
+    static U8(value: number): Id;
+    static U16(value: number): Id;
+    static U32(value: number): Id;
+    static U64(value: number): Id;
+    static U128(value: ReturnNumber): Id;
+    static Bytes(value: Array<number>): Id;
+}
+export interface Currency {
+    native?: null;
+    custom?: AccountId;
+}
+export declare class CurrencyBuilder {
+    static Native(): Currency;
+    static Custom(value: AccountId): Currency;
+}
+export declare enum ListingStatus {
+    onSale = "OnSale",
+    sold = "Sold",
+    cancelled = "Cancelled"
 }
 export type AuctionInfo = {
     creator: AccountId;
