@@ -119,7 +119,6 @@ This section governs the user-related data, including both general users and cre
 - **Purpose**: Handles specific functionalities for creators.
 - **Features**:
     - Management of creators.
-    - Allows creators to deploy NFTs.
     - Store additional metadata for creators (in the future).
 
 ### Marketplace
@@ -158,3 +157,10 @@ This section is responsible for creating, maintaining, and organizing the actual
     - Store metadata for each collection.
     - Handle royalty information at the collection level.
 
+#### Collection Fabric:
+- **Purpose**: Manage the creation of new collections.
+- **Features**:
+    - Allow creators to create new collections.
+    - Blacklist collections from being created.
+    - Whitelist collections to be created.
+    - Ban code_hash from being used to create collections.
