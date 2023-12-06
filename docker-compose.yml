@@ -1,6 +1,6 @@
 services:
   node:
-    build: .
+    image: ghcr.io/archisinal/marketplace-contracts-node:latest
     command: /usr/local/cargo/bin/substrate-contracts-node --dev --unsafe-rpc-external --rpc-cors=all
     ports:
       - "9944:9944"
