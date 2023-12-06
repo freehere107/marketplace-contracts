@@ -22,7 +22,7 @@ jobs:
         with:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
-          image: a-test-image
+          image: marketplace-contracts-node
           dockerfile: Dockerfile
           tags: latest
           registry: ghcr.io

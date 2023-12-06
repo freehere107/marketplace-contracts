@@ -55,7 +55,7 @@ jobs:
   docker-test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/archisinal/a-test-image:latest
+      image: ghcr.io/archisinal/marketplace-contracts-node:latest
       options: --user root
       credentials:
         username: ${{ secrets.GHCR_USERNAME }}

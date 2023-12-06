@@ -1,7 +1,7 @@
 services:
   node:
-    build: .
+    image: ghcr.io/archisinal/a-test-image:latest
     command:
-      - sh -c "substrate-contracts-node --dev"
+      - substrate-contracts-node --dev
     ports:
       - 9944:9944
