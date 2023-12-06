@@ -9,9 +9,9 @@ import { PERFORMANCE_PREFIX } from '../shared/consts'
 import { Signers } from '../shared/signers'
 import { setupArchNFT } from '../shared/test-setups/arch_nft'
 
-const SET_COLLECTION_NAME_MAX_FEE = new BN(3_300_000_000);
-const SET_COLLECTION_URI_MAX_FEE = new BN(3_000_000_000);
-const SET_COLLECTION_ADDITIONAL_INFO_MAX_FEE = new BN(3_000_000_000);
+const SET_COLLECTION_NAME_MAX_FEE = new BN(3_400_000_000);
+const SET_COLLECTION_URI_MAX_FEE = new BN(3_100_000_000);
+const SET_COLLECTION_ADDITIONAL_INFO_MAX_FEE = new BN(3_100_000_000);
 const UPDATE_NFT_METADATA_MAX_FEE = new BN(3_000_000_000);
 
 describe(PERFORMANCE_PREFIX + 'ArchNFT', function () {

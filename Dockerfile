@@ -21,5 +21,5 @@ RUN rustup target add wasm32-unknown-unknown --toolchain 1.68
 
 RUN cargo install cargo-dylint dylint-link
 
-RUN cargo install cargo-contract --version 3.0.0 --force && \
-    cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --force --locked
+RUN cargo install cargo-contract --force --locked
+RUN cargo install contracts-node --force --locked
