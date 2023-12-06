@@ -9,6 +9,7 @@ import { E2E_PREFIX } from '../shared/consts'
 import { Signers } from '../shared/signers'
 import { setupArchNFT as setup } from '../shared/test-setups/arch_nft'
 import { ADDITIONAL_INFO, COLLECTION_NAME, COLLECTION_URI } from '../shared/test-setups/creator'
+import { Sign } from 'crypto'
 
 describe(E2E_PREFIX + 'Arch NFT', () => {
   it('Metadata works', async () => {
@@ -94,6 +95,24 @@ describe(E2E_PREFIX + 'Arch NFT', () => {
     await contract.tx.setCollectionAdditionalInfo('New info')
 
     await expect(contract.query.collectionAdditionalInfo()).to.have.returnValue('New info')
+  })
+
+  it('Can set NFT metadata', async () => {
+    const contract = await setup()
+    const metadata = {
+      name: 'New name',
+      description: 'New description',
+      image: 'New image',
+      externalUrl: 'New external url',
+      categories: ['New category'],
+    };
+
+    await contract.tx.mint(Signers.Alice.address, IdBuilder.U8(1))
+    await contract.withSigner(Signers.Alice).tx.updateNftMetadata(IdBuilder.U8(1), metadata)
+
+    const result = (await contract.query.getNftMetadata(IdBuilder.U8(1))).value.unwrapRecursively();
+
+    expect(result).to.deep.equal(metadata);
   })
 
   after(async () => {

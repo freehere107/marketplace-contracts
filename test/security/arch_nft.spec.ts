@@ -85,6 +85,20 @@ describe(SECURITY_PREFIX + 'Arch NFT', () => {
     await expect(contract.tx.mint(alice.address, IdBuilder.U8(1))).to.eventually.be.rejected
   })
 
+  it('Not NFT owner cannot set NFT metadata', async () => {
+    const contract = await setup()
+    const metadata = {
+      name: 'New name',
+      description: 'New description',
+      image: 'New image',
+      externalUrl: 'New external url',
+      categories: ['New category'],
+    };
+
+    await contract.tx.mint(Signers.Alice.address, IdBuilder.U8(1))
+    await expect(contract.withSigner(Signers.Bob).tx.updateNftMetadata(IdBuilder.U8(1), metadata)).to.eventually.be.rejected
+  })
+
   after(async () => {
     await ApiSingleton.disconnect()
   })

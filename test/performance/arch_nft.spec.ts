@@ -12,7 +12,7 @@ import { setupArchNFT } from '../shared/test-setups/arch_nft'
 const SET_COLLECTION_NAME_MAX_FEE = new BN(3_300_000_000);
 const SET_COLLECTION_URI_MAX_FEE = new BN(3_000_000_000);
 const SET_COLLECTION_ADDITIONAL_INFO_MAX_FEE = new BN(3_000_000_000);
-const SET_ATTRIBUTE_MAX_FEE = new BN(2_900_000_000);
+const UPDATE_NFT_METADATA_MAX_FEE = new BN(3_000_000_000);
 
 describe(PERFORMANCE_PREFIX + 'ArchNFT', function () {
   let contract: Contract
@@ -39,9 +39,17 @@ describe(PERFORMANCE_PREFIX + 'ArchNFT', function () {
     )
   })
 
-  it('Should set attribute within max fee', async function () {
-    const token_id = { u8: 0 }
-    await contract.query.mint(Signers.Charlie.address, token_id)
-    await expect(contract.query.setAttribute(token_id, 'key', 'value')).to.have.feeLessThan(SET_ATTRIBUTE_MAX_FEE)
+  it('Should update NFT metadata within max fee', async function () {
+    const id = { u8: 1 };
+    await contract.tx.mint(Signers.Alice.address, id)
+    const metadata = {
+      name: 'New name',
+      description: 'New description',
+      image: 'New image',
+      externalUrl: 'New external url',
+      categories: ['New category'],
+    };
+
+    await expect(contract.query.updateNftMetadata(id, metadata)).to.have.feeLessThan(UPDATE_NFT_METADATA_MAX_FEE)
   })
 })
