@@ -39,8 +39,9 @@
     "prepublish": "tsc"
   },
   "devDependencies": {
-    "@727-ventures/typechain-compiler": "^1.1.4",
-    "@727-ventures/typechain-types": "^1.1.2",
+    "@727-ventures/typechain-compiler": "https://gitpkg.now.sh/Archisinal/typechain-polkadot/packages/typechain-compiler?master",
+    "@727-ventures/typechain-polkadot": "https://gitpkg.now.sh/Archisinal/typechain-polkadot/packages/typechain-polkadot?master",
+    "@727-ventures/typechain-types": "https://gitpkg.now.sh/Archisinal/typechain-polkadot/packages/typechain-types?master",
     "@babel/core": "^7.22.9",
     "@babel/register": "^7.22.5",
     "@polkadot/api": "^10.9.1",

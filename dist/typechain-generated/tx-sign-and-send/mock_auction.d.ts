@@ -1,14 +1,14 @@
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import type { ApiPromise } from '@polkadot/api';
-import type { GasLimit, GasLimitAndRequiredValue } from '@727-ventures/typechain-types';
+import type { GasLimit, GasLimitAndRequiredValue, ExternalSigner } from '@727-ventures/typechain-types';
 import type * as ArgumentTypes from '../types-arguments/mock_auction';
 import type BN from 'bn.js';
 export default class Methods {
     readonly __nativeContract: ContractPromise;
-    readonly __keyringPair: KeyringPair;
+    readonly __keyringPair: KeyringPair | ExternalSigner;
     readonly __apiPromise: ApiPromise;
-    constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
+    constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair | ExternalSigner);
     /**
     * setTimestamp
     *

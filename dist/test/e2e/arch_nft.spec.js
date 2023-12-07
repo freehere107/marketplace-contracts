@@ -69,6 +69,20 @@ const creator_1 = require("../shared/test-setups/creator");
         await contract.tx.setCollectionAdditionalInfo('New info');
         await (0, chai_1.expect)(contract.query.collectionAdditionalInfo()).to.have.returnValue('New info');
     });
+    it('Can set NFT metadata', async () => {
+        const contract = await (0, arch_nft_3.setupArchNFT)();
+        const metadata = {
+            name: 'New name',
+            description: 'New description',
+            image: 'New image',
+            externalUrl: 'New external url',
+            categories: ['New category'],
+        };
+        await contract.tx.mint(signers_1.Signers.Alice.address, arch_nft_2.IdBuilder.U8(1));
+        await contract.withSigner(signers_1.Signers.Alice).tx.updateNftMetadata(arch_nft_2.IdBuilder.U8(1), metadata);
+        const result = (await contract.query.getNftMetadata(arch_nft_2.IdBuilder.U8(1))).value.unwrapRecursively();
+        (0, chai_1.expect)(result).to.deep.equal(metadata);
+    });
     (0, mocha_1.after)(async () => {
         await api_singleton_1.default.disconnect();
     });

@@ -1,17 +1,17 @@
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { ApiPromise } from '@polkadot/api';
 import type { KeyringPair } from '@polkadot/keyring/types';
-import type { GasLimit, Result } from '@727-ventures/typechain-types';
+import type { GasLimit, Result, ExternalSigner } from '@727-ventures/typechain-types';
 import type { QueryReturnType } from '@727-ventures/typechain-types';
 import type * as ArgumentTypes from '../types-arguments/account_manager';
 import type * as ReturnTypes from '../types-returns/account_manager';
 import type BN from 'bn.js';
 export default class Methods {
     readonly __nativeContract: ContractPromise;
-    readonly __keyringPair: KeyringPair;
+    readonly __keyringPair: KeyringPair | ExternalSigner;
     readonly __callerAddress: string;
     readonly __apiPromise: ApiPromise;
-    constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
+    constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair | ExternalSigner);
     /**
     * getCreatorCodeHash
     *

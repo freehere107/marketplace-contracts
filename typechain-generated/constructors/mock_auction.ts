@@ -2,7 +2,7 @@ import {CodePromise} from "@polkadot/api-contract";
 import type {KeyringPair} from "@polkadot/keyring/types";
 import type {ApiPromise} from "@polkadot/api";
 import {_genValidGasLimitAndValue, _signAndSend, SignAndSendSuccessResponse} from "@727-ventures/typechain-types";
-import type {ConstructorOptions} from "@727-ventures/typechain-types";
+import type {ConstructorOptions,ExternalSigner} from "@727-ventures/typechain-types";
 import type {WeightV2} from "@polkadot/types/interfaces";
 import type * as ArgumentTypes from '../types-arguments/mock_auction';
 import { ContractFile } from '../contract-info/mock_auction';
@@ -10,11 +10,11 @@ import type BN from 'bn.js';
 
 export default class Constructors {
 	readonly nativeAPI: ApiPromise;
-	readonly signer: KeyringPair;
+	readonly signer: KeyringPair | ExternalSigner;
 
 	constructor(
 		nativeAPI: ApiPromise,
-		signer: KeyringPair,
+		signer: KeyringPair | ExternalSigner,
 	) {
 		this.nativeAPI = nativeAPI;
 		this.signer = signer;

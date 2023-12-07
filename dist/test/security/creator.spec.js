@@ -11,12 +11,6 @@ const consts_1 = require("../shared/consts");
 const signers_1 = require("../shared/signers");
 const creator_1 = require("../shared/test-setups/creator");
 (0, mocha_1.describe)(consts_1.SECURITY_PREFIX + 'Creator', () => {
-    it('Can create collection', async () => {
-        const contract = await (0, creator_1.setupCreator)();
-        await (0, chai_1.expect)(contract.query.getCollectionCount()).to.have.returnValue(0);
-        await contract.tx.createCollection(creator_1.COLLECTION_NAME, creator_1.COLLECTION_URI, creator_1.COLLECTION_ROYALTY, creator_1.ADDITIONAL_INFO, creator_1.COLLECTION_CODE_HASH);
-        await (0, chai_1.expect)(contract.query.getCollectionCount()).to.have.returnValue(1);
-    });
     it('Cannot edit user data if not owner', async () => {
         const contract = await (0, creator_1.setupCreator)();
         await (0, chai_1.expect)(contract.withSigner(signers_1.Signers.Bob).tx.setUserData({
@@ -24,12 +18,6 @@ const creator_1 = require("../shared/test-setups/creator");
             avatar: null,
             additionInfo: 'Some additional info',
         })).to.eventually.be.rejected;
-    });
-    it('Not owner cannot create collection', async () => {
-        const contract = await (0, creator_1.setupCreator)();
-        await (0, chai_1.expect)(contract
-            .withSigner(signers_1.Signers.Alice)
-            .tx.createCollection(creator_1.COLLECTION_NAME, creator_1.COLLECTION_URI, creator_1.COLLECTION_ROYALTY, creator_1.ADDITIONAL_INFO, creator_1.COLLECTION_CODE_HASH)).to.be.rejected;
     });
     (0, mocha_1.after)(async () => {
         await api_singleton_1.default.disconnect();

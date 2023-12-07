@@ -4,6 +4,7 @@ import type { ApiPromise } from '@polkadot/api';
 import { Abi } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import { ContractPromise } from '@polkadot/api-contract';
+import type { ExternalSigner } from '@727-ventures/typechain-types';
 import { ContractAbi } from '../contract-info/my_psp22';
 import QueryMethods from '../query/my_psp22';
 import BuildExtrinsicMethods from '../build-extrinsic/my_psp22';
@@ -20,7 +21,7 @@ export default class Contract {
 	readonly events: EventsClass;
 
 	readonly address : string;
-	readonly signer : KeyringPair;
+	readonly signer : KeyringPair | ExternalSigner;
 
 	readonly nativeContract : ContractPromise;
 	readonly nativeAPI : ApiPromise;
@@ -35,7 +36,7 @@ export default class Contract {
 	*/
 	constructor(
 		address : string,
-		signer : KeyringPair,
+		signer : KeyringPair | ExternalSigner,
 		nativeAPI : ApiPromise,
 	) {
 		this.address = address;
@@ -81,7 +82,7 @@ export default class Contract {
 	 * await contract.withSigner(signerBob).transfer(signerAlice.address, 100);
 	 * ```
 	*/
-	withSigner(signer : KeyringPair) : Contract {
+	withSigner(signer : KeyringPair | ExternalSigner) : Contract {
 		return new Contract(this.address, signer, this.nativeAPI);
 	}
 

@@ -3,7 +3,7 @@
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import type { ApiPromise } from '@polkadot/api';
-import type { GasLimit, GasLimitAndRequiredValue, Result } from '@727-ventures/typechain-types';
+import type { GasLimit, GasLimitAndRequiredValue, Result, ExternalSigner } from '@727-ventures/typechain-types';
 import { txSignAndSend } from '@727-ventures/typechain-types';
 import type * as ArgumentTypes from '../types-arguments/marketplace';
 import type BN from 'bn.js';
@@ -15,13 +15,13 @@ import EVENT_DATA_TYPE_DESCRIPTIONS from '../event-data/marketplace.json';
 
 export default class Methods {
 	readonly __nativeContract : ContractPromise;
-	readonly __keyringPair : KeyringPair;
+	readonly __keyringPair : KeyringPair | ExternalSigner;
 	readonly __apiPromise: ApiPromise;
 
 	constructor(
 		apiPromise: ApiPromise,
 		nativeContract : ContractPromise,
-		keyringPair : KeyringPair,
+		keyringPair : KeyringPair | ExternalSigner,
 	) {
 		this.__apiPromise = apiPromise;
 		this.__nativeContract = nativeContract;

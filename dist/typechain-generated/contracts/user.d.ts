@@ -2,6 +2,7 @@ import type { ApiPromise } from '@polkadot/api';
 import { Abi } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import { ContractPromise } from '@polkadot/api-contract';
+import type { ExternalSigner } from '@727-ventures/typechain-types';
 import QueryMethods from '../query/user';
 import BuildExtrinsicMethods from '../build-extrinsic/user';
 import TxSignAndSendMethods from '../tx-sign-and-send/user';
@@ -14,7 +15,7 @@ export default class Contract {
     readonly methods: MixedMethods;
     readonly events: EventsClass;
     readonly address: string;
-    readonly signer: KeyringPair;
+    readonly signer: KeyringPair | ExternalSigner;
     readonly nativeContract: ContractPromise;
     readonly nativeAPI: ApiPromise;
     readonly contractAbi: Abi;
@@ -25,7 +26,7 @@ export default class Contract {
      * @param signer - The signer to use for signing transactions.
      * @param nativeAPI - The API instance to use for queries.
     */
-    constructor(address: string, signer: KeyringPair, nativeAPI: ApiPromise);
+    constructor(address: string, signer: KeyringPair | ExternalSigner, nativeAPI: ApiPromise);
     /**
      * name
      *
@@ -50,7 +51,7 @@ export default class Contract {
      * await contract.withSigner(signerBob).transfer(signerAlice.address, 100);
      * ```
     */
-    withSigner(signer: KeyringPair): Contract;
+    withSigner(signer: KeyringPair | ExternalSigner): Contract;
     /**
     * withAddress
     *

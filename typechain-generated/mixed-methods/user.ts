@@ -3,7 +3,7 @@
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { ApiPromise } from '@polkadot/api';
 import type { KeyringPair } from '@polkadot/keyring/types';
-import type { GasLimit, GasLimitAndRequiredValue, Result } from '@727-ventures/typechain-types';
+import type { GasLimit, GasLimitAndRequiredValue, Result, ExternalSigner } from '@727-ventures/typechain-types';
 import type { QueryReturnType } from '@727-ventures/typechain-types';
 import { queryOkJSON, queryJSON, handleReturnType } from '@727-ventures/typechain-types';
 import { txSignAndSend } from '@727-ventures/typechain-types';
@@ -22,14 +22,14 @@ import EVENT_DATA_TYPE_DESCRIPTIONS from '../event-data/user.json';
 
 export default class Methods {
 	readonly __nativeContract : ContractPromise;
-	readonly __keyringPair : KeyringPair;
+	readonly __keyringPair : KeyringPair | ExternalSigner;
 	readonly __callerAddress : string;
 	readonly __apiPromise: ApiPromise;
 
 	constructor(
 		apiPromise : ApiPromise,
 		nativeContract : ContractPromise,
-		keyringPair : KeyringPair,
+		keyringPair : KeyringPair | ExternalSigner,
 	) {
 		this.__apiPromise = apiPromise;
 		this.__nativeContract = nativeContract;

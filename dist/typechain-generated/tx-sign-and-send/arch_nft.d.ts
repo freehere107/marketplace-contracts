@@ -1,14 +1,14 @@
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import type { ApiPromise } from '@polkadot/api';
-import type { GasLimit } from '@727-ventures/typechain-types';
+import type { GasLimit, ExternalSigner } from '@727-ventures/typechain-types';
 import type * as ArgumentTypes from '../types-arguments/arch_nft';
 import type BN from 'bn.js';
 export default class Methods {
     readonly __nativeContract: ContractPromise;
-    readonly __keyringPair: KeyringPair;
+    readonly __keyringPair: KeyringPair | ExternalSigner;
     readonly __apiPromise: ApiPromise;
-    constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair);
+    constructor(apiPromise: ApiPromise, nativeContract: ContractPromise, keyringPair: KeyringPair | ExternalSigner);
     /**
     * accountId
     *

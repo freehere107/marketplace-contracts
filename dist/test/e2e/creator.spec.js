@@ -10,12 +10,6 @@ const chai_1 = require("../shared/chai");
 const consts_1 = require("../shared/consts");
 const creator_1 = require("../shared/test-setups/creator");
 (0, mocha_1.describe)(consts_1.E2E_PREFIX + 'Creator', () => {
-    it('Can create collection', async () => {
-        const contract = await (0, creator_1.setupCreator)();
-        await (0, chai_1.expect)(contract.query.getCollectionCount()).to.have.returnValue(0);
-        await contract.tx.createCollection(creator_1.COLLECTION_NAME, creator_1.COLLECTION_URI, creator_1.COLLECTION_ROYALTY, creator_1.ADDITIONAL_INFO, creator_1.COLLECTION_CODE_HASH);
-        await (0, chai_1.expect)(contract.query.getCollectionCount()).to.have.returnValue(1);
-    });
     it('Can edit user data', async () => {
         const contract = await (0, creator_1.setupCreator)();
         await contract.tx.setUserData({
@@ -28,10 +22,6 @@ const creator_1 = require("../shared/test-setups/creator");
             avatar: null,
             additionInfo: 'Some additional info',
         });
-    });
-    it('Owner can create collection', async () => {
-        const contract = await (0, creator_1.setupCreator)();
-        await (0, chai_1.expect)(contract.tx.createCollection(creator_1.COLLECTION_NAME, creator_1.COLLECTION_URI, creator_1.COLLECTION_ROYALTY, creator_1.ADDITIONAL_INFO, creator_1.COLLECTION_CODE_HASH)).to.be.fulfilled;
     });
     (0, mocha_1.after)(async () => {
         await api_singleton_1.default.disconnect();
