@@ -1,4 +1,4 @@
-import type {ReturnNumber} from "@727-ventures/typechain-types";
+import type {ReturnNumber} from "@archisinal/typechain-types";
 import type * as ReturnTypes from '../types-returns/account_manager';
 
 export interface AccountCreated {

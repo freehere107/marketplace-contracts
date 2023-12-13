@@ -2,14 +2,14 @@
 
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { ApiPromise } from '@polkadot/api';
-import type { GasLimit, GasLimitAndRequiredValue, Result } from '@727-ventures/typechain-types';
-import type { QueryReturnType } from '@727-ventures/typechain-types';
-import { queryJSON, queryOkJSON, handleReturnType } from '@727-ventures/typechain-types';
+import type { GasLimit, GasLimitAndRequiredValue, Result } from '@archisinal/typechain-types';
+import type { QueryReturnType } from '@archisinal/typechain-types';
+import { queryJSON, queryOkJSON, handleReturnType } from '@archisinal/typechain-types';
 import type * as ArgumentTypes from '../types-arguments/marketplace';
 import type * as ReturnTypes from '../types-returns/marketplace';
 import type BN from 'bn.js';
 //@ts-ignore
-import {ReturnNumber} from '@727-ventures/typechain-types';
+import {ReturnNumber} from '@archisinal/typechain-types';
 import {getTypeDescription} from './../shared/utils';
 import DATA_TYPE_DESCRIPTIONS from '../data/marketplace.json';
 

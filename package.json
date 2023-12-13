@@ -1,15 +1,15 @@
 {
-  "name": "archisinal",
-  "version": "1.0.0",
+  "name": "@archisinal/contracts",
+  "version": "1.0.1",
   "author": "Archisinal",
   "license": "MIT",
   "engines": {
     "node": ">=18.14.0"
   },
   "scripts": {
-    "run-typechain-compiler": "npx @727-ventures/typechain-compiler --config ./typechain.config.json",
-    "run-typechain-compiler:ci": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --release",
-    "build:release": "npx @727-ventures/typechain-compiler --config ./typechain.config.json --release",
+    "run-typechain-compiler": "npx @archisinal/typechain-compiler --config ./typechain.config.json",
+    "run-typechain-compiler:ci": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release",
+    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release",
     "deploy:local": "ts-node ./deploy/local.ts",
     "deploy:shibuya": "yarn build:release && ts-node ./deploy/shibuya.ts",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
@@ -39,9 +39,9 @@
     "prepublish": "tsc"
   },
   "devDependencies": {
-    "@727-ventures/typechain-compiler": "https://gitpkg.now.sh/Archisinal/typechain-polkadot/packages/typechain-compiler?master",
-    "@727-ventures/typechain-polkadot": "https://gitpkg.now.sh/Archisinal/typechain-polkadot/packages/typechain-polkadot?master",
-    "@727-ventures/typechain-types": "https://gitpkg.now.sh/Archisinal/typechain-polkadot/packages/typechain-types?master",
+    "@archisinal/typechain-compiler": "latest",
+    "@archisinal/typechain-polkadot": "latest",
+    "@archisinal/typechain-types": "latest",
     "@babel/core": "^7.22.9",
     "@babel/register": "^7.22.5",
     "@polkadot/api": "^10.9.1",

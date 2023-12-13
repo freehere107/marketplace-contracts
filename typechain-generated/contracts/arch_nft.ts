@@ -4,7 +4,7 @@ import type { ApiPromise } from '@polkadot/api';
 import { Abi } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import { ContractPromise } from '@polkadot/api-contract';
-import type { ExternalSigner } from '@727-ventures/typechain-types';
+import type { ExternalSigner } from '@archisinal/typechain-types';
 import { ContractAbi } from '../contract-info/arch_nft';
 import QueryMethods from '../query/arch_nft';
 import BuildExtrinsicMethods from '../build-extrinsic/arch_nft';

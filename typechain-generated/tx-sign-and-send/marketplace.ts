@@ -3,8 +3,8 @@
 import type { ContractPromise } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import type { ApiPromise } from '@polkadot/api';
-import type { GasLimit, GasLimitAndRequiredValue, Result, ExternalSigner } from '@727-ventures/typechain-types';
-import { txSignAndSend } from '@727-ventures/typechain-types';
+import type { GasLimit, GasLimitAndRequiredValue, Result, ExternalSigner } from '@archisinal/typechain-types';
+import { txSignAndSend } from '@archisinal/typechain-types';
 import type * as ArgumentTypes from '../types-arguments/marketplace';
 import type BN from 'bn.js';
 // @ts-ignore

@@ -4,7 +4,7 @@ import type { ApiPromise } from '@polkadot/api';
 import { Abi } from '@polkadot/api-contract';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import { ContractPromise } from '@polkadot/api-contract';
-import type { ExternalSigner } from '@727-ventures/typechain-types';
+import type { ExternalSigner } from '@archisinal/typechain-types';
 import { ContractAbi } from '../contract-info/user';
 import QueryMethods from '../query/user';
 import BuildExtrinsicMethods from '../build-extrinsic/user';
