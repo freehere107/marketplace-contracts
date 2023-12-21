@@ -17,6 +17,7 @@ jobs:
         uses: jitterbit/get-changed-files@v1
 
       - name: Build & Push Docker Image if Dockerfile changed
+        if: contains(steps.files.outputs.all, 'Dockerfile')
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           username: ${{ secrets.GHCR_USERNAME }}
