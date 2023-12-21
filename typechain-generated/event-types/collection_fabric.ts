@@ -14,6 +14,7 @@ export interface AdminRemoved {
 export interface CollectionInstantiated {
 	collection: ReturnTypes.AccountId;
 	index: ReturnNumber;
+	collectionInfo: ReturnTypes.CollectionInfo;
 }
 
 export interface CollectionBanned {

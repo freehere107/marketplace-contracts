@@ -1,7 +1,8 @@
 use ink::primitives::{AccountId, Hash};
+use crate::impls::collection_fabric::data::CollectionInfo;
 
 pub trait CollectionFabricEvents {
-    fn emit_collection_instantiated(&self, collection: AccountId, index: u128);
+    fn emit_collection_instantiated(&self, collection: AccountId, index: u128, collection_info: CollectionInfo);
     fn emit_collection_banned(&self, collection: AccountId);
     fn emit_collection_unbanned(&self, collection: AccountId);
     fn emit_codehash_banned(&self, code_hash: Hash);

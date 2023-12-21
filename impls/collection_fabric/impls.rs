@@ -26,7 +26,7 @@ pub trait CollectionFabricImpl:
             return Err(ArchisinalError::CodehashIsBanned);
         }
         let collection_count = self.collection_count();
-        let collection = self.create_collection(collection_info, code_hash)?;
+        let collection = self.create_collection(collection_info.clone(), code_hash)?;
         self.data::<Data>()
             .collections
             .insert(collection_count, &collection);
@@ -34,7 +34,7 @@ pub trait CollectionFabricImpl:
             .collection_count
             .set(&(collection_count + 1));
         self.data::<Data>().is_whitelisted.insert(collection, &true);
-        self.emit_collection_instantiated(collection, collection_count);
+        self.emit_collection_instantiated(collection, collection_count, collection_info);
         Ok((collection_count, collection))
     }
 

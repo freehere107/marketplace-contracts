@@ -63,6 +63,7 @@ mod collection_fabric {
         pub collection: AccountId,
         #[ink(topic)]
         pub index: u128,
+        pub collection_info: CollectionInfo,
     }
 
     #[ink(event)]
@@ -256,10 +257,19 @@ mod collection_fabric {
     }
 
     impl CollectionFabricEvents for Contract {
-        fn emit_collection_instantiated(&self, collection: AccountId, index: u128) {
+        fn emit_collection_instantiated(
+            &self,
+            collection: AccountId,
+            index: u128,
+            collection_info: CollectionInfo,
+        ) {
             <EnvAccess<'_, DefaultEnvironment> as EmitEvent<Self>>::emit_event(
                 self.env(),
-                CollectionInstantiated { collection, index },
+                CollectionInstantiated {
+                    collection,
+                    index,
+                    collection_info,
+                },
             );
         }
 
