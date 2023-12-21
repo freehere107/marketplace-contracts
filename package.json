@@ -9,7 +9,7 @@
   "scripts": {
     "run-typechain-compiler": "npx @archisinal/typechain-compiler --config ./typechain.config.json --toolchain 1.68",
     "run-typechain-compiler:ci": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release --toolchain 1.68",
-    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release",
+    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release --toolchain 1.68",
     "deploy:local": "ts-node ./deploy/local.ts",
     "deploy:shibuya": "yarn build:release && ts-node ./deploy/shibuya.ts",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
