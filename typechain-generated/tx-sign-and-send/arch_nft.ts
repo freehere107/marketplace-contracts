@@ -41,41 +41,29 @@ export default class Methods {
 	}
 
 	/**
-	* collectionUri
+	* getNftMetadata
 	*
+	* @param { ArgumentTypes.Id } id,
 	*/
-	"collectionUri" (
+	"getNftMetadata" (
+		id: ArgumentTypes.Id,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionUri", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::getNftMetadata", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
+		}, [id], __options);
 	}
 
 	/**
-	* collectionName
+	* collectionRoyalty
 	*
 	*/
-	"collectionName" (
+	"collectionRoyalty" (
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionName", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionRoyalty", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [], __options);
-	}
-
-	/**
-	* setCollectionName
-	*
-	* @param { string } name,
-	*/
-	"setCollectionName" (
-		name: string,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::setCollectionName", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [name], __options);
 	}
 
 	/**
@@ -93,33 +81,29 @@ export default class Methods {
 	}
 
 	/**
-	* updateNftMetadata
+	* collectionUri
 	*
-	* @param { ArgumentTypes.Id } id,
-	* @param { ArgumentTypes.NftMetadata } metadata,
 	*/
-	"updateNftMetadata" (
-		id: ArgumentTypes.Id,
-		metadata: ArgumentTypes.NftMetadata,
+	"collectionUri" (
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::updateNftMetadata", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionUri", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [id, metadata], __options);
+		}, [], __options);
 	}
 
 	/**
-	* getNftMetadata
+	* setCollectionName
 	*
-	* @param { ArgumentTypes.Id } id,
+	* @param { string } name,
 	*/
-	"getNftMetadata" (
-		id: ArgumentTypes.Id,
+	"setCollectionName" (
+		name: string,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::getNftMetadata", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::setCollectionName", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [id], __options);
+		}, [name], __options);
 	}
 
 	/**
@@ -149,13 +133,29 @@ export default class Methods {
 	}
 
 	/**
-	* collectionRoyalty
+	* updateNftMetadata
 	*
+	* @param { ArgumentTypes.Id } id,
+	* @param { ArgumentTypes.NftMetadata } metadata,
 	*/
-	"collectionRoyalty" (
+	"updateNftMetadata" (
+		id: ArgumentTypes.Id,
+		metadata: ArgumentTypes.NftMetadata,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionRoyalty", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::updateNftMetadata", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [id, metadata], __options);
+	}
+
+	/**
+	* collectionName
+	*
+	*/
+	"collectionName" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionName", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [], __options);
 	}
@@ -199,38 +199,6 @@ export default class Methods {
 	}
 
 	/**
-	* ownerOf
-	*
-	* @param { ArgumentTypes.Id } id,
-	*/
-	"ownerOf" (
-		id: ArgumentTypes.Id,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::ownerOf", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [id], __options);
-	}
-
-	/**
-	* approve
-	*
-	* @param { ArgumentTypes.AccountId } operator,
-	* @param { ArgumentTypes.Id | null } id,
-	* @param { boolean } approved,
-	*/
-	"approve" (
-		operator: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id | null,
-		approved: boolean,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::approve", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [operator, id, approved], __options);
-	}
-
-	/**
 	* allowance
 	*
 	* @param { ArgumentTypes.AccountId } owner,
@@ -261,15 +229,21 @@ export default class Methods {
 	}
 
 	/**
-	* collectionId
+	* transfer
 	*
+	* @param { ArgumentTypes.AccountId } to,
+	* @param { ArgumentTypes.Id } id,
+	* @param { Array<(number | string | BN)> } data,
 	*/
-	"collectionId" (
+	"transfer" (
+		to: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id,
+		data: Array<(number | string | BN)>,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::collectionId", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::transfer", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
+		}, [to, id, data], __options);
 	}
 
 	/**
@@ -287,21 +261,47 @@ export default class Methods {
 	}
 
 	/**
-	* transfer
+	* ownerOf
 	*
-	* @param { ArgumentTypes.AccountId } to,
 	* @param { ArgumentTypes.Id } id,
-	* @param { Array<(number | string | BN)> } data,
 	*/
-	"transfer" (
-		to: ArgumentTypes.AccountId,
+	"ownerOf" (
 		id: ArgumentTypes.Id,
-		data: Array<(number | string | BN)>,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::transfer", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::ownerOf", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [to, id, data], __options);
+		}, [id], __options);
+	}
+
+	/**
+	* collectionId
+	*
+	*/
+	"collectionId" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::collectionId", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
+	* approve
+	*
+	* @param { ArgumentTypes.AccountId } operator,
+	* @param { ArgumentTypes.Id | null } id,
+	* @param { boolean } approved,
+	*/
+	"approve" (
+		operator: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id | null,
+		approved: boolean,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::approve", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [operator, id, approved], __options);
 	}
 
 	/**

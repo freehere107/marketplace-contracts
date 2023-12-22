@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@archisinal/typechain-compiler": "latest",
-    "@archisinal/typechain-polkadot": "latest",
     "@archisinal/typechain-types": "latest",
     "@babel/core": "^7.22.9",
     "@babel/register": "^7.22.5",
