@@ -31,40 +31,6 @@ export default class Methods {
 	}
 
 	/**
-	 * getNftMetadata
-	 *
-	 * @param { ArgumentTypes.Id } id,
-	*/
-	"getNftMetadata" (
-		id: ArgumentTypes.Id,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::getNftMetadata", [id], __options);
-	}
-
-	/**
-	 * collectionRoyalty
-	 *
-	*/
-	"collectionRoyalty" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionRoyalty", [], __options);
-	}
-
-	/**
-	 * setCollectionAdditionalInfo
-	 *
-	 * @param { string } additionalInfo,
-	*/
-	"setCollectionAdditionalInfo" (
-		additionalInfo: string,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::setCollectionAdditionalInfo", [additionalInfo], __options);
-	}
-
-	/**
 	 * collectionUri
 	 *
 	*/
@@ -109,6 +75,28 @@ export default class Methods {
 	}
 
 	/**
+	 * setCollectionAdditionalInfo
+	 *
+	 * @param { string } additionalInfo,
+	*/
+	"setCollectionAdditionalInfo" (
+		additionalInfo: string,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::setCollectionAdditionalInfo", [additionalInfo], __options);
+	}
+
+	/**
+	 * collectionRoyalty
+	 *
+	*/
+	"collectionRoyalty" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionRoyalty", [], __options);
+	}
+
+	/**
 	 * updateNftMetadata
 	 *
 	 * @param { ArgumentTypes.Id } id,
@@ -133,6 +121,18 @@ export default class Methods {
 	}
 
 	/**
+	 * getNftMetadata
+	 *
+	 * @param { ArgumentTypes.Id } id,
+	*/
+	"getNftMetadata" (
+		id: ArgumentTypes.Id,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::getNftMetadata", [id], __options);
+	}
+
+	/**
 	 * transferOwnership
 	 *
 	 * @param { ArgumentTypes.AccountId } newOwner,
@@ -142,16 +142,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
-	}
-
-	/**
-	 * owner
-	 *
-	*/
-	"owner" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
 	}
 
 	/**
@@ -165,45 +155,13 @@ export default class Methods {
 	}
 
 	/**
-	 * allowance
-	 *
-	 * @param { ArgumentTypes.AccountId } owner,
-	 * @param { ArgumentTypes.AccountId } operator,
-	 * @param { ArgumentTypes.Id | null } id,
-	*/
-	"allowance" (
-		owner: ArgumentTypes.AccountId,
-		operator: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id | null,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::allowance", [owner, operator, id], __options);
-	}
-
-	/**
-	 * totalSupply
+	 * owner
 	 *
 	*/
-	"totalSupply" (
+	"owner" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::totalSupply", [], __options);
-	}
-
-	/**
-	 * transfer
-	 *
-	 * @param { ArgumentTypes.AccountId } to,
-	 * @param { ArgumentTypes.Id } id,
-	 * @param { Array<(number | string | BN)> } data,
-	*/
-	"transfer" (
-		to: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id,
-		data: Array<(number | string | BN)>,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::transfer", [to, id, data], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::owner", [], __options);
 	}
 
 	/**
@@ -231,6 +189,22 @@ export default class Methods {
 	}
 
 	/**
+	 * allowance
+	 *
+	 * @param { ArgumentTypes.AccountId } owner,
+	 * @param { ArgumentTypes.AccountId } operator,
+	 * @param { ArgumentTypes.Id | null } id,
+	*/
+	"allowance" (
+		owner: ArgumentTypes.AccountId,
+		operator: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id | null,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::allowance", [owner, operator, id], __options);
+	}
+
+	/**
 	 * collectionId
 	 *
 	*/
@@ -238,6 +212,16 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::collectionId", [], __options);
+	}
+
+	/**
+	 * totalSupply
+	 *
+	*/
+	"totalSupply" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::totalSupply", [], __options);
 	}
 
 	/**
@@ -254,6 +238,22 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::approve", [operator, id, approved], __options);
+	}
+
+	/**
+	 * transfer
+	 *
+	 * @param { ArgumentTypes.AccountId } to,
+	 * @param { ArgumentTypes.Id } id,
+	 * @param { Array<(number | string | BN)> } data,
+	*/
+	"transfer" (
+		to: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id,
+		data: Array<(number | string | BN)>,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::transfer", [to, id, data], __options);
 	}
 
 	/**

@@ -53,6 +53,21 @@ export default class Methods {
 	}
 
 	/**
+	* addAdmin
+	*
+	* @param { ArgumentTypes.AccountId } accountId,
+	* @returns { void }
+	*/
+	"addAdmin" (
+		accountId: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [accountId], __options);
+	}
+
+	/**
 	* isAdmin
 	*
 	* @param { ArgumentTypes.AccountId } accountId,
@@ -66,18 +81,14 @@ export default class Methods {
 	}
 
 	/**
-	* addAdmin
+	* owner
 	*
-	* @param { ArgumentTypes.AccountId } accountId,
-	* @returns { void }
+	* @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
 	*/
-	"addAdmin" (
-		accountId: ArgumentTypes.AccountId,
+	"owner" (
 		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [accountId], __options);
+	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return handleReturnType(result, getTypeDescription(17, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -94,17 +105,6 @@ export default class Methods {
 	}
 
 	/**
-	* owner
-	*
-	* @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-	*/
-	"owner" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return handleReturnType(result, getTypeDescription(19, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
 	* transferOwnership
 	*
 	* @param { ArgumentTypes.AccountId } newOwner,
@@ -117,6 +117,23 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [newOwner], __options);
+	}
+
+	/**
+	* revokeRole
+	*
+	* @param { (number | string | BN) } role,
+	* @param { ArgumentTypes.AccountId | null } account,
+	* @returns { void }
+	*/
+	"revokeRole" (
+		role: (number | string | BN),
+		account: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [role, account], __options);
 	}
 
 	/**
@@ -144,24 +161,7 @@ export default class Methods {
 		role: (number | string | BN),
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return handleReturnType(result, getTypeDescription(21, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* revokeRole
-	*
-	* @param { (number | string | BN) } role,
-	* @param { ArgumentTypes.AccountId | null } account,
-	* @returns { void }
-	*/
-	"revokeRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId | null,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [role, account], __options);
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return handleReturnType(result, getTypeDescription(23, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**

@@ -29,103 +29,17 @@ export default class Methods {
 	}
 
 	/**
-	* collection
-	*
-	* @param { (string | number | BN) } index,
-	*/
-	"collection" (
-		index: (string | number | BN),
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::collection", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [index], __options);
-	}
-
-	/**
-	* isCodehashBanned
-	*
-	* @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"isCodehashBanned" (
-		codeHash: ArgumentTypes.Hash,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isCodehashBanned", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [codeHash], __options);
-	}
-
-	/**
-	* unbanCollection
+	* isBanned
 	*
 	* @param { ArgumentTypes.AccountId } collection,
 	*/
-	"unbanCollection" (
+	"isBanned" (
 		collection: ArgumentTypes.AccountId,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCollection", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isBanned", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [collection], __options);
-	}
-
-	/**
-	* unbanCodehash
-	*
-	* @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"unbanCodehash" (
-		codeHash: ArgumentTypes.Hash,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCodehash", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [codeHash], __options);
-	}
-
-	/**
-	* banCodehash
-	*
-	* @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"banCodehash" (
-		codeHash: ArgumentTypes.Hash,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::banCodehash", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [codeHash], __options);
-	}
-
-	/**
-	* banCollection
-	*
-	* @param { ArgumentTypes.AccountId } collection,
-	*/
-	"banCollection" (
-		collection: ArgumentTypes.AccountId,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::banCollection", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [collection], __options);
-	}
-
-	/**
-	* instantiateCollection
-	*
-	* @param { ArgumentTypes.CollectionInfo } collectionInfo,
-	* @param { ArgumentTypes.Hash } codeHash,
-	*/
-	"instantiateCollection" (
-		collectionInfo: ArgumentTypes.CollectionInfo,
-		codeHash: ArgumentTypes.Hash,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::instantiateCollection", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [collectionInfo, codeHash], __options);
 	}
 
 	/**
@@ -157,43 +71,17 @@ export default class Methods {
 	}
 
 	/**
-	* whitelistCollection
+	* collection
 	*
-	* @param { ArgumentTypes.AccountId } collection,
+	* @param { (string | number | BN) } index,
 	*/
-	"whitelistCollection" (
-		collection: ArgumentTypes.AccountId,
+	"collection" (
+		index: (string | number | BN),
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::whitelistCollection", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::collection", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [collection], __options);
-	}
-
-	/**
-	* isBanned
-	*
-	* @param { ArgumentTypes.AccountId } collection,
-	*/
-	"isBanned" (
-		collection: ArgumentTypes.AccountId,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isBanned", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [collection], __options);
-	}
-
-	/**
-	* collectionCount
-	*
-	*/
-	"collectionCount" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::collectionCount", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
+		}, [index], __options);
 	}
 
 	/**
@@ -209,6 +97,90 @@ export default class Methods {
 	}
 
 	/**
+	* instantiateCollection
+	*
+	* @param { ArgumentTypes.CollectionInfo } collectionInfo,
+	* @param { ArgumentTypes.Hash } codeHash,
+	*/
+	"instantiateCollection" (
+		collectionInfo: ArgumentTypes.CollectionInfo,
+		codeHash: ArgumentTypes.Hash,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::instantiateCollection", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [collectionInfo, codeHash], __options);
+	}
+
+	/**
+	* unbanCodehash
+	*
+	* @param { ArgumentTypes.Hash } codeHash,
+	*/
+	"unbanCodehash" (
+		codeHash: ArgumentTypes.Hash,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCodehash", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [codeHash], __options);
+	}
+
+	/**
+	* banCodehash
+	*
+	* @param { ArgumentTypes.Hash } codeHash,
+	*/
+	"banCodehash" (
+		codeHash: ArgumentTypes.Hash,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::banCodehash", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [codeHash], __options);
+	}
+
+	/**
+	* isCodehashBanned
+	*
+	* @param { ArgumentTypes.Hash } codeHash,
+	*/
+	"isCodehashBanned" (
+		codeHash: ArgumentTypes.Hash,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isCodehashBanned", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [codeHash], __options);
+	}
+
+	/**
+	* collectionCount
+	*
+	*/
+	"collectionCount" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::collectionCount", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
+	* unbanCollection
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	*/
+	"unbanCollection" (
+		collection: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCollection", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [collection], __options);
+	}
+
+	/**
 	* isWhitelisted
 	*
 	* @param { ArgumentTypes.AccountId } collection,
@@ -218,6 +190,34 @@ export default class Methods {
 		__options ? : GasLimit,
 	){
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::isWhitelisted", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [collection], __options);
+	}
+
+	/**
+	* banCollection
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	*/
+	"banCollection" (
+		collection: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::banCollection", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [collection], __options);
+	}
+
+	/**
+	* whitelistCollection
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	*/
+	"whitelistCollection" (
+		collection: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::whitelistCollection", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [collection], __options);
 	}
@@ -265,6 +265,18 @@ export default class Methods {
 	}
 
 	/**
+	* owner
+	*
+	*/
+	"owner" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::owner", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
 	* renounceOwnership
 	*
 	*/
@@ -291,61 +303,19 @@ export default class Methods {
 	}
 
 	/**
-	* owner
-	*
-	*/
-	"owner" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::owner", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
-	}
-
-	/**
-	* revokeRole
+	* grantRole
 	*
 	* @param { (number | string | BN) } role,
 	* @param { ArgumentTypes.AccountId | null } account,
 	*/
-	"revokeRole" (
+	"grantRole" (
 		role: (number | string | BN),
 		account: ArgumentTypes.AccountId | null,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [role, account], __options);
-	}
-
-	/**
-	* renounceRole
-	*
-	* @param { (number | string | BN) } role,
-	* @param { ArgumentTypes.AccountId | null } account,
-	*/
-	"renounceRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId | null,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [role, account], __options);
-	}
-
-	/**
-	* getRoleAdmin
-	*
-	* @param { (number | string | BN) } role,
-	*/
-	"getRoleAdmin" (
-		role: (number | string | BN),
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::getRoleAdmin", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [role], __options);
 	}
 
 	/**
@@ -365,19 +335,49 @@ export default class Methods {
 	}
 
 	/**
-	* grantRole
+	* renounceRole
 	*
 	* @param { (number | string | BN) } role,
 	* @param { ArgumentTypes.AccountId | null } account,
 	*/
-	"grantRole" (
+	"renounceRole" (
 		role: (number | string | BN),
 		account: ArgumentTypes.AccountId | null,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [role, account], __options);
+	}
+
+	/**
+	* revokeRole
+	*
+	* @param { (number | string | BN) } role,
+	* @param { ArgumentTypes.AccountId | null } account,
+	*/
+	"revokeRole" (
+		role: (number | string | BN),
+		account: ArgumentTypes.AccountId | null,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [role, account], __options);
+	}
+
+	/**
+	* getRoleAdmin
+	*
+	* @param { (number | string | BN) } role,
+	*/
+	"getRoleAdmin" (
+		role: (number | string | BN),
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::getRoleAdmin", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [role], __options);
 	}
 
 	/**

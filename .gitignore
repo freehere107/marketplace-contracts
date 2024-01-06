@@ -1,8 +1,6 @@
 /target
 /dist
 
-Cargo.lock
-
 /.idea
 /node_modules
 

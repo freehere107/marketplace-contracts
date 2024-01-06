@@ -407,6 +407,17 @@ export enum ListingStatus {
 	cancelled = 'Cancelled'
 }
 
+export type AuctionInfo = {
+	creator: AccountId,
+	collection: AccountId,
+	tokenId: Id,
+	startPrice: ReturnNumber,
+	minBidStep: ReturnNumber,
+	currency: Currency,
+	startTime: number,
+	endTime: number
+}
+
 export type Auction = {
 	id: ReturnNumber,
 	creator: AccountId,
@@ -429,17 +440,6 @@ export enum AuctionStatus {
 	waitingForClaim = 'WaitingForClaim',
 	ended = 'Ended',
 	cancelled = 'Cancelled'
-}
-
-export type AuctionInfo = {
-	creator: AccountId,
-	collection: AccountId,
-	tokenId: Id,
-	startPrice: ReturnNumber,
-	minBidStep: ReturnNumber,
-	currency: Currency,
-	startTime: number,
-	endTime: number
 }
 
 export type Hash = string | number[]

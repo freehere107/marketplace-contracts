@@ -1,13 +1,13 @@
 {
   "name": "@archisinal/contracts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Archisinal",
   "license": "MIT",
   "engines": {
     "node": ">=18.14.0"
   },
   "scripts": {
-    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release --toolchain 1.68",
+    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release --toolchain 1.75",
     "deploy:local": "ts-node ./deploy/local.ts",
     "deploy:shibuya": "yarn build:release && ts-node ./deploy/shibuya.ts",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",

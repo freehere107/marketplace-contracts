@@ -38,6 +38,47 @@ export default class Methods {
 	}
 
 	/**
+	* isBanned
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	* @returns { Result<boolean, ReturnTypes.LangError> }
+	*/
+	"isBanned" (
+		collection: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isBanned", [collection], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* setWhitelistEnabled
+	*
+	* @param { boolean } enabled,
+	* @returns { void }
+	*/
+	"setWhitelistEnabled" (
+		enabled: boolean,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::setWhitelistEnabled", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [enabled], __options);
+	}
+
+	/**
+	* isCollectionDeployed
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	* @returns { Result<boolean, ReturnTypes.LangError> }
+	*/
+	"isCollectionDeployed" (
+		collection: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isCollectionDeployed", [collection], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
 	* collection
 	*
 	* @param { (string | number | BN) } index,
@@ -47,35 +88,35 @@ export default class Methods {
 		index: (string | number | BN),
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::collection", [index], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::collection", [index], __options, (result) => { return handleReturnType(result, getTypeDescription(18, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
-	* isCodehashBanned
+	* isWhitelistEnabled
 	*
-	* @param { ArgumentTypes.Hash } codeHash,
 	* @returns { Result<boolean, ReturnTypes.LangError> }
 	*/
-	"isCodehashBanned" (
-		codeHash: ArgumentTypes.Hash,
+	"isWhitelistEnabled" (
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isCodehashBanned", [codeHash], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isWhitelistEnabled", [], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
-	* unbanCollection
+	* instantiateCollection
 	*
-	* @param { ArgumentTypes.AccountId } collection,
+	* @param { ArgumentTypes.CollectionInfo } collectionInfo,
+	* @param { ArgumentTypes.Hash } codeHash,
 	* @returns { void }
 	*/
-	"unbanCollection" (
-		collection: ArgumentTypes.AccountId,
+	"instantiateCollection" (
+		collectionInfo: ArgumentTypes.CollectionInfo,
+		codeHash: ArgumentTypes.Hash,
 		__options: GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCollection", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::instantiateCollection", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [collection], __options);
+		}, [collectionInfo, codeHash], __options);
 	}
 
 	/**
@@ -109,6 +150,58 @@ export default class Methods {
 	}
 
 	/**
+	* isCodehashBanned
+	*
+	* @param { ArgumentTypes.Hash } codeHash,
+	* @returns { Result<boolean, ReturnTypes.LangError> }
+	*/
+	"isCodehashBanned" (
+		codeHash: ArgumentTypes.Hash,
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isCodehashBanned", [codeHash], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* collectionCount
+	*
+	* @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+	*/
+	"collectionCount" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<ReturnNumber, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::collectionCount", [], __options, (result) => { return handleReturnType(result, getTypeDescription(26, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* unbanCollection
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	* @returns { void }
+	*/
+	"unbanCollection" (
+		collection: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::unbanCollection", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [collection], __options);
+	}
+
+	/**
+	* isWhitelisted
+	*
+	* @param { ArgumentTypes.AccountId } collection,
+	* @returns { Result<boolean, ReturnTypes.LangError> }
+	*/
+	"isWhitelisted" (
+		collection: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isWhitelisted", [collection], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
 	* banCollection
 	*
 	* @param { ArgumentTypes.AccountId } collection,
@@ -124,51 +217,6 @@ export default class Methods {
 	}
 
 	/**
-	* instantiateCollection
-	*
-	* @param { ArgumentTypes.CollectionInfo } collectionInfo,
-	* @param { ArgumentTypes.Hash } codeHash,
-	* @returns { void }
-	*/
-	"instantiateCollection" (
-		collectionInfo: ArgumentTypes.CollectionInfo,
-		codeHash: ArgumentTypes.Hash,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::instantiateCollection", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [collectionInfo, codeHash], __options);
-	}
-
-	/**
-	* setWhitelistEnabled
-	*
-	* @param { boolean } enabled,
-	* @returns { void }
-	*/
-	"setWhitelistEnabled" (
-		enabled: boolean,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::setWhitelistEnabled", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [enabled], __options);
-	}
-
-	/**
-	* isCollectionDeployed
-	*
-	* @param { ArgumentTypes.AccountId } collection,
-	* @returns { Result<boolean, ReturnTypes.LangError> }
-	*/
-	"isCollectionDeployed" (
-		collection: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isCollectionDeployed", [collection], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
 	* whitelistCollection
 	*
 	* @param { ArgumentTypes.AccountId } collection,
@@ -181,54 +229,6 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collectionFabric::whitelistCollection", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [collection], __options);
-	}
-
-	/**
-	* isBanned
-	*
-	* @param { ArgumentTypes.AccountId } collection,
-	* @returns { Result<boolean, ReturnTypes.LangError> }
-	*/
-	"isBanned" (
-		collection: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isBanned", [collection], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* collectionCount
-	*
-	* @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-	*/
-	"collectionCount" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnNumber, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::collectionCount", [], __options, (result) => { return handleReturnType(result, getTypeDescription(26, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* isWhitelistEnabled
-	*
-	* @returns { Result<boolean, ReturnTypes.LangError> }
-	*/
-	"isWhitelistEnabled" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isWhitelistEnabled", [], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* isWhitelisted
-	*
-	* @param { ArgumentTypes.AccountId } collection,
-	* @returns { Result<boolean, ReturnTypes.LangError> }
-	*/
-	"isWhitelisted" (
-		collection: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "collectionFabric::isWhitelisted", [collection], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -256,7 +256,7 @@ export default class Methods {
 		accountId: ArgumentTypes.AccountId,
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -272,6 +272,17 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [accountId], __options);
+	}
+
+	/**
+	* owner
+	*
+	* @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+	*/
+	"owner" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return handleReturnType(result, getTypeDescription(18, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -303,31 +314,35 @@ export default class Methods {
 	}
 
 	/**
-	* owner
-	*
-	* @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-	*/
-	"owner" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* revokeRole
+	* grantRole
 	*
 	* @param { (number | string | BN) } role,
 	* @param { ArgumentTypes.AccountId | null } account,
 	* @returns { void }
 	*/
-	"revokeRole" (
+	"grantRole" (
 		role: (number | string | BN),
 		account: ArgumentTypes.AccountId | null,
 		__options: GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [role, account], __options);
+	}
+
+	/**
+	* hasRole
+	*
+	* @param { (number | string | BN) } role,
+	* @param { ArgumentTypes.AccountId | null } address,
+	* @returns { Result<boolean, ReturnTypes.LangError> }
+	*/
+	"hasRole" (
+		role: (number | string | BN),
+		address: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return handleReturnType(result, getTypeDescription(9, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -348,6 +363,23 @@ export default class Methods {
 	}
 
 	/**
+	* revokeRole
+	*
+	* @param { (number | string | BN) } role,
+	* @param { ArgumentTypes.AccountId | null } account,
+	* @returns { void }
+	*/
+	"revokeRole" (
+		role: (number | string | BN),
+		account: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::revokeRole", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [role, account], __options);
+	}
+
+	/**
 	* getRoleAdmin
 	*
 	* @param { (number | string | BN) } role,
@@ -358,38 +390,6 @@ export default class Methods {
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
 		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return handleReturnType(result, getTypeDescription(31, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* hasRole
-	*
-	* @param { (number | string | BN) } role,
-	* @param { ArgumentTypes.AccountId | null } address,
-	* @returns { Result<boolean, ReturnTypes.LangError> }
-	*/
-	"hasRole" (
-		role: (number | string | BN),
-		address: ArgumentTypes.AccountId | null,
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options, (result) => { return handleReturnType(result, getTypeDescription(12, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* grantRole
-	*
-	* @param { (number | string | BN) } role,
-	* @param { ArgumentTypes.AccountId | null } account,
-	* @returns { void }
-	*/
-	"grantRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId | null,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [role, account], __options);
 	}
 
 	/**

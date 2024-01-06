@@ -33,18 +33,6 @@ export default class Methods {
 	}
 
 	/**
-	 * isAdmin
-	 *
-	 * @param { ArgumentTypes.AccountId } accountId,
-	*/
-	"isAdmin" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
-	}
-
-	/**
 	 * addAdmin
 	 *
 	 * @param { ArgumentTypes.AccountId } accountId,
@@ -57,13 +45,15 @@ export default class Methods {
 	}
 
 	/**
-	 * renounceOwnership
+	 * isAdmin
 	 *
+	 * @param { ArgumentTypes.AccountId } accountId,
 	*/
-	"renounceOwnership" (
+	"isAdmin" (
+		accountId: ArgumentTypes.AccountId,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
 	}
 
 	/**
@@ -77,6 +67,16 @@ export default class Methods {
 	}
 
 	/**
+	 * renounceOwnership
+	 *
+	*/
+	"renounceOwnership" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+	}
+
+	/**
 	 * transferOwnership
 	 *
 	 * @param { ArgumentTypes.AccountId } newOwner,
@@ -86,6 +86,20 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
+	}
+
+	/**
+	 * revokeRole
+	 *
+	 * @param { (number | string | BN) } role,
+	 * @param { ArgumentTypes.AccountId | null } account,
+	*/
+	"revokeRole" (
+		role: (number | string | BN),
+		account: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
 	}
 
 	/**
@@ -112,20 +126,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
-	}
-
-	/**
-	 * revokeRole
-	 *
-	 * @param { (number | string | BN) } role,
-	 * @param { ArgumentTypes.AccountId | null } account,
-	*/
-	"revokeRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId | null,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::revokeRole", [role, account], __options);
 	}
 
 	/**

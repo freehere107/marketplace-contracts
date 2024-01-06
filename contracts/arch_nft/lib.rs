@@ -43,7 +43,8 @@ mod arch_nft {
         #[ink(topic)]
         spender: AccountId,
         #[ink(topic)]
-        token_id: Id,
+        token_id: Option<Id>,
+        approved: bool,
     }
 
     #[ink(event)]
@@ -161,14 +162,14 @@ mod arch_nft {
     #[modifiers(ownable::only_owner)]
     fn burn(&mut self) {}
 
-    #[overrider(PSP34Internal)]
+    #[overrider(psp34::Internal)]
     fn _emit_transfer_event(&self, from: Option<AccountId>, to: Option<AccountId>, id: Id) {
-        self.env().emit_event(Transfer { from, to, id });
+        self.env().emit_event(Transfer { from, to, token_id: id });
     }
 
-    #[overrider(PSP34Internal)]
-    fn _emit_approval_event(&self, owner: AccountId, spender: AccountId, id: Id) {
-        self.env().emit_event(Approval { owner, spender, id });
+    #[overrider(psp34::Internal)]
+    fn _emit_approval_event(&self, from: AccountId, to: AccountId, id: Option<Id>, approved: bool) {
+        self.env().emit_event(Approval { owner: from, spender: to, token_id: id, approved });
     }
 
     impl CollectionImpl for Contract {}

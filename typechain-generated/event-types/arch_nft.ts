@@ -10,7 +10,8 @@ export interface Transfer {
 export interface Approval {
 	owner: ReturnTypes.AccountId;
 	spender: ReturnTypes.AccountId;
-	tokenId: ReturnTypes.Id;
+	tokenId: ReturnTypes.Id | null;
+	approved: boolean;
 }
 
 export interface SetCollectionName {
