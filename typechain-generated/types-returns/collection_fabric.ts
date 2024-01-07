@@ -7,6 +7,8 @@ export enum LangError {
 	couldNotReadInput = 'CouldNotReadInput'
 }
 
+export type Hash = string | number[]
+
 export interface ArchisinalError {
 	noOwner ? : null,
 	adminAccessError ? : null,
@@ -336,8 +338,6 @@ export type CollectionInfo = {
 	additionalInfo: string | null,
 	royalty: number
 }
-
-export type Hash = string | number[]
 
 export interface UpgradeableError {
 	custom ? : string,

@@ -2,7 +2,9 @@
 use openbrush::contracts::ownable;
 use openbrush::contracts::ownable::only_owner;
 use openbrush::contracts::ownable::Ownable;
+use openbrush::contracts::psp34::extensions::mintable::PSP34MintableImpl;
 use openbrush::contracts::psp34::{Id, PSP34};
+use openbrush::traits::AccountId;
 use openbrush::traits::{DefaultEnv, Storage, String};
 
 use crate::impls::collection::data::{Data, NftMetadata};
@@ -15,7 +17,13 @@ use crate::traits::{ArchisinalError, ProjectResult};
 ///
 /// See `crate::traits::Collection` for more information.
 pub trait CollectionImpl:
-    Storage<Data> + Storage<ownable::Data> + Ownable + PSP34 + DefaultEnv + CollectionEvents
+    Storage<Data>
+    + Storage<ownable::Data>
+    + Ownable
+    + PSP34
+    + PSP34MintableImpl
+    + DefaultEnv
+    + CollectionEvents
 {
     fn collection_name(&self) -> Option<String> {
         self.data::<Data>().name.get_or_default()
@@ -92,5 +100,22 @@ pub trait CollectionImpl:
 
     fn get_nft_metadata(&self, id: Id) -> Option<NftMetadata> {
         self.data::<Data>().nft_metadata.get(&id)
+    }
+    #[openbrush::modifiers(only_owner)]
+    fn mint_with_metadata(
+        &mut self,
+        to: AccountId,
+        id: Id,
+        metadata: NftMetadata,
+    ) -> ProjectResult<()> {
+        self.mint(to, id.clone())?;
+
+        self.data::<Data>()
+            .nft_metadata
+            .insert(&id, &metadata.clone());
+
+        self.emit_nft_metadata_set(id, metadata);
+
+        Ok(())
     }
 }

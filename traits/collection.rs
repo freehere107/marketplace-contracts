@@ -5,6 +5,7 @@ use openbrush::contracts::ownable::*;
 use openbrush::contracts::psp34::extensions::burnable::*;
 use openbrush::contracts::psp34::extensions::metadata::*;
 use openbrush::contracts::psp34::extensions::mintable::*;
+use openbrush::traits::AccountId;
 use openbrush::traits::String;
 
 /// ArchNFT trait
@@ -154,6 +155,25 @@ pub trait Collection {
     /// * `Option<NftMetadata>` - The metadata of the NFT, if it exists, otherwise None.
     #[ink(message)]
     fn get_nft_metadata(&self, id: Id) -> Option<NftMetadata>;
+
+    /// Mint NFT with metadata
+    ///
+    /// # Arguments
+    ///
+    /// * `to` - The account id of the receiver.
+    /// * `id` - The id of the NFT.
+    /// * `metadata` - The metadata of the NFT.
+    ///
+    /// # Returns
+    ///
+    /// * `ProjectResult<()>` - The result of the operation.
+    #[ink(message)]
+    fn mint_with_metadata(
+        &mut self,
+        to: AccountId,
+        id: Id,
+        metadata: NftMetadata,
+    ) -> ProjectResult<()>;
 }
 
 /// ArchNFTRef type

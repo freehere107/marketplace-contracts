@@ -7,7 +7,7 @@
     "node": ">=18.14.0"
   },
   "scripts": {
-    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release --toolchain 1.75",
+    "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release",
     "deploy:local": "ts-node ./deploy/local.ts",
     "deploy:shibuya": "yarn build:release && ts-node ./deploy/shibuya.ts",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",

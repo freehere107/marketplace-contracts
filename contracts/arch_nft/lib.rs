@@ -164,12 +164,21 @@ mod arch_nft {
 
     #[overrider(psp34::Internal)]
     fn _emit_transfer_event(&self, from: Option<AccountId>, to: Option<AccountId>, id: Id) {
-        self.env().emit_event(Transfer { from, to, token_id: id });
+        self.env().emit_event(Transfer {
+            from,
+            to,
+            token_id: id,
+        });
     }
 
     #[overrider(psp34::Internal)]
     fn _emit_approval_event(&self, from: AccountId, to: AccountId, id: Option<Id>, approved: bool) {
-        self.env().emit_event(Approval { owner: from, spender: to, token_id: id, approved });
+        self.env().emit_event(Approval {
+            owner: from,
+            spender: to,
+            token_id: id,
+            approved,
+        });
     }
 
     impl CollectionImpl for Contract {}
@@ -218,6 +227,16 @@ mod arch_nft {
         #[ink(message)]
         fn get_nft_metadata(&self, id: Id) -> Option<NftMetadata> {
             CollectionImpl::get_nft_metadata(self, id)
+        }
+
+        #[ink(message)]
+        fn mint_with_metadata(
+            &mut self,
+            to: AccountId,
+            id: Id,
+            metadata: NftMetadata,
+        ) -> ProjectResult<()> {
+            CollectionImpl::mint_with_metadata(self, to, id, metadata)
         }
     }
 

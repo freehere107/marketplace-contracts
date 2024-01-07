@@ -115,6 +115,23 @@ describe(E2E_PREFIX + 'Arch NFT', () => {
     expect(result).to.deep.equal(metadata);
   })
 
+  it('Can mint NFT with metadata', async() =>{
+    const contract = await setup()
+    const metadata = {
+      name: 'New name',
+      description: 'New description',
+      image: 'New image',
+      externalUrl: 'New external url',
+      categories: ['New category'],
+    };
+
+    await contract.tx.mintWithMetadata(Signers.Alice.address, IdBuilder.U8(1), metadata);
+
+    const result = (await contract.query.getNftMetadata(IdBuilder.U8(1))).value.unwrapRecursively();
+
+    expect(result).to.deep.equal(metadata);
+  })
+
   after(async () => {
     await ApiSingleton.disconnect()
   })
