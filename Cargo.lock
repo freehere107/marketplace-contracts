@@ -15,7 +15,6 @@ dependencies = [
 name = "archisinal_lib"
 version = "0.0.1"
 dependencies = [
- "cargo-platform",
  "ink",
  "openbrush",
  "parity-scale-codec",
