@@ -20,7 +20,7 @@ export async function setupArchNFT(): Promise<Contract> {
 
   const constructors = new Constructors(api, defaultSigner)
 
-  const { address } = await constructors.new(100, COLLECTION_NAME, COLLECTION_URI, ADDITIONAL_INFO, {gasLimit: gasLimit(2007404373, 30000)})
+  const { address } = await constructors.new(100, COLLECTION_NAME, COLLECTION_URI, ADDITIONAL_INFO, {gasLimit: gasLimit(3007404373, 30000)})
 
   return new Contract(address, defaultSigner, api)
 }

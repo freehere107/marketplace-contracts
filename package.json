@@ -10,6 +10,7 @@
     "build:release": "npx @archisinal/typechain-compiler --config ./typechain.config.json --release",
     "deploy:local": "ts-node ./deploy/local.ts",
     "deploy:shibuya": "yarn build:release && ts-node ./deploy/shibuya.ts",
+    "deploy:astar": "yarn build:release && ts-node ./deploy/astar.ts",
     "raw-mocha": "npx mocha --recursive --require @babel/register --require ts-node/register --timeout 60000 --exit ",
     "test:mocha": "yarn raw-mocha \"./test/**/*.spec.ts\"",
     "test:mocha-node": "set +e; substrate-contracts-node --dev & pid=$!; yarn test:mocha; kill $pid",

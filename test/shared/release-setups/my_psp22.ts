@@ -11,7 +11,7 @@ export async function setupPSP22(): Promise<Contract> {
 
   const constructors = new Constructors(api, defaultSigner)
 
-  const { address } = await constructors.new({gasLimit: gasLimit(140000000, 17000)})
+  const { address } = await constructors.new({gasLimit: gasLimit(190000000, 17000)})
 
   const contract = new Contract(address, defaultSigner, api)
 

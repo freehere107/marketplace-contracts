@@ -12,7 +12,7 @@ export async function setupUser(): Promise<Contract> {
 
   const constructors = new Constructors(api, defaultSigner)
 
-  const { address } = await constructors.new(defaultSigner.address, {gasLimit: gasLimit(310000000, 17000)})
+  const { address } = await constructors.new(defaultSigner.address, {gasLimit: gasLimit(360000000, 17000)})
 
   return new Contract(address, defaultSigner, api)
 }

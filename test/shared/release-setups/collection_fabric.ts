@@ -5,6 +5,7 @@ import Contract from '../../../typechain-generated/contracts/collection_fabric'
 import ApiSingleton from '../api_singleton'
 import { Signers } from '../signers'
 import { setupArchNFT } from './arch_nft'
+import { gasLimit } from './shared'
 
 export const ADDITIONAL_INFO = JSON.stringify({
   image: 'ipfs://arch-nft.com/1.png',
@@ -25,7 +26,7 @@ export async function setupCollectionFabric(): Promise<Contract> {
 
   const constructors = new Constructors(api, defaultSigner)
 
-  const { address } = await constructors.new(defaultSigner.address)
+  const { address } = await constructors.new(defaultSigner.address, {gasLimit: gasLimit(800000000, 19000)})
 
   return new Contract(address, defaultSigner, api)
 }

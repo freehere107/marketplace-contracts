@@ -1,10 +1,23 @@
-# Deployments
+# Archisinal Deployments
 
 ## Shibuya
 ```
-PSP22: VxUmm7bdz1xNKvySnM7qceiP22gjWzXwWjiWGdS57pAtDHu
-ArchNFT: YPnpU2YEzFfocNkVT11dsXHCQPHfD2f4An7GkbaZKPRXSnp
-User: WmPq43dYcHyDRFs9UGXvLXyiHLHpYhaiN3dWnLnZBh3cuv1
-Marketplace: bPX5o2Wyd2tDT3dqgMPzEY2bVFTh8s3weabVJFrHam8wjbq
-AccountManager: Y3ZwGe9jeMiyjFUPJVgEGxYfkhKt6f1eMR7RS96PJBq4wxY
+PSP22: WLGuzK5sSiRR7GFxnopr7zAdbEtSxGh3HK1qEHWFCnY7vcF
+ArchNFT: WUmmfQbSWaT7xekpfL1xK1ED7XMFLcUSo1AaufYfd2fmeEQ
+User: Zxo7tBSgVY83emiRv5DVRG2vcJWQqJfKbAphsgaXYTFLn79
+Creator: amLv4SCB4tJinhB6girT2X7ihwvcLrvdUHNnMDuLK4BT7zi
+CollectionFabric: bD5dUYCi65c3ynbKHgFSVu7qrXugFVSZk6Wn36rnVEKUdUP
+Marketplace: WEsXWGPLrCZQYhpwDYvKtr4j1LbXpEQdM8Ye16nwXy17EfQ
+AccountManager: ao4u8eV4FUsq57nRc7GW1cyGsqtSPVL2osNNcAL8o9sj1Wb
+```
+
+## Astar mainnet
+```
+PSP22: YTnJXUASmGYCR68k27Qd3cymSTSszXFaeiuiMsiYBeqaCPF
+ArchNFT: acrFdrkGYsS8kaUp4Vn5uezsLgUTiCELaqmB927tn98gJWV
+User: WTp4S1cQRSL2Qbm8CAfbbKF58DxEmveao5tryTu6DvzfWVq
+Creator: a2bWvdQPF3XspbNdqDAWeMQ3nPQ9fqjh249fVtsLbX6t7mc
+CollectionFabric: az5LwUN2E5ef9PyxcomXJysbJVrWFShJwkccfN1aw9EUwvz
+Marketplace: ZXMRbbnS5Ah8LxaGKB4gzrqv6UQ8MGYt9W7UmyyrBA8wbvU
+AccountManager: aTZ7GRemoMn4W2Q4aXSSZVvELQXRDE76oRRWDWhft4kVAnS
 ```
