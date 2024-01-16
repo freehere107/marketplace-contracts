@@ -122,7 +122,7 @@ describe(E2E_PREFIX + 'Auction', () => {
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
-      await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, 101)).to.eventually.be.fulfilled
+      await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, 100)).to.eventually.be.fulfilled
 
       await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
     })
@@ -134,10 +134,10 @@ describe(E2E_PREFIX + 'Auction', () => {
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
-      await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, 101)).to.eventually.be.fulfilled
+      await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, 100)).to.eventually.be.fulfilled
       await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
 
-      await expect(psp22.withSigner(Signers.Charlie).tx.approve(contract.address, 103)).to.eventually.be.fulfilled
+      await expect(psp22.withSigner(Signers.Charlie).tx.approve(contract.address, 101)).to.eventually.be.fulfilled
       await expect(contract.withSigner(Signers.Charlie).tx.bidNft(0, 101)).to.eventually.be.fulfilled
     })
   })
@@ -150,13 +150,17 @@ describe(E2E_PREFIX + 'Auction', () => {
 
       await expect(contract.withSigner(Signers.Bob).tx.startAuction(0)).to.eventually.be.fulfilled
 
+      const balanceBefore = (await psp22.query.balanceOf(Signers.Alice.address)).value.unwrapRecursively().toNumber()
+
       await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 200)
+
       await expect(contract.withSigner(Signers.Alice).tx.bidNft(0, 100)).to.eventually.be.fulfilled
 
       await contract.tx.addTimestamp(310);
 
       await expect(contract.withSigner(Signers.Alice).tx.claimNft(0)).to.eventually.be.fulfilled
 
+      await expect(psp22.query.balanceOf(Signers.Alice.address)).to.have.returnNumber(balanceBefore - 100);
       await expect(nft.withSigner(Signers.Alice).query.ownerOf(TOKEN_ID_1)).to.have.returnValue(Signers.Alice.address)
 
       const auction = (await contract.query.getAuctionByIndex(0)).value.unwrapRecursively()!

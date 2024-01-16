@@ -38,6 +38,17 @@ export default class Methods {
 	}
 
 	/**
+	* getUserData
+	*
+	* @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
+	*/
+	"getUserData" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<ReturnTypes.UserData, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::getUserData", [], __options, (result) => { return handleReturnType(result, getTypeDescription(17, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
 	* setUserData
 	*
 	* @param { ArgumentTypes.UserData } userInfo,
@@ -50,17 +61,6 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "user::setUserData", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [userInfo], __options);
-	}
-
-	/**
-	* getUserData
-	*
-	* @returns { Result<ReturnTypes.UserData, ReturnTypes.LangError> }
-	*/
-	"getUserData" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnTypes.UserData, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "user::getUserData", [], __options, (result) => { return handleReturnType(result, getTypeDescription(24, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**

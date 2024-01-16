@@ -228,16 +228,12 @@ pub trait AuctionImpl:
             return Err(ArchisinalError::BidPriceTooLow);
         }
 
-        let with_fee = apply_fee(&price, auction.royalty)?;
-
         let mut currency = auction.currency.clone();
 
-        currency.transfer_from(caller, contract_address, with_fee)?;
+        currency.transfer_from(caller, contract_address, price)?;
 
         if let Some(bidder) = current_bidder {
-            let with_fee = apply_fee(&auction.current_price, auction.royalty)?;
-
-            currency.transfer(bidder, with_fee)?;
+            currency.transfer(bidder, auction.current_price)?;
         }
 
         self.data::<Data>().auctions.insert(
@@ -298,14 +294,18 @@ pub trait AuctionImpl:
 
         let mut currency = auction.currency.clone();
 
-        currency.transfer(auction.creator, auction.current_price)?;
+        let without_fee = apply_fee(&auction.current_price, auction.royalty)?;
+        let price = auction.current_price;
+        let fee = price
+            .checked_sub(without_fee)
+            .ok_or(ArchisinalError::IntegerUnderflow)?;
 
-        let with_fee = apply_fee(&auction.current_price, auction.royalty)? - auction.current_price;
+        currency.transfer(auction.creator, without_fee)?;
 
         let collection_owner = OwnableRef::owner(&auction.collection)
             .ok_or(ArchisinalError::CollectionOwnerNotFound)?;
 
-        currency.transfer(collection_owner, with_fee)?;
+        currency.transfer(collection_owner, fee)?;
 
         self.data::<Data>().auctions.insert(
             &auction_id,

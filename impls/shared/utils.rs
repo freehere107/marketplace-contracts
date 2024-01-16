@@ -26,6 +26,6 @@ pub fn apply_fee(price: &u128, royalty: u32) -> ProjectResult<u128> {
         .unwrap();
 
     price
-        .checked_add(fee)
-        .ok_or(ArchisinalError::IntegerOverflow)
+        .checked_sub(fee)
+        .ok_or(ArchisinalError::IntegerUnderflow)
 }

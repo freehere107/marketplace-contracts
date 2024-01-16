@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x9b9caffa55dd77900ae361a174c16423774e15f90b67c9212df2628bea33e92a",
+    "hash": "0xbed204516bfa5eb3c4d8a38cc923cb1e34ece0adf7586e5e63c29442aa583569",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.75.0",
     "build_info": {
@@ -86,7 +86,7 @@
         "displayName": [
           "Hash"
         ],
-        "type": 10
+        "type": 13
       },
       "maxEventTopics": 4,
       "timestamp": {
@@ -189,7 +189,7 @@
               "displayName": [
                 "CollectionInfo"
               ],
-              "type": 19
+              "type": 10
             }
           }
         ],
@@ -240,7 +240,7 @@
               "displayName": [
                 "Hash"
               ],
-              "type": 10
+              "type": 13
             }
           }
         ],
@@ -257,7 +257,7 @@
               "displayName": [
                 "Hash"
               ],
-              "type": 10
+              "type": 13
             }
           }
         ],
@@ -354,67 +354,13 @@
       {
         "args": [
           {
-            "label": "code_hash",
-            "type": {
-              "displayName": [
-                "collectionfabric_external",
-                "UnbanCodehashInput1"
-              ],
-              "type": 10
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::unban_codehash",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0xf5f9410c"
-      },
-      {
-        "args": [
-          {
-            "label": "collection",
-            "type": {
-              "displayName": [
-                "collectionfabric_external",
-                "BanCollectionInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::ban_collection",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0xc1ee4e17"
-      },
-      {
-        "args": [
-          {
             "label": "collection_info",
             "type": {
               "displayName": [
                 "collectionfabric_external",
                 "InstantiateCollectionInput1"
               ],
-              "type": 19
+              "type": 10
             }
           },
           {
@@ -424,7 +370,7 @@
                 "collectionfabric_external",
                 "InstantiateCollectionInput2"
               ],
-              "type": 10
+              "type": 13
             }
           }
         ],
@@ -438,79 +384,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 21
+          "type": 14
         },
         "selector": "0x4c06b340"
-      },
-      {
-        "args": [
-          {
-            "label": "enabled",
-            "type": {
-              "displayName": [
-                "collectionfabric_external",
-                "SetWhitelistEnabledInput1"
-              ],
-              "type": 6
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::set_whitelist_enabled",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0x479a4f6a"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::collection_count",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 24
-        },
-        "selector": "0x5f1292e1"
-      },
-      {
-        "args": [
-          {
-            "label": "index",
-            "type": {
-              "displayName": [
-                "collectionfabric_external",
-                "CollectionInput1"
-              ],
-              "type": 5
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::collection",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 25
-        },
-        "selector": "0xe30f3f3f"
       },
       {
         "args": [
@@ -521,7 +397,7 @@
                 "collectionfabric_external",
                 "IsCodehashBannedInput1"
               ],
-              "type": 10
+              "type": 13
             }
           }
         ],
@@ -546,7 +422,7 @@
             "type": {
               "displayName": [
                 "collectionfabric_external",
-                "IsWhitelistedInput1"
+                "BanCollectionInput1"
               ],
               "type": 0
             }
@@ -554,34 +430,7 @@
         ],
         "default": false,
         "docs": [],
-        "label": "CollectionFabric::is_whitelisted",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0x31e4afde"
-      },
-      {
-        "args": [
-          {
-            "label": "code_hash",
-            "type": {
-              "displayName": [
-                "collectionfabric_external",
-                "BanCodehashInput1"
-              ],
-              "type": 10
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::ban_codehash",
+        "label": "CollectionFabric::ban_collection",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -589,25 +438,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 22
         },
-        "selector": "0xdf7f53cb"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "CollectionFabric::is_whitelist_enabled",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0x8b094e88"
+        "selector": "0xc1ee4e17"
       },
       {
         "args": [
@@ -616,7 +449,7 @@
             "type": {
               "displayName": [
                 "collectionfabric_external",
-                "WhitelistCollectionInput1"
+                "UnbanCollectionInput1"
               ],
               "type": 0
             }
@@ -624,7 +457,7 @@
         ],
         "default": false,
         "docs": [],
-        "label": "CollectionFabric::whitelist_collection",
+        "label": "CollectionFabric::unban_collection",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -632,9 +465,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 22
         },
-        "selector": "0xe4959202"
+        "selector": "0xbb27677c"
       },
       {
         "args": [
@@ -666,19 +499,19 @@
       {
         "args": [
           {
-            "label": "collection",
+            "label": "code_hash",
             "type": {
               "displayName": [
                 "collectionfabric_external",
-                "UnbanCollectionInput1"
+                "BanCodehashInput1"
               ],
-              "type": 0
+              "type": 13
             }
           }
         ],
         "default": false,
         "docs": [],
-        "label": "CollectionFabric::unban_collection",
+        "label": "CollectionFabric::ban_codehash",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -686,9 +519,176 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 22
         },
-        "selector": "0xbb27677c"
+        "selector": "0xdf7f53cb"
+      },
+      {
+        "args": [
+          {
+            "label": "index",
+            "type": {
+              "displayName": [
+                "collectionfabric_external",
+                "CollectionInput1"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::collection",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 24
+        },
+        "selector": "0xe30f3f3f"
+      },
+      {
+        "args": [
+          {
+            "label": "code_hash",
+            "type": {
+              "displayName": [
+                "collectionfabric_external",
+                "UnbanCodehashInput1"
+              ],
+              "type": 13
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::unban_codehash",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 22
+        },
+        "selector": "0xf5f9410c"
+      },
+      {
+        "args": [
+          {
+            "label": "collection",
+            "type": {
+              "displayName": [
+                "collectionfabric_external",
+                "IsWhitelistedInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::is_whitelisted",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 9
+        },
+        "selector": "0x31e4afde"
+      },
+      {
+        "args": [
+          {
+            "label": "enabled",
+            "type": {
+              "displayName": [
+                "collectionfabric_external",
+                "SetWhitelistEnabledInput1"
+              ],
+              "type": 6
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::set_whitelist_enabled",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 22
+        },
+        "selector": "0x479a4f6a"
+      },
+      {
+        "args": [
+          {
+            "label": "collection",
+            "type": {
+              "displayName": [
+                "collectionfabric_external",
+                "WhitelistCollectionInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::whitelist_collection",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 22
+        },
+        "selector": "0xe4959202"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::collection_count",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 26
+        },
+        "selector": "0x5f1292e1"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "CollectionFabric::is_whitelist_enabled",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 9
+        },
+        "selector": "0x8b094e88"
       },
       {
         "args": [
@@ -713,36 +713,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 11
+          "type": 22
         },
         "selector": "0xb1d395e2"
-      },
-      {
-        "args": [
-          {
-            "label": "account_id",
-            "type": {
-              "displayName": [
-                "adminaccess_external",
-                "RemoveAdminInput1"
-              ],
-              "type": 0
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AdminAccess::remove_admin",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 11
-        },
-        "selector": "0x05e47c48"
       },
       {
         "args": [
@@ -772,20 +745,31 @@
         "selector": "0x8dde40a4"
       },
       {
-        "args": [],
+        "args": [
+          {
+            "label": "account_id",
+            "type": {
+              "displayName": [
+                "adminaccess_external",
+                "RemoveAdminInput1"
+              ],
+              "type": 0
+            }
+          }
+        ],
         "default": false,
         "docs": [],
-        "label": "Ownable::owner",
-        "mutates": false,
+        "label": "AdminAccess::remove_admin",
+        "mutates": true,
         "payable": false,
         "returnType": {
           "displayName": [
             "ink",
             "MessageResult"
           ],
-          "type": 25
+          "type": 22
         },
-        "selector": "0x4fa43c8c"
+        "selector": "0x05e47c48"
       },
       {
         "args": [
@@ -831,31 +815,10 @@
         "selector": "0x5e228753"
       },
       {
-        "args": [
-          {
-            "label": "role",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "HasRoleInput1"
-              ],
-              "type": 3
-            }
-          },
-          {
-            "label": "address",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "HasRoleInput2"
-              ],
-              "type": 26
-            }
-          }
-        ],
+        "args": [],
         "default": false,
         "docs": [],
-        "label": "AccessControl::has_role",
+        "label": "Ownable::owner",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -863,83 +826,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 9
+          "type": 24
         },
-        "selector": "0xc1d9ac18"
-      },
-      {
-        "args": [
-          {
-            "label": "role",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "GrantRoleInput1"
-              ],
-              "type": 3
-            }
-          },
-          {
-            "label": "account",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "GrantRoleInput2"
-              ],
-              "type": 26
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccessControl::grant_role",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 29
-        },
-        "selector": "0x4ac062fd"
-      },
-      {
-        "args": [
-          {
-            "label": "role",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "RenounceRoleInput1"
-              ],
-              "type": 3
-            }
-          },
-          {
-            "label": "account",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "RenounceRoleInput2"
-              ],
-              "type": 26
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "AccessControl::renounce_role",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 29
-        },
-        "selector": "0xeaf1248a"
+        "selector": "0x4fa43c8c"
       },
       {
         "args": [
@@ -964,7 +853,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 31
+          "type": 29
         },
         "selector": "0x83da3bb2"
       },
@@ -987,7 +876,7 @@
                 "accesscontrol_external",
                 "RevokeRoleInput2"
               ],
-              "type": 26
+              "type": 25
             }
           }
         ],
@@ -1001,9 +890,120 @@
             "ink",
             "MessageResult"
           ],
-          "type": 29
+          "type": 30
         },
         "selector": "0x6e4f0991"
+      },
+      {
+        "args": [
+          {
+            "label": "role",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "HasRoleInput1"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "address",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "HasRoleInput2"
+              ],
+              "type": 25
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccessControl::has_role",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 9
+        },
+        "selector": "0xc1d9ac18"
+      },
+      {
+        "args": [
+          {
+            "label": "role",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "RenounceRoleInput1"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "account",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "RenounceRoleInput2"
+              ],
+              "type": 25
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccessControl::renounce_role",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 30
+        },
+        "selector": "0xeaf1248a"
+      },
+      {
+        "args": [
+          {
+            "label": "role",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "GrantRoleInput1"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "account",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "GrantRoleInput2"
+              ],
+              "type": 25
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccessControl::grant_role",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 30
+        },
+        "selector": "0x4ac062fd"
       },
       {
         "args": [
@@ -1014,7 +1014,7 @@
                 "upgradeable_external",
                 "SetCodeHashInput1"
               ],
-              "type": 10
+              "type": 13
             }
           }
         ],
@@ -1404,6 +1404,85 @@
           "composite": {
             "fields": [
               {
+                "name": "name",
+                "type": 11,
+                "typeName": "Option<String>"
+              },
+              {
+                "name": "uri",
+                "type": 11,
+                "typeName": "Option<String>"
+              },
+              {
+                "name": "additional_info",
+                "type": 11,
+                "typeName": "Option<String>"
+              },
+              {
+                "name": "royalty",
+                "type": 3,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "archisinal_lib",
+          "impls",
+          "collection_fabric",
+          "data",
+          "CollectionInfo"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 12
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 12
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
                 "type": 1,
                 "typeName": "[u8; 32]"
               }
@@ -1418,7 +1497,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 14,
       "type": {
         "def": {
           "variant": {
@@ -1426,7 +1505,7 @@
               {
                 "fields": [
                   {
-                    "type": 12
+                    "type": 15
                   }
                 ],
                 "index": 0,
@@ -1447,7 +1526,7 @@
         "params": [
           {
             "name": "T",
-            "type": 12
+            "type": 15
           },
           {
             "name": "E",
@@ -1460,7 +1539,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 15,
       "type": {
         "def": {
           "variant": {
@@ -1468,7 +1547,7 @@
               {
                 "fields": [
                   {
-                    "type": 4
+                    "type": 16
                   }
                 ],
                 "index": 0,
@@ -1477,7 +1556,7 @@
               {
                 "fields": [
                   {
-                    "type": 13
+                    "type": 17
                   }
                 ],
                 "index": 1,
@@ -1489,11 +1568,11 @@
         "params": [
           {
             "name": "T",
-            "type": 4
+            "type": 16
           },
           {
             "name": "E",
-            "type": 13
+            "type": 17
           }
         ],
         "path": [
@@ -1502,7 +1581,18 @@
       }
     },
     {
-      "id": 13,
+      "id": 16,
+      "type": {
+        "def": {
+          "tuple": [
+            5,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": 17,
       "type": {
         "def": {
           "variant": {
@@ -1638,7 +1728,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 18,
                     "typeName": "ownable::OwnableError"
                   }
                 ],
@@ -1648,7 +1738,7 @@
               {
                 "fields": [
                   {
-                    "type": 15,
+                    "type": 19,
                     "typeName": "access_control::AccessControlError"
                   }
                 ],
@@ -1658,7 +1748,7 @@
               {
                 "fields": [
                   {
-                    "type": 16,
+                    "type": 20,
                     "typeName": "psp34::PSP34Error"
                   }
                 ],
@@ -1668,7 +1758,7 @@
               {
                 "fields": [
                   {
-                    "type": 18,
+                    "type": 21,
                     "typeName": "psp22::PSP22Error"
                   }
                 ],
@@ -1678,7 +1768,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 12,
                     "typeName": "String"
                   }
                 ],
@@ -1696,7 +1786,7 @@
       }
     },
     {
-      "id": 14,
+      "id": 18,
       "type": {
         "def": {
           "variant": {
@@ -1722,7 +1812,7 @@
       }
     },
     {
-      "id": 15,
+      "id": 19,
       "type": {
         "def": {
           "variant": {
@@ -1752,7 +1842,7 @@
       }
     },
     {
-      "id": 16,
+      "id": 20,
       "type": {
         "def": {
           "variant": {
@@ -1760,7 +1850,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 12,
                     "typeName": "String"
                   }
                 ],
@@ -1786,7 +1876,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 12,
                     "typeName": "String"
                   }
                 ],
@@ -1806,15 +1896,7 @@
       }
     },
     {
-      "id": 17,
-      "type": {
-        "def": {
-          "primitive": "str"
-        }
-      }
-    },
-    {
-      "id": 18,
+      "id": 21,
       "type": {
         "def": {
           "variant": {
@@ -1822,7 +1904,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 12,
                     "typeName": "String"
                   }
                 ],
@@ -1848,7 +1930,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 12,
                     "typeName": "String"
                   }
                 ],
@@ -1864,119 +1946,6 @@
           "errors",
           "psp22",
           "PSP22Error"
-        ]
-      }
-    },
-    {
-      "id": 19,
-      "type": {
-        "def": {
-          "composite": {
-            "fields": [
-              {
-                "name": "name",
-                "type": 20,
-                "typeName": "Option<String>"
-              },
-              {
-                "name": "uri",
-                "type": 20,
-                "typeName": "Option<String>"
-              },
-              {
-                "name": "additional_info",
-                "type": 20,
-                "typeName": "Option<String>"
-              },
-              {
-                "name": "royalty",
-                "type": 3,
-                "typeName": "u32"
-              }
-            ]
-          }
-        },
-        "path": [
-          "archisinal_lib",
-          "impls",
-          "collection_fabric",
-          "data",
-          "CollectionInfo"
-        ]
-      }
-    },
-    {
-      "id": 20,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 17
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 17
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 21,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 22
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 22
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
         ]
       }
     },
@@ -1998,7 +1967,7 @@
               {
                 "fields": [
                   {
-                    "type": 13
+                    "type": 8
                   }
                 ],
                 "index": 1,
@@ -2014,7 +1983,7 @@
           },
           {
             "name": "E",
-            "type": 13
+            "type": 8
           }
         ],
         "path": [
@@ -2026,15 +1995,121 @@
       "id": 23,
       "type": {
         "def": {
-          "tuple": [
-            5,
-            0
-          ]
-        }
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 17
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 17
+          }
+        ],
+        "path": [
+          "Result"
+        ]
       }
     },
     {
       "id": 24,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 25
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 25
+          },
+          {
+            "name": "E",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 26,
       "type": {
         "def": {
           "variant": {
@@ -2072,81 +2147,6 @@
         ],
         "path": [
           "Result"
-        ]
-      }
-    },
-    {
-      "id": 25,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 26
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 26
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 26,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 0
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 0
-          }
-        ],
-        "path": [
-          "Option"
         ]
       }
     },
@@ -2210,7 +2210,7 @@
               {
                 "fields": [
                   {
-                    "type": 14
+                    "type": 18
                   }
                 ],
                 "index": 1,
@@ -2226,7 +2226,7 @@
           },
           {
             "name": "E",
-            "type": 14
+            "type": 18
           }
         ],
         "path": [
@@ -2236,90 +2236,6 @@
     },
     {
       "id": 29,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 30
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 30
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 30,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 4
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 15
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 4
-          },
-          {
-            "name": "E",
-            "type": 15
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 31,
       "type": {
         "def": {
           "variant": {
@@ -2353,6 +2269,90 @@
           {
             "name": "E",
             "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 31
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 31
+          },
+          {
+            "name": "E",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 19
           }
         ],
         "path": [
@@ -2453,7 +2453,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 12,
                     "typeName": "String"
                   }
                 ],
@@ -2467,7 +2467,7 @@
               {
                 "fields": [
                   {
-                    "type": 14,
+                    "type": 18,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -2477,7 +2477,7 @@
               {
                 "fields": [
                   {
-                    "type": 15,
+                    "type": 19,
                     "typeName": "AccessControlError"
                   }
                 ],

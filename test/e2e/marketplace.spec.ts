@@ -115,7 +115,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         royalty: COLLECTION_ROYALTY,
       })
 
-      await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, PRICE_WITH_FEE)).to.eventually.be
+      await expect(psp22.withSigner(Signers.Alice).tx.approve(contract.address, 1100)).to.eventually.be
         .fulfilled
 
       await expect(contract.withSigner(Signers.Alice).tx.buyNft(0)).to.eventually.be.fulfilled
@@ -135,10 +135,10 @@ describe(E2E_PREFIX + 'Marketplace', () => {
 
       await expect(nft.query.ownerOf(TOKEN_ID)).to.have.returnValue(Signers.Alice.address)
 
-      await expect(psp22.query.balanceOf(Signers.Alice.address)).to.have.returnNumber(INITIAL_BALANCE - PRICE_WITH_FEE)
-      await expect(psp22.query.balanceOf(bob.address)).to.have.returnNumber(INITIAL_BALANCE + PRICE)
+      await expect(psp22.query.balanceOf(Signers.Alice.address)).to.have.returnNumber(INITIAL_BALANCE - PRICE)
+      await expect(psp22.query.balanceOf(bob.address)).to.have.returnNumber(INITIAL_BALANCE + PRICE_WITH_FEE)
       await expect(psp22.query.balanceOf(defaultSigner.address)).to.have.returnNumber(
-        INITIAL_BALANCE + PRICE_WITH_FEE - PRICE,
+        INITIAL_BALANCE + PRICE - PRICE_WITH_FEE,
       )
     })
 
@@ -164,7 +164,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
 
       await expect(contract.query.getListingCount()).to.have.returnNumber(3)
 
-      await expect(psp22.withSigner(alice).tx.approve(contract.address, 3 * PRICE_WITH_FEE)).to.eventually.be.fulfilled
+      await expect(psp22.withSigner(alice).tx.approve(contract.address, 3 * PRICE)).to.eventually.be.fulfilled
 
       await expect(contract.withSigner(alice).tx.buyBatch([0, 1, 2])).to.eventually.be.fulfilled
 
@@ -207,10 +207,10 @@ describe(E2E_PREFIX + 'Marketplace', () => {
       await expect(nft.query.ownerOf(TOKEN_ID_2)).to.have.returnValue(alice.address)
       await expect(nft.query.ownerOf(TOKEN_ID_3)).to.have.returnValue(alice.address)
 
-      await expect(psp22.query.balanceOf(alice.address)).to.have.returnNumber(INITIAL_BALANCE - 3 * PRICE_WITH_FEE)
-      await expect(psp22.query.balanceOf(bob.address)).to.have.returnNumber(INITIAL_BALANCE + 3 * PRICE)
+      await expect(psp22.query.balanceOf(alice.address)).to.have.returnNumber(INITIAL_BALANCE - 3 * PRICE)
+      await expect(psp22.query.balanceOf(bob.address)).to.have.returnNumber(INITIAL_BALANCE + 3 * PRICE_WITH_FEE)
       await expect(psp22.query.balanceOf(defaultSigner.address)).to.have.returnNumber(
-        INITIAL_BALANCE + 3 * (PRICE_WITH_FEE - PRICE),
+        INITIAL_BALANCE + 3 * (PRICE - PRICE_WITH_FEE),
       )
     })
   })
@@ -265,7 +265,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         royalty: COLLECTION_ROYALTY,
       })
 
-      await expect(contract.withSigner(Signers.Alice).tx.buyNft(0, { value: PRICE_WITH_FEE })).to.eventually.be
+      await expect(contract.withSigner(Signers.Alice).tx.buyNft(0, { value: PRICE })).to.eventually.be
         .fulfilled
 
       await expect(contract.query.getListingCount()).to.have.returnNumber(1)
@@ -291,10 +291,10 @@ describe(E2E_PREFIX + 'Marketplace', () => {
       const PRICE_BN = new BN(PRICE)
 
       expect(balanceAfterCreator.toString()).to.be.equal(
-        balanceBeforeCreator.add(PRICE_WITH_FEE_BN).sub(PRICE_BN).toString(),
+        balanceBeforeCreator.add(PRICE_BN).sub(PRICE_WITH_FEE_BN).toString(),
       )
       // Gas fee is not deterministic (Alice)
-      expect(balanceAfterBob.toString()).to.be.equal(balanceBeforeBob.add(PRICE_BN).toString())
+      expect(balanceAfterBob.toString()).to.be.equal(balanceBeforeBob.add(PRICE_WITH_FEE_BN).toString())
     })
 
     it('Buy batch of NFTs from a listing.', async () => {
@@ -335,7 +335,7 @@ describe(E2E_PREFIX + 'Marketplace', () => {
         royalty: COLLECTION_ROYALTY,
       })
 
-      await expect(contract.withSigner(Signers.Alice).tx.buyBatch([0, 1], { value: PRICE_WITH_FEE * 2 })).to.eventually
+      await expect(contract.withSigner(Signers.Alice).tx.buyBatch([0, 1], { value: PRICE * 2 })).to.eventually
         .be.fulfilled
 
       await expect(contract.query.getListingCount()).to.have.returnNumber(2)
@@ -372,12 +372,12 @@ describe(E2E_PREFIX + 'Marketplace', () => {
 
       expect(balanceAfterCreator.toString()).to.be.equal(
         balanceBeforeCreator
-          .add(PRICE_WITH_FEE_BN.mul(new BN(2)))
-          .sub(PRICE_BN.mul(new BN(2)))
+          .add(PRICE_BN.mul(new BN(2)))
+          .sub(PRICE_WITH_FEE_BN.mul(new BN(2)))
           .toString(),
       )
       // Gas fee is not deterministic (Alice)
-      expect(balanceAfterBob.toString()).to.be.equal(balanceBeforeBob.add(PRICE_BN.mul(new BN(2))).toString())
+      expect(balanceAfterBob.toString()).to.be.equal(balanceBeforeBob.add(PRICE_WITH_FEE_BN.mul(new BN(2))).toString())
     })
   })
 

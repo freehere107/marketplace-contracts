@@ -2,7 +2,7 @@
 import { IdBuilder } from '../../typechain-generated/types-arguments/marketplace'
 
 const PRICE = 1_000
-const PRICE_WITH_FEE = 1_010
+const PRICE_WITH_FEE = 990
 const MIN_BID_STEP = 1
 const TOKEN_ID = IdBuilder.U8(1)
 const TOKEN_ID_1 = IdBuilder.U8(1)

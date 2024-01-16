@@ -138,10 +138,13 @@ pub trait MarketplaceImpl:
         let currency = &mut listing.currency;
 
         let price = listing.price;
-        let price_with_fee = apply_fee(&listing.price, listing.royalty)?;
+        let price_without_fee = apply_fee(&listing.price, listing.royalty)?;
+        let fee = price
+            .checked_sub(price_without_fee)
+            .ok_or(ArchisinalError::IntegerUnderflow)?;
 
         // Check if the caller has enough balance to buy the NFT (in case of Native)
-        currency.assure_transfer(price_with_fee)?;
+        currency.assure_transfer(price)?;
 
         PSP34Ref::transfer(
             &listing.collection,
@@ -150,18 +153,12 @@ pub trait MarketplaceImpl:
             vec![],
         )?;
 
-        currency.transfer_from(caller, listing.creator, price)?;
+        currency.transfer_from(caller, listing.creator, price_without_fee)?;
 
         let collection_owner = OwnableRef::owner(&listing.collection);
 
         if let Some(collection_owner) = collection_owner {
-            currency.transfer_from(
-                caller,
-                collection_owner,
-                price_with_fee
-                    .checked_sub(price)
-                    .ok_or(ArchisinalError::IntegerUnderflow)?,
-            )?;
+            currency.transfer_from(caller, collection_owner, fee)?;
         }
 
         self.data::<Data>().listings.insert(
@@ -205,10 +202,8 @@ pub trait MarketplaceImpl:
                 .clone()
                 .into_iter()
                 .try_fold(0u128, |mut acc, listing| {
-                    let total_price_with_fee = apply_fee(&listing.price, listing.royalty)?;
-
                     acc += if listing.currency.is_native() {
-                        total_price_with_fee
+                        listing.price
                     } else {
                         0
                     };
@@ -225,21 +220,22 @@ pub trait MarketplaceImpl:
             let currency = &mut listing.currency;
             let token_id = &listing.token_id;
             let creator = &listing.creator;
-            let price = &listing.price;
+            
             let royalty = listing.royalty;
+            let price = &listing.price;
+            let price_without_fee = apply_fee(price, royalty)?;
+            let fee = price
+                .checked_sub(price_without_fee)
+                .ok_or(ArchisinalError::IntegerUnderflow)?;
 
             PSP34Ref::transfer(collection, caller, token_id.clone(), vec![])?;
 
-            currency.transfer_from(caller, *creator, *price)?;
-
-            let royalty = apply_fee(price, royalty)?
-                .checked_sub(*price)
-                .ok_or(ArchisinalError::IntegerUnderflow)?;
+            currency.transfer_from(caller, *creator, price_without_fee)?;
 
             let collection_owner = OwnableRef::owner(&listing.collection)
                 .ok_or(ArchisinalError::CollectionOwnerNotFound)?;
 
-            currency.transfer_from(caller, collection_owner, royalty)?;
+            currency.transfer_from(caller, collection_owner, fee)?;
 
             self.data::<Data>().listings.insert(
                 &listing.id,

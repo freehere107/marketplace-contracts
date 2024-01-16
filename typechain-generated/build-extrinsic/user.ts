@@ -21,6 +21,16 @@ export default class Methods {
 		this.__apiPromise = apiPromise;
 	}
 	/**
+	 * getUserData
+	 *
+	*/
+	"getUserData" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
+	}
+
+	/**
 	 * setUserData
 	 *
 	 * @param { ArgumentTypes.UserData } userInfo,
@@ -30,16 +40,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::setUserData", [userInfo], __options);
-	}
-
-	/**
-	 * getUserData
-	 *
-	*/
-	"getUserData" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "user::getUserData", [], __options);
 	}
 
 	/**

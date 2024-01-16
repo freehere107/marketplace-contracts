@@ -172,6 +172,22 @@
     },
     "messages": [
       {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "User::get_user_data",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 17
+        },
+        "selector": "0xc510cead"
+      },
+      {
         "args": [
           {
             "label": "user_info",
@@ -194,25 +210,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 17
+          "type": 18
         },
         "selector": "0xda164d97"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "User::get_user_data",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 24
-        },
-        "selector": "0xc510cead"
       },
       {
         "args": [],
@@ -961,7 +961,7 @@
               {
                 "fields": [
                   {
-                    "type": 18
+                    "type": 12
                   }
                 ],
                 "index": 0,
@@ -982,7 +982,7 @@
         "params": [
           {
             "name": "T",
-            "type": 18
+            "type": 12
           },
           {
             "name": "E",
@@ -1003,6 +1003,48 @@
               {
                 "fields": [
                   {
+                    "type": 19
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 11
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 19
+          },
+          {
+            "name": "E",
+            "type": 11
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
                     "type": 10
                   }
                 ],
@@ -1012,7 +1054,7 @@
               {
                 "fields": [
                   {
-                    "type": 19
+                    "type": 20
                   }
                 ],
                 "index": 1,
@@ -1028,7 +1070,7 @@
           },
           {
             "name": "E",
-            "type": 19
+            "type": 20
           }
         ],
         "path": [
@@ -1037,7 +1079,7 @@
       }
     },
     {
-      "id": 19,
+      "id": 20,
       "type": {
         "def": {
           "variant": {
@@ -1173,7 +1215,7 @@
               {
                 "fields": [
                   {
-                    "type": 20,
+                    "type": 21,
                     "typeName": "ownable::OwnableError"
                   }
                 ],
@@ -1183,7 +1225,7 @@
               {
                 "fields": [
                   {
-                    "type": 21,
+                    "type": 22,
                     "typeName": "access_control::AccessControlError"
                   }
                 ],
@@ -1193,7 +1235,7 @@
               {
                 "fields": [
                   {
-                    "type": 22,
+                    "type": 23,
                     "typeName": "psp34::PSP34Error"
                   }
                 ],
@@ -1203,7 +1245,7 @@
               {
                 "fields": [
                   {
-                    "type": 23,
+                    "type": 24,
                     "typeName": "psp22::PSP22Error"
                   }
                 ],
@@ -1231,7 +1273,7 @@
       }
     },
     {
-      "id": 20,
+      "id": 21,
       "type": {
         "def": {
           "variant": {
@@ -1257,7 +1299,7 @@
       }
     },
     {
-      "id": 21,
+      "id": 22,
       "type": {
         "def": {
           "variant": {
@@ -1287,7 +1329,7 @@
       }
     },
     {
-      "id": 22,
+      "id": 23,
       "type": {
         "def": {
           "variant": {
@@ -1341,7 +1383,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 24,
       "type": {
         "def": {
           "variant": {
@@ -1391,48 +1433,6 @@
           "errors",
           "psp22",
           "PSP22Error"
-        ]
-      }
-    },
-    {
-      "id": 24,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 12
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 11
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 12
-          },
-          {
-            "name": "E",
-            "type": 11
-          }
-        ],
-        "path": [
-          "Result"
         ]
       }
     },
@@ -1571,7 +1571,7 @@
               {
                 "fields": [
                   {
-                    "type": 20
+                    "type": 21
                   }
                 ],
                 "index": 1,
@@ -1587,7 +1587,7 @@
           },
           {
             "name": "E",
-            "type": 20
+            "type": 21
           }
         ],
         "path": [
@@ -1722,7 +1722,7 @@
               {
                 "fields": [
                   {
-                    "type": 20,
+                    "type": 21,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -1732,7 +1732,7 @@
               {
                 "fields": [
                   {
-                    "type": 21,
+                    "type": 22,
                     "typeName": "AccessControlError"
                   }
                 ],

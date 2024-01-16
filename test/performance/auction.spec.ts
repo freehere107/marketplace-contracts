@@ -100,7 +100,7 @@ describe(PERFORMANCE_PREFIX + 'Auction', function() {
 
         await contract.tx.startAuction(0);
 
-        await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 2 * PRICE_WITH_FEE);
+        await psp22.withSigner(Signers.Alice).tx.approve(contract.address, 2 * PRICE);
 
         await contract.withSigner(Signers.Alice).tx.bidNft(
             0,

@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xf70dfddad74842da6f696f3887f54fc998b79af8b0f6e2ee20fc7c39d813216a",
+    "hash": "0xdce8d4e89626b73e7d38cf1d77bdc130a326f7f448601dbe894dce7cd0b3bed6",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.75.0",
     "build_info": {
@@ -177,7 +177,7 @@
               "displayName": [
                 "Id"
               ],
-              "type": 11
+              "type": 20
             }
           },
           {
@@ -201,7 +201,7 @@
               "displayName": [
                 "Currency"
               ],
-              "type": 12
+              "type": 21
             }
           }
         ],
@@ -289,7 +289,7 @@
               "displayName": [
                 "Vec"
               ],
-              "type": 28
+              "type": 19
             }
           }
         ],
@@ -341,7 +341,7 @@
               "displayName": [
                 "Id"
               ],
-              "type": 11
+              "type": 20
             }
           },
           {
@@ -400,7 +400,7 @@
               "displayName": [
                 "Currency"
               ],
-              "type": 12
+              "type": 21
             }
           }
         ],
@@ -662,6 +662,87 @@
       {
         "args": [
           {
+            "label": "listing_id",
+            "type": {
+              "displayName": [
+                "marketplace_external",
+                "CancelListingInput1"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Marketplace::cancel_listing",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xf7262b0b"
+      },
+      {
+        "args": [
+          {
+            "label": "ids",
+            "type": {
+              "displayName": [
+                "marketplace_external",
+                "BuyBatchInput1"
+              ],
+              "type": 19
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Marketplace::buy_batch",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xe95076ad"
+      },
+      {
+        "args": [
+          {
+            "label": "listing_id",
+            "type": {
+              "displayName": [
+                "marketplace_external",
+                "BuyNftInput1"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Marketplace::buy_nft",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xc68fb1f7"
+      },
+      {
+        "args": [
+          {
             "label": "creator",
             "type": {
               "displayName": [
@@ -688,7 +769,7 @@
                 "marketplace_external",
                 "ListNftForSaleInput3"
               ],
-              "type": 11
+              "type": 20
             }
           },
           {
@@ -708,7 +789,7 @@
                 "marketplace_external",
                 "ListNftForSaleInput5"
               ],
-              "type": 12
+              "type": 21
             }
           }
         ],
@@ -722,63 +803,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 13
+          "type": 22
         },
         "selector": "0x3473a450"
-      },
-      {
-        "args": [
-          {
-            "label": "listing_id",
-            "type": {
-              "displayName": [
-                "marketplace_external",
-                "CancelListingInput1"
-              ],
-              "type": 5
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Marketplace::cancel_listing",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 21
-        },
-        "selector": "0xf7262b0b"
-      },
-      {
-        "args": [
-          {
-            "label": "listing_id",
-            "type": {
-              "displayName": [
-                "marketplace_external",
-                "BuyNftInput1"
-              ],
-              "type": 5
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Marketplace::buy_nft",
-        "mutates": true,
-        "payable": true,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 21
-        },
-        "selector": "0xc68fb1f7"
       },
       {
         "args": [],
@@ -792,7 +819,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 23
+          "type": 24
         },
         "selector": "0x69def6f2"
       },
@@ -819,63 +846,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 24
+          "type": 25
         },
         "selector": "0xa8fd3deb"
-      },
-      {
-        "args": [
-          {
-            "label": "ids",
-            "type": {
-              "displayName": [
-                "marketplace_external",
-                "BuyBatchInput1"
-              ],
-              "type": 28
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Marketplace::buy_batch",
-        "mutates": true,
-        "payable": true,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 21
-        },
-        "selector": "0xe95076ad"
-      },
-      {
-        "args": [
-          {
-            "label": "auction_id",
-            "type": {
-              "displayName": [
-                "auction_external",
-                "ClaimNftInput1"
-              ],
-              "type": 5
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Auction::claim_nft",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 21
-        },
-        "selector": "0x83293410"
       },
       {
         "args": [
@@ -905,87 +878,6 @@
         "selector": "0xef9eba92"
       },
       {
-        "args": [
-          {
-            "label": "auction_info",
-            "type": {
-              "displayName": [
-                "auction_external",
-                "ListNftForAuctionInput1"
-              ],
-              "type": 34
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Auction::list_nft_for_auction",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 13
-        },
-        "selector": "0x50a31f53"
-      },
-      {
-        "args": [
-          {
-            "label": "auction_id",
-            "type": {
-              "displayName": [
-                "auction_external",
-                "StartAuctionInput1"
-              ],
-              "type": 5
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Auction::start_auction",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 21
-        },
-        "selector": "0xdfceda09"
-      },
-      {
-        "args": [
-          {
-            "label": "auction_id",
-            "type": {
-              "displayName": [
-                "auction_external",
-                "CancelAuctionInput1"
-              ],
-              "type": 5
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Auction::cancel_auction",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 21
-        },
-        "selector": "0x31c2fa87"
-      },
-      {
         "args": [],
         "default": false,
         "docs": [],
@@ -997,7 +889,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 23
+          "type": 24
         },
         "selector": "0xac0668e4"
       },
@@ -1034,9 +926,117 @@
             "ink",
             "MessageResult"
           ],
-          "type": 21
+          "type": 11
         },
         "selector": "0x7333d070"
+      },
+      {
+        "args": [
+          {
+            "label": "auction_id",
+            "type": {
+              "displayName": [
+                "auction_external",
+                "ClaimNftInput1"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Auction::claim_nft",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x83293410"
+      },
+      {
+        "args": [
+          {
+            "label": "auction_id",
+            "type": {
+              "displayName": [
+                "auction_external",
+                "CancelAuctionInput1"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Auction::cancel_auction",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x31c2fa87"
+      },
+      {
+        "args": [
+          {
+            "label": "auction_info",
+            "type": {
+              "displayName": [
+                "auction_external",
+                "ListNftForAuctionInput1"
+              ],
+              "type": 34
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Auction::list_nft_for_auction",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 22
+        },
+        "selector": "0x50a31f53"
+      },
+      {
+        "args": [
+          {
+            "label": "auction_id",
+            "type": {
+              "displayName": [
+                "auction_external",
+                "StartAuctionInput1"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Auction::start_auction",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xdfceda09"
       },
       {
         "args": [
@@ -1088,7 +1088,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 21
+          "type": 11
         },
         "selector": "0xb1d395e2"
       },
@@ -1115,7 +1115,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 21
+          "type": 11
         },
         "selector": "0x05e47c48"
       },
@@ -1134,38 +1134,6 @@
           "type": 37
         },
         "selector": "0x18546105"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::owner",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 38
-        },
-        "selector": "0x4fa43c8c"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::renounce_ownership",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 39
-        },
-        "selector": "0x5e228753"
       },
       {
         "args": [
@@ -1190,36 +1158,31 @@
             "ink",
             "MessageResult"
           ],
-          "type": 39
+          "type": 38
         },
         "selector": "0x11f43efd"
       },
       {
-        "args": [
-          {
-            "label": "role",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "HasRoleInput1"
-              ],
-              "type": 3
-            }
-          },
-          {
-            "label": "address",
-            "type": {
-              "displayName": [
-                "accesscontrol_external",
-                "HasRoleInput2"
-              ],
-              "type": 32
-            }
-          }
-        ],
+        "args": [],
         "default": false,
         "docs": [],
-        "label": "AccessControl::has_role",
+        "label": "Ownable::renounce_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 38
+        },
+        "selector": "0x5e228753"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::owner",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -1227,9 +1190,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 35
+          "type": 40
         },
-        "selector": "0xc1d9ac18"
+        "selector": "0x4fa43c8c"
       },
       {
         "args": [
@@ -1267,6 +1230,43 @@
           "type": 41
         },
         "selector": "0xeaf1248a"
+      },
+      {
+        "args": [
+          {
+            "label": "role",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "RevokeRoleInput1"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "account",
+            "type": {
+              "displayName": [
+                "accesscontrol_external",
+                "RevokeRoleInput2"
+              ],
+              "type": 32
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "AccessControl::revoke_role",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 41
+        },
+        "selector": "0x6e4f0991"
       },
       {
         "args": [
@@ -1339,17 +1339,17 @@
             "type": {
               "displayName": [
                 "accesscontrol_external",
-                "RevokeRoleInput1"
+                "HasRoleInput1"
               ],
               "type": 3
             }
           },
           {
-            "label": "account",
+            "label": "address",
             "type": {
               "displayName": [
                 "accesscontrol_external",
-                "RevokeRoleInput2"
+                "HasRoleInput2"
               ],
               "type": 32
             }
@@ -1357,17 +1357,17 @@
         ],
         "default": false,
         "docs": [],
-        "label": "AccessControl::revoke_role",
-        "mutates": true,
+        "label": "AccessControl::has_role",
+        "mutates": false,
         "payable": false,
         "returnType": {
           "displayName": [
             "ink",
             "MessageResult"
           ],
-          "type": 41
+          "type": 35
         },
-        "selector": "0x6e4f0991"
+        "selector": "0xc1d9ac18"
       },
       {
         "args": [
@@ -2211,116 +2211,7 @@
               {
                 "fields": [
                   {
-                    "type": 2,
-                    "typeName": "u8"
-                  }
-                ],
-                "index": 0,
-                "name": "U8"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 6,
-                    "typeName": "u16"
-                  }
-                ],
-                "index": 1,
-                "name": "U16"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 3,
-                    "typeName": "u32"
-                  }
-                ],
-                "index": 2,
-                "name": "U32"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 7,
-                    "typeName": "u64"
-                  }
-                ],
-                "index": 3,
-                "name": "U64"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 5,
-                    "typeName": "u128"
-                  }
-                ],
-                "index": 4,
-                "name": "U128"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8,
-                    "typeName": "Vec<u8>"
-                  }
-                ],
-                "index": 5,
-                "name": "Bytes"
-              }
-            ]
-          }
-        },
-        "path": [
-          "openbrush_contracts",
-          "traits",
-          "types",
-          "Id"
-        ]
-      }
-    },
-    {
-      "id": 12,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "Native"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 0,
-                    "typeName": "AccountId"
-                  }
-                ],
-                "index": 1,
-                "name": "Custom"
-              }
-            ]
-          }
-        },
-        "path": [
-          "archisinal_lib",
-          "impls",
-          "shared",
-          "currency",
-          "Currency"
-        ]
-      }
-    },
-    {
-      "id": 13,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 14
+                    "type": 12
                   }
                 ],
                 "index": 0,
@@ -2341,7 +2232,7 @@
         "params": [
           {
             "name": "T",
-            "type": 14
+            "type": 12
           },
           {
             "name": "E",
@@ -2354,7 +2245,7 @@
       }
     },
     {
-      "id": 14,
+      "id": 12,
       "type": {
         "def": {
           "variant": {
@@ -2362,7 +2253,7 @@
               {
                 "fields": [
                   {
-                    "type": 5
+                    "type": 4
                   }
                 ],
                 "index": 0,
@@ -2371,7 +2262,7 @@
               {
                 "fields": [
                   {
-                    "type": 15
+                    "type": 13
                   }
                 ],
                 "index": 1,
@@ -2383,11 +2274,11 @@
         "params": [
           {
             "name": "T",
-            "type": 5
+            "type": 4
           },
           {
             "name": "E",
-            "type": 15
+            "type": 13
           }
         ],
         "path": [
@@ -2396,7 +2287,7 @@
       }
     },
     {
-      "id": 15,
+      "id": 13,
       "type": {
         "def": {
           "variant": {
@@ -2532,7 +2423,7 @@
               {
                 "fields": [
                   {
-                    "type": 16,
+                    "type": 14,
                     "typeName": "ownable::OwnableError"
                   }
                 ],
@@ -2542,7 +2433,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 15,
                     "typeName": "access_control::AccessControlError"
                   }
                 ],
@@ -2552,7 +2443,7 @@
               {
                 "fields": [
                   {
-                    "type": 18,
+                    "type": 16,
                     "typeName": "psp34::PSP34Error"
                   }
                 ],
@@ -2562,7 +2453,7 @@
               {
                 "fields": [
                   {
-                    "type": 20,
+                    "type": 18,
                     "typeName": "psp22::PSP22Error"
                   }
                 ],
@@ -2572,7 +2463,7 @@
               {
                 "fields": [
                   {
-                    "type": 19,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -2590,7 +2481,7 @@
       }
     },
     {
-      "id": 16,
+      "id": 14,
       "type": {
         "def": {
           "variant": {
@@ -2616,7 +2507,7 @@
       }
     },
     {
-      "id": 17,
+      "id": 15,
       "type": {
         "def": {
           "variant": {
@@ -2646,7 +2537,7 @@
       }
     },
     {
-      "id": 18,
+      "id": 16,
       "type": {
         "def": {
           "variant": {
@@ -2654,7 +2545,7 @@
               {
                 "fields": [
                   {
-                    "type": 19,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -2680,7 +2571,7 @@
               {
                 "fields": [
                   {
-                    "type": 19,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -2700,7 +2591,7 @@
       }
     },
     {
-      "id": 19,
+      "id": 17,
       "type": {
         "def": {
           "primitive": "str"
@@ -2708,7 +2599,7 @@
       }
     },
     {
-      "id": 20,
+      "id": 18,
       "type": {
         "def": {
           "variant": {
@@ -2716,7 +2607,7 @@
               {
                 "fields": [
                   {
-                    "type": 19,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -2742,7 +2633,7 @@
               {
                 "fields": [
                   {
-                    "type": 19,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -2762,7 +2653,17 @@
       }
     },
     {
-      "id": 21,
+      "id": 19,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 5
+          }
+        }
+      }
+    },
+    {
+      "id": 20,
       "type": {
         "def": {
           "variant": {
@@ -2770,7 +2671,116 @@
               {
                 "fields": [
                   {
-                    "type": 22
+                    "type": 2,
+                    "typeName": "u8"
+                  }
+                ],
+                "index": 0,
+                "name": "U8"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 6,
+                    "typeName": "u16"
+                  }
+                ],
+                "index": 1,
+                "name": "U16"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 3,
+                    "typeName": "u32"
+                  }
+                ],
+                "index": 2,
+                "name": "U32"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7,
+                    "typeName": "u64"
+                  }
+                ],
+                "index": 3,
+                "name": "U64"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5,
+                    "typeName": "u128"
+                  }
+                ],
+                "index": 4,
+                "name": "U128"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8,
+                    "typeName": "Vec<u8>"
+                  }
+                ],
+                "index": 5,
+                "name": "Bytes"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "types",
+          "Id"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Native"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 0,
+                    "typeName": "AccountId"
+                  }
+                ],
+                "index": 1,
+                "name": "Custom"
+              }
+            ]
+          }
+        },
+        "path": [
+          "archisinal_lib",
+          "impls",
+          "shared",
+          "currency",
+          "Currency"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 23
                   }
                 ],
                 "index": 0,
@@ -2791,7 +2801,7 @@
         "params": [
           {
             "name": "T",
-            "type": 22
+            "type": 23
           },
           {
             "name": "E",
@@ -2804,7 +2814,7 @@
       }
     },
     {
-      "id": 22,
+      "id": 23,
       "type": {
         "def": {
           "variant": {
@@ -2812,7 +2822,7 @@
               {
                 "fields": [
                   {
-                    "type": 4
+                    "type": 5
                   }
                 ],
                 "index": 0,
@@ -2821,7 +2831,7 @@
               {
                 "fields": [
                   {
-                    "type": 15
+                    "type": 13
                   }
                 ],
                 "index": 1,
@@ -2833,11 +2843,11 @@
         "params": [
           {
             "name": "T",
-            "type": 4
+            "type": 5
           },
           {
             "name": "E",
-            "type": 15
+            "type": 13
           }
         ],
         "path": [
@@ -2846,7 +2856,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 24,
       "type": {
         "def": {
           "variant": {
@@ -2888,7 +2898,7 @@
       }
     },
     {
-      "id": 24,
+      "id": 25,
       "type": {
         "def": {
           "variant": {
@@ -2896,7 +2906,7 @@
               {
                 "fields": [
                   {
-                    "type": 25
+                    "type": 26
                   }
                 ],
                 "index": 0,
@@ -2917,7 +2927,7 @@
         "params": [
           {
             "name": "T",
-            "type": 25
+            "type": 26
           },
           {
             "name": "E",
@@ -2930,7 +2940,7 @@
       }
     },
     {
-      "id": 25,
+      "id": 26,
       "type": {
         "def": {
           "variant": {
@@ -2942,7 +2952,7 @@
               {
                 "fields": [
                   {
-                    "type": 26
+                    "type": 27
                   }
                 ],
                 "index": 1,
@@ -2954,7 +2964,7 @@
         "params": [
           {
             "name": "T",
-            "type": 26
+            "type": 27
           }
         ],
         "path": [
@@ -2963,7 +2973,7 @@
       }
     },
     {
-      "id": 26,
+      "id": 27,
       "type": {
         "def": {
           "composite": {
@@ -2985,7 +2995,7 @@
               },
               {
                 "name": "token_id",
-                "type": 11,
+                "type": 20,
                 "typeName": "Id"
               },
               {
@@ -2995,12 +3005,12 @@
               },
               {
                 "name": "currency",
-                "type": 12,
+                "type": 21,
                 "typeName": "Currency"
               },
               {
                 "name": "status",
-                "type": 27,
+                "type": 28,
                 "typeName": "ListingStatus"
               },
               {
@@ -3021,7 +3031,7 @@
       }
     },
     {
-      "id": 27,
+      "id": 28,
       "type": {
         "def": {
           "variant": {
@@ -3048,16 +3058,6 @@
           "data",
           "ListingStatus"
         ]
-      }
-    },
-    {
-      "id": 28,
-      "type": {
-        "def": {
-          "sequence": {
-            "type": 5
-          }
-        }
       }
     },
     {
@@ -3158,7 +3158,7 @@
               },
               {
                 "name": "token_id",
-                "type": 11,
+                "type": 20,
                 "typeName": "Id"
               },
               {
@@ -3173,7 +3173,7 @@
               },
               {
                 "name": "currency",
-                "type": 12,
+                "type": 21,
                 "typeName": "Currency"
               },
               {
@@ -3307,7 +3307,7 @@
               },
               {
                 "name": "token_id",
-                "type": 11,
+                "type": 20,
                 "typeName": "Id"
               },
               {
@@ -3322,7 +3322,7 @@
               },
               {
                 "name": "currency",
-                "type": 12,
+                "type": 21,
                 "typeName": "Currency"
               },
               {
@@ -3447,6 +3447,90 @@
               {
                 "fields": [
                   {
+                    "type": 39
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 39
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 14
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 14
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
                     "type": 32
                   }
                 ],
@@ -3473,90 +3557,6 @@
           {
             "name": "E",
             "type": 10
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 39,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 40
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 10
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 40
-          },
-          {
-            "name": "E",
-            "type": 10
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 40,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 4
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 16
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 4
-          },
-          {
-            "name": "E",
-            "type": 16
           }
         ],
         "path": [
@@ -3624,7 +3624,7 @@
               {
                 "fields": [
                   {
-                    "type": 17
+                    "type": 15
                   }
                 ],
                 "index": 1,
@@ -3640,7 +3640,7 @@
           },
           {
             "name": "E",
-            "type": 17
+            "type": 15
           }
         ],
         "path": [
@@ -3803,7 +3803,7 @@
               {
                 "fields": [
                   {
-                    "type": 19,
+                    "type": 17,
                     "typeName": "String"
                   }
                 ],
@@ -3817,7 +3817,7 @@
               {
                 "fields": [
                   {
-                    "type": 16,
+                    "type": 14,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -3827,7 +3827,7 @@
               {
                 "fields": [
                   {
-                    "type": 17,
+                    "type": 15,
                     "typeName": "AccessControlError"
                   }
                 ],
