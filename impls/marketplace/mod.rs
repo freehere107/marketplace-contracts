@@ -1,5 +1,6 @@
 /// SPDX-License-Identifier: MIT
 pub mod data;
+
 /// SPDX-License-Identifier: MIT
 use crate::impls::admin_access::AdminAccessImpl;
 use crate::impls::collection_access::CollectionAccess;
@@ -23,12 +24,12 @@ use crate::traits::{ArchisinalError, ProjectResult};
 ///
 /// See `crate::traits::Marketplace` for more information.
 pub trait MarketplaceImpl:
-    Storage<Data>
-    + Storage<ownable::Data>
-    + Ownable
-    + AdminAccessImpl
-    + MarketplaceEvents
-    + CollectionAccess
+Storage<Data>
++ Storage<ownable::Data>
++ Ownable
++ AdminAccessImpl
++ MarketplaceEvents
++ CollectionAccess
 {
     fn get_listing_count(&self) -> u128 {
         self.data::<Data>().listing_count.get_or_default()
@@ -220,7 +221,7 @@ pub trait MarketplaceImpl:
             let currency = &mut listing.currency;
             let token_id = &listing.token_id;
             let creator = &listing.creator;
-            
+
             let royalty = listing.royalty;
             let price = &listing.price;
             let price_without_fee = apply_fee(price, royalty)?;
