@@ -38,21 +38,6 @@ export default class Methods {
 	}
 
 	/**
-	* addAdmin
-	*
-	* @param { ArgumentTypes.AccountId } accountId,
-	* @returns { void }
-	*/
-	"addAdmin" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [accountId], __options);
-	}
-
-	/**
 	* removeAdmin
 	*
 	* @param { ArgumentTypes.AccountId } accountId,
@@ -63,6 +48,21 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::removeAdmin", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [accountId], __options);
+	}
+
+	/**
+	* addAdmin
+	*
+	* @param { ArgumentTypes.AccountId } accountId,
+	* @returns { void }
+	*/
+	"addAdmin" (
+		accountId: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "adminAccess::addAdmin", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [accountId], __options);
 	}
@@ -92,6 +92,19 @@ export default class Methods {
 	}
 
 	/**
+	* renounceOwnership
+	*
+	* @returns { void }
+	*/
+	"renounceOwnership" (
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
 	* transferOwnership
 	*
 	* @param { ArgumentTypes.AccountId } newOwner,
@@ -104,19 +117,6 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::transferOwnership", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [newOwner], __options);
-	}
-
-	/**
-	* renounceOwnership
-	*
-	* @returns { void }
-	*/
-	"renounceOwnership" (
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
 	}
 
 	/**
@@ -154,6 +154,19 @@ export default class Methods {
 	}
 
 	/**
+	* getRoleAdmin
+	*
+	* @param { (number | string | BN) } role,
+	* @returns { Result<number, ReturnTypes.LangError> }
+	*/
+	"getRoleAdmin" (
+		role: (number | string | BN),
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return handleReturnType(result, getTypeDescription(23, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
 	* hasRole
 	*
 	* @param { (number | string | BN) } role,
@@ -183,19 +196,6 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [role, account], __options);
-	}
-
-	/**
-	* getRoleAdmin
-	*
-	* @param { (number | string | BN) } role,
-	* @returns { Result<number, ReturnTypes.LangError> }
-	*/
-	"getRoleAdmin" (
-		role: (number | string | BN),
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return handleReturnType(result, getTypeDescription(23, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 }

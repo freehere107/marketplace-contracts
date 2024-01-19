@@ -21,6 +21,16 @@ export default class Methods {
 		this.__apiPromise = apiPromise;
 	}
 	/**
+	 * getListingCount
+	 *
+	*/
+	"getListingCount" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::getListingCount", [], __options);
+	}
+
+	/**
 	 * cancelListing
 	 *
 	 * @param { (string | number | BN) } listingId,
@@ -33,27 +43,15 @@ export default class Methods {
 	}
 
 	/**
-	 * buyBatch
+	 * getListingByIndex
 	 *
-	 * @param { Array<(string | number | BN)> } ids,
+	 * @param { (string | number | BN) } index,
 	*/
-	"buyBatch" (
-		ids: Array<(string | number | BN)>,
-		__options: GasLimitAndRequiredValue,
+	"getListingByIndex" (
+		index: (string | number | BN),
+		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::buyBatch", [ids], __options);
-	}
-
-	/**
-	 * buyNft
-	 *
-	 * @param { (string | number | BN) } listingId,
-	*/
-	"buyNft" (
-		listingId: (string | number | BN),
-		__options: GasLimitAndRequiredValue,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::buyNft", [listingId], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::getListingByIndex", [index], __options);
 	}
 
 	/**
@@ -77,85 +75,27 @@ export default class Methods {
 	}
 
 	/**
-	 * getListingCount
+	 * buyNft
 	 *
+	 * @param { (string | number | BN) } listingId,
 	*/
-	"getListingCount" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::getListingCount", [], __options);
-	}
-
-	/**
-	 * getListingByIndex
-	 *
-	 * @param { (string | number | BN) } index,
-	*/
-	"getListingByIndex" (
-		index: (string | number | BN),
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::getListingByIndex", [index], __options);
-	}
-
-	/**
-	 * getAuctionByIndex
-	 *
-	 * @param { (string | number | BN) } index,
-	*/
-	"getAuctionByIndex" (
-		index: (string | number | BN),
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::getAuctionByIndex", [index], __options);
-	}
-
-	/**
-	 * getAuctionCount
-	 *
-	*/
-	"getAuctionCount" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::getAuctionCount", [], __options);
-	}
-
-	/**
-	 * bidNft
-	 *
-	 * @param { (string | number | BN) } auctionId,
-	 * @param { (string | number | BN) } price,
-	*/
-	"bidNft" (
-		auctionId: (string | number | BN),
-		price: (string | number | BN),
+	"buyNft" (
+		listingId: (string | number | BN),
 		__options: GasLimitAndRequiredValue,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::bidNft", [auctionId, price], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::buyNft", [listingId], __options);
 	}
 
 	/**
-	 * claimNft
+	 * buyBatch
 	 *
-	 * @param { (string | number | BN) } auctionId,
+	 * @param { Array<(string | number | BN)> } ids,
 	*/
-	"claimNft" (
-		auctionId: (string | number | BN),
-		__options: GasLimit,
+	"buyBatch" (
+		ids: Array<(string | number | BN)>,
+		__options: GasLimitAndRequiredValue,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::claimNft", [auctionId], __options);
-	}
-
-	/**
-	 * cancelAuction
-	 *
-	 * @param { (string | number | BN) } auctionId,
-	*/
-	"cancelAuction" (
-		auctionId: (string | number | BN),
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::cancelAuction", [auctionId], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "marketplace::buyBatch", [ids], __options);
 	}
 
 	/**
@@ -183,15 +123,63 @@ export default class Methods {
 	}
 
 	/**
-	 * isAdmin
+	 * bidNft
 	 *
-	 * @param { ArgumentTypes.AccountId } accountId,
+	 * @param { (string | number | BN) } auctionId,
+	 * @param { (string | number | BN) } price,
 	*/
-	"isAdmin" (
-		accountId: ArgumentTypes.AccountId,
+	"bidNft" (
+		auctionId: (string | number | BN),
+		price: (string | number | BN),
+		__options: GasLimitAndRequiredValue,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::bidNft", [auctionId, price], __options);
+	}
+
+	/**
+	 * getAuctionByIndex
+	 *
+	 * @param { (string | number | BN) } index,
+	*/
+	"getAuctionByIndex" (
+		index: (string | number | BN),
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::getAuctionByIndex", [index], __options);
+	}
+
+	/**
+	 * getAuctionCount
+	 *
+	*/
+	"getAuctionCount" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::getAuctionCount", [], __options);
+	}
+
+	/**
+	 * cancelAuction
+	 *
+	 * @param { (string | number | BN) } auctionId,
+	*/
+	"cancelAuction" (
+		auctionId: (string | number | BN),
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::cancelAuction", [auctionId], __options);
+	}
+
+	/**
+	 * claimNft
+	 *
+	 * @param { (string | number | BN) } auctionId,
+	*/
+	"claimNft" (
+		auctionId: (string | number | BN),
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "auction::claimNft", [auctionId], __options);
 	}
 
 	/**
@@ -219,6 +207,18 @@ export default class Methods {
 	}
 
 	/**
+	 * isAdmin
+	 *
+	 * @param { ArgumentTypes.AccountId } accountId,
+	*/
+	"isAdmin" (
+		accountId: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "adminAccess::isAdmin", [accountId], __options);
+	}
+
+	/**
 	 * timestamp
 	 *
 	*/
@@ -226,28 +226,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "timestampProvider::timestamp", [], __options);
-	}
-
-	/**
-	 * transferOwnership
-	 *
-	 * @param { ArgumentTypes.AccountId } newOwner,
-	*/
-	"transferOwnership" (
-		newOwner: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
-	}
-
-	/**
-	 * renounceOwnership
-	 *
-	*/
-	"renounceOwnership" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
 	}
 
 	/**
@@ -261,17 +239,25 @@ export default class Methods {
 	}
 
 	/**
-	 * renounceRole
+	 * renounceOwnership
 	 *
-	 * @param { (number | string | BN) } role,
-	 * @param { ArgumentTypes.AccountId | null } account,
 	*/
-	"renounceRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId | null,
+	"renounceOwnership" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
+	}
+
+	/**
+	 * transferOwnership
+	 *
+	 * @param { ArgumentTypes.AccountId } newOwner,
+	*/
+	"transferOwnership" (
+		newOwner: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::transferOwnership", [newOwner], __options);
 	}
 
 	/**
@@ -289,15 +275,31 @@ export default class Methods {
 	}
 
 	/**
-	 * getRoleAdmin
+	 * renounceRole
 	 *
 	 * @param { (number | string | BN) } role,
+	 * @param { ArgumentTypes.AccountId | null } account,
 	*/
-	"getRoleAdmin" (
+	"renounceRole" (
 		role: (number | string | BN),
+		account: ArgumentTypes.AccountId | null,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::renounceRole", [role, account], __options);
+	}
+
+	/**
+	 * hasRole
+	 *
+	 * @param { (number | string | BN) } role,
+	 * @param { ArgumentTypes.AccountId | null } address,
+	*/
+	"hasRole" (
+		role: (number | string | BN),
+		address: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
 	}
 
 	/**
@@ -315,17 +317,15 @@ export default class Methods {
 	}
 
 	/**
-	 * hasRole
+	 * getRoleAdmin
 	 *
 	 * @param { (number | string | BN) } role,
-	 * @param { ArgumentTypes.AccountId | null } address,
 	*/
-	"hasRole" (
+	"getRoleAdmin" (
 		role: (number | string | BN),
-		address: ArgumentTypes.AccountId | null,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::hasRole", [role, address], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "accessControl::getRoleAdmin", [role], __options);
 	}
 
 	/**

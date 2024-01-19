@@ -68,6 +68,21 @@ export default class Methods {
 	}
 
 	/**
+	* buyBatch
+	*
+	* @param { Array<(string | number | BN)> } ids,
+	* @returns { void }
+	*/
+	"buyBatch" (
+		ids: Array<(string | number | BN)>,
+		__options: GasLimitAndRequiredValue,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyBatch", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [ids], __options);
+	}
+
+	/**
 	* listNftForSale
 	*
 	* @param { ArgumentTypes.AccountId } creator,
@@ -91,31 +106,16 @@ export default class Methods {
 	}
 
 	/**
-	* buyBatch
-	*
-	* @param { Array<(string | number | BN)> } ids,
-	* @returns { void }
-	*/
-	"buyBatch" (
-		ids: Array<(string | number | BN)>,
-		__options: GasLimitAndRequiredValue,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyBatch", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [ids], __options);
-	}
-
-	/**
-	* cancelListing
+	* buyNft
 	*
 	* @param { (string | number | BN) } listingId,
 	* @returns { void }
 	*/
-	"cancelListing" (
+	"buyNft" (
 		listingId: (string | number | BN),
-		__options: GasLimit,
+		__options: GasLimitAndRequiredValue,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::cancelListing", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyNft", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [listingId], __options);
 	}
@@ -145,18 +145,57 @@ export default class Methods {
 	}
 
 	/**
-	* buyNft
+	* cancelListing
 	*
 	* @param { (string | number | BN) } listingId,
 	* @returns { void }
 	*/
-	"buyNft" (
+	"cancelListing" (
 		listingId: (string | number | BN),
-		__options: GasLimitAndRequiredValue,
+		__options: GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::buyNft", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "marketplace::cancelListing", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [listingId], __options);
+	}
+
+	/**
+	* getAuctionCount
+	*
+	* @returns { Result<ReturnNumber, ReturnTypes.LangError> }
+	*/
+	"getAuctionCount" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<ReturnNumber, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionCount", [], __options, (result) => { return handleReturnType(result, getTypeDescription(25, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* getAuctionByIndex
+	*
+	* @param { (string | number | BN) } index,
+	* @returns { Result<ReturnTypes.Auction | null, ReturnTypes.LangError> }
+	*/
+	"getAuctionByIndex" (
+		index: (string | number | BN),
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<ReturnTypes.Auction | null, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionByIndex", [index], __options, (result) => { return handleReturnType(result, getTypeDescription(30, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* startAuction
+	*
+	* @param { (string | number | BN) } auctionId,
+	* @returns { void }
+	*/
+	"startAuction" (
+		auctionId: (string | number | BN),
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::startAuction", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [auctionId], __options);
 	}
 
 	/**
@@ -177,42 +216,16 @@ export default class Methods {
 	}
 
 	/**
-	* listNftForAuction
-	*
-	* @param { ArgumentTypes.AuctionInfo } auctionInfo,
-	* @returns { void }
-	*/
-	"listNftForAuction" (
-		auctionInfo: ArgumentTypes.AuctionInfo,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::listNftForAuction", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [auctionInfo], __options);
-	}
-
-	/**
-	* getAuctionCount
-	*
-	* @returns { Result<ReturnNumber, ReturnTypes.LangError> }
-	*/
-	"getAuctionCount" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnNumber, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionCount", [], __options, (result) => { return handleReturnType(result, getTypeDescription(25, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
-	* startAuction
+	* claimNft
 	*
 	* @param { (string | number | BN) } auctionId,
 	* @returns { void }
 	*/
-	"startAuction" (
+	"claimNft" (
 		auctionId: (string | number | BN),
 		__options: GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::startAuction", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::claimNft", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [auctionId], __options);
 	}
@@ -233,31 +246,31 @@ export default class Methods {
 	}
 
 	/**
-	* claimNft
+	* listNftForAuction
 	*
-	* @param { (string | number | BN) } auctionId,
+	* @param { ArgumentTypes.AuctionInfo } auctionInfo,
 	* @returns { void }
 	*/
-	"claimNft" (
-		auctionId: (string | number | BN),
+	"listNftForAuction" (
+		auctionInfo: ArgumentTypes.AuctionInfo,
 		__options: GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::claimNft", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "auction::listNftForAuction", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [auctionId], __options);
+		}, [auctionInfo], __options);
 	}
 
 	/**
-	* getAuctionByIndex
+	* isAdmin
 	*
-	* @param { (string | number | BN) } index,
-	* @returns { Result<ReturnTypes.Auction | null, ReturnTypes.LangError> }
+	* @param { ArgumentTypes.AccountId } accountId,
+	* @returns { Result<boolean, ReturnTypes.LangError> }
 	*/
-	"getAuctionByIndex" (
-		index: (string | number | BN),
+	"isAdmin" (
+		accountId: ArgumentTypes.AccountId,
 		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnTypes.Auction | null, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "auction::getAuctionByIndex", [index], __options, (result) => { return handleReturnType(result, getTypeDescription(31, DATA_TYPE_DESCRIPTIONS)); });
+	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return handleReturnType(result, getTypeDescription(36, DATA_TYPE_DESCRIPTIONS)); });
 	}
 
 	/**
@@ -291,19 +304,6 @@ export default class Methods {
 	}
 
 	/**
-	* isAdmin
-	*
-	* @param { ArgumentTypes.AccountId } accountId,
-	* @returns { Result<boolean, ReturnTypes.LangError> }
-	*/
-	"isAdmin" (
-		accountId: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<boolean, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "adminAccess::isAdmin", [accountId], __options, (result) => { return handleReturnType(result, getTypeDescription(36, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
 	* timestamp
 	*
 	* @returns { Result<number, ReturnTypes.LangError> }
@@ -312,6 +312,30 @@ export default class Methods {
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
 		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "timestampProvider::timestamp", [], __options, (result) => { return handleReturnType(result, getTypeDescription(38, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* owner
+	*
+	* @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
+	*/
+	"owner" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
+		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return handleReturnType(result, getTypeDescription(39, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* renounceOwnership
+	*
+	* @returns { void }
+	*/
+	"renounceOwnership" (
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
 	}
 
 	/**
@@ -330,30 +354,6 @@ export default class Methods {
 	}
 
 	/**
-	* renounceOwnership
-	*
-	* @returns { void }
-	*/
-	"renounceOwnership" (
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
-	}
-
-	/**
-	* owner
-	*
-	* @returns { Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> }
-	*/
-	"owner" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< Result<ReturnTypes.AccountId | null, ReturnTypes.LangError> > >{
-		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "ownable::owner", [], __options, (result) => { return handleReturnType(result, getTypeDescription(41, DATA_TYPE_DESCRIPTIONS)); });
-	}
-
-	/**
 	* hasRole
 	*
 	* @param { (number | string | BN) } role,
@@ -369,18 +369,18 @@ export default class Methods {
 	}
 
 	/**
-	* renounceRole
+	* grantRole
 	*
 	* @param { (number | string | BN) } role,
 	* @param { ArgumentTypes.AccountId | null } account,
 	* @returns { void }
 	*/
-	"renounceRole" (
+	"grantRole" (
 		role: (number | string | BN),
 		account: ArgumentTypes.AccountId | null,
 		__options: GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [role, account], __options);
 	}
@@ -403,23 +403,6 @@ export default class Methods {
 	}
 
 	/**
-	* grantRole
-	*
-	* @param { (number | string | BN) } role,
-	* @param { ArgumentTypes.AccountId | null } account,
-	* @returns { void }
-	*/
-	"grantRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId | null,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::grantRole", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [role, account], __options);
-	}
-
-	/**
 	* getRoleAdmin
 	*
 	* @param { (number | string | BN) } role,
@@ -430,6 +413,23 @@ export default class Methods {
 		__options: GasLimit,
 	): Promise< QueryReturnType< Result<number, ReturnTypes.LangError> > >{
 		return queryOkJSON( this.__apiPromise, this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options, (result) => { return handleReturnType(result, getTypeDescription(44, DATA_TYPE_DESCRIPTIONS)); });
+	}
+
+	/**
+	* renounceRole
+	*
+	* @param { (number | string | BN) } role,
+	* @param { ArgumentTypes.AccountId | null } account,
+	* @returns { void }
+	*/
+	"renounceRole" (
+		role: (number | string | BN),
+		account: ArgumentTypes.AccountId | null,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "accessControl::renounceRole", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [role, account], __options);
 	}
 
 	/**

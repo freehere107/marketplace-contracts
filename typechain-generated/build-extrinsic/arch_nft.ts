@@ -31,16 +31,6 @@ export default class Methods {
 	}
 
 	/**
-	 * collectionUri
-	 *
-	*/
-	"collectionUri" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionUri", [], __options);
-	}
-
-	/**
 	 * setCollectionUri
 	 *
 	 * @param { string } uri,
@@ -53,13 +43,15 @@ export default class Methods {
 	}
 
 	/**
-	 * collectionName
+	 * getNftMetadata
 	 *
+	 * @param { ArgumentTypes.Id } id,
 	*/
-	"collectionName" (
+	"getNftMetadata" (
+		id: ArgumentTypes.Id,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionName", [], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::getNftMetadata", [id], __options);
 	}
 
 	/**
@@ -79,38 +71,6 @@ export default class Methods {
 	}
 
 	/**
-	 * getNftMetadata
-	 *
-	 * @param { ArgumentTypes.Id } id,
-	*/
-	"getNftMetadata" (
-		id: ArgumentTypes.Id,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::getNftMetadata", [id], __options);
-	}
-
-	/**
-	 * collectionAdditionalInfo
-	 *
-	*/
-	"collectionAdditionalInfo" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionAdditionalInfo", [], __options);
-	}
-
-	/**
-	 * collectionRoyalty
-	 *
-	*/
-	"collectionRoyalty" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionRoyalty", [], __options);
-	}
-
-	/**
 	 * setCollectionName
 	 *
 	 * @param { string } name,
@@ -120,6 +80,16 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::setCollectionName", [name], __options);
+	}
+
+	/**
+	 * collectionName
+	 *
+	*/
+	"collectionName" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionName", [], __options);
 	}
 
 	/**
@@ -135,6 +105,36 @@ export default class Methods {
 	}
 
 	/**
+	 * collectionUri
+	 *
+	*/
+	"collectionUri" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionUri", [], __options);
+	}
+
+	/**
+	 * collectionRoyalty
+	 *
+	*/
+	"collectionRoyalty" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionRoyalty", [], __options);
+	}
+
+	/**
+	 * collectionAdditionalInfo
+	 *
+	*/
+	"collectionAdditionalInfo" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::collectionAdditionalInfo", [], __options);
+	}
+
+	/**
 	 * updateNftMetadata
 	 *
 	 * @param { ArgumentTypes.Id } id,
@@ -146,16 +146,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "collection::updateNftMetadata", [id, metadata], __options);
-	}
-
-	/**
-	 * renounceOwnership
-	 *
-	*/
-	"renounceOwnership" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
 	}
 
 	/**
@@ -181,19 +171,13 @@ export default class Methods {
 	}
 
 	/**
-	 * approve
+	 * renounceOwnership
 	 *
-	 * @param { ArgumentTypes.AccountId } operator,
-	 * @param { ArgumentTypes.Id | null } id,
-	 * @param { boolean } approved,
 	*/
-	"approve" (
-		operator: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id | null,
-		approved: boolean,
+	"renounceOwnership" (
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::approve", [operator, id, approved], __options);
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "ownable::renounceOwnership", [], __options);
 	}
 
 	/**
@@ -210,32 +194,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::transfer", [to, id, data], __options);
-	}
-
-	/**
-	 * totalSupply
-	 *
-	*/
-	"totalSupply" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::totalSupply", [], __options);
-	}
-
-	/**
-	 * allowance
-	 *
-	 * @param { ArgumentTypes.AccountId } owner,
-	 * @param { ArgumentTypes.AccountId } operator,
-	 * @param { ArgumentTypes.Id | null } id,
-	*/
-	"allowance" (
-		owner: ArgumentTypes.AccountId,
-		operator: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id | null,
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::allowance", [owner, operator, id], __options);
 	}
 
 	/**
@@ -261,6 +219,22 @@ export default class Methods {
 	}
 
 	/**
+	 * approve
+	 *
+	 * @param { ArgumentTypes.AccountId } operator,
+	 * @param { ArgumentTypes.Id | null } id,
+	 * @param { boolean } approved,
+	*/
+	"approve" (
+		operator: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id | null,
+		approved: boolean,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::approve", [operator, id, approved], __options);
+	}
+
+	/**
 	 * ownerOf
 	 *
 	 * @param { ArgumentTypes.Id } id,
@@ -270,6 +244,32 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::ownerOf", [id], __options);
+	}
+
+	/**
+	 * allowance
+	 *
+	 * @param { ArgumentTypes.AccountId } owner,
+	 * @param { ArgumentTypes.AccountId } operator,
+	 * @param { ArgumentTypes.Id | null } id,
+	*/
+	"allowance" (
+		owner: ArgumentTypes.AccountId,
+		operator: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id | null,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::allowance", [owner, operator, id], __options);
+	}
+
+	/**
+	 * totalSupply
+	 *
+	*/
+	"totalSupply" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__apiPromise, this.__nativeContract, "psp34::totalSupply", [], __options);
 	}
 
 	/**

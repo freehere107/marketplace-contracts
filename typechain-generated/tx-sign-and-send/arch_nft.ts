@@ -41,18 +41,6 @@ export default class Methods {
 	}
 
 	/**
-	* collectionUri
-	*
-	*/
-	"collectionUri" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionUri", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
-	}
-
-	/**
 	* setCollectionUri
 	*
 	* @param { string } uri,
@@ -67,15 +55,17 @@ export default class Methods {
 	}
 
 	/**
-	* collectionName
+	* getNftMetadata
 	*
+	* @param { ArgumentTypes.Id } id,
 	*/
-	"collectionName" (
+	"getNftMetadata" (
+		id: ArgumentTypes.Id,
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionName", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::getNftMetadata", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
+		}, [id], __options);
 	}
 
 	/**
@@ -97,44 +87,6 @@ export default class Methods {
 	}
 
 	/**
-	* getNftMetadata
-	*
-	* @param { ArgumentTypes.Id } id,
-	*/
-	"getNftMetadata" (
-		id: ArgumentTypes.Id,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::getNftMetadata", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [id], __options);
-	}
-
-	/**
-	* collectionAdditionalInfo
-	*
-	*/
-	"collectionAdditionalInfo" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionAdditionalInfo", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
-	}
-
-	/**
-	* collectionRoyalty
-	*
-	*/
-	"collectionRoyalty" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionRoyalty", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
-	}
-
-	/**
 	* setCollectionName
 	*
 	* @param { string } name,
@@ -146,6 +98,18 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::setCollectionName", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [name], __options);
+	}
+
+	/**
+	* collectionName
+	*
+	*/
+	"collectionName" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionName", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
 	}
 
 	/**
@@ -163,6 +127,42 @@ export default class Methods {
 	}
 
 	/**
+	* collectionUri
+	*
+	*/
+	"collectionUri" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionUri", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
+	* collectionRoyalty
+	*
+	*/
+	"collectionRoyalty" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionRoyalty", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
+	* collectionAdditionalInfo
+	*
+	*/
+	"collectionAdditionalInfo" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::collectionAdditionalInfo", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
+	}
+
+	/**
 	* updateNftMetadata
 	*
 	* @param { ArgumentTypes.Id } id,
@@ -176,18 +176,6 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "collection::updateNftMetadata", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [id, metadata], __options);
-	}
-
-	/**
-	* renounceOwnership
-	*
-	*/
-	"renounceOwnership" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
 	}
 
 	/**
@@ -217,21 +205,15 @@ export default class Methods {
 	}
 
 	/**
-	* approve
+	* renounceOwnership
 	*
-	* @param { ArgumentTypes.AccountId } operator,
-	* @param { ArgumentTypes.Id | null } id,
-	* @param { boolean } approved,
 	*/
-	"approve" (
-		operator: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id | null,
-		approved: boolean,
+	"renounceOwnership" (
 		__options ? : GasLimit,
 	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::approve", (events: EventRecord) => {
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "ownable::renounceOwnership", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [operator, id, approved], __options);
+		}, [], __options);
 	}
 
 	/**
@@ -250,36 +232,6 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::transfer", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [to, id, data], __options);
-	}
-
-	/**
-	* totalSupply
-	*
-	*/
-	"totalSupply" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::totalSupply", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [], __options);
-	}
-
-	/**
-	* allowance
-	*
-	* @param { ArgumentTypes.AccountId } owner,
-	* @param { ArgumentTypes.AccountId } operator,
-	* @param { ArgumentTypes.Id | null } id,
-	*/
-	"allowance" (
-		owner: ArgumentTypes.AccountId,
-		operator: ArgumentTypes.AccountId,
-		id: ArgumentTypes.Id | null,
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::allowance", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
-		}, [owner, operator, id], __options);
 	}
 
 	/**
@@ -309,6 +261,24 @@ export default class Methods {
 	}
 
 	/**
+	* approve
+	*
+	* @param { ArgumentTypes.AccountId } operator,
+	* @param { ArgumentTypes.Id | null } id,
+	* @param { boolean } approved,
+	*/
+	"approve" (
+		operator: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id | null,
+		approved: boolean,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::approve", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [operator, id, approved], __options);
+	}
+
+	/**
 	* ownerOf
 	*
 	* @param { ArgumentTypes.Id } id,
@@ -320,6 +290,36 @@ export default class Methods {
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::ownerOf", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
 		}, [id], __options);
+	}
+
+	/**
+	* allowance
+	*
+	* @param { ArgumentTypes.AccountId } owner,
+	* @param { ArgumentTypes.AccountId } operator,
+	* @param { ArgumentTypes.Id | null } id,
+	*/
+	"allowance" (
+		owner: ArgumentTypes.AccountId,
+		operator: ArgumentTypes.AccountId,
+		id: ArgumentTypes.Id | null,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::allowance", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [owner, operator, id], __options);
+	}
+
+	/**
+	* totalSupply
+	*
+	*/
+	"totalSupply" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp34::totalSupply", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, EVENT_DATA_TYPE_DESCRIPTIONS);
+		}, [], __options);
 	}
 
 	/**

@@ -2,13 +2,13 @@
 
 ## Shibuya
 ```
-PSP22: WLGuzK5sSiRR7GFxnopr7zAdbEtSxGh3HK1qEHWFCnY7vcF
-ArchNFT: WUmmfQbSWaT7xekpfL1xK1ED7XMFLcUSo1AaufYfd2fmeEQ
-User: Zxo7tBSgVY83emiRv5DVRG2vcJWQqJfKbAphsgaXYTFLn79
-Creator: amLv4SCB4tJinhB6girT2X7ihwvcLrvdUHNnMDuLK4BT7zi
-CollectionFabric: bD5dUYCi65c3ynbKHgFSVu7qrXugFVSZk6Wn36rnVEKUdUP
-Marketplace: WEsXWGPLrCZQYhpwDYvKtr4j1LbXpEQdM8Ye16nwXy17EfQ
-AccountManager: ao4u8eV4FUsq57nRc7GW1cyGsqtSPVL2osNNcAL8o9sj1Wb
+PSP22: a57QueBygqBifzSY8gZsDTp8p9dMLVjDDth6S3GZnTmmy5U
+ArchNFT: Yq5XdBKuwBcpGid4boJ2iDftHYGNxzGDwHfRLtPoTbRNJtQ
+User: Xv9YvDYT1RDvvkprXTAQ678rJTRtRPV33NPyHKzksGHayzQ
+Creator: XjLTXd9iZ1GgUHcBmqoqZX7ZCtKqTqhv2VBomY1htKZkmfM
+CollectionFabric: aBPkq4nGhXQCxzwpZrHfz1vYmQEPQZZWfDDrunpMJXAtDkC
+Marketplace: Zzivu8yPbtqEHtZL5kXBBzuGfKm7CeKLFzn7ZP1x26e82jh
+AccountManager: ZiTfikdc5uyVN2LreYiKPLypnsUVdRsxLBcxw2mfLAkMRqv
 ```
 
 ## Astar mainnet
