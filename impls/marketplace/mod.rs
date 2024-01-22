@@ -24,12 +24,12 @@ use crate::traits::{ArchisinalError, ProjectResult};
 ///
 /// See `crate::traits::Marketplace` for more information.
 pub trait MarketplaceImpl:
-Storage<Data>
-+ Storage<ownable::Data>
-+ Ownable
-+ AdminAccessImpl
-+ MarketplaceEvents
-+ CollectionAccess
+    Storage<Data>
+    + Storage<ownable::Data>
+    + Ownable
+    + AdminAccessImpl
+    + MarketplaceEvents
+    + CollectionAccess
 {
     fn get_listing_count(&self) -> u128 {
         self.data::<Data>().listing_count.get_or_default()
