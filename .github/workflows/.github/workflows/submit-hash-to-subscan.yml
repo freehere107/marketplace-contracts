@@ -1,0 +1,27 @@
+name: Submit contracts hash to Subscan
+
+on:
+  push:
+    tags: ["subscan-verify*"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Compile contract and Submit hash to Subscan
+        shell: bash
+        id: compile_contract_and_submit_hash_to_subscan
+        run: |
+          wget https://storage.googleapis.com/wasm-compile-artifacts.gcs.subscan.io/submit-contracts-hash/latest/submit-contracts-hash
+          chmod +x submit-contracts-hash && ./submit-contracts-hash -config ./subscan_contract_hash_submission.yaml
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{ steps.compile_contract_and_submit_hash_to_subscan.outputs.contract_file_name }}"
+          body: ${{ github.event.head_commit.message }}
+          token: ${{ secrets.GITHUB_TOKEN }}

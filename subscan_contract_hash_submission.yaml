@@ -1,0 +1,14 @@
+# Configuration for submitting contract hash to Subscan
+
+# The working directory during compilation, default is "."
+working_directory: .
+# The relative path of Cargo.toml, relative to the working directory, default is "Cargo.toml"
+manifest_path: contracts/arch_nft/Cargo.toml
+# rustup toolchain version, default is "stable"
+toolchain: stable
+# The tag for https://github.com/paritytech/cargo-contract, default is "v2.2.1"
+compiler_tag: v3.2.0
+# Rust version, default is "1.68.0"
+rust_version: 1.70.0
+# The arguments for the compiler, default is "--release"
+compiler_args: --release --optimization-passes z
